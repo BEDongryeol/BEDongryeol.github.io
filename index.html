@@ -119,9 +119,17 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span>
       </div>
   </nav>
 </div>
@@ -150,6 +158,126 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://bedongryeol.github.io/2021/07/30/til1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dongryeol Jeong">
+      <meta itemprop="description" content="Java/Kotlin/Spring/SpringBoot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fintech - Backend Developer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/07/30/til1/" class="post-title-link" itemprop="url">연결리스트</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-07-30 00:00:00 / Modified: 22:02:21" itemprop="dateCreated datePublished" datetime="2021-07-30T00:00:00+09:00">2021-07-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/" itemprop="url" rel="index"><span itemprop="name">자료구조</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="연결리스트"><a href="#연결리스트" class="headerlink" title="연결리스트"></a>연결리스트</h2><h3 id="특징"><a href="#특징" class="headerlink" title="- 특징"></a>- 특징</h3><blockquote>
+<ol>
+<li>데이터를 선형적으로 저장 및 처리한다.</li>
+</ol>
+<ol start="2">
+<li>삽입과 삭제가 많은 경우 효율적이다.</li>
+</ol>
+<ol start="3">
+<li>리스트의 중간 지점에 노드의 추가/삭제가 가능하여야 한다.</li>
+</ol>
+<ol start="4">
+<li>메모리 공간을 미리 할당하는 배열을 보완하여 공간 낭비를 감소시킨다.</li>
+</ol>
+</blockquote>
+<p>✚ 배열 기반의 리스트</p>
+<ul>
+<li><p>장점 : 즉시 접근이 가능하다.</p>
+</li>
+<li><p>단점 : 삽입 삭제가 비효율적이며 메모리 공간을 미리 할당한다.</p>
+</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>###- 종류</p>
+<h4 id="1-단일-연결리스트"><a href="#1-단일-연결리스트" class="headerlink" title="1. 단일 연결리스트"></a>1. 단일 연결리스트</h4><p><img src="/image/single.PNG" alt="one-way-list"></p>
+<ul>
+<li><p>단일 연결리스트는 가장 앞의 노드를 가르키는 HEAD를 갖는다.</p>
+</li>
+<li><p>각 노드별로 동적 메모리를 할당하여야 하며, 각 노드를 연결시켜주어야 한다.</p>
+</li>
+</ul>
+<h5 id="◼︎︎-노드-삽입"><a href="#◼︎︎-노드-삽입" class="headerlink" title="◼︎︎ 노드 삽입"></a>◼︎︎ 노드 삽입</h5><p><img src="/image/push.PNG" alt="push"></p>
+<ul>
+<li><p>HEAD 다음에 노드를 삽입한다고 가정</p>
+</li>
+<li><p>‘HEAD의 *next’가 ‘삽입 노드의 값’을 가리키게 한다.</p>
+</li>
+<li><p>‘삽입 노드의 *next’가 ‘기존 노드의 값’을 가리키게 한다.</p>
+</li>
+</ul>
+<h5 id="◼︎︎-노드-삭제"><a href="#◼︎︎-노드-삭제" class="headerlink" title="◼︎︎ 노드 삭제"></a>◼︎︎ 노드 삭제</h5><p><img src="/image/pop.PNG" alt="pop"></p>
+<ul>
+<li><p>HEAD 다음에 위치한 노드를 삭제한다고 가정</p>
+</li>
+<li><p>‘HEAD의 *next’가 ‘삭제될 노드의 다음 값’을 가리키게 한다.</p>
+</li>
+<li><p>삭제된 노드의 동적 메모리를 해제하여 메모리 누수를 방지한다.</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
