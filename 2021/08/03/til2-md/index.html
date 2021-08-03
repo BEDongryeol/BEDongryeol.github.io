@@ -20,25 +20,32 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"bedongryeol.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Java&#x2F;Kotlin&#x2F;Spring&#x2F;SpringBoot">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fintech - Backend Developer">
-<meta property="og:url" content="http://bedongryeol.github.io/index.html">
+<meta name="description" content="큐 (Queue)특징   데이터가 뒤(rear)로 들어가서 앞(front)으로 나오는 자료   FIFO (First In First Out)   스케줄링, 탐색 알고리즘 등에서 사용된다.   구현배열로 구현선언 배열은 사전에 배열의 크기를 지정해줘야한다. front와 rear를 선언해준다.  1234567#include &lt;stdio.h&gt;#defi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="큐">
+<meta property="og:url" content="http://bedongryeol.github.io/2021/08/03/til2-md/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="Java&#x2F;Kotlin&#x2F;Spring&#x2F;SpringBoot">
+<meta property="og:description" content="큐 (Queue)특징   데이터가 뒤(rear)로 들어가서 앞(front)으로 나오는 자료   FIFO (First In First Out)   스케줄링, 탐색 알고리즘 등에서 사용된다.   구현배열로 구현선언 배열은 사전에 배열의 크기를 지정해줘야한다. front와 rear를 선언해준다.  1234567#include &lt;stdio.h&gt;#defi">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://bedongryeol.github.io/image/">
+<meta property="article:published_time" content="2021-08-02T15:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-03T14:51:23.347Z">
 <meta property="article:author" content="Dongryeol Jeong">
+<meta property="article:tag" content="자료구조">
+<meta property="article:tag" content="알고리즘">
+<meta property="article:tag" content="큐">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://bedongryeol.github.io/image/">
 
 
-<link rel="canonical" href="http://bedongryeol.github.io/">
+<link rel="canonical" href="http://bedongryeol.github.io/2021/08/03/til2-md/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://bedongryeol.github.io/2021/08/03/til2-md/","path":"2021/08/03/til2-md/","title":"큐"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Fintech - Backend Developer</title>
+<title>큐 | Fintech - Backend Developer</title>
   
 
 
@@ -93,7 +100,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -106,6 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%ED%81%90-Queue"><span class="nav-number">1.</span> <span class="nav-text">큐 (Queue)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8A%B9%EC%A7%95"><span class="nav-number">1.1.</span> <span class="nav-text">특징</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B5%AC%ED%98%84"><span class="nav-number">1.2.</span> <span class="nav-text">구현</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B0%B0%EC%97%B4%EB%A1%9C-%EA%B5%AC%ED%98%84"><span class="nav-number">1.2.1.</span> <span class="nav-text">배열로 구현</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%84%A0%EC%96%B8"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">선언</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%82%BD%EC%9E%85"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">삽입</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%82%AD%EC%A0%9C"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">삭제</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8%EB%A1%9C-%EA%B5%AC%ED%98%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">연결리스트로 구현</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%84%A0%EC%96%B8-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">선언</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%82%BD%EC%9E%85-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">삽입</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%82%AD%EC%A0%9C-1"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">삭제</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -157,16 +165,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://bedongryeol.github.io/2021/08/03/til2-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -179,9 +188,9 @@
       <meta itemprop="name" content="Fintech - Backend Developer">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/03/til2-md/" class="post-title-link" itemprop="url">큐</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          큐
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -214,7 +223,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="큐-Queue"><a href="#큐-Queue" class="headerlink" title="큐 (Queue)"></a>큐 (Queue)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><p><img src="/image/" alt="queue"></p>
+        <h1 id="큐-Queue"><a href="#큐-Queue" class="headerlink" title="큐 (Queue)"></a>큐 (Queue)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><p><img src="/image/" alt="queue"></p>
 <blockquote>
 <ol>
 <li>데이터가 뒤(rear)로 들어가서 앞(front)으로 나오는 자료</li>
@@ -280,7 +289,6 @@
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#define INF 99999999</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">   int data;</span><br><span class="line">   struct Node* next;</span><br><span class="line">&#125;Node;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">   Node* front;</span><br><span class="line">   Node* rear;</span><br><span class="line">   int count;</span><br><span class="line">&#125;Queue;</span><br><span class="line"></span><br><span class="line">void push(Queue* queue, int data) &#123;</span><br><span class="line">   Node* node = (Node*)malloc(sizeof(Node));</span><br><span class="line">   node-&gt;data = data;</span><br><span class="line">   node-&gt;next = NULL;</span><br><span class="line">   if (queue-&gt;count == 0) &#123;</span><br><span class="line">      queue-&gt;front = node;</span><br><span class="line">   &#125;</span><br><span class="line">   else &#123;</span><br><span class="line">      queue-&gt;rear-&gt;next = node;</span><br><span class="line">   &#125;</span><br><span class="line">   queue-&gt;rear = node;</span><br><span class="line">   queue-&gt;count++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void pop(Queue* queue) &#123;</span><br><span class="line">   if (queue-&gt;count == 0) &#123;</span><br><span class="line">      printf(&quot;큐 언더플로우가 발생하였습니다. \n&quot;);</span><br><span class="line">      return -INF;</span><br><span class="line">   &#125;</span><br><span class="line">   Node* node = queue-&gt;front;</span><br><span class="line">   int data = node-&gt;data;</span><br><span class="line"></span><br><span class="line">   queue-&gt;front = node-&gt;next;</span><br><span class="line">   free(node);</span><br><span class="line">   queue-&gt;count--;</span><br><span class="line">   return data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void show(Queue* queue) &#123;</span><br><span class="line">   Node* cur = queue-&gt;front;</span><br><span class="line">   printf(&quot;---큐의 앞---\n&quot;);</span><br><span class="line">   while (cur != NULL) &#123;</span><br><span class="line">      printf(&quot;%d\n&quot;, cur-&gt;data);</span><br><span class="line">      cur = cur-&gt;next;</span><br><span class="line">   &#125;</span><br><span class="line">   printf(&quot;---큐의 뒤---&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(void) &#123;</span><br><span class="line">   Queue queue;</span><br><span class="line">   queue.front = queue.rear = NULL;</span><br><span class="line">   queue.count = 0;</span><br><span class="line">   push(&amp;queue, 7);</span><br><span class="line">   push(&amp;queue, 5);</span><br><span class="line">   push(&amp;queue, 4);</span><br><span class="line">   pop(&amp;queue);</span><br><span class="line">   push(&amp;queue, 6);</span><br><span class="line">   pop(&amp;queue);</span><br><span class="line">   show(&amp;queue);</span><br><span class="line">   system(&quot;pause&quot;);</span><br><span class="line">   return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </details>
-      
     </div>
 
     
@@ -288,136 +296,27 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/" rel="tag"># 자료구조</a>
+              <a href="/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="tag"># 알고리즘</a>
+              <a href="/tags/%ED%81%90/" rel="tag"># 큐</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/30/til1/" rel="prev" title="연결리스트">
+                  <i class="fa fa-chevron-left"></i> 연결리스트
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://bedongryeol.github.io/2021/07/30/til1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dongryeol Jeong">
-      <meta itemprop="description" content="Java/Kotlin/Spring/SpringBoot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fintech - Backend Developer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/30/til1/" class="post-title-link" itemprop="url">연결리스트</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-07-30 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-30T00:00:00+09:00">2021-07-30</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-08-03 22:43:37" itemprop="dateModified" datetime="2021-08-03T22:43:37+09:00">2021-08-03</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/" itemprop="url" rel="index"><span itemprop="name">자료구조</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="연결리스트"><a href="#연결리스트" class="headerlink" title="연결리스트"></a>연결리스트</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><blockquote>
-<ol>
-<li>데이터를 선형적으로 저장 및 처리한다.</li>
-</ol>
-<ol start="2">
-<li>삽입과 삭제가 많은 경우 효율적이다.</li>
-</ol>
-<ol start="3">
-<li>리스트의 중간 지점에 노드의 추가/삭제가 가능하여야 한다.</li>
-</ol>
-<ol start="4">
-<li>메모리 공간을 미리 할당하는 배열을 보완하여 공간 낭비를 감소시킨다.</li>
-</ol>
-</blockquote>
-<p>✚ 배열 기반의 리스트</p>
-<ul>
-<li><p>장점 : 즉시 접근이 가능하다.</p>
-</li>
-<li><p>단점 : 삽입 삭제가 비효율적이며 메모리 공간을 미리 할당한다.</p>
-</li>
-</ul>
-<h2 id="종류"><a href="#종류" class="headerlink" title="종류"></a>종류</h2><h3 id="단일-연결리스트"><a href="#단일-연결리스트" class="headerlink" title="단일 연결리스트"></a>단일 연결리스트</h3><p><img src="/image/single.PNG" alt="one-way-list"></p>
-<ul>
-<li><p>단일 연결리스트는 가장 앞의 노드를 가르키는 HEAD를 갖는다.</p>
-</li>
-<li><p>각 노드별로 동적 메모리를 할당하여야 하며, 각 노드를 연결시켜주어야 한다.</p>
-</li>
-</ul>
-<p>####︎︎ 노드 삽입<br><img src="/image/push.PNG" alt="push"></p>
-<ul>
-<li><p>HEAD 다음에 노드를 삽입한다고 가정</p>
-</li>
-<li><p>‘HEAD의 *next’가 ‘삽입 노드의 값’을 가리키게 한다.</p>
-</li>
-<li><p>‘삽입 노드의 *next’가 ‘기존 노드의 값’을 가리키게 한다.</p>
-</li>
-</ul>
-<h4 id="노드-삭제"><a href="#노드-삭제" class="headerlink" title="노드 삭제"></a>노드 삭제</h4><p><img src="/image/pop.PNG" alt="pop"></p>
-<ul>
-<li><p>HEAD 다음에 위치한 노드를 삭제한다고 가정</p>
-</li>
-<li><p>‘HEAD의 *next’가 ‘삭제될 노드의 다음 값’을 가리키게 한다.</p>
-</li>
-<li><p>삭제된 노드의 동적 메모리를 해제하여 메모리 누수를 방지한다.</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
