@@ -20,18 +20,18 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"bedongryeol.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="연결리스트특징  데이터를 선형적으로 저장 및 처리한다.   삽입과 삭제가 많은 경우 효율적이다.   리스트의 중간 지점에 노드의 추가&#x2F;삭제가 가능하여야 한다.   메모리 공간을 미리 할당하는 배열을 보완하여 공간 낭비를 감소시킨다.   ✚ 배열 기반의 리스트  장점 : 즉시 접근이 가능하다.  단점 : 삽입 삭제가 비효율적이며 메모리 공간을 미리 할당한다.">
+<meta name="description" content="연결리스트 (Linked List)특징  데이터를 선형적으로 저장 및 처리한다.   삽입과 삭제가 많은 경우 효율적이다.   리스트의 중간 지점에 노드의 추가&#x2F;삭제가 가능하여야 한다.   메모리 공간을 미리 할당하는 배열을 보완하여 공간 낭비를 감소시킨다.   ✚ 배열 기반의 리스트  장점 : 즉시 접근이 가능하다.  단점 : 삽입 삭제가 비효율적이며 메모">
 <meta property="og:type" content="article">
 <meta property="og:title" content="연결리스트">
 <meta property="og:url" content="http://bedongryeol.github.io/2021/07/30/til1/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="연결리스트특징  데이터를 선형적으로 저장 및 처리한다.   삽입과 삭제가 많은 경우 효율적이다.   리스트의 중간 지점에 노드의 추가&#x2F;삭제가 가능하여야 한다.   메모리 공간을 미리 할당하는 배열을 보완하여 공간 낭비를 감소시킨다.   ✚ 배열 기반의 리스트  장점 : 즉시 접근이 가능하다.  단점 : 삽입 삭제가 비효율적이며 메모리 공간을 미리 할당한다.">
+<meta property="og:description" content="연결리스트 (Linked List)특징  데이터를 선형적으로 저장 및 처리한다.   삽입과 삭제가 많은 경우 효율적이다.   리스트의 중간 지점에 노드의 추가&#x2F;삭제가 가능하여야 한다.   메모리 공간을 미리 할당하는 배열을 보완하여 공간 낭비를 감소시킨다.   ✚ 배열 기반의 리스트  장점 : 즉시 접근이 가능하다.  단점 : 삽입 삭제가 비효율적이며 메모">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://bedongryeol.github.io/image/single.PNG">
 <meta property="og:image" content="http://bedongryeol.github.io/image/push.PNG">
 <meta property="og:image" content="http://bedongryeol.github.io/image/pop.PNG">
 <meta property="article:published_time" content="2021-07-29T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-08-03T13:43:37.883Z">
+<meta property="article:modified_time" content="2021-08-04T12:49:42.688Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="자료구조">
 <meta property="article:tag" content="알고리즘">
@@ -115,7 +115,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8"><span class="nav-number">1.</span> <span class="nav-text">연결리스트</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8A%B9%EC%A7%95"><span class="nav-number">1.1.</span> <span class="nav-text">특징</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%A2%85%EB%A5%98"><span class="nav-number">1.2.</span> <span class="nav-text">종류</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%8B%A8%EC%9D%BC-%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8"><span class="nav-number">1.2.1.</span> <span class="nav-text">단일 연결리스트</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%85%B8%EB%93%9C-%EC%82%AD%EC%A0%9C"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">노드 삭제</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8-Linked-List"><span class="nav-number">1.</span> <span class="nav-text">연결리스트 (Linked List)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8A%B9%EC%A7%95"><span class="nav-number">1.1.</span> <span class="nav-text">특징</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%A2%85%EB%A5%98"><span class="nav-number">1.2.</span> <span class="nav-text">종류</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%8B%A8%EC%9D%BC-%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8"><span class="nav-number">1.2.1.</span> <span class="nav-text">단일 연결리스트</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%85%B8%EB%93%9C-%EC%82%AD%EC%A0%9C"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">노드 삭제</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -138,7 +138,7 @@
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -209,7 +209,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-08-03 22:43:37" itemprop="dateModified" datetime="2021-08-03T22:43:37+09:00">2021-08-03</time>
+        <time title="Modified: 2021-08-04 21:49:42" itemprop="dateModified" datetime="2021-08-04T21:49:42+09:00">2021-08-04</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -231,7 +231,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="연결리스트"><a href="#연결리스트" class="headerlink" title="연결리스트"></a>연결리스트</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><blockquote>
+        <h1 id="연결리스트-Linked-List"><a href="#연결리스트-Linked-List" class="headerlink" title="연결리스트 (Linked List)"></a>연결리스트 (Linked List)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><blockquote>
 <ol>
 <li>데이터를 선형적으로 저장 및 처리한다.</li>
 </ol>

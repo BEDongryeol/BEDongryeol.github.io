@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"bedongryeol.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="AVL 트리특징 ‘AVL 트리’는 균형이 갖춰진 이진 트리이다. 균형을 갖추기 위해 회전(Rotation)을 통해 재구성할 수 있다. 균형   균형 인수가 -1, 0, +1 인 상태      균형 인수  왼쪽 자식의 높이 - 오른쪽 자식의 높이   불균형 상태LL 형식 노드가 Left1-Left2로 편향되어 있는 상태재구성 결과적으로 편향된 노드들을 가진">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AVL트리">
+<meta property="og:url" content="http://bedongryeol.github.io/2021/08/05/AVLtree/index.html">
+<meta property="og:site_name" content="Fintech - Backend Developer">
+<meta property="og:description" content="AVL 트리특징 ‘AVL 트리’는 균형이 갖춰진 이진 트리이다. 균형을 갖추기 위해 회전(Rotation)을 통해 재구성할 수 있다. 균형   균형 인수가 -1, 0, +1 인 상태      균형 인수  왼쪽 자식의 높이 - 오른쪽 자식의 높이   불균형 상태LL 형식 노드가 Left1-Left2로 편향되어 있는 상태재구성 결과적으로 편향된 노드들을 가진">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-08-05T05:15:00.000Z">
+<meta property="article:modified_time" content="2021-08-05T05:54:41.079Z">
+<meta property="article:author" content="Dongryeol Jeong">
+<meta property="article:tag" content="자료구조">
+<meta property="article:tag" content="알고리즘">
+<meta property="article:tag" content="AVL트리">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://bedongryeol.github.io/2021/08/05/AVLtree/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://bedongryeol.github.io/2021/08/05/AVLtree/","path":"2021/08/05/AVLtree/","title":"AVL트리"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AVL트리 | Fintech - Backend Developer</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Fintech - Backend Developer</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Dongryeol Jeong</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AVL-%ED%8A%B8%EB%A6%AC"><span class="nav-number">1.</span> <span class="nav-text">AVL 트리</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8A%B9%EC%A7%95"><span class="nav-number">1.1.</span> <span class="nav-text">특징</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B6%88%EA%B7%A0%ED%98%95-%EC%83%81%ED%83%9C"><span class="nav-number">1.2.</span> <span class="nav-text">불균형 상태</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LL-%ED%98%95%EC%8B%9D"><span class="nav-number">1.2.1.</span> <span class="nav-text">LL 형식</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%9E%AC%EA%B5%AC%EC%84%B1"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">재구성</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RR-%ED%98%95%EC%8B%9D"><span class="nav-number">1.2.2.</span> <span class="nav-text">RR 형식</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%9E%AC%EA%B5%AC%EC%84%B1-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">재구성</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LR-%ED%98%95%EC%8B%9D"><span class="nav-number">1.2.3.</span> <span class="nav-text">LR 형식</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RL-%ED%98%95%EC%8B%9D"><span class="nav-number">1.2.4.</span> <span class="nav-text">RL 형식</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Dongryeol Jeong</p>
+  <div class="site-description" itemprop="description">Java/Kotlin/Spring/SpringBoot</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://bedongryeol.github.io/2021/08/05/AVLtree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dongryeol Jeong">
+      <meta itemprop="description" content="Java/Kotlin/Spring/SpringBoot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fintech - Backend Developer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AVL트리
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-08-05 14:15:00 / Modified: 14:54:41" itemprop="dateCreated datePublished" datetime="2021-08-05T14:15:00+09:00">2021-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/" itemprop="url" rel="index"><span itemprop="name">자료구조</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="AVL-트리"><a href="#AVL-트리" class="headerlink" title="AVL 트리"></a>AVL 트리</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul>
+<li>‘AVL 트리’는 균형이 갖춰진 이진 트리이다.</li>
+<li>균형을 갖추기 위해 회전(Rotation)을 통해 재구성할 수 있다.<blockquote>
+<p>균형 </p>
+<ul>
+<li>균형 인수가 -1, 0, +1 인 상태</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>균형 인수</p>
+<ul>
+<li>왼쪽 자식의 높이 - 오른쪽 자식의 높이</li>
+</ul>
+</blockquote>
+<h2 id="불균형-상태"><a href="#불균형-상태" class="headerlink" title="불균형 상태"></a>불균형 상태</h2><h3 id="LL-형식"><a href="#LL-형식" class="headerlink" title="LL 형식"></a>LL 형식</h3><ul>
+<li>노드가 Left1-Left2로 편향되어 있는 상태<h4 id="재구성"><a href="#재구성" class="headerlink" title="재구성"></a>재구성</h4></li>
+<li>결과적으로 편향된 노드들을 가진 노드(2)를 root가 된다.</li>
+</ul>
+<ol>
+<li>노드(2)가 가지고있던 오른쪽 자식 노드들을 root(1)의 왼쪽 자식 노드로 설정한다.</li>
+<li>기존의 root(1)는 노드(2)의 오른쪽 자식 노드로 설정한다.</li>
+</ol>
+<h3 id="RR-형식"><a href="#RR-형식" class="headerlink" title="RR 형식"></a>RR 형식</h3><ul>
+<li>노드가 Right1-Right2로 편향되어 있는 상태<h4 id="재구성-1"><a href="#재구성-1" class="headerlink" title="재구성"></a>재구성</h4></li>
+<li>LL형식의 재구성 방식을 반대로 수행한다.</li>
+</ul>
+<ol>
+<li>편향된 노드의 왼쪽 자식 노드를 root의 오른쪽 노드로 설정한다.</li>
+<li>편향된 노드의 왼쪽 자식 노드를 root로 설정한다.</li>
+</ol>
+<h3 id="LR-형식"><a href="#LR-형식" class="headerlink" title="LR 형식"></a>LR 형식</h3><ul>
+<li>노드가 Left1-Right1로 편향되어 있는 상태</li>
+</ul>
+<ol>
+<li>편향된 노드에 RR회전을 수행하여 불균형 노드를 왼쪽으로 몰아 넣는다.</li>
+<li>몰아넣은 노드에 LL회전을 수행한다.</li>
+</ol>
+<h3 id="RL-형식"><a href="#RL-형식" class="headerlink" title="RL 형식"></a>RL 형식</h3><ul>
+<li>노드가 Right1-Left1로 편향되어 있는 상태</li>
+</ul>
+<ol>
+<li>편향된 노드에 LL회전을 수행하여 불균형 노드를 오른쪽으로 몰아 넣는다.</li>
+<li>몰아넣은 노드에 RR회전을 수행한다.</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/" rel="tag"># 자료구조</a>
+              <a href="/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="tag"># 알고리즘</a>
+              <a href="/tags/AVL%ED%8A%B8%EB%A6%AC/" rel="tag"># AVL트리</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/05/BinarySearchTree/" rel="prev" title="이진 탐색 트리">
+                  <i class="fa fa-chevron-left"></i> 이진 탐색 트리
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/08/05/hash/" rel="next" title="해시">
+                  해시 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dongryeol Jeong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
