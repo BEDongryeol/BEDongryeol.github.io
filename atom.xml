@@ -6,7 +6,7 @@
   <link href="http://bedongryeol.github.io/atom.xml" rel="self"/>
   
   <link href="http://bedongryeol.github.io/"/>
-  <updated>2021-08-12T11:57:21.715Z</updated>
+  <updated>2021-08-19T10:13:41.450Z</updated>
   <id>http://bedongryeol.github.io/</id>
   
   <author>
@@ -17,9 +17,96 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Class 클래스</title>
+    <link href="http://bedongryeol.github.io/08/19/Class/"/>
+    <id>http://bedongryeol.github.io/08/19/Class/</id>
+    <published>2021-08-19T10:11:26.000Z</published>
+    <updated>2021-08-19T10:13:41.450Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Class-클래스-사용하기"><a href="#Class-클래스-사용하기" class="headerlink" title="Class 클래스 사용하기"></a>Class 클래스 사용하기</h1><ul><li><p>자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.</p><ul><li>클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.</li></ul></li><li><p>컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.</p></li></ul><h2 id="클래스-동적-로딩"><a href="#클래스-동적-로딩" class="headerlink" title="클래스 동적 로딩"></a>클래스 동적 로딩</h2><h3 id="Class-forName-“클래스-이름”"><a href="#Class-forName-“클래스-이름”" class="headerlink" title="Class.forName(“클래스 이름”)"></a>Class.forName(“클래스 이름”)</h3><ul><li><code>Class c = Class.forName(&quot;java.lang.String&quot;)</code><blockquote><p>동적 로딩</p><ul><li>일반적으로 Class가 Local에 있는지 살펴보고 binding되어 type으로 정의하여 변수가 사용된다.</li><li>Compile 할 때가 아닌, 실질적으로 실행할 때 필요한 클래스를 binding하는 방법</li><li>ex) JDBC 드라이버에서 실행 전까지 DB의 라이브러리가 어떤 것인지 모르고, property파일 등을 읽을 때 변수로 갖고 있다가 Oracle 드라이버 이름을 String변수에 넣어준다.</li></ul></blockquote></li><li>장점 : 동적으로  원하는 클래스를 로딩할 수 있다.</li><li>단점 : 로딩할 때 Local에 class나 라이브러리가 없는 등 오류가 발생하면 시스템이 다운될 수 있다.</li></ul><h2 id="사용-방법"><a href="#사용-방법" class="headerlink" title="사용 방법"></a>사용 방법</h2><ul><li>주로 remote에 있는 class를 호출할 때 사용한다.<ul><li><code>Local에 클래스가 없을 때</code></li></ul></li><li>아래 코드를 <code>reflection 프로그래밍</code>이라고 한다.<details><summary>예제 코드 확인하기</summary></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package ch04;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line">public class StringTest &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException &#123;</span><br><span class="line"></span><br><span class="line">        Class c = Class.forName(&quot;java.lang.String&quot;);</span><br><span class="line">        </span><br><span class="line">        // Constructor의 목록을 배열로 가져온다.</span><br><span class="line">        Constructor[] cons = c.getConstructors();</span><br><span class="line">        for (Constructor co : cons) &#123;</span><br><span class="line">            System.out.println(co);</span><br><span class="line">        &#125;</span><br><span class="line">        // 메소드의 목록을 가져온다.</span><br><span class="line">        Method[] m = c.getMethods();</span><br><span class="line">        for (Method mth : m) &#123;</span><br><span class="line">            System.out.println(mth);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></details><h2 id="인스턴스-생성"><a href="#인스턴스-생성" class="headerlink" title="인스턴스 생성"></a>인스턴스 생성</h2><ul><li><code>reflection 프로그래밍</code><ul><li>Class 클래스를 사용하여 클래스의 정보 등을 알 수 있고, 인스턴스를 생성, 메서드를 호출하는 방식의 프로그래밍<ol><li>로컬 메모리에 객체가 없는 경우</li><li>원격 프로그래밍 (서로 다른 프로세스)</li><li>객체의 타입을 알 수 없는 경우</li></ol></li><li><code>java.lang.reflect</code> 패키지의 클래스를 활용하여 사용</li><li>자료형을 알고 있는 경우에는 사용하지 않음</li></ul></li></ul><details><summary> 예제 코드 확인하기 </summary><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">package ch04;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line">public class ClassTest &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException &#123;</span><br><span class="line">        // 1. Class 이름으로 invoke(호출)하기</span><br><span class="line">        Class c1 = Class.forName(&quot;ch04.Person&quot;);</span><br><span class="line">        // Person 타입으로 Casting</span><br><span class="line">        Person person = (Person)c1.newInstance();</span><br><span class="line"></span><br><span class="line">        person.setName(&quot;Lee&quot;);</span><br><span class="line">        System.out.println(person);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        // 2. 이미 생성된 객체로 invoke</span><br><span class="line">        Class c2 = person.getClass();</span><br><span class="line">        // 2-1. 인스턴스화, Person타입으로 Casting</span><br><span class="line">        Person person2 = (Person)c2.newInstance();</span><br><span class="line">        person2.setName(&quot;Kim&quot;);</span><br><span class="line">        System.out.println(person2);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        // 3. 생성자를 호출하여 객체 생성</span><br><span class="line">        Class[] classArray = &#123;String.class&#125;;</span><br><span class="line">        Constructor cons = c2.getConstructor(classArray);</span><br><span class="line">        // 3-1. Object 배열 형태</span><br><span class="line">        Object[] initargs = &#123;&quot;Jeong&quot;&#125;;</span><br><span class="line">        // Line23에서 불러온 생성자로 객체 생성</span><br><span class="line">        Person person3 = (Person)cons.newInstance(initargs);</span><br><span class="line">        System.out.println(person3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></details>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Class-클래스-사용하기&quot;&gt;&lt;a href=&quot;#Class-클래스-사용하기&quot; class=&quot;headerlink&quot; title=&quot;Class 클래스 사용하기&quot;&gt;&lt;/a&gt;Class 클래스 사용하기&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;자바의 모든 클래스와 인</summary>
+      
+    
+    
+    
+    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    
+    <category term="Java" scheme="http://bedongryeol.github.io/categories/Basic/Java/"/>
+    
+    
+    <category term="Java" scheme="http://bedongryeol.github.io/tags/Java/"/>
+    
+    <category term="자바" scheme="http://bedongryeol.github.io/tags/%EC%9E%90%EB%B0%94/"/>
+    
+    <category term="Class 클래스" scheme="http://bedongryeol.github.io/tags/Class-%ED%81%B4%EB%9E%98%EC%8A%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>자바의 클래스</title>
+    <link href="http://bedongryeol.github.io/08/19/JavaClasses/"/>
+    <id>http://bedongryeol.github.io/08/19/JavaClasses/</id>
+    <published>2021-08-19T10:11:19.000Z</published>
+    <updated>2021-08-19T10:13:52.044Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Java의-유용한-클래스들"><a href="#Java의-유용한-클래스들" class="headerlink" title="Java의 유용한 클래스들"></a>Java의 유용한 클래스들</h1><h2 id="Object-Class"><a href="#Object-Class" class="headerlink" title="Object Class"></a>Object Class</h2><ul><li>모든 클래스의 최상위 클래스</li><li>모든 class는 Object클래스를 상속받는다.</li><li>메서드 중 일부는 필요에 의해 재정의 할 수 있다.</li><li>java.lang 패키지 안에 포함되어 있다.</li></ul><h3 id="java-lang"><a href="#java-lang" class="headerlink" title="java.lang"></a>java.lang</h3><ul><li>프로그래밍 시 자동으로 import된다</li><li>많이 사용하는 기본 클래스들이 속한 패키지</li><li>String, Integer, System 등</li></ul><h3 id="toString-메서드"><a href="#toString-메서드" class="headerlink" title="toString() 메서드"></a>toString() 메서드</h3><ul><li>객체의 정보를 String으로 바꾸어서 사용할 때 쓰인다.</li><li>재정의하여 참조변수가 멤버 변수 값을 return하게 할 수 있다.<details><summary>예제 코드 확인하기</summary></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Book&#123;</span><br><span class="line"></span><br><span class="line">    private String title;</span><br><span class="line">    private String author;</span><br><span class="line"></span><br><span class="line">    public Book(String title, String author)&#123;</span><br><span class="line">        this.title = title;</span><br><span class="line">        this.author = author;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return title + &quot;,&quot; + author;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class BookTest &#123;</span><br><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">Book book = new Book(&quot;데미안&quot;, &quot;헤르만 헤세&quot;);</span><br><span class="line">System.out.println(book);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></details><h3 id="equals-hashCode-메서드"><a href="#equals-hashCode-메서드" class="headerlink" title="equals(), hashCode() 메서드"></a>equals(), hashCode() 메서드</h3><blockquote><p>equals() 메서드와 hashCode() 메서드는 짝을 이룬다.</p><ul><li>equals()를 overriding하면 객체가 반환하는 hash값도 overriding해줘야 한다.</li><li>equals에서 사용한 멤버 변수를 hashCode 값으로 반환해주면 된다.</li></ul></blockquote><h4 id="equals-메서드"><a href="#equals-메서드" class="headerlink" title="equals() 메서드"></a>equals() 메서드</h4><ul><li>두 인스턴스의 <code>주소 값을 비교</code>하여 true/false를 반환</li><li>인스턴스가 다르더라도 논리적으로 동일한 경우 true를 반환하도록 재정의 할 수 있다.</li><li>두 객체가 논리적으로 같다라고 하면 반환하는 Hash Code 값이 같아야한다.</li><li>Java에서 주소 값은 <code>Hash Code(해쉬 값)</code>이라고 한다.</li><li>heap 메모리를 관리하는 방식이 Hash방식이다.</li></ul><h4 id="hashCode-메서드"><a href="#hashCode-메서드" class="headerlink" title="hashCode() 메서드"></a>hashCode() 메서드</h4><ul><li>인스턴스의 저장 주소를 반환한다.</li><li>hash : 정보를 저장, 검색하는 자료 구조</li><li>자료의 특정 값(key)에 대한 저장 위치를 반환해주는 hash함수를 사용한다.</li><li><code>index(저장위치) = hash(key)</code></li></ul><details><summary> Overriding 코드 확인하기 </summary><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">package ch02;</span><br><span class="line"></span><br><span class="line">public class Student &#123;</span><br><span class="line">private int studentNum;</span><br><span class="line">private String studentName;</span><br><span class="line"></span><br><span class="line">    public Student(int StudentNum, String studentName)&#123;</span><br><span class="line">        this.studentNum = studentNum;</span><br><span class="line">        this.studentName = studentName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString()&#123;</span><br><span class="line">        return studentNum + &quot;,&quot; + studentName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean equals(Object obj) &#123;</span><br><span class="line">        if (obj instanceof Student) &#123;</span><br><span class="line">            // 다운캐스팅</span><br><span class="line">            Student std = (Student)obj;</span><br><span class="line">            if (this.studentNum == std.studentNum)&#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int hashCode() &#123;</span><br><span class="line">        return studentNum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details><details><summary>예제 코드 확인하기</summary><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package ch02;</span><br><span class="line"></span><br><span class="line">public class EqualsTest &#123;</span><br><span class="line">public static void main(String[] args)&#123;</span><br><span class="line"></span><br><span class="line">        Student std1 = new Student(200, &quot;Lee&quot;);</span><br><span class="line">        Student std2 = new Student(200, &quot;Lee&quot;);</span><br><span class="line"></span><br><span class="line">        System.out.println(std1==std2); //false</span><br><span class="line">        System.out.println(std1.equals(std2)); //true</span><br><span class="line">        // hashCode() 가 studentNum을 return하도록 overriding하였음.</span><br><span class="line">        System.out.println(std1.hashCode());</span><br><span class="line">        System.out.println(std2.hashCode());</span><br><span class="line"></span><br><span class="line">        // 원래 hashCode값 출력하는 방법</span><br><span class="line">        System.out.println(System.identityHashCode(std1));</span><br><span class="line">        System.out.println(System.identityHashCode(std2));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details><h3 id="clone-메서드"><a href="#clone-메서드" class="headerlink" title="clone() 메서드"></a>clone() 메서드</h3><ul><li>객체를 생성자를 통해 생성할 때, clone()을 사용하면 원본 객체와 원본을 복제하는데 사용한다.</li><li>생성자 : 초기값을 가지고 생성이 된다.</li><li>clone() : 중간에 멤버변수가 변하면 변한 값을 그대로 복제한다.</li><li>private까지 모두 복제가 되어 객체 보호의 관점에서 위배할 수 있다.</li><li>명시적으로 clone() 메서드의 사용을 허용한다는 의미로 <code>Cloneable</code> interface를 명시해준다.</li><li><code>public class A implements Cloneable &#123;~&#125;</code></li><li>A 클래스 내에서 clone() 메서드를 Override한다.<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected Object clone() throws CloneNotSupportedException &#123;</span><br><span class="line">return super.clone();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>클론 코드<ul><li><code>Student copyStd = (Student)std1.clone();</code></li></ul></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Java의-유용한-클래스들&quot;&gt;&lt;a href=&quot;#Java의-유용한-클래스들&quot; class=&quot;headerlink&quot; title=&quot;Java의 유용한 클래스들&quot;&gt;&lt;/a&gt;Java의 유용한 클래스들&lt;/h1&gt;&lt;h2 id=&quot;Object-Class&quot;&gt;&lt;a </summary>
+      
+    
+    
+    
+    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    
+    <category term="Java" scheme="http://bedongryeol.github.io/categories/Basic/Java/"/>
+    
+    
+    <category term="Java" scheme="http://bedongryeol.github.io/tags/Java/"/>
+    
+    <category term="Class" scheme="http://bedongryeol.github.io/tags/Class/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>String 관련 Class</title>
+    <link href="http://bedongryeol.github.io/08/19/String/"/>
+    <id>http://bedongryeol.github.io/08/19/String/</id>
+    <published>2021-08-19T10:11:12.000Z</published>
+    <updated>2021-08-19T10:14:32.455Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="String-관련-Class"><a href="#String-관련-Class" class="headerlink" title="String 관련 Class"></a>String 관련 Class</h1><h2 id="String-클래스"><a href="#String-클래스" class="headerlink" title="String 클래스"></a>String 클래스</h2><h3 id="선언"><a href="#선언" class="headerlink" title="선언"></a>선언</h3><ol><li><code>String str = new String(“abc”);</code><ul><li>힙 메모리에 생성된다.</li></ul></li><li><code>String str2 = “abc”;</code><ul><li>상수 pool의 abc라는 String에 address가 생성된다.</li></ul></li></ol><ul><li>두 개의 인스턴스는 다르다.</li><li>힙 메모리는 생성될 때마다 다른 주소값을 가지지만, 상수 pool의 문자열은 모두 같은 주소를 가진다.</li></ul><h3 id="메모리"><a href="#메모리" class="headerlink" title="메모리"></a>메모리</h3><ul><li>한번 생성된 String은 immutable(불변)이다.</li><li>String을 연결하면 기존의 String에 연결되는 것이 아닌 새로운 문자열을 위한 메모리가 생성된다.<details><summary>예제 코드 확인하기</summary></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String java = new String(“java”); </span><br><span class="line">String android = new String(“android”); </span><br><span class="line"></span><br><span class="line">java = java.concat(android) // 위 2가지 문자열을 합해주고 java가 가리키게 한다.</span><br><span class="line"></span><br><span class="line">// 문자열 java, android, javaandroid을 위한 메모리가 계속해서 할당되어 있고, java는 “java”가 아닌 “javaandroid”를 가리킨다.</span><br><span class="line"></span><br><span class="line">// 기존 메모리에 덮어쓰는 것이 아닌 새로운 메모리를 할당한다.</span><br></pre></td></tr></table></figure></details><h2 id="StringBuilder-StringBuffer"><a href="#StringBuilder-StringBuffer" class="headerlink" title="StringBuilder, StringBuffer"></a>StringBuilder, StringBuffer</h2><blockquote><p>위 메모리 낭비를 해결하기 위해 <code>StringBuilder</code>, <code>StringBuffer</code>를 활용한다.</p></blockquote><ul><li>내부적으로 가변적인 char[]를 멤버 변수를 가진다.</li><li>새로운 인스턴스를 생성하지 않고, char[]를 변경한다.</li><li>문자열을 연결, 변경할 때 유용하게 사용할 수 있다.<h3 id="차이점"><a href="#차이점" class="headerlink" title="차이점"></a>차이점</h3></li><li>StringBuilder : 단일 쓰레드에서 사용한다.</li><li>StringBuffer : 멀티 쓰레드 프로그래밍에서 동기화를 보장한다.</li><li>두 개 이상의 쓰레드가 같은 메모리에 접근할 때 순서를 가지게 된다.<details><summary> 예제 코드 확인하기 </summary></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package ch03;</span><br><span class="line"></span><br><span class="line">public class StringBuilderTest &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">String java = new String(&quot;java&quot;);</span><br><span class="line">String android = new String(&quot;android&quot;);</span><br><span class="line"></span><br><span class="line">        // 매개변수로 String을 받는다.</span><br><span class="line">        StringBuilder buffer = new StringBuilder(java);</span><br><span class="line">        System.out.println(System.identityHashCode(buffer));</span><br><span class="line">        // 문자열을 추가, 변경해도 메모리값은 변하지 않는다.</span><br><span class="line">        buffer.append(android);</span><br><span class="line">        System.out.println(System.identityHashCode(buffer));</span><br><span class="line"></span><br><span class="line">        System.out.println(buffer.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></details><h2 id="Text-Block-사용하기"><a href="#Text-Block-사용하기" class="headerlink" title="Text Block 사용하기"></a>Text Block 사용하기</h2><ul><li>Java 13 이상부터 제공한다.</li><li>하나의 string을 연결해서 사용할 때 사용한다.</li><li>서블릿 등 서버사이드에서 클라이언트 쪽으로 데이터를 html, json 프로토콜로  요청할 때 유용하다.</li><li><code>“”” “”” </code> 안에 string을 넣어 사용한다.<details><summary> 예제 코드 확인하기 </summary></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package ch03;</span><br><span class="line"></span><br><span class="line">public class TextBlockTest &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        String textBlocks = &quot;&quot;&quot;</span><br><span class="line">                Hello,</span><br><span class="line">                hi,</span><br><span class="line">                how r u</span><br><span class="line">                &quot;&quot;&quot;;</span><br><span class="line"></span><br><span class="line">        System.out.println(textBlocks);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;String-관련-Class&quot;&gt;&lt;a href=&quot;#String-관련-Class&quot; class=&quot;headerlink&quot; title=&quot;String 관련 Class&quot;&gt;&lt;/a&gt;String 관련 Class&lt;/h1&gt;&lt;h2 id=&quot;String-클래스&quot;&gt;&lt;</summary>
+      
+    
+    
+    
+    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    
+    <category term="Java" scheme="http://bedongryeol.github.io/categories/Basic/Java/"/>
+    
+    
+    <category term="Java" scheme="http://bedongryeol.github.io/tags/Java/"/>
+    
+    <category term="String" scheme="http://bedongryeol.github.io/tags/String/"/>
+    
+  </entry>
+  
+  <entry>
     <title>추상 클래스 (Abstract Class)</title>
-    <link href="http://bedongryeol.github.io/08/12/Abstract/"/>
-    <id>http://bedongryeol.github.io/08/12/Abstract/</id>
+    <link href="http://bedongryeol.github.io/08/12/20210812-Abstract/"/>
+    <id>http://bedongryeol.github.io/08/12/20210812-Abstract/</id>
     <published>2021-08-12T11:55:01.000Z</published>
     <updated>2021-08-12T11:57:21.715Z</updated>
     
@@ -46,8 +133,8 @@
   
   <entry>
     <title>다형성(Polymorphism)</title>
-    <link href="http://bedongryeol.github.io/08/12/Polymorphism/"/>
-    <id>http://bedongryeol.github.io/08/12/Polymorphism/</id>
+    <link href="http://bedongryeol.github.io/08/12/20210812-Polymorphism/"/>
+    <id>http://bedongryeol.github.io/08/12/20210812-Polymorphism/</id>
     <published>2021-08-12T11:42:28.000Z</published>
     <updated>2021-08-12T11:54:12.024Z</updated>
     
@@ -80,8 +167,8 @@
   
   <entry>
     <title>가상메서드(VirtualMethod)</title>
-    <link href="http://bedongryeol.github.io/08/12/VirtualMethod/"/>
-    <id>http://bedongryeol.github.io/08/12/VirtualMethod/</id>
+    <link href="http://bedongryeol.github.io/08/12/20210812-VirtualMethod/"/>
+    <id>http://bedongryeol.github.io/08/12/20210812-VirtualMethod/</id>
     <published>2021-08-12T11:42:21.000Z</published>
     <updated>2021-08-12T11:47:07.646Z</updated>
     
@@ -112,8 +199,8 @@
   
   <entry>
     <title>상속(Inheritance)</title>
-    <link href="http://bedongryeol.github.io/08/12/Inheritance/"/>
-    <id>http://bedongryeol.github.io/08/12/Inheritance/</id>
+    <link href="http://bedongryeol.github.io/08/12/20210812-Inheritance/"/>
+    <id>http://bedongryeol.github.io/08/12/20210812-Inheritance/</id>
     <published>2021-08-12T11:42:15.000Z</published>
     <updated>2021-08-12T11:46:44.244Z</updated>
     
@@ -144,8 +231,8 @@
   
   <entry>
     <title>다운캐스팅(DownCasting)</title>
-    <link href="http://bedongryeol.github.io/08/12/DownCasting/"/>
-    <id>http://bedongryeol.github.io/08/12/DownCasting/</id>
+    <link href="http://bedongryeol.github.io/08/12/20210812-DownCasting/"/>
+    <id>http://bedongryeol.github.io/08/12/20210812-DownCasting/</id>
     <published>2021-08-12T11:42:07.000Z</published>
     <updated>2021-08-12T11:46:34.177Z</updated>
     
@@ -176,8 +263,8 @@
   
   <entry>
     <title>자바 기초</title>
-    <link href="http://bedongryeol.github.io/08/12/java2/"/>
-    <id>http://bedongryeol.github.io/08/12/java2/</id>
+    <link href="http://bedongryeol.github.io/08/12/20210812-java2/"/>
+    <id>http://bedongryeol.github.io/08/12/20210812-java2/</id>
     <published>2021-08-12T05:20:41.000Z</published>
     <updated>2021-08-12T06:23:40.592Z</updated>
     
@@ -206,8 +293,8 @@
   
   <entry>
     <title>자바란 ?</title>
-    <link href="http://bedongryeol.github.io/08/10/java/"/>
-    <id>http://bedongryeol.github.io/08/10/java/</id>
+    <link href="http://bedongryeol.github.io/08/10/20210810-java/"/>
+    <id>http://bedongryeol.github.io/08/10/20210810-java/</id>
     <published>2021-08-10T12:31:56.000Z</published>
     <updated>2021-08-12T11:48:17.032Z</updated>
     
@@ -234,8 +321,8 @@
   
   <entry>
     <title>프림 알고리즘</title>
-    <link href="http://bedongryeol.github.io/08/05/prims/"/>
-    <id>http://bedongryeol.github.io/08/05/prims/</id>
+    <link href="http://bedongryeol.github.io/08/05/20210805-prims/"/>
+    <id>http://bedongryeol.github.io/08/05/20210805-prims/</id>
     <published>2021-08-05T11:54:56.000Z</published>
     <updated>2021-08-06T11:39:45.061Z</updated>
     
@@ -264,8 +351,8 @@
   
   <entry>
     <title>해시</title>
-    <link href="http://bedongryeol.github.io/08/05/hash/"/>
-    <id>http://bedongryeol.github.io/08/05/hash/</id>
+    <link href="http://bedongryeol.github.io/08/05/20210805-hash/"/>
+    <id>http://bedongryeol.github.io/08/05/20210805-hash/</id>
     <published>2021-08-05T10:23:50.000Z</published>
     <updated>2021-08-05T10:39:36.087Z</updated>
     
@@ -292,8 +379,8 @@
   
   <entry>
     <title>AVL트리</title>
-    <link href="http://bedongryeol.github.io/08/05/AVLtree/"/>
-    <id>http://bedongryeol.github.io/08/05/AVLtree/</id>
+    <link href="http://bedongryeol.github.io/08/05/20210805-AVLtree/"/>
+    <id>http://bedongryeol.github.io/08/05/20210805-AVLtree/</id>
     <published>2021-08-05T05:15:00.000Z</published>
     <updated>2021-08-05T05:54:41.079Z</updated>
     
@@ -320,8 +407,8 @@
   
   <entry>
     <title>이진 탐색 트리</title>
-    <link href="http://bedongryeol.github.io/08/05/BinarySearchTree/"/>
-    <id>http://bedongryeol.github.io/08/05/BinarySearchTree/</id>
+    <link href="http://bedongryeol.github.io/08/05/20210805-BinarySearchTree/"/>
+    <id>http://bedongryeol.github.io/08/05/20210805-BinarySearchTree/</id>
     <published>2021-08-05T05:03:01.000Z</published>
     <updated>2021-08-05T05:14:20.633Z</updated>
     
@@ -350,8 +437,8 @@
   
   <entry>
     <title>그래프 탐색</title>
-    <link href="http://bedongryeol.github.io/08/05/DFS/"/>
-    <id>http://bedongryeol.github.io/08/05/DFS/</id>
+    <link href="http://bedongryeol.github.io/08/05/20210805-DFS/"/>
+    <id>http://bedongryeol.github.io/08/05/20210805-DFS/</id>
     <published>2021-08-05T04:45:16.000Z</published>
     <updated>2021-08-05T05:02:09.094Z</updated>
     
@@ -384,8 +471,8 @@
   
   <entry>
     <title>그래프</title>
-    <link href="http://bedongryeol.github.io/08/05/graph/"/>
-    <id>http://bedongryeol.github.io/08/05/graph/</id>
+    <link href="http://bedongryeol.github.io/08/05/20210805-graph/"/>
+    <id>http://bedongryeol.github.io/08/05/20210805-graph/</id>
     <published>2021-08-05T04:34:20.000Z</published>
     <updated>2021-08-05T04:42:12.860Z</updated>
     
@@ -413,8 +500,8 @@
   
   <entry>
     <title>탐색</title>
-    <link href="http://bedongryeol.github.io/08/05/search/"/>
-    <id>http://bedongryeol.github.io/08/05/search/</id>
+    <link href="http://bedongryeol.github.io/08/05/20210805-search/"/>
+    <id>http://bedongryeol.github.io/08/05/20210805-search/</id>
     <published>2021-08-05T04:30:52.000Z</published>
     <updated>2021-08-05T04:33:46.637Z</updated>
     
@@ -443,8 +530,8 @@
   
   <entry>
     <title>우선순위 큐</title>
-    <link href="http://bedongryeol.github.io/08/05/priorityQueue/"/>
-    <id>http://bedongryeol.github.io/08/05/priorityQueue/</id>
+    <link href="http://bedongryeol.github.io/08/05/20210805-priorityQueue/"/>
+    <id>http://bedongryeol.github.io/08/05/20210805-priorityQueue/</id>
     <published>2021-08-05T04:13:39.000Z</published>
     <updated>2021-08-05T04:29:36.259Z</updated>
     
@@ -473,8 +560,8 @@
   
   <entry>
     <title>이진 트리</title>
-    <link href="http://bedongryeol.github.io/08/04/BinaryTree/"/>
-    <id>http://bedongryeol.github.io/08/04/BinaryTree/</id>
+    <link href="http://bedongryeol.github.io/08/04/20210804-BinaryTree/"/>
+    <id>http://bedongryeol.github.io/08/04/20210804-BinaryTree/</id>
     <published>2021-08-04T12:56:32.000Z</published>
     <updated>2021-08-05T04:12:16.648Z</updated>
     
@@ -503,8 +590,8 @@
   
   <entry>
     <title>계수 및 기수 정렬</title>
-    <link href="http://bedongryeol.github.io/08/04/til5/"/>
-    <id>http://bedongryeol.github.io/08/04/til5/</id>
+    <link href="http://bedongryeol.github.io/08/04/20210804-til5/"/>
+    <id>http://bedongryeol.github.io/08/04/20210804-til5/</id>
     <published>2021-08-04T12:48:32.000Z</published>
     <updated>2021-08-04T12:57:54.821Z</updated>
     
@@ -526,90 +613,6 @@
     <category term="알고리즘" scheme="http://bedongryeol.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/"/>
     
     <category term="계수정렬" scheme="http://bedongryeol.github.io/tags/%EA%B3%84%EC%88%98%EC%A0%95%EB%A0%AC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>퀵 정렬</title>
-    <link href="http://bedongryeol.github.io/08/04/til4/"/>
-    <id>http://bedongryeol.github.io/08/04/til4/</id>
-    <published>2021-08-04T12:42:24.000Z</published>
-    <updated>2021-08-04T12:57:36.388Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="퀵-정렬-Quick-Sort"><a href="#퀵-정렬-Quick-Sort" class="headerlink" title="퀵 정렬 (Quick Sort)"></a>퀵 정렬 (Quick Sort)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul><li>C++ Algorithm 라이브러리에서 sort()를 통해 사용할 수 있다.</li><li>피벗을 기준으로 큰 값, 작은 값을 교체한다.</li><li>완전 이진 트리와 흡사한 형태를 가진다.</li></ul><h2 id="퀵정렬을-통한-오름차순-구현"><a href="#퀵정렬을-통한-오름차순-구현" class="headerlink" title="퀵정렬을 통한 오름차순 구현"></a>퀵정렬을 통한 오름차순 구현</h2><h3 id="순서"><a href="#순서" class="headerlink" title="순서"></a>순서</h3><ul><li>피벗 : 가장 왼쪽에 위치한 값이라 가정</li><li>start : 피벗 다음에 위치한 값</li><li>end : 가장 오른쪽에 위치한 값<blockquote><ol><li>start : 앞에서부터 뒤로 이동하며 피벗보다 큰 값을 찾음</li><li>end : 뒤에서 앞으로 이동하며 피벗보다 작은 값을 찾음</li><li>start와 end가 엇갈리는 시점에서 작은 값과 피벗을 교체함</li><li>피벗을 기준으로 왼쪽, 오른쪽에서 다시 퀵정렬을 수행한다.</li></ol></blockquote></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;퀵-정렬-Quick-Sort&quot;&gt;&lt;a href=&quot;#퀵-정렬-Quick-Sort&quot; class=&quot;headerlink&quot; title=&quot;퀵 정렬 (Quick Sort)&quot;&gt;&lt;/a&gt;퀵 정렬 (Quick Sort)&lt;/h1&gt;&lt;h2 id=&quot;특징&quot;&gt;&lt;a hr</summary>
-      
-    
-    
-    
-    <category term="자료구조" scheme="http://bedongryeol.github.io/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"/>
-    
-    
-    <category term="자료구조" scheme="http://bedongryeol.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"/>
-    
-    <category term="알고리즘" scheme="http://bedongryeol.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/"/>
-    
-    <category term="퀵정렬" scheme="http://bedongryeol.github.io/tags/%ED%80%B5%EC%A0%95%EB%A0%AC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>선택 및 삽입 정렬</title>
-    <link href="http://bedongryeol.github.io/08/04/til3/"/>
-    <id>http://bedongryeol.github.io/08/04/til3/</id>
-    <published>2021-08-04T12:36:10.000Z</published>
-    <updated>2021-08-04T12:49:27.563Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="선택-정렬-Selection-Sort"><a href="#선택-정렬-Selection-Sort" class="headerlink" title="선택 정렬 (Selection Sort)"></a>선택 정렬 (Selection Sort)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul><li>가장 작은 것을 선택해서 앞으로 보냄</li><li>시간복잡도 : 가장 작은 데이터 선택 (N) * 앞으로 보내기 (N) = O(N^2)</li></ul><h1 id="삽입-정렬"><a href="#삽입-정렬" class="headerlink" title="삽입 정렬"></a>삽입 정렬</h1><h2 id="특징-1"><a href="#특징-1" class="headerlink" title="특징"></a>특징</h2><ul><li>각 숫자를 적절한 위치에 삽입</li><li>일반적으로 선택 정렬보다 빠르게 동작한다.</li><li>시간복잡도 : 들어갈 위치를 선택 (N) * 데이터를 선택하는 횟수 (N) = O(N^2)</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;선택-정렬-Selection-Sort&quot;&gt;&lt;a href=&quot;#선택-정렬-Selection-Sort&quot; class=&quot;headerlink&quot; title=&quot;선택 정렬 (Selection Sort)&quot;&gt;&lt;/a&gt;선택 정렬 (Selection Sort)&lt;/</summary>
-      
-    
-    
-    
-    <category term="자료구조" scheme="http://bedongryeol.github.io/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"/>
-    
-    
-    <category term="자료구조" scheme="http://bedongryeol.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"/>
-    
-    <category term="알고리즘" scheme="http://bedongryeol.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/"/>
-    
-    <category term="정렬" scheme="http://bedongryeol.github.io/tags/%EC%A0%95%EB%A0%AC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>큐</title>
-    <link href="http://bedongryeol.github.io/08/03/til2-md/"/>
-    <id>http://bedongryeol.github.io/08/03/til2-md/</id>
-    <published>2021-08-02T15:00:00.000Z</published>
-    <updated>2021-08-03T14:51:23.347Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="큐-Queue"><a href="#큐-Queue" class="headerlink" title="큐 (Queue)"></a>큐 (Queue)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><p><img src="/image/" alt="queue"></p><blockquote><ol><li>데이터가 뒤(rear)로 들어가서 앞(front)으로 나오는 자료</li></ol><ol start="2"><li>FIFO (First In First Out)</li></ol><ol start="3"><li>스케줄링, 탐색 알고리즘 등에서 사용된다.</li></ol></blockquote><h2 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h2><h3 id="배열로-구현"><a href="#배열로-구현" class="headerlink" title="배열로 구현"></a>배열로 구현</h3><h4 id="선언"><a href="#선언" class="headerlink" title="선언"></a>선언</h4><ul><li>배열은 사전에 배열의 크기를 지정해줘야한다.</li><li>front와 rear를 선언해준다.</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#define SIZE 10000</span><br><span class="line">#define INF 99999999</span><br><span class="line"></span><br><span class="line">int queue[SIZE];</span><br><span class="line">int front = 0;</span><br><span class="line">int rear = 0;</span><br></pre></td></tr></table></figure><h4 id="삽입"><a href="#삽입" class="headerlink" title="삽입"></a>삽입</h4><ul><li>큐는 한 쪽으로만 데이터가 들어간다.</li><li>큐의 마지막인 rear에 1을 추가하여 데이터를 삽입해준다.</li><li>배열의 크기를 초과했을 때는 큐 오버플로우를 선언해준다.</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void push(int data) &#123;</span><br><span class="line">   if (rear &gt;= SIZE) &#123;</span><br><span class="line">      printf(&quot;큐 오버플로우가 발생했습니다. \n&quot;);</span><br><span class="line">      return;</span><br><span class="line">   &#125;</span><br><span class="line">   queue[rear++] = data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="삭제"><a href="#삭제" class="headerlink" title="삭제"></a>삭제</h4><ul><li>큐는 삽입과 같이 한 쪽에서만 데이터가 나온다.</li><li>큐의 front++를 return함으로써 front를 제거한다.</li><li>큐가 비어있을 때 시도하면 언더플로우를 선언한다.</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void pop() &#123;</span><br><span class="line">   if (front == rear) &#123;</span><br><span class="line">      printf(&quot;큐 언더플로우가 발생했습니다. \n&quot;);</span><br><span class="line">      return -INF;</span><br><span class="line">   &#125;</span><br><span class="line">   return queue[front++];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><details><summary>모든 코드 확인하기</summary><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#define SIZE 10000</span><br><span class="line">#define INF 99999999</span><br><span class="line"></span><br><span class="line">int queue[SIZE];</span><br><span class="line">int front = 0;</span><br><span class="line">int rear = 0;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void push(int data) &#123;</span><br><span class="line">   if (rear &gt;= SIZE) &#123;</span><br><span class="line">      printf(&quot;큐 오버플로우가 발생했습니다. \n&quot;);</span><br><span class="line">      return;</span><br><span class="line">   &#125;</span><br><span class="line">   queue[rear++] = data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void pop() &#123;</span><br><span class="line">   if (front == rear) &#123;</span><br><span class="line">      printf(&quot;큐 언더플로우가 발생했습니다. \n&quot;);</span><br><span class="line">      return -INF;</span><br><span class="line">   &#125;</span><br><span class="line">   return queue[front++];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void show() &#123;</span><br><span class="line">   printf(&quot;---큐의 앞--- \n&quot;);</span><br><span class="line">   for (int i = front; i &lt; rear; i++) &#123;</span><br><span class="line">      printf(&quot;%d\n&quot;, queue[i]);</span><br><span class="line">   &#125;</span><br><span class="line">   printf(&quot;---큐의 뒤--- \n&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(void) &#123;</span><br><span class="line">   push(7);</span><br><span class="line">   push(5);</span><br><span class="line">   push(1);</span><br><span class="line">   pop();</span><br><span class="line">   show();</span><br><span class="line">   system(&quot;pause&quot;);</span><br><span class="line">   return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details><h3 id="연결리스트로-구현"><a href="#연결리스트로-구현" class="headerlink" title="연결리스트로 구현"></a>연결리스트로 구현</h3><h4 id="선언-1"><a href="#선언-1" class="headerlink" title="선언"></a>선언</h4><ul><li>data와 노드와 다음 데이터를 연결하는 next를 구조에 포함한다.</li><li>데이터가 나오는 front, 들어가는 node, 데이터 수를 담을 count를 선언한다.</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#define INF 99999999</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">   int data;</span><br><span class="line">   struct Node* next;</span><br><span class="line">&#125;Node;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">   Node* front;</span><br><span class="line">   Node* rear;</span><br><span class="line">   int count;</span><br><span class="line">&#125;Queue;</span><br></pre></td></tr></table></figure><h4 id="삽입-1"><a href="#삽입-1" class="headerlink" title="삽입"></a>삽입</h4><ul><li>새로운 node를 동적메모리에 할당해준다.</li><li>node에 데이터를 담고, next는 NULL로 초기화해준다.</li><li>조건문을 통해 큐에 데이터가 없을 시 front로 선언한다.</li><li>데이터가 존재할 시 큐의 rear가 node를 가리키게 한다.</li><li>큐의 rear를 node로 지정하고, count를 추가해준다.</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void push(Queue* queue, int data) &#123;</span><br><span class="line">   Node* node = (Node*)malloc(sizeof(Node));</span><br><span class="line">   node-&gt;data = data;</span><br><span class="line">   node-&gt;next = NULL;</span><br><span class="line">   if (queue-&gt;count == 0) &#123;</span><br><span class="line">      queue-&gt;front = node;</span><br><span class="line">   &#125;</span><br><span class="line">   else &#123;</span><br><span class="line">      queue-&gt;rear-&gt;next = node;</span><br><span class="line">   &#125;</span><br><span class="line">   queue-&gt;rear = node;</span><br><span class="line">   queue-&gt;count++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="삭제-1"><a href="#삭제-1" class="headerlink" title="삭제"></a>삭제</h4><ul><li>큐에 데이터가 없을 시 실행하면 언더플로우를 선언해준다.</li><li>큐의 front를 담을 노드를 생성하고, 데이터도 담아준다.</li><li>큐의 front를 위 노드의 next로 선언한다.</li><li>기존의 front 다음의 데이터가 front가 되는 것</li><li>원래의 front를 담고 있던 node를 해제해주고, count를 감소시킨다.</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void pop(Queue* queue) &#123;</span><br><span class="line">   if (queue-&gt;count == 0) &#123;</span><br><span class="line">      printf(&quot;큐 언더플로우가 발생하였습니다. \n&quot;);</span><br><span class="line">      return -INF;</span><br><span class="line">   &#125;</span><br><span class="line">   Node* node = queue-&gt;front;</span><br><span class="line">   int data = node-&gt;data;</span><br><span class="line"></span><br><span class="line">   queue-&gt;front = node-&gt;next;</span><br><span class="line">   free(node);</span><br><span class="line">   queue-&gt;count--;</span><br><span class="line">   return data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><details><summary>모든 코드 확인하기</summary><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#define INF 99999999</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">   int data;</span><br><span class="line">   struct Node* next;</span><br><span class="line">&#125;Node;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">   Node* front;</span><br><span class="line">   Node* rear;</span><br><span class="line">   int count;</span><br><span class="line">&#125;Queue;</span><br><span class="line"></span><br><span class="line">void push(Queue* queue, int data) &#123;</span><br><span class="line">   Node* node = (Node*)malloc(sizeof(Node));</span><br><span class="line">   node-&gt;data = data;</span><br><span class="line">   node-&gt;next = NULL;</span><br><span class="line">   if (queue-&gt;count == 0) &#123;</span><br><span class="line">      queue-&gt;front = node;</span><br><span class="line">   &#125;</span><br><span class="line">   else &#123;</span><br><span class="line">      queue-&gt;rear-&gt;next = node;</span><br><span class="line">   &#125;</span><br><span class="line">   queue-&gt;rear = node;</span><br><span class="line">   queue-&gt;count++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void pop(Queue* queue) &#123;</span><br><span class="line">   if (queue-&gt;count == 0) &#123;</span><br><span class="line">      printf(&quot;큐 언더플로우가 발생하였습니다. \n&quot;);</span><br><span class="line">      return -INF;</span><br><span class="line">   &#125;</span><br><span class="line">   Node* node = queue-&gt;front;</span><br><span class="line">   int data = node-&gt;data;</span><br><span class="line"></span><br><span class="line">   queue-&gt;front = node-&gt;next;</span><br><span class="line">   free(node);</span><br><span class="line">   queue-&gt;count--;</span><br><span class="line">   return data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void show(Queue* queue) &#123;</span><br><span class="line">   Node* cur = queue-&gt;front;</span><br><span class="line">   printf(&quot;---큐의 앞---\n&quot;);</span><br><span class="line">   while (cur != NULL) &#123;</span><br><span class="line">      printf(&quot;%d\n&quot;, cur-&gt;data);</span><br><span class="line">      cur = cur-&gt;next;</span><br><span class="line">   &#125;</span><br><span class="line">   printf(&quot;---큐의 뒤---&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(void) &#123;</span><br><span class="line">   Queue queue;</span><br><span class="line">   queue.front = queue.rear = NULL;</span><br><span class="line">   queue.count = 0;</span><br><span class="line">   push(&amp;queue, 7);</span><br><span class="line">   push(&amp;queue, 5);</span><br><span class="line">   push(&amp;queue, 4);</span><br><span class="line">   pop(&amp;queue);</span><br><span class="line">   push(&amp;queue, 6);</span><br><span class="line">   pop(&amp;queue);</span><br><span class="line">   show(&amp;queue);</span><br><span class="line">   system(&quot;pause&quot;);</span><br><span class="line">   return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;큐-Queue&quot;&gt;&lt;a href=&quot;#큐-Queue&quot; class=&quot;headerlink&quot; title=&quot;큐 (Queue)&quot;&gt;&lt;/a&gt;큐 (Queue)&lt;/h1&gt;&lt;h2 id=&quot;특징&quot;&gt;&lt;a href=&quot;#특징&quot; class=&quot;headerlink&quot; titl</summary>
-      
-    
-    
-    
-    <category term="자료구조" scheme="http://bedongryeol.github.io/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"/>
-    
-    
-    <category term="자료구조" scheme="http://bedongryeol.github.io/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"/>
-    
-    <category term="알고리즘" scheme="http://bedongryeol.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/"/>
-    
-    <category term="큐" scheme="http://bedongryeol.github.io/tags/%ED%81%90/"/>
     
   </entry>
   
