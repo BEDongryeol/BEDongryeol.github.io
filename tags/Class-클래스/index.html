@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -236,53 +262,7 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h1 id="Class-클래스-사용하기"><a href="#Class-클래스-사용하기" class="headerlink" title="Class 클래스 사용하기"></a>Class 클래스 사용하기</h1><ul>
-<li><p>자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.</p>
-<ul>
-<li>클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.</li>
-</ul>
-</li>
-<li><p>컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.</p>
-</li>
-</ul>
-<h2 id="클래스-동적-로딩"><a href="#클래스-동적-로딩" class="headerlink" title="클래스 동적 로딩"></a>클래스 동적 로딩</h2><h3 id="Class-forName-“클래스-이름”"><a href="#Class-forName-“클래스-이름”" class="headerlink" title="Class.forName(“클래스 이름”)"></a>Class.forName(“클래스 이름”)</h3><ul>
-<li><code>Class c = Class.forName(&quot;java.lang.String&quot;)</code><blockquote>
-<p>동적 로딩</p>
-<ul>
-<li>일반적으로 Class가 Local에 있는지 살펴보고 binding되어 type으로 정의하여 변수가 사용된다.</li>
-<li>Compile 할 때가 아닌, 실질적으로 실행할 때 필요한 클래스를 binding하는 방법</li>
-<li>ex) JDBC 드라이버에서 실행 전까지 DB의 라이브러리가 어떤 것인지 모르고, property파일 등을 읽을 때 변수로 갖고 있다가 Oracle 드라이버 이름을 String변수에 넣어준다.</li>
-</ul>
-</blockquote>
-</li>
-<li>장점 : 동적으로  원하는 클래스를 로딩할 수 있다.</li>
-<li>단점 : 로딩할 때 Local에 class나 라이브러리가 없는 등 오류가 발생하면 시스템이 다운될 수 있다.</li>
-</ul>
-<h2 id="사용-방법"><a href="#사용-방법" class="headerlink" title="사용 방법"></a>사용 방법</h2><ul>
-<li>주로 remote에 있는 class를 호출할 때 사용한다.<ul>
-<li><code>Local에 클래스가 없을 때</code></li>
-</ul>
-</li>
-<li>아래 코드를 <code>reflection 프로그래밍</code>이라고 한다.<details>
-<summary>예제 코드 확인하기</summary></details></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package ch04;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line">public class StringTest &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException &#123;</span><br><span class="line"></span><br><span class="line">        Class c = Class.forName(&quot;java.lang.String&quot;);</span><br><span class="line">        </span><br><span class="line">        // Constructor의 목록을 배열로 가져온다.</span><br><span class="line">        Constructor[] cons = c.getConstructors();</span><br><span class="line">        for (Constructor co : cons) &#123;</span><br><span class="line">            System.out.println(co);</span><br><span class="line">        &#125;</span><br><span class="line">        // 메소드의 목록을 가져온다.</span><br><span class="line">        Method[] m = c.getMethods();</span><br><span class="line">        for (Method mth : m) &#123;</span><br><span class="line">            System.out.println(mth);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="인스턴스-생성"><a href="#인스턴스-생성" class="headerlink" title="인스턴스 생성"></a>인스턴스 생성</h2><ul>
-<li><code>reflection 프로그래밍</code><ul>
-<li>Class 클래스를 사용하여 클래스의 정보 등을 알 수 있고, 인스턴스를 생성, 메서드를 호출하는 방식의 프로그래밍<ol>
-<li>로컬 메모리에 객체가 없는 경우</li>
-<li>원격 프로그래밍 (서로 다른 프로세스)</li>
-<li>객체의 타입을 알 수 없는 경우</li>
-</ol>
-</li>
-<li><code>java.lang.reflect</code> 패키지의 클래스를 활용하여 사용</li>
-<li>자료형을 알고 있는 경우에는 사용하지 않음</li>
-</ul>
-</li>
-</ul>
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
                         <a
                             href="/08/19/Class/"
@@ -322,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

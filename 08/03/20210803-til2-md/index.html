@@ -15,17 +15,15 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"큐 (Queue)특징\n\n\n데이터가 뒤(rear)로 들어가서 앞(front)으로 나오는 자료\n\n\nFIFO (First In First Out)\n\n\n스케줄링, 탐색 알고리즘 등에서 사용된다.\n\n\n구현배열로 구현선언\n배열은 사전에 배열의 크기를 지정해줘야한다.\nfront와 rear를 선언해준다.\n\n1234567#include &lt;stdio.h&gt;#define SIZE 10000#define INF 99999999int queue[SIZE];int front = 0;int rear = 0;\n\n삽입\n큐는 한 쪽으로만 데이터가 들어간다.\n큐의 마지막인 rear에 1을 추가하여 데이터를 삽입해준다.\n배열의 크기를 초과했을 때는 큐 오버플로우를 선언해준다.\n\n1234567void push(int data) &#123;   if (rear &gt;= SIZE) &#123;      printf(&quot;큐 오버플로우가 발생했습니다. \\n&quot;);      return;   &#125;   queue[rear++] = data;&#125;\n\n삭제\n큐는 삽입과 같이 한 쪽에서만 데이터가 나온다.\n큐의 front++를 return함으로써 front를 제거한다.\n큐가 비어있을 때 시도하면 언더플로우를 선언한다.\n\n1234567void pop() &#123;   if (front == rear) &#123;      printf(&quot;큐 언더플로우가 발생했습니다. \\n&quot;);      return -INF;   &#125;   return queue[front++];&#125;\n\n\n모든 코드 확인하기\n\n123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;stdio.h&gt;#define SIZE 10000#define INF 99999999int queue[SIZE];int front = 0;int rear = 0;void push(int data) &#123;   if (rear &gt;= SIZE) &#123;      printf(&quot;큐 오버플로우가 발생했습니다. \\n&quot;);      return;   &#125;   queue[rear++] = data;&#125;void pop() &#123;   if (front == rear) &#123;      printf(&quot;큐 언더플로우가 발생했습니다. \\n&quot;);      return -INF;   &#125;   return queue[front++];&#125;void show() &#123;   printf(&quot;---큐의 앞--- \\n&quot;);   for (int i = front; i &lt; rear; i++) &#123;      printf(&quot;%d\\n&quot;, queue[i]);   &#125;   printf(&quot;---큐의 뒤--- \\n&quot;);&#125;int main(void) &#123;   push(7);   push(5);   push(1);   pop();   show();   system(&quot;pause&quot;);   return 0;&#125;\n\n\n연결리스트로 구현선언\ndata와 노드와 다음 데이터를 연결하는 next를 구조에 포함한다.\n데이터가 나오는 front, 들어가는 node, 데이터 수를 담을 count를 선언한다.\n\n1234567891011121314#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#define INF 99999999typedef struct &#123;   int data;   struct Node* next;&#125;Node;typedef struct &#123;   Node* front;   Node* rear;   int count;&#125;Queue;\n\n삽입\n새로운 node를 동적메모리에 할당해준다.\nnode에 데이터를 담고, next는 NULL로 초기화해준다.\n조건문을 통해 큐에 데이터가 없을 시 front로 선언한다.\n데이터가 존재할 시 큐의 rear가 node를 가리키게 한다.\n큐의 rear를 node로 지정하고, count를 추가해준다.\n\n12345678910111213void push(Queue* queue, int data) &#123;   Node* node = (Node*)malloc(sizeof(Node));   node-&gt;data = data;   node-&gt;next = NULL;   if (queue-&gt;count == 0) &#123;      queue-&gt;front = node;   &#125;   else &#123;      queue-&gt;rear-&gt;next = node;   &#125;   queue-&gt;rear = node;   queue-&gt;count++;&#125;\n삭제\n큐에 데이터가 없을 시 실행하면 언더플로우를 선언해준다.\n큐의 front를 담을 노드를 생성하고, 데이터도 담아준다.\n큐의 front를 위 노드의 next로 선언한다.\n기존의 front 다음의 데이터가 front가 되는 것\n원래의 front를 담고 있던 node를 해제해주고, count를 감소시킨다.\n\n12345678910111213void pop(Queue* queue) &#123;   if (queue-&gt;count == 0) &#123;      printf(&quot;큐 언더플로우가 발생하였습니다. \\n&quot;);      return -INF;   &#125;   Node* node = queue-&gt;front;   int data = node-&gt;data;   queue-&gt;front = node-&gt;next;   free(node);   queue-&gt;count--;   return data;&#125;\n\n\n모든 코드 확인하기\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#define INF 99999999typedef struct &#123;   int data;   struct Node* next;&#125;Node;typedef struct &#123;   Node* front;   Node* rear;   int count;&#125;Queue;void push(Queue* queue, int data) &#123;   Node* node = (Node*)malloc(sizeof(Node));   node-&gt;data = data;   node-&gt;next = NULL;   if (queue-&gt;count == 0) &#123;      queue-&gt;front = node;   &#125;   else &#123;      queue-&gt;rear-&gt;next = node;   &#125;   queue-&gt;rear = node;   queue-&gt;count++;&#125;void pop(Queue* queue) &#123;   if (queue-&gt;count == 0) &#123;      printf(&quot;큐 언더플로우가 발생하였습니다. \\n&quot;);      return -INF;   &#125;   Node* node = queue-&gt;front;   int data = node-&gt;data;   queue-&gt;front = node-&gt;next;   free(node);   queue-&gt;count--;   return data;&#125;void show(Queue* queue) &#123;   Node* cur = queue-&gt;front;   printf(&quot;---큐의 앞---\\n&quot;);   while (cur != NULL) &#123;      printf(&quot;%d\\n&quot;, cur-&gt;data);      cur = cur-&gt;next;   &#125;   printf(&quot;---큐의 뒤---&quot;);&#125;int main(void) &#123;   Queue queue;   queue.front = queue.rear = NULL;   queue.count = 0;   push(&amp;queue, 7);   push(&amp;queue, 5);   push(&amp;queue, 4);   pop(&amp;queue);   push(&amp;queue, 6);   pop(&amp;queue);   show(&amp;queue);   system(&quot;pause&quot;);   return 0;&#125;\n","dateCreated":"2021-08-03T00:00:00+09:00","dateModified":"2021-08-03T23:51:23+09:00","datePublished":"2021-08-03T00:00:00+09:00","description":"큐 (Queue)특징\n\n\n데이터가 뒤(rear)로 들어가서 앞(front)으로 나오는 자료\n\n\nFIFO (First In First Out)\n\n\n스케줄링, 탐색 알고리즘 등에서 사용된다.\n\n\n구현배열로 구현선언\n배열은 사전에 배열의 크기를 지정해줘야한다.\nfront와 rear를 선언해준다.\n\n1234567#include &lt;stdio.h&gt;#define SIZE 10000#define INF 99999999int queue[SIZE];int front = 0;int rear = 0;\n\n삽입","headline":"큐","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/03/20210803-til2-md/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/08/03/20210803-til2-md/","keywords":"자료구조, 알고리즘, 큐"}</script>
-    <meta name="description" content="큐 (Queue)특징   데이터가 뒤(rear)로 들어가서 앞(front)으로 나오는 자료   FIFO (First In First Out)   스케줄링, 탐색 알고리즘 등에서 사용된다.   구현배열로 구현선언 배열은 사전에 배열의 크기를 지정해줘야한다. front와 rear를 선언해준다.  1234567#include &lt;stdio.h&gt;#defi">
-<meta property="og:type" content="blog">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n큐 (Queue)특징\n\n\n데이터가 뒤(rear)로 들어가서 앞(front)으로 나오는 자료\n\n\nFIFO (First In First Out)\n\n\n스케줄링, 탐색 알고리즘 등에서 사용된다.\n\n\n구현배열로 구현선언\n배열은 사전에 배열의 크기를 지정해줘야한다.\nfront와 rear를 선언해준다.\n\n1234567#include &lt;stdio.h&gt;#define SIZE 10000#define INF 99999999int queue[SIZE];int front = 0;int rear = 0;\n\n삽입\n큐는 한 쪽으로만 데이터가 들어간다.\n큐의 마지막인 rear에 1을 추가하여 데이터를 삽입해준다.\n배열의 크기를 초과했을 때는 큐 오버플로우를 선언해준다.\n\n1234567void push(int data) &#123;   if (rear &gt;= SIZE) &#123;      printf(&quot;큐 오버플로우가 발생했습니다. \\n&quot;);      return;   &#125;   queue[rear++] = data;&#125;\n\n삭제\n큐는 삽입과 같이 한 쪽에서만 데이터가 나온다.\n큐의 front++를 return함으로써 front를 제거한다.\n큐가 비어있을 때 시도하면 언더플로우를 선언한다.\n\n1234567void pop() &#123;   if (front == rear) &#123;      printf(&quot;큐 언더플로우가 발생했습니다. \\n&quot;);      return -INF;   &#125;   return queue[front++];&#125;\n\n\n모든 코드 확인하기\n\n123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;stdio.h&gt;#define SIZE 10000#define INF 99999999int queue[SIZE];int front = 0;int rear = 0;void push(int data) &#123;   if (rear &gt;= SIZE) &#123;      printf(&quot;큐 오버플로우가 발생했습니다. \\n&quot;);      return;   &#125;   queue[rear++] = data;&#125;void pop() &#123;   if (front == rear) &#123;      printf(&quot;큐 언더플로우가 발생했습니다. \\n&quot;);      return -INF;   &#125;   return queue[front++];&#125;void show() &#123;   printf(&quot;---큐의 앞--- \\n&quot;);   for (int i = front; i &lt; rear; i++) &#123;      printf(&quot;%d\\n&quot;, queue[i]);   &#125;   printf(&quot;---큐의 뒤--- \\n&quot;);&#125;int main(void) &#123;   push(7);   push(5);   push(1);   pop();   show();   system(&quot;pause&quot;);   return 0;&#125;\n\n\n연결리스트로 구현선언\ndata와 노드와 다음 데이터를 연결하는 next를 구조에 포함한다.\n데이터가 나오는 front, 들어가는 node, 데이터 수를 담을 count를 선언한다.\n\n1234567891011121314#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#define INF 99999999typedef struct &#123;   int data;   struct Node* next;&#125;Node;typedef struct &#123;   Node* front;   Node* rear;   int count;&#125;Queue;\n\n삽입\n새로운 node를 동적메모리에 할당해준다.\nnode에 데이터를 담고, next는 NULL로 초기화해준다.\n조건문을 통해 큐에 데이터가 없을 시 front로 선언한다.\n데이터가 존재할 시 큐의 rear가 node를 가리키게 한다.\n큐의 rear를 node로 지정하고, count를 추가해준다.\n\n12345678910111213void push(Queue* queue, int data) &#123;   Node* node = (Node*)malloc(sizeof(Node));   node-&gt;data = data;   node-&gt;next = NULL;   if (queue-&gt;count == 0) &#123;      queue-&gt;front = node;   &#125;   else &#123;      queue-&gt;rear-&gt;next = node;   &#125;   queue-&gt;rear = node;   queue-&gt;count++;&#125;\n삭제\n큐에 데이터가 없을 시 실행하면 언더플로우를 선언해준다.\n큐의 front를 담을 노드를 생성하고, 데이터도 담아준다.\n큐의 front를 위 노드의 next로 선언한다.\n기존의 front 다음의 데이터가 front가 되는 것\n원래의 front를 담고 있던 node를 해제해주고, count를 감소시킨다.\n\n12345678910111213void pop(Queue* queue) &#123;   if (queue-&gt;count == 0) &#123;      printf(&quot;큐 언더플로우가 발생하였습니다. \\n&quot;);      return -INF;   &#125;   Node* node = queue-&gt;front;   int data = node-&gt;data;   queue-&gt;front = node-&gt;next;   free(node);   queue-&gt;count--;   return data;&#125;\n\n\n모든 코드 확인하기\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#define INF 99999999typedef struct &#123;   int data;   struct Node* next;&#125;Node;typedef struct &#123;   Node* front;   Node* rear;   int count;&#125;Queue;void push(Queue* queue, int data) &#123;   Node* node = (Node*)malloc(sizeof(Node));   node-&gt;data = data;   node-&gt;next = NULL;   if (queue-&gt;count == 0) &#123;      queue-&gt;front = node;   &#125;   else &#123;      queue-&gt;rear-&gt;next = node;   &#125;   queue-&gt;rear = node;   queue-&gt;count++;&#125;void pop(Queue* queue) &#123;   if (queue-&gt;count == 0) &#123;      printf(&quot;큐 언더플로우가 발생하였습니다. \\n&quot;);      return -INF;   &#125;   Node* node = queue-&gt;front;   int data = node-&gt;data;   queue-&gt;front = node-&gt;next;   free(node);   queue-&gt;count--;   return data;&#125;void show(Queue* queue) &#123;   Node* cur = queue-&gt;front;   printf(&quot;---큐의 앞---\\n&quot;);   while (cur != NULL) &#123;      printf(&quot;%d\\n&quot;, cur-&gt;data);      cur = cur-&gt;next;   &#125;   printf(&quot;---큐의 뒤---&quot;);&#125;int main(void) &#123;   Queue queue;   queue.front = queue.rear = NULL;   queue.count = 0;   push(&amp;queue, 7);   push(&amp;queue, 5);   push(&amp;queue, 4);   pop(&amp;queue);   push(&amp;queue, 6);   pop(&amp;queue);   show(&amp;queue);   system(&quot;pause&quot;);   return 0;&#125;\n","dateCreated":"2021-08-03T00:00:00+09:00","dateModified":"2021-09-09T23:07:25+09:00","datePublished":"2021-08-03T00:00:00+09:00","description":"","headline":"큐","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/03/20210803-til2-md/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/08/03/20210803-til2-md/","keywords":"자료구조, 알고리즘, 큐"}</script>
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="큐">
 <meta property="og:url" content="http://bedongryeol.github.io/08/03/20210803-til2-md/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="큐 (Queue)특징   데이터가 뒤(rear)로 들어가서 앞(front)으로 나오는 자료   FIFO (First In First Out)   스케줄링, 탐색 알고리즘 등에서 사용된다.   구현배열로 구현선언 배열은 사전에 배열의 크기를 지정해줘야한다. front와 rear를 선언해준다.  1234567#include &lt;stdio.h&gt;#defi">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="http://bedongryeol.github.io/image/">
 <meta property="article:published_time" content="2021-08-02T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-08-03T14:51:23.347Z">
+<meta property="article:modified_time" content="2021-09-09T14:07:25.402Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="자료구조">
 <meta property="article:tag" content="알고리즘">
@@ -36,6 +34,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
     
     
     
@@ -60,6 +60,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -81,6 +85,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -88,8 +94,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -240,7 +264,9 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h1 id="큐-Queue"><a href="#큐-Queue" class="headerlink" title="큐 (Queue)"></a>큐 (Queue)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><p><img src="/image/" alt="queue"></p>
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+<h1 id="큐-Queue"><a href="#큐-Queue" class="headerlink" title="큐 (Queue)"></a>큐 (Queue)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><p><img src="/image/" alt="queue"></p>
 <blockquote>
 <ol>
 <li>데이터가 뒤(rear)로 들어가서 앞(front)으로 나오는 자료</li>
@@ -587,11 +613,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

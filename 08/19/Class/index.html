@@ -15,16 +15,14 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"Class 클래스 사용하기\n자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.\n\n클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.\n\n\n컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.\n\n\n클래스 동적 로딩Class.forName(“클래스 이름”)\nClass c = Class.forName(&quot;java.lang.String&quot;)\n동적 로딩\n\n일반적으로 Class가 Local에 있는지 살펴보고 binding되어 type으로 정의하여 변수가 사용된다.\nCompile 할 때가 아닌, 실질적으로 실행할 때 필요한 클래스를 binding하는 방법\nex) JDBC 드라이버에서 실행 전까지 DB의 라이브러리가 어떤 것인지 모르고, property파일 등을 읽을 때 변수로 갖고 있다가 Oracle 드라이버 이름을 String변수에 넣어준다.\n\n\n\n장점 : 동적으로  원하는 클래스를 로딩할 수 있다.\n단점 : 로딩할 때 Local에 class나 라이브러리가 없는 등 오류가 발생하면 시스템이 다운될 수 있다.\n\n사용 방법\n주로 remote에 있는 class를 호출할 때 사용한다.\nLocal에 클래스가 없을 때\n\n\n아래 코드를 reflection 프로그래밍이라고 한다.\n예제 코드 확인하기\n\n1234567891011121314151617181920212223package ch04;import java.lang.reflect.Constructor;import java.lang.reflect.Method;public class StringTest &#123;    public static void main(String[] args) throws ClassNotFoundException &#123;        Class c = Class.forName(&quot;java.lang.String&quot;);                // Constructor의 목록을 배열로 가져온다.        Constructor[] cons = c.getConstructors();        for (Constructor co : cons) &#123;            System.out.println(co);        &#125;        // 메소드의 목록을 가져온다.        Method[] m = c.getMethods();        for (Method mth : m) &#123;            System.out.println(mth);        &#125;    &#125;&#125;\n\n\n\n인스턴스 생성\nreflection 프로그래밍\nClass 클래스를 사용하여 클래스의 정보 등을 알 수 있고, 인스턴스를 생성, 메서드를 호출하는 방식의 프로그래밍\n로컬 메모리에 객체가 없는 경우\n원격 프로그래밍 (서로 다른 프로세스)\n객체의 타입을 알 수 없는 경우\n\n\njava.lang.reflect 패키지의 클래스를 활용하여 사용\n자료형을 알고 있는 경우에는 사용하지 않음\n\n\n\n\n 예제 코드 확인하기 \n\n123456789101112131415161718192021222324252627282930313233343536package ch04;import java.lang.reflect.Constructor;import java.lang.reflect.InvocationTargetException;public class ClassTest &#123;    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException &#123;        // 1. Class 이름으로 invoke(호출)하기        Class c1 = Class.forName(&quot;ch04.Person&quot;);        // Person 타입으로 Casting        Person person = (Person)c1.newInstance();        person.setName(&quot;Lee&quot;);        System.out.println(person);        // 2. 이미 생성된 객체로 invoke        Class c2 = person.getClass();        // 2-1. 인스턴스화, Person타입으로 Casting        Person person2 = (Person)c2.newInstance();        person2.setName(&quot;Kim&quot;);        System.out.println(person2);        // 3. 생성자를 호출하여 객체 생성        Class[] classArray = &#123;String.class&#125;;        Constructor cons = c2.getConstructor(classArray);        // 3-1. Object 배열 형태        Object[] initargs = &#123;&quot;Jeong&quot;&#125;;        // Line23에서 불러온 생성자로 객체 생성        Person person3 = (Person)cons.newInstance(initargs);        System.out.println(person3);    &#125;&#125;\n\n\n\n","dateCreated":"2021-08-19T19:11:26+09:00","dateModified":"2021-08-19T19:13:41+09:00","datePublished":"2021-08-19T19:11:26+09:00","description":"Class 클래스 사용하기\n자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.\n\n클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.\n\n\n컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.\n\n\n클래스 동적 로딩Class.forName(“클래스 이름”)\nClass c = Class.forName(&quot;java.lang.String&quot;)\n동적 로딩\n\n일반적으로 Class가 Local에 있는지 살펴보고 binding되어 type으로 정의하여 변수가 사용된다.\nCompile 할 때가 아닌, 실질적으로 실행할 때 필요한 클래스를 binding하는 방법\nex) JDBC 드라이버에서 실행 전까지 DB의 라이브러리가 어떤 것인지 모르고, property파일 등을 읽을 때 변수로 갖고 있다가 Oracle 드라이버 이름을 String변수에 넣어준다.\n\n\n\n장점 : 동적으로  원하는 클래스를 로딩할 수 있다.\n단점 : 로딩할 때 Local에 class나 라이브러리가 없는 등 오류가 발생하면 시스템이 다운될 수 있다.\n\n사용 방법\n주로 remote에 있는 class를 호출할 때 사용한다.\nLocal에 클래스가 없을 때\n\n\n아래 코드를 reflection 프로그래밍이라고 한다.\n예제 코드 확인하기\n\n1234567891011121314151617181920212223package ch04;import java.lang.reflect.Constructor;import java.lang.reflect.Method;public class StringTest &#123;    public static void main(String[] args) throws ClassNotFoundException &#123;        Class c = Class.forName(&quot;java.lang.String&quot;);                // Constructor의 목록을 배열로 가져온다.        Constructor[] cons = c.getConstructors();        for (Constructor co : cons) &#123;            System.out.println(co);        &#125;        // 메소드의 목록을 가져온다.        Method[] m = c.getMethods();        for (Method mth : m) &#123;            System.out.println(mth);        &#125;    &#125;&#125;\n\n\n\n인스턴스 생성\nreflection 프로그래밍\nClass 클래스를 사용하여 클래스의 정보 등을 알 수 있고, 인스턴스를 생성, 메서드를 호출하는 방식의 프로그래밍\n로컬 메모리에 객체가 없는 경우\n원격 프로그래밍 (서로 다른 프로세스)\n객체의 타입을 알 수 없는 경우\n\n\njava.lang.reflect 패키지의 클래스를 활용하여 사용\n자료형을 알고 있는 경우에는 사용하지 않음\n\n\n","headline":"Class 클래스","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/19/Class/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/08/19/Class/","keywords":"Java, 자바, Class 클래스"}</script>
-    <meta name="description" content="Class 클래스 사용하기 자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.  클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.   컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.   클래스 동적 로딩Class.forName(“클래스 이름”) Class c &#x3D; Class.f">
-<meta property="og:type" content="blog">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\nClass 클래스 사용하기\n자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.\n\n클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.\n\n\n컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.\n\n\n클래스 동적 로딩Class.forName(“클래스 이름”)\nClass c = Class.forName(&quot;java.lang.String&quot;)\n동적 로딩\n\n일반적으로 Class가 Local에 있는지 살펴보고 binding되어 type으로 정의하여 변수가 사용된다.\nCompile 할 때가 아닌, 실질적으로 실행할 때 필요한 클래스를 binding하는 방법\nex) JDBC 드라이버에서 실행 전까지 DB의 라이브러리가 어떤 것인지 모르고, property파일 등을 읽을 때 변수로 갖고 있다가 Oracle 드라이버 이름을 String변수에 넣어준다.\n\n\n\n장점 : 동적으로  원하는 클래스를 로딩할 수 있다.\n단점 : 로딩할 때 Local에 class나 라이브러리가 없는 등 오류가 발생하면 시스템이 다운될 수 있다.\n\n사용 방법\n주로 remote에 있는 class를 호출할 때 사용한다.\nLocal에 클래스가 없을 때\n\n\n아래 코드를 reflection 프로그래밍이라고 한다.\n예제 코드 확인하기\n\n1234567891011121314151617181920212223package ch04;import java.lang.reflect.Constructor;import java.lang.reflect.Method;public class StringTest &#123;    public static void main(String[] args) throws ClassNotFoundException &#123;        Class c = Class.forName(&quot;java.lang.String&quot;);                // Constructor의 목록을 배열로 가져온다.        Constructor[] cons = c.getConstructors();        for (Constructor co : cons) &#123;            System.out.println(co);        &#125;        // 메소드의 목록을 가져온다.        Method[] m = c.getMethods();        for (Method mth : m) &#123;            System.out.println(mth);        &#125;    &#125;&#125;\n\n\n\n인스턴스 생성\nreflection 프로그래밍\nClass 클래스를 사용하여 클래스의 정보 등을 알 수 있고, 인스턴스를 생성, 메서드를 호출하는 방식의 프로그래밍\n로컬 메모리에 객체가 없는 경우\n원격 프로그래밍 (서로 다른 프로세스)\n객체의 타입을 알 수 없는 경우\n\n\njava.lang.reflect 패키지의 클래스를 활용하여 사용\n자료형을 알고 있는 경우에는 사용하지 않음\n\n\n\n\n 예제 코드 확인하기 \n\n123456789101112131415161718192021222324252627282930313233343536package ch04;import java.lang.reflect.Constructor;import java.lang.reflect.InvocationTargetException;public class ClassTest &#123;    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException &#123;        // 1. Class 이름으로 invoke(호출)하기        Class c1 = Class.forName(&quot;ch04.Person&quot;);        // Person 타입으로 Casting        Person person = (Person)c1.newInstance();        person.setName(&quot;Lee&quot;);        System.out.println(person);        // 2. 이미 생성된 객체로 invoke        Class c2 = person.getClass();        // 2-1. 인스턴스화, Person타입으로 Casting        Person person2 = (Person)c2.newInstance();        person2.setName(&quot;Kim&quot;);        System.out.println(person2);        // 3. 생성자를 호출하여 객체 생성        Class[] classArray = &#123;String.class&#125;;        Constructor cons = c2.getConstructor(classArray);        // 3-1. Object 배열 형태        Object[] initargs = &#123;&quot;Jeong&quot;&#125;;        // Line23에서 불러온 생성자로 객체 생성        Person person3 = (Person)cons.newInstance(initargs);        System.out.println(person3);    &#125;&#125;\n\n\n\n","dateCreated":"2021-08-19T19:11:26+09:00","dateModified":"2021-09-09T23:05:59+09:00","datePublished":"2021-08-19T19:11:26+09:00","description":"","headline":"Class 클래스","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/19/Class/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/08/19/Class/","keywords":"Java, 자바, Class 클래스"}</script>
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="Class 클래스">
 <meta property="og:url" content="http://bedongryeol.github.io/08/19/Class/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="Class 클래스 사용하기 자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.  클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.   컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.   클래스 동적 로딩Class.forName(“클래스 이름”) Class c &#x3D; Class.f">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-08-19T10:11:26.000Z">
-<meta property="article:modified_time" content="2021-08-19T10:13:41.450Z">
+<meta property="article:modified_time" content="2021-09-09T14:05:59.812Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="자바">
@@ -34,6 +32,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
     
     
     
@@ -58,6 +58,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -79,6 +83,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -86,8 +92,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -238,7 +262,9 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h1 id="Class-클래스-사용하기"><a href="#Class-클래스-사용하기" class="headerlink" title="Class 클래스 사용하기"></a>Class 클래스 사용하기</h1><ul>
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+<h1 id="Class-클래스-사용하기"><a href="#Class-클래스-사용하기" class="headerlink" title="Class 클래스 사용하기"></a>Class 클래스 사용하기</h1><ul>
 <li><p>자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.</p>
 <ul>
 <li>클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.</li>
@@ -574,11 +600,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

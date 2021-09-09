@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -203,7 +229,7 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -235,58 +261,17 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <h1 id="직렬화-Serialization"><a href="#직렬화-Serialization" class="headerlink" title="직렬화 (Serialization)"></a>직렬화 (Serialization)</h1><h2 id="정의"><a href="#정의" class="headerlink" title="정의"></a>정의</h2><ul>
-<li>인스턴스의 상태를 그대로 저장(파일), 전송(네트워크), 복원하는 방식</li>
-<li>바이트 스트림의 연속으로 객체 정보를 저장하고, 복원한다.</li>
-<li>보조 스트림을 활용한다.</li>
-</ul>
-<h2 id="인터페이스"><a href="#인터페이스" class="headerlink" title="인터페이스"></a>인터페이스</h2><ul>
-<li>직렬화는 인스턴스의 정보가 외부로 유출되는 것이다.</li>
-<li>직렬화를 하려면 명시해줘야한다. (Marker interface)<ul>
-<li><code>implements Serializable</code></li>
-<li>구현코드가 없는 interface</li>
-</ul>
-</li>
-<li>클래스 내에서 직렬화하고 싶지 않은 변수, 불가능한 변수는 <code>transient</code>로 명시한다.<ul>
-<li> default 값으로 출력된다. (String = null)</li>
-</ul>
-</li>
-</ul>
-<details>
-<summary>예제코드 확인하기</summary>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ch17;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">transient</span> String job;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, String job)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.job = job;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name + <span class="string">&quot;,&quot;</span> + job;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SerializationTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person personLee = <span class="keyword">new</span> Person(<span class="string">&quot;이순신&quot;</span>, <span class="string">&quot;대표&quot;</span>);</span><br><span class="line">        Person personKim = <span class="keyword">new</span> Person(<span class="string">&quot;김유신&quot;</span>, <span class="string">&quot;상무이사&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> (FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;serial.txt&quot;</span>);</span><br><span class="line">             ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(fos))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// Serialization</span></span><br><span class="line">            oos.writeObject(personLee);</span><br><span class="line">            oos.writeObject(personKim);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> (FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;serial.txt&quot;</span>);</span><br><span class="line">             ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(fis))</span><br><span class="line">        &#123;</span><br><span class="line">            Person pLee = (Person)ois.readObject();</span><br><span class="line">            Person pKim = (Person)ois.readObject();</span><br><span class="line">            System.out.println(pLee);</span><br><span class="line">            System.out.println(pKim);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException | ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</details>
-
-<ul>
-<li><code>implements Externalizable</code><ul>
-<li>읽고 쓰는 메서드를 구현해주어야 한다.</li>
-</ul>
-</li>
-</ul>
-<details>
-<summary>예제 코드 확인하기</summary>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ch17;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span> <span class="keyword">implements</span> <span class="title">Externalizable</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    String job;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">(String name, String job)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.job = job;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name + <span class="string">&quot;, &quot;</span> + job;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeExternal</span><span class="params">(ObjectOutput out)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        out.writeUTF(name);</span><br><span class="line">        out.writeUTF(job);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readExternal</span><span class="params">(ObjectInput in)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</span><br><span class="line">        name = in.readUTF();</span><br><span class="line">        job = in.readUTF();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExternalizableTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        People peopleLee = <span class="keyword">new</span> People(<span class="string">&quot;이순신&quot;</span>, <span class="string">&quot;대표&quot;</span>);</span><br><span class="line">        People peopleKim = <span class="keyword">new</span> People(<span class="string">&quot;김유신&quot;</span>, <span class="string">&quot;상무이사&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> (FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;external.txt&quot;</span>);</span><br><span class="line">             ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(fos))</span><br><span class="line">        &#123;</span><br><span class="line">            oos.writeObject(peopleLee);</span><br><span class="line">            oos.writeObject(peopleKim);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> (FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;external.txt&quot;</span>);</span><br><span class="line">             ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(fis))&#123;</span><br><span class="line">            People peopleL = (People)ois.readObject();</span><br><span class="line">            People peopleK = (People)ois.readObject();</span><br><span class="line">            System.out.println(peopleL);</span><br><span class="line">            System.out.println(peopleK);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</details>
-
-
+                <div class="postShorten-excerpt">
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
+                        <a
+                            href="/09/06/Serial/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 직렬화 (Serialization)"
+                        >
+                            계속 읽기
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/09/06/Serial/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                댓글 공유
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -317,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

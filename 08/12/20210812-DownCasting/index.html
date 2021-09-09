@@ -15,16 +15,14 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"다운캐스팅 (DownCasting)의미\n업캐스팅된 클래스를 원래의 타입으로 다시 형변환하는 것\n하위 클래스로의 형변환(다운캐스팅)은 명시적으로 해야한다.\n클래스B가 클래스A에게 상속받는 경우12A instance = new B(); // 묵시적B instanceB = (B)instance; //명시적\n\n유의 사항\n클래스 B와 C가 클래스 A에게 상속 받는 경우1234567// A의 타입으로 B, C의 인스턴스를 생성해준다.A ins1 = new B();A ins2 = new C();// C타입을 B타입인 ins3로 생성을 시도한다.// 실행전까지는 에러가 나지 않지만 실행 시 에러가 발생한다.B ins3 = (B)ins2;\n아래와 같은 방어 코드로 에러를 방지할 수 있다.\ninstanceof : in2가 B클래스로 생성된 인스턴스인지 확인한다123if ( in2 instanceof B )&#123;B ins3 = (B)ins2;&#125;\n\n","dateCreated":"2021-08-12T20:42:07+09:00","dateModified":"2021-08-12T20:46:34+09:00","datePublished":"2021-08-12T20:42:07+09:00","description":"","headline":"다운캐스팅(DownCasting)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/12/20210812-DownCasting/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/08/12/20210812-DownCasting/","keywords":"Java, 자바, 다운캐스팅, DownCasting"}</script>
-    <meta name="description" content="다운캐스팅 (DownCasting)의미 업캐스팅된 클래스를 원래의 타입으로 다시 형변환하는 것 하위 클래스로의 형변환(다운캐스팅)은 명시적으로 해야한다. 클래스B가 클래스A에게 상속받는 경우12A instance &#x3D; new B(); &#x2F;&#x2F; 묵시적B instanceB &#x3D; (B)instance; &#x2F;&#x2F;명시적  유의 사항 클래스 B와 C가 클래스 A에게 상속 받는">
-<meta property="og:type" content="blog">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n다운캐스팅 (DownCasting)의미\n업캐스팅된 클래스를 원래의 타입으로 다시 형변환하는 것\n하위 클래스로의 형변환(다운캐스팅)은 명시적으로 해야한다.\n클래스B가 클래스A에게 상속받는 경우12A instance = new B(); // 묵시적B instanceB = (B)instance; //명시적\n\n유의 사항\n클래스 B와 C가 클래스 A에게 상속 받는 경우1234567// A의 타입으로 B, C의 인스턴스를 생성해준다.A ins1 = new B();A ins2 = new C();// C타입을 B타입인 ins3로 생성을 시도한다.// 실행전까지는 에러가 나지 않지만 실행 시 에러가 발생한다.B ins3 = (B)ins2;\n아래와 같은 방어 코드로 에러를 방지할 수 있다.\ninstanceof : in2가 B클래스로 생성된 인스턴스인지 확인한다123if ( in2 instanceof B )&#123;B ins3 = (B)ins2;&#125;\n\n","dateCreated":"2021-08-12T20:42:07+09:00","dateModified":"2021-09-09T23:08:23+09:00","datePublished":"2021-08-12T20:42:07+09:00","description":"","headline":"다운캐스팅(DownCasting)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/12/20210812-DownCasting/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/08/12/20210812-DownCasting/","keywords":"Java, 자바, 다운캐스팅, DownCasting"}</script>
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="다운캐스팅(DownCasting)">
 <meta property="og:url" content="http://bedongryeol.github.io/08/12/20210812-DownCasting/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="다운캐스팅 (DownCasting)의미 업캐스팅된 클래스를 원래의 타입으로 다시 형변환하는 것 하위 클래스로의 형변환(다운캐스팅)은 명시적으로 해야한다. 클래스B가 클래스A에게 상속받는 경우12A instance &#x3D; new B(); &#x2F;&#x2F; 묵시적B instanceB &#x3D; (B)instance; &#x2F;&#x2F;명시적  유의 사항 클래스 B와 C가 클래스 A에게 상속 받는">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-08-12T11:42:07.000Z">
-<meta property="article:modified_time" content="2021-08-12T11:46:34.177Z">
+<meta property="article:modified_time" content="2021-09-09T14:08:23.914Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="자바">
@@ -35,6 +33,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
     
     
     
@@ -59,6 +59,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -80,6 +84,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -87,8 +93,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -239,7 +263,9 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h1 id="다운캐스팅-DownCasting"><a href="#다운캐스팅-DownCasting" class="headerlink" title="다운캐스팅 (DownCasting)"></a>다운캐스팅 (DownCasting)</h1><h2 id="의미"><a href="#의미" class="headerlink" title="의미"></a>의미</h2><ul>
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+<h1 id="다운캐스팅-DownCasting"><a href="#다운캐스팅-DownCasting" class="headerlink" title="다운캐스팅 (DownCasting)"></a>다운캐스팅 (DownCasting)</h1><h2 id="의미"><a href="#의미" class="headerlink" title="의미"></a>의미</h2><ul>
 <li>업캐스팅된 클래스를 원래의 타입으로 다시 형변환하는 것</li>
 <li>하위 클래스로의 형변환(다운캐스팅)은 명시적으로 해야한다.</li>
 <li>클래스B가 클래스A에게 상속받는 경우<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A instance = new B(); // 묵시적</span><br><span class="line">B instanceB = (B)instance; //명시적</span><br></pre></td></tr></table></figure></li>
@@ -531,11 +557,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

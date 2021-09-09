@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -203,7 +229,7 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -235,48 +261,17 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <h1 id="다형성"><a href="#다형성" class="headerlink" title="다형성"></a>다형성</h1><ul>
-<li>하나의 코드가 여러 자료형으로 구현되어 실행 되는 것</li>
-<li>같은 코드에서 여러가지 실행 결과가 나오는 것<blockquote>
-<p>유연하고 확장성있고, 유지보수가 편리함 프로그램을 만들 수 있다.</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="개념"><a href="#개념" class="headerlink" title="개념"></a>개념</h2><ul>
-<li>하위 클래스들을 상위 클래스로 형변환한다.</li>
-<li>이를 한번에 핸들링한다.</li>
-<li>각 인스턴스별로 다른 실행 결과를 얻을 수 있다.</li>
-<li>결합도가 높아진다.</li>
-</ul>
-<h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><details>
-<summary> 모든 코드 확인하기 </summary>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">package polymorphismTest;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Animal&#123;</span><br><span class="line">	// 공통된 기능을 정의 할 때 상위 클래스인 Animal에 기능을 입력한다.</span><br><span class="line">	public void move() &#123;</span><br><span class="line">		System.out.println(&quot;동물이 움직입니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Human extends Animal &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void move() &#123;</span><br><span class="line">		System.out.println(&quot;사람이 두 발로 걷습니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	public void readBook() &#123;</span><br><span class="line">		System.out.println(&quot;사람이 책을 읽습니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Tiger extends Animal &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void move() &#123;</span><br><span class="line">		System.out.println(&quot;호랑이가 네 발로 뜁니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void hunting() &#123;</span><br><span class="line">		System.out.println(&quot;호랑이가 사냥을 합니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Eagle extends Animal &#123;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	public void move() &#123;</span><br><span class="line">		System.out.println(&quot;독수리가 하늘을 납니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void flying() &#123;</span><br><span class="line">		System.out.println(&quot;독수리가 양날개를 쭉 펴고 날아다닙니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class AnimalTest &#123;</span><br><span class="line">	 </span><br><span class="line">	public static void main (String[] args) &#123;</span><br><span class="line">		// 형변환 (업캐스팅 : 상위 클래스의 타입으로 변환)</span><br><span class="line">		Animal hAnimal = new Human();</span><br><span class="line">		Animal tAnimal = new Tiger();</span><br><span class="line">		Animal eAnimal = new Eagle();</span><br><span class="line">		</span><br><span class="line">		AnimalTest test = new AnimalTest();</span><br><span class="line">		// 상위 클래스인 Animal로 형변환이 가능하다.</span><br><span class="line">		// 각자의 가상 메서드 테이블을 갖게 된다.</span><br><span class="line">		test.moveAnimal(hAnimal);</span><br><span class="line">		test.moveAnimal(tAnimal);</span><br><span class="line">		test.moveAnimal(eAnimal);</span><br><span class="line">		</span><br><span class="line">		// 세 동물을 ArrayList에 삽입하고 싶을 때</span><br><span class="line">		ArrayList&lt;Animal&gt; animalList = new ArrayList&lt;&gt;();</span><br><span class="line">		animalList.add(hAnimal);</span><br><span class="line">		animalList.add(tAnimal);</span><br><span class="line">		animalList.add(eAnimal);</span><br><span class="line">		// enhanced for문을 통한 출력</span><br><span class="line">		for (Animal a : animalList) &#123;</span><br><span class="line">			a.move();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	public void moveAnimal(Animal animal) &#123;</span><br><span class="line">		animal.move();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</details>
-
-
-<h2 id="사용하는-이유"><a href="#사용하는-이유" class="headerlink" title="사용하는 이유"></a>사용하는 이유</h2><ul>
-<li> 상속과 메서드의 재정의를 활용하여 확장성 있는 프로그램을 만들 수 있다.</li>
-<li>위 예시로 보았을 때 동물을 추가하고 싶을 때 편하게 추가할 수 있다.</li>
-<li>상위 클래스에 공통된 기능과 하위 클래스에 특정한 기능을 구분하여 코딩할 수 있다.</li>
-</ul>
-
+                <div class="postShorten-excerpt">
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
+                        <a
+                            href="/08/12/20210812-Polymorphism/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 다형성(Polymorphism)"
+                        >
+                            계속 읽기
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/08/12/20210812-Polymorphism/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                댓글 공유
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -307,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -203,7 +229,58 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/08/24/ClassFramework/"
+                            aria-label=": 클래스 프레임워크"
+                        >
+                            클래스 프레임워크
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2021-08-24T15:26:56+09:00">
+	
+		    2021/08/24
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+                    
+                        <a
+                            href="/08/24/ClassFramework/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 클래스 프레임워크"
+                        >
+                            계속 읽기
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -235,46 +312,17 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <h1 id="Array-구현"><a href="#Array-구현" class="headerlink" title="Array 구현"></a>Array 구현</h1><ul>
-<li>jdk 클래스 : ArrayList, Vector<h2 id="구현-함수"><a href="#구현-함수" class="headerlink" title="구현 함수"></a>구현 함수</h2></li>
-<li>배열은 크기를 미리 정해주어야 한다.<blockquote>
-<ul>
-<li>ARRAY_SIZE = 배열의 크기 </li>
-<li>count = 배열 내 요소 개수</li>
-<li>addElement = 요소 추가 함수</li>
-<li>insertElement = 요소 삽입 함수</li>
-<li>removeElement = 요소 제거 함수</li>
-<li>getSize = 배열의 크기</li>
-<li>getElement = 검색 함수</li>
-<li>printAll = 모든 요소 출력</li>
-<li>removeAll = 모든 요소 삭제</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<details>
-<summary>예제코드 확인하기</summary>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] intArr;</span><br><span class="line">    <span class="keyword">int</span> count;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> ARRAY_SIZE;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ERROR_NUM = -<span class="number">999999999</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        count = <span class="number">0</span>;</span><br><span class="line">        ARRAY_SIZE = <span class="number">10</span>;</span><br><span class="line">        intArr = <span class="keyword">new</span> <span class="keyword">int</span>[ARRAY_SIZE];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        count = <span class="number">0</span>;</span><br><span class="line">        ARRAY_SIZE = size;</span><br><span class="line">        intArr = <span class="keyword">new</span> <span class="keyword">int</span>[ARRAY_SIZE];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addElement</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (count &gt;= ARRAY_SIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Not enough Memory&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        intArr[count++] = num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertElement</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> i = count - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (count &gt;= ARRAY_SIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Not enough Memory&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; count) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Insert Error&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (i &gt; index) &#123;</span><br><span class="line">            intArr[i + <span class="number">1</span>] = intArr[i];</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        intArr[index] = num;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ret = ERROR_NUM;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;There is no element&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> ret;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= count)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;index Error&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> ret;</span><br><span class="line">        &#125;</span><br><span class="line">        ret = intArr[index];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = index; i&lt;count-<span class="number">1</span>; i++)&#123;</span><br><span class="line">            intArr[i] = intArr[i+<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        count--;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (count == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getElement</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; count-<span class="number">1</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;검색 위치 오류입니다. 현재 리스트의 개수는 &quot;</span> + count + <span class="string">&quot;입니다.&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> ERROR_NUM;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> intArr[index];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (count == <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;출력할 값이 없습니다.&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; count; i++)&#123;</span><br><span class="line">            System.out.println(intArr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++)&#123;</span><br><span class="line">            intArr[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        count = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
+                <div class="postShorten-excerpt">
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
+                        <a
+                            href="/08/20/JavaArray/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 자바 배열 구현"
+                        >
+                            계속 읽기
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/08/20/JavaArray/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                댓글 공유
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -316,53 +364,7 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h1 id="Class-클래스-사용하기"><a href="#Class-클래스-사용하기" class="headerlink" title="Class 클래스 사용하기"></a>Class 클래스 사용하기</h1><ul>
-<li><p>자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.</p>
-<ul>
-<li>클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.</li>
-</ul>
-</li>
-<li><p>컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.</p>
-</li>
-</ul>
-<h2 id="클래스-동적-로딩"><a href="#클래스-동적-로딩" class="headerlink" title="클래스 동적 로딩"></a>클래스 동적 로딩</h2><h3 id="Class-forName-“클래스-이름”"><a href="#Class-forName-“클래스-이름”" class="headerlink" title="Class.forName(“클래스 이름”)"></a>Class.forName(“클래스 이름”)</h3><ul>
-<li><code>Class c = Class.forName(&quot;java.lang.String&quot;)</code><blockquote>
-<p>동적 로딩</p>
-<ul>
-<li>일반적으로 Class가 Local에 있는지 살펴보고 binding되어 type으로 정의하여 변수가 사용된다.</li>
-<li>Compile 할 때가 아닌, 실질적으로 실행할 때 필요한 클래스를 binding하는 방법</li>
-<li>ex) JDBC 드라이버에서 실행 전까지 DB의 라이브러리가 어떤 것인지 모르고, property파일 등을 읽을 때 변수로 갖고 있다가 Oracle 드라이버 이름을 String변수에 넣어준다.</li>
-</ul>
-</blockquote>
-</li>
-<li>장점 : 동적으로  원하는 클래스를 로딩할 수 있다.</li>
-<li>단점 : 로딩할 때 Local에 class나 라이브러리가 없는 등 오류가 발생하면 시스템이 다운될 수 있다.</li>
-</ul>
-<h2 id="사용-방법"><a href="#사용-방법" class="headerlink" title="사용 방법"></a>사용 방법</h2><ul>
-<li>주로 remote에 있는 class를 호출할 때 사용한다.<ul>
-<li><code>Local에 클래스가 없을 때</code></li>
-</ul>
-</li>
-<li>아래 코드를 <code>reflection 프로그래밍</code>이라고 한다.<details>
-<summary>예제 코드 확인하기</summary></details></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package ch04;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line">public class StringTest &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException &#123;</span><br><span class="line"></span><br><span class="line">        Class c = Class.forName(&quot;java.lang.String&quot;);</span><br><span class="line">        </span><br><span class="line">        // Constructor의 목록을 배열로 가져온다.</span><br><span class="line">        Constructor[] cons = c.getConstructors();</span><br><span class="line">        for (Constructor co : cons) &#123;</span><br><span class="line">            System.out.println(co);</span><br><span class="line">        &#125;</span><br><span class="line">        // 메소드의 목록을 가져온다.</span><br><span class="line">        Method[] m = c.getMethods();</span><br><span class="line">        for (Method mth : m) &#123;</span><br><span class="line">            System.out.println(mth);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="인스턴스-생성"><a href="#인스턴스-생성" class="headerlink" title="인스턴스 생성"></a>인스턴스 생성</h2><ul>
-<li><code>reflection 프로그래밍</code><ul>
-<li>Class 클래스를 사용하여 클래스의 정보 등을 알 수 있고, 인스턴스를 생성, 메서드를 호출하는 방식의 프로그래밍<ol>
-<li>로컬 메모리에 객체가 없는 경우</li>
-<li>원격 프로그래밍 (서로 다른 프로세스)</li>
-<li>객체의 타입을 알 수 없는 경우</li>
-</ol>
-</li>
-<li><code>java.lang.reflect</code> 패키지의 클래스를 활용하여 사용</li>
-<li>자료형을 알고 있는 경우에는 사용하지 않음</li>
-</ul>
-</li>
-</ul>
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
                         <a
                             href="/08/19/Class/"
@@ -413,32 +415,7 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h1 id="Java의-유용한-클래스들"><a href="#Java의-유용한-클래스들" class="headerlink" title="Java의 유용한 클래스들"></a>Java의 유용한 클래스들</h1><h2 id="Object-Class"><a href="#Object-Class" class="headerlink" title="Object Class"></a>Object Class</h2><ul>
-<li>모든 클래스의 최상위 클래스</li>
-<li>모든 class는 Object클래스를 상속받는다.</li>
-<li>메서드 중 일부는 필요에 의해 재정의 할 수 있다.</li>
-<li>java.lang 패키지 안에 포함되어 있다.</li>
-</ul>
-<h3 id="java-lang"><a href="#java-lang" class="headerlink" title="java.lang"></a>java.lang</h3><ul>
-<li>프로그래밍 시 자동으로 import된다</li>
-<li>많이 사용하는 기본 클래스들이 속한 패키지</li>
-<li>String, Integer, System 등</li>
-</ul>
-<h3 id="toString-메서드"><a href="#toString-메서드" class="headerlink" title="toString() 메서드"></a>toString() 메서드</h3><ul>
-<li>객체의 정보를 String으로 바꾸어서 사용할 때 쓰인다.</li>
-<li>재정의하여 참조변수가 멤버 변수 값을 return하게 할 수 있다.<details>
-<summary>예제 코드 확인하기</summary></details></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Book&#123;</span><br><span class="line"></span><br><span class="line">    private String title;</span><br><span class="line">    private String author;</span><br><span class="line"></span><br><span class="line">    public Book(String title, String author)&#123;</span><br><span class="line">        this.title = title;</span><br><span class="line">        this.author = author;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return title + &quot;,&quot; + author;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class BookTest &#123;</span><br><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">Book book = new Book(&quot;데미안&quot;, &quot;헤르만 헤세&quot;);</span><br><span class="line">System.out.println(book);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h3 id="equals-hashCode-메서드"><a href="#equals-hashCode-메서드" class="headerlink" title="equals(), hashCode() 메서드"></a>equals(), hashCode() 메서드</h3><blockquote>
-<p>equals() 메서드와 hashCode() 메서드는 짝을 이룬다.</p>
-<ul>
-<li>equals()를 overriding하면 객체가 반환하는 hash값도 overriding해줘야 한다.</li>
-<li>equals에서 사용한 멤버 변수를 hashCode 값으로 반환해주면 된다.</li>
-</ul>
-</blockquote>
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
                         <a
                             href="/08/19/JavaClasses/"
@@ -489,31 +466,7 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h1 id="String-관련-Class"><a href="#String-관련-Class" class="headerlink" title="String 관련 Class"></a>String 관련 Class</h1><h2 id="String-클래스"><a href="#String-클래스" class="headerlink" title="String 클래스"></a>String 클래스</h2><h3 id="선언"><a href="#선언" class="headerlink" title="선언"></a>선언</h3><ol>
-<li><code>String str = new String(“abc”);</code><ul>
-<li>힙 메모리에 생성된다.</li>
-</ul>
-</li>
-<li><code>String str2 = “abc”;</code><ul>
-<li>상수 pool의 abc라는 String에 address가 생성된다.</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>두 개의 인스턴스는 다르다.</li>
-<li>힙 메모리는 생성될 때마다 다른 주소값을 가지지만, 상수 pool의 문자열은 모두 같은 주소를 가진다.</li>
-</ul>
-<h3 id="메모리"><a href="#메모리" class="headerlink" title="메모리"></a>메모리</h3><ul>
-<li>한번 생성된 String은 immutable(불변)이다.</li>
-<li>String을 연결하면 기존의 String에 연결되는 것이 아닌 새로운 문자열을 위한 메모리가 생성된다.<details>
-<summary>예제 코드 확인하기</summary></details></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String java = new String(“java”); </span><br><span class="line">String android = new String(“android”); </span><br><span class="line"></span><br><span class="line">java = java.concat(android) // 위 2가지 문자열을 합해주고 java가 가리키게 한다.</span><br><span class="line"></span><br><span class="line">// 문자열 java, android, javaandroid을 위한 메모리가 계속해서 할당되어 있고, java는 “java”가 아닌 “javaandroid”를 가리킨다.</span><br><span class="line"></span><br><span class="line">// 기존 메모리에 덮어쓰는 것이 아닌 새로운 메모리를 할당한다.</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="StringBuilder-StringBuffer"><a href="#StringBuilder-StringBuffer" class="headerlink" title="StringBuilder, StringBuffer"></a>StringBuilder, StringBuffer</h2><blockquote>
-<p>위 메모리 낭비를 해결하기 위해 <code>StringBuilder</code>, <code>StringBuffer</code>를 활용한다.</p>
-</blockquote>
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
                         <a
                             href="/08/19/String/"
@@ -531,7 +484,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -563,48 +516,17 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <h1 id="다형성"><a href="#다형성" class="headerlink" title="다형성"></a>다형성</h1><ul>
-<li>하나의 코드가 여러 자료형으로 구현되어 실행 되는 것</li>
-<li>같은 코드에서 여러가지 실행 결과가 나오는 것<blockquote>
-<p>유연하고 확장성있고, 유지보수가 편리함 프로그램을 만들 수 있다.</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="개념"><a href="#개념" class="headerlink" title="개념"></a>개념</h2><ul>
-<li>하위 클래스들을 상위 클래스로 형변환한다.</li>
-<li>이를 한번에 핸들링한다.</li>
-<li>각 인스턴스별로 다른 실행 결과를 얻을 수 있다.</li>
-<li>결합도가 높아진다.</li>
-</ul>
-<h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><details>
-<summary> 모든 코드 확인하기 </summary>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">package polymorphismTest;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Animal&#123;</span><br><span class="line">	// 공통된 기능을 정의 할 때 상위 클래스인 Animal에 기능을 입력한다.</span><br><span class="line">	public void move() &#123;</span><br><span class="line">		System.out.println(&quot;동물이 움직입니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Human extends Animal &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void move() &#123;</span><br><span class="line">		System.out.println(&quot;사람이 두 발로 걷습니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	public void readBook() &#123;</span><br><span class="line">		System.out.println(&quot;사람이 책을 읽습니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Tiger extends Animal &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void move() &#123;</span><br><span class="line">		System.out.println(&quot;호랑이가 네 발로 뜁니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void hunting() &#123;</span><br><span class="line">		System.out.println(&quot;호랑이가 사냥을 합니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Eagle extends Animal &#123;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	public void move() &#123;</span><br><span class="line">		System.out.println(&quot;독수리가 하늘을 납니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void flying() &#123;</span><br><span class="line">		System.out.println(&quot;독수리가 양날개를 쭉 펴고 날아다닙니다.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class AnimalTest &#123;</span><br><span class="line">	 </span><br><span class="line">	public static void main (String[] args) &#123;</span><br><span class="line">		// 형변환 (업캐스팅 : 상위 클래스의 타입으로 변환)</span><br><span class="line">		Animal hAnimal = new Human();</span><br><span class="line">		Animal tAnimal = new Tiger();</span><br><span class="line">		Animal eAnimal = new Eagle();</span><br><span class="line">		</span><br><span class="line">		AnimalTest test = new AnimalTest();</span><br><span class="line">		// 상위 클래스인 Animal로 형변환이 가능하다.</span><br><span class="line">		// 각자의 가상 메서드 테이블을 갖게 된다.</span><br><span class="line">		test.moveAnimal(hAnimal);</span><br><span class="line">		test.moveAnimal(tAnimal);</span><br><span class="line">		test.moveAnimal(eAnimal);</span><br><span class="line">		</span><br><span class="line">		// 세 동물을 ArrayList에 삽입하고 싶을 때</span><br><span class="line">		ArrayList&lt;Animal&gt; animalList = new ArrayList&lt;&gt;();</span><br><span class="line">		animalList.add(hAnimal);</span><br><span class="line">		animalList.add(tAnimal);</span><br><span class="line">		animalList.add(eAnimal);</span><br><span class="line">		// enhanced for문을 통한 출력</span><br><span class="line">		for (Animal a : animalList) &#123;</span><br><span class="line">			a.move();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	public void moveAnimal(Animal animal) &#123;</span><br><span class="line">		animal.move();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</details>
-
-
-<h2 id="사용하는-이유"><a href="#사용하는-이유" class="headerlink" title="사용하는 이유"></a>사용하는 이유</h2><ul>
-<li> 상속과 메서드의 재정의를 활용하여 확장성 있는 프로그램을 만들 수 있다.</li>
-<li>위 예시로 보았을 때 동물을 추가하고 싶을 때 편하게 추가할 수 있다.</li>
-<li>상위 클래스에 공통된 기능과 하위 클래스에 특정한 기능을 구분하여 코딩할 수 있다.</li>
-</ul>
-
+                <div class="postShorten-excerpt">
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
+                        <a
+                            href="/08/12/20210812-Polymorphism/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 다형성(Polymorphism)"
+                        >
+                            계속 읽기
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/08/12/20210812-Polymorphism/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                댓글 공유
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -613,7 +535,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -645,43 +567,17 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <h1 id="가상-메서드"><a href="#가상-메서드" class="headerlink" title="가상 메서드"></a>가상 메서드</h1><h2 id="메서드-Method"><a href="#메서드-Method" class="headerlink" title="메서드 (Method)"></a>메서드 (Method)</h2><ul>
-<li>명령어의 집합 (set)</li>
-<li>Java에서 모든 메서드는 가상 메서드이다. </li>
-<li><code>메서드의 이름</code>은 <code>주소값</code>을 나타낸다.</li>
-<li>메서드를 호출하면 이름과 mapping되어 있는 주소값이 호출된다.<h3 id="함수-호출-방식"><a href="#함수-호출-방식" class="headerlink" title="함수 호출 방식"></a>함수 호출 방식</h3></li>
-</ul>
-<ol>
-<li>프로그램이 로드되면 <code>메서드 영역(코드 영역)</code>에 <code>명령어 set</code>이 위치한다.</li>
-<li>메서드가 호출되면 명령어 set이 위치한 주소를 찾아가 명령어가 실행된다.</li>
-</ol>
-<ul>
-<li>이 때 메서드에 위치한 변수들은 stack메모리에 위치하게 된다.<blockquote>
-<p>서로 다른 인스턴스가 동일한 메서드를 호출하면 같은 method가 호출된다.<br>인스턴스가 생성되면 변수는 heap메모리에 저장이 되지만, 메서드 명령어 set은 한 번만 로드된다.</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="가상-메서드-Virtual-Method"><a href="#가상-메서드-Virtual-Method" class="headerlink" title="가상 메서드 (Virtual Method)"></a>가상 메서드 (Virtual Method)</h2><ul>
-<li>클래스마다 가상 메서드 테이블(Virtual Method Table)에 메서드의 address를 가지고 있다.</li>
-<li>메서드가 재정의되면 재정의된 클래스의 테이블에 address가 추가된다.</li>
-</ul>
-
+                <div class="postShorten-excerpt">
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
+                        <a
+                            href="/08/12/20210812-VirtualMethod/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 가상메서드(VirtualMethod)"
+                        >
+                            계속 읽기
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/08/12/20210812-VirtualMethod/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                댓글 공유
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -723,38 +619,7 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h1 id="Java-상속-형변환-재정의"><a href="#Java-상속-형변환-재정의" class="headerlink" title="Java 상속, 형변환, 재정의"></a>Java 상속, 형변환, 재정의</h1><h2 id="상속"><a href="#상속" class="headerlink" title="상속"></a>상속</h2><ul>
-<li>구현되어 있는 기능, 속성을 <code>확장하여</code> 재사용하는 것 </li>
-<li> class B extends A{ }</li>
-<li>extends 뒤에는 하나의 클래스만 올 수 있다.</li>
-<li>자바는 안정성을 위해 단일 상속만을 지원한다.</li>
-<li>상속 하는 클래스 : 상위 클래스, parent class, child class</li>
-<li>상속 받는 클래스 :  하위, child, sub</li>
-</ul>
-<h3 id="상속을-사용하는-경우"><a href="#상속을-사용하는-경우" class="headerlink" title="상속을 사용하는 경우"></a>상속을 사용하는 경우</h3><ul>
-<li>객체 지향 프로그래밍에서는 크게 2가지 방법을 사용할 수 있다.</li>
-<li><code>IS-A 관계 (is a relationship : inheritance)</code>, <code>HAS-A관계(composition)</code></li>
-<li>IS-A관계에서 상속을 사용한다.</li>
-</ul>
-<ol>
-<li>IS-A 관계</li>
-</ol>
-<ul>
-<li>예시 : 포유류 - 인간, 호랑이, 사자 등</li>
-<li>일반적인 개념과 구체적인 개념의 관계</li>
-<li>뼈대를 구축하고 이를 <code>확장해서 사용할 때</code> 자주 사용된다.</li>
-<li>상속은 클래스간의 결합도가 높은 설계이다.</li>
-<li>계층구조가 복잡하거나 hiearchy가 높으면 좋지 않다.</li>
-</ul>
-<ol start="2">
-<li>HAS-A 관계</li>
-</ol>
-<ul>
-<li>예시 : Java의 ArrayList 클래스를 사용하는 경우</li>
-<li>클래스가 다른 클래스를 포함하는 관계 (변수로 선언)</li>
-<li>코드 재사용의 가장 일반적인 방법</li>
-</ul>
-<h3 id="상속을-구현하는-경우"><a href="#상속을-구현하는-경우" class="headerlink" title="상속을 구현하는 경우"></a>상속을 구현하는 경우</h3>
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
                         <a
                             href="/08/12/20210812-Inheritance/"
@@ -772,7 +637,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -804,33 +669,17 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <h1 id="다운캐스팅-DownCasting"><a href="#다운캐스팅-DownCasting" class="headerlink" title="다운캐스팅 (DownCasting)"></a>다운캐스팅 (DownCasting)</h1><h2 id="의미"><a href="#의미" class="headerlink" title="의미"></a>의미</h2><ul>
-<li>업캐스팅된 클래스를 원래의 타입으로 다시 형변환하는 것</li>
-<li>하위 클래스로의 형변환(다운캐스팅)은 명시적으로 해야한다.</li>
-<li>클래스B가 클래스A에게 상속받는 경우<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A instance = new B(); // 묵시적</span><br><span class="line">B instanceB = (B)instance; //명시적</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="유의-사항"><a href="#유의-사항" class="headerlink" title="유의 사항"></a>유의 사항</h2><ul>
-<li>클래스 B와 C가 클래스 A에게 상속 받는 경우<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// A의 타입으로 B, C의 인스턴스를 생성해준다.</span><br><span class="line">A ins1 = new B();</span><br><span class="line">A ins2 = new C();</span><br><span class="line"></span><br><span class="line">// C타입을 B타입인 ins3로 생성을 시도한다.</span><br><span class="line">// 실행전까지는 에러가 나지 않지만 실행 시 에러가 발생한다.</span><br><span class="line">B ins3 = (B)ins2;</span><br></pre></td></tr></table></figure></li>
-<li>아래와 같은 방어 코드로 에러를 방지할 수 있다.</li>
-<li><code>instanceof</code> : in2가 B클래스로 생성된 인스턴스인지 확인한다<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if ( in2 instanceof B )&#123;</span><br><span class="line">B ins3 = (B)ins2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
+                <div class="postShorten-excerpt">
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
+                        <a
+                            href="/08/12/20210812-DownCasting/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 다운캐스팅(DownCasting)"
+                        >
+                            계속 읽기
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/08/12/20210812-DownCasting/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                댓글 공유
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -872,156 +721,12 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h1 id="자바-기초"><a href="#자바-기초" class="headerlink" title="자바 기초"></a>자바 기초</h1><h2 id="객체-지향-프로그래밍-OOP-Object-Oriented-Programming"><a href="#객체-지향-프로그래밍-OOP-Object-Oriented-Programming" class="headerlink" title="객체 지향 프로그래밍 (OOP; Object Oriented Programming)"></a>객체 지향 프로그래밍 (OOP; Object Oriented Programming)</h2><ul>
-<li>Java는 객체 지향 프로그래밍 언어 중 하나이다.<ul>
-<li>객체 : 구체적, 추상적 데이터의 단위 (사람, 사물, 주문 등)</li>
-</ul>
-</li>
-<li>객체 지향 프로그래밍 언어는 협력을 통해 기능을 수행할 수 있다.<blockquote>
-<ol>
-<li><p>클래스로 객체를 정의한다.</p>
-</li>
-<li><p>객체의 속성을 클래스 내부의 멤버 변수로 넣는다.</p>
-</li>
-<li><p>역할과 책임 등을 기능으로 구현한다.</p>
-</li>
-<li><p>클래스 간의 협력을 통해 실행한다.</p>
-</li>
-</ol>
-</blockquote>
-</li>
-</ul>
-<h2 id="함수-Function"><a href="#함수-Function" class="headerlink" title="함수 (Function)"></a>함수 (Function)</h2><ul>
-<li>함수는 기능을 수행하는 단독 모듈이다.</li>
-<li>함수를 호출하여 수행하고 반환할 수 있다.</li>
-<li>기본형<ul>
-<li><code>&lt;접근 제어자&gt; &lt;static | final&gt; &lt;반환형&gt; &lt;함수명&gt;</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="접근-제어자-Access-Modifier"><a href="#접근-제어자-Access-Modifier" class="headerlink" title="접근 제어자 (Access Modifier)"></a>접근 제어자 (Access Modifier)</h3><ul>
-<li><p>어떠한 범위 내에서 함수, 클래스에 대해 접근을 통제할 것인지 정의합니다.</p>
-</li>
-<li><p>public : 어디서든 접근 가능</p>
-</li>
-<li><p>private : 동일한 클래스 내에서만 접근 가능</p>
-<ul>
-<li>public으로 구현된 메서드를 통해 접근이 가능하다.</li>
-</ul>
-</li>
-<li><p>protected : 동일한 패키지 내, 이를 상속받은 자식 클래스 내에서 접근 가능</p>
-</li>
-<li><p>default : 같은 패키지 내에서 접근 가능</p>
-<ul>
-<li>접근제어자를 입력하지 않았을 때 default가 적용된다.</li>
-</ul>
-</li>
-</ul>
-<h3 id="Static-Final"><a href="#Static-Final" class="headerlink" title="Static | Final"></a>Static | Final</h3><ul>
-<li>static<ul>
-<li>이 메서드를 공용으로 사용할 것인지 아닌지를 결정한다.</li>
-<li>static을 삽입하면 공용으로 사용할 수 있다.</li>
-<li>static으로 지정하면 static메모리 공간에 저장되어 프로그램의 시작부터 종료 시 까지 저장된다.</li>
-</ul>
-</li>
-<li>Final<ul>
-<li>상속, 제정의, 변경이 불가한 상태로 지정한다.</li>
-<li>상수를 정의할 때도 사용된다.</li>
-</ul>
-</li>
-</ul>
-<h3 id="반환형-Return-Type"><a href="#반환형-Return-Type" class="headerlink" title="반환형 (Return Type)"></a>반환형 (Return Type)</h3>
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
                         <a
                             href="/08/12/20210812-java2/"
                             class="postShorten-excerpt_link link"
                             aria-label=": 자바 기초"
-                        >
-                            계속 읽기
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/08/10/20210810-java/"
-                            aria-label=": 자바란 ?"
-                        >
-                            자바란 ?
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2021-08-10T21:31:56+09:00">
-	
-		    2021/08/10
-    	
-    </time>
-    
-        <span>카테고리 </span>
-        
-    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h1 id="자바-Java"><a href="#자바-Java" class="headerlink" title="자바 (Java)"></a>자바 (Java)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul>
-<li>C, C++에 비해 안정적이다.</li>
-<li>객체 지향적 언어로 객체 간의 협력을 할 수 있다.</li>
-<li>플랫폼에 영향을 받지 않는다.<blockquote>
-<p>Java의 소스코드를 컴파일러가 바이트 코드로 변환하여 JVM에서 플랫폼에 맞게 다시 변환하고 실행한다.</p>
-</blockquote>
-</li>
-<li>웹 서버, 안드로이드, 게임 프로그래밍에 사용된다.</li>
-</ul>
-<h2 id="Convention"><a href="#Convention" class="headerlink" title="Convention"></a>Convention</h2><ul>
-<li>Class 선언 : Class는 대문자로 시작한다.</li>
-</ul>
-<h2 id="Hot-key"><a href="#Hot-key" class="headerlink" title="Hot key"></a>Hot key</h2><ul>
-<li>Ctrl + D : 삭제</li>
-<li>Ctrl + F11 : Run</li>
-</ul>
-<h2 id="자료형"><a href="#자료형" class="headerlink" title="자료형"></a>자료형</h2><h3 id="정수"><a href="#정수" class="headerlink" title="정수"></a>정수</h3><ul>
-<li>byte (1byte)<ul>
-<li>1바이트 단위인 음악 동영상, 실행파일 등의 자료처리를 할 때 사용된다.</li>
-</ul>
-</li>
-<li>short (2byte)<ul>
-<li>C/C++과 호환 시 사용된다.</li>
-</ul>
-</li>
-<li>int (4byte)<ul>
-<li>자바에서 정수의 기본형으로 사용된다.</li>
-<li>프로그램에서 사용하는 모든 숫자(리터럴)는 int로 표현된다.</li>
-</ul>
-</li>
-<li>long (8byte)<ul>
-<li>int의 범위를 넘어선 -2의 63승 ~ 2의 63승 -1까지 표현</li>
-<li>숫자의 뒤에 L 또는 l을 사용하여 long자료형임을 표시한다.</li>
-</ul>
-</li>
-</ul>
-                    
-                        <a
-                            href="/08/10/20210810-java/"
-                            class="postShorten-excerpt_link link"
-                            aria-label=": 자바란 ?"
                         >
                             계속 읽기
                         </a>
@@ -1048,7 +753,18 @@
           </li>
         
         
-        <li class="pagination-number">page 2 of 2</li>
+          <li class="pagination-next">
+            <a
+                class="btn btn--default btn--small"
+                href="/categories/Basic/page/3/"
+                aria-label="이전 포스트"
+            >
+              <span>이전 포스트</span>
+              <i class="fa fa-angle-right text-base icon-ml"></i>
+            </a>
+          </li>
+        
+        <li class="pagination-number">page 2 of 3</li>
     </ul>
 </div>
 
@@ -1068,11 +784,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

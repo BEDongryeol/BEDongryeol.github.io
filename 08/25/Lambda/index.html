@@ -15,16 +15,14 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"람다식 (Lambda Expression)특징\njava8부터 함수형 프로그래밍 방식을 지원하고, 이를 람다식이라고 한다.\n함수형 프로그래밍\n매개 변수만을 사용하여 만드는 함수인 순수 함수를 구현\n외부 자료를 사용하지 않으므로 side effect가 없다\n여러 자료를 동시에 처리하는 병렬처리가 가능하다.\n함수의 기능이 자료에 독립적이다.\n\n\n\n\n\n문법\n익명 함수 만들기\n매개변수와 매개변수를 이용한 실행문으로 구현된다.\njava는 OOP언어이기 때문에 람다식, 함수로만 클래스를 구성할 수 없다.\ninterface의 메소드를 구현하는 방식으로 한다.\n\n\n\n1234567package ch02;@FunctionalInterfacepublic interface Add &#123;    int add(int x, int y);&#125;\n\n123456789package ch02;public class AddTest &#123;    public static void main(String[] args) &#123;        Add add = (x, y) -&gt; &#123;return x+y;&#125;;        System.out.println(add.add(2, 3));    &#125;&#125;\n\n\n람다식과 OOP 방식 비교\n람다식에서는 FunctionalInterface 익명 내부 클래스가 생성된다.\nOOP 방식에서는 Interface를 implement하여 구현하고, 메서드를 호출한다.\n\n123456789101112131415161718192021222324package ch04;public class StringConcatTest &#123;    public static void main(String[] args) &#123;            String s1 = &quot;Hello&quot;;        String s2 = &quot;World&quot;;        // OOP 방식            StringConcatImp strImp = new StringConcatImp();        strImp.makeString(s1, s2);                // 1. 람다식 구현 방식        StringConcat concat = (s,v)-&gt; System.out.println(s+&quot;,&quot;+v);        concat.makeString(s1,s2);        // 2. 람다식 구현 방식        StringConcat concat2 = new StringConcat() &#123;            @Override            public void makeString(String s1, String s2) &#123;                System.out.println(s1+&quot;,&quot;+s2);            &#125;        &#125;;    &#125;&#125;\n\n\n","dateCreated":"2021-08-25T21:23:03+09:00","dateModified":"2021-08-25T21:26:04+09:00","datePublished":"2021-08-25T21:23:03+09:00","description":"람다식 (Lambda Expression)특징\njava8부터 함수형 프로그래밍 방식을 지원하고, 이를 람다식이라고 한다.\n함수형 프로그래밍\n매개 변수만을 사용하여 만드는 함수인 순수 함수를 구현\n외부 자료를 사용하지 않으므로 side effect가 없다\n여러 자료를 동시에 처리하는 병렬처리가 가능하다.\n함수의 기능이 자료에 독립적이다.\n\n\n\n\n\n문법\n익명 함수 만들기\n매개변수와 매개변수를 이용한 실행문으로 구현된다.\njava는 OOP언어이기 때문에 람다식, 함수로만 클래스를 구성할 수 없다.\ninterface의 메소드를 구현하는 방식으로 한다.\n\n\n\n1234567package ch02;@FunctionalInterfacepublic interface Add &#123;    int add(int x, int y);&#125;\n\n123456789package ch02;public class AddTest &#123;    public static void main(String[] args) &#123;        Add add = (x, y) -&gt; &#123;return x+y;&#125;;        System.out.println(add.add(2, 3));    &#125;&#125;\n\n\n람다식과 OOP 방식 비교\n람다식에서는 FunctionalInterface 익명 내부 클래스가 생성된다.\nOOP 방식에서는 Interface를 implement하여 구현하고, 메서드를 호출한다.\n\n123456789101112131415161718192021222324package ch04;public class StringConcatTest &#123;    public static void main(String[] args) &#123;            String s1 = &quot;Hello&quot;;        String s2 = &quot;World&quot;;        // OOP 방식            StringConcatImp strImp = new StringConcatImp();        strImp.makeString(s1, s2);                // 1. 람다식 구현 방식        StringConcat concat = (s,v)-&gt; System.out.println(s+&quot;,&quot;+v);        concat.makeString(s1,s2);        // 2. 람다식 구현 방식        StringConcat concat2 = new StringConcat() &#123;            @Override            public void makeString(String s1, String s2) &#123;                System.out.println(s1+&quot;,&quot;+s2);            &#125;        &#125;;    &#125;&#125;","headline":"람다식 (Lambda Expression)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/25/Lambda/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/08/25/Lambda/","keywords":"Lambda, 람다식"}</script>
-    <meta name="description" content="람다식 (Lambda Expression)특징 java8부터 함수형 프로그래밍 방식을 지원하고, 이를 람다식이라고 한다. 함수형 프로그래밍 매개 변수만을 사용하여 만드는 함수인 순수 함수를 구현 외부 자료를 사용하지 않으므로 side effect가 없다 여러 자료를 동시에 처리하는 병렬처리가 가능하다. 함수의 기능이 자료에 독립적이다.      문법 익명">
-<meta property="og:type" content="blog">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n람다식 (Lambda Expression)특징\njava8부터 함수형 프로그래밍 방식을 지원하고, 이를 람다식이라고 한다.\n함수형 프로그래밍\n매개 변수만을 사용하여 만드는 함수인 순수 함수를 구현\n외부 자료를 사용하지 않으므로 side effect가 없다\n여러 자료를 동시에 처리하는 병렬처리가 가능하다.\n함수의 기능이 자료에 독립적이다.\n\n\n\n\n\n문법\n익명 함수 만들기\n매개변수와 매개변수를 이용한 실행문으로 구현된다.\njava는 OOP언어이기 때문에 람다식, 함수로만 클래스를 구성할 수 없다.\ninterface의 메소드를 구현하는 방식으로 한다.\n\n\n\n1234567package ch02;@FunctionalInterfacepublic interface Add &#123;    int add(int x, int y);&#125;\n\n123456789package ch02;public class AddTest &#123;    public static void main(String[] args) &#123;        Add add = (x, y) -&gt; &#123;return x+y;&#125;;        System.out.println(add.add(2, 3));    &#125;&#125;\n\n\n람다식과 OOP 방식 비교\n람다식에서는 FunctionalInterface 익명 내부 클래스가 생성된다.\nOOP 방식에서는 Interface를 implement하여 구현하고, 메서드를 호출한다.\n\n123456789101112131415161718192021222324package ch04;public class StringConcatTest &#123;    public static void main(String[] args) &#123;            String s1 = &quot;Hello&quot;;        String s2 = &quot;World&quot;;        // OOP 방식            StringConcatImp strImp = new StringConcatImp();        strImp.makeString(s1, s2);                // 1. 람다식 구현 방식        StringConcat concat = (s,v)-&gt; System.out.println(s+&quot;,&quot;+v);        concat.makeString(s1,s2);        // 2. 람다식 구현 방식        StringConcat concat2 = new StringConcat() &#123;            @Override            public void makeString(String s1, String s2) &#123;                System.out.println(s1+&quot;,&quot;+s2);            &#125;        &#125;;    &#125;&#125;\n\n\n","dateCreated":"2021-08-25T21:23:03+09:00","dateModified":"2021-09-09T23:06:54+09:00","datePublished":"2021-08-25T21:23:03+09:00","description":"","headline":"람다식 (Lambda Expression)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/25/Lambda/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/08/25/Lambda/","keywords":"Lambda, 람다식"}</script>
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="람다식 (Lambda Expression)">
 <meta property="og:url" content="http://bedongryeol.github.io/08/25/Lambda/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="람다식 (Lambda Expression)특징 java8부터 함수형 프로그래밍 방식을 지원하고, 이를 람다식이라고 한다. 함수형 프로그래밍 매개 변수만을 사용하여 만드는 함수인 순수 함수를 구현 외부 자료를 사용하지 않으므로 side effect가 없다 여러 자료를 동시에 처리하는 병렬처리가 가능하다. 함수의 기능이 자료에 독립적이다.      문법 익명">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-08-25T12:23:03.000Z">
-<meta property="article:modified_time" content="2021-08-25T12:26:04.297Z">
+<meta property="article:modified_time" content="2021-09-09T14:06:54.458Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="Lambda">
 <meta property="article:tag" content="람다식">
@@ -33,6 +31,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
     
     
     
@@ -57,6 +57,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -78,6 +82,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -85,8 +91,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -237,7 +261,9 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h1 id="람다식-Lambda-Expression"><a href="#람다식-Lambda-Expression" class="headerlink" title="람다식 (Lambda Expression)"></a>람다식 (Lambda Expression)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul>
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+<h1 id="람다식-Lambda-Expression"><a href="#람다식-Lambda-Expression" class="headerlink" title="람다식 (Lambda Expression)"></a>람다식 (Lambda Expression)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul>
 <li>java8부터 함수형 프로그래밍 방식을 지원하고, 이를 <code>람다식</code>이라고 한다.</li>
 <li>함수형 프로그래밍<ul>
 <li>매개 변수만을 사용하여 만드는 함수인 <code>순수 함수</code>를 구현</li>
@@ -551,11 +577,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

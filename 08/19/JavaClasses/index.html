@@ -15,16 +15,14 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"Java의 유용한 클래스들Object Class\n모든 클래스의 최상위 클래스\n모든 class는 Object클래스를 상속받는다.\n메서드 중 일부는 필요에 의해 재정의 할 수 있다.\njava.lang 패키지 안에 포함되어 있다.\n\njava.lang\n프로그래밍 시 자동으로 import된다\n많이 사용하는 기본 클래스들이 속한 패키지\nString, Integer, System 등\n\ntoString() 메서드\n객체의 정보를 String으로 바꾸어서 사용할 때 쓰인다.\n재정의하여 참조변수가 멤버 변수 값을 return하게 할 수 있다.\n예제 코드 확인하기\n\n1234567891011121314151617181920212223class Book&#123;    private String title;    private String author;    public Book(String title, String author)&#123;        this.title = title;        this.author = author;    &#125;    @Override    public String toString() &#123;        return title + &quot;,&quot; + author;    &#125;&#125;public class BookTest &#123;public static void main(String[] args)&#123;Book book = new Book(&quot;데미안&quot;, &quot;헤르만 헤세&quot;);System.out.println(book);&#125;&#125;\n\n\nequals(), hashCode() 메서드\nequals() 메서드와 hashCode() 메서드는 짝을 이룬다.\n\nequals()를 overriding하면 객체가 반환하는 hash값도 overriding해줘야 한다.\nequals에서 사용한 멤버 변수를 hashCode 값으로 반환해주면 된다.\n\n\nequals() 메서드\n두 인스턴스의 주소 값을 비교하여 true/false를 반환\n인스턴스가 다르더라도 논리적으로 동일한 경우 true를 반환하도록 재정의 할 수 있다.\n두 객체가 논리적으로 같다라고 하면 반환하는 Hash Code 값이 같아야한다.\nJava에서 주소 값은 Hash Code(해쉬 값)이라고 한다.\nheap 메모리를 관리하는 방식이 Hash방식이다.\n\nhashCode() 메서드\n인스턴스의 저장 주소를 반환한다.\nhash : 정보를 저장, 검색하는 자료 구조\n자료의 특정 값(key)에 대한 저장 위치를 반환해주는 hash함수를 사용한다.\nindex(저장위치) = hash(key)\n\n\n Overriding 코드 확인하기 \n\n12345678910111213141516171819202122232425262728293031323334package ch02;public class Student &#123;private int studentNum;private String studentName;    public Student(int StudentNum, String studentName)&#123;        this.studentNum = studentNum;        this.studentName = studentName;    &#125;    @Override    public String toString()&#123;        return studentNum + &quot;,&quot; + studentName;    &#125;    @Override    public boolean equals(Object obj) &#123;        if (obj instanceof Student) &#123;            // 다운캐스팅            Student std = (Student)obj;            if (this.studentNum == std.studentNum)&#123;                return true;            &#125;        &#125;        return false;    &#125;    @Override    public int hashCode() &#123;        return studentNum;    &#125;&#125;\n\n\n\n예제 코드 확인하기\n\n1234567891011121314151617181920package ch02;public class EqualsTest &#123;public static void main(String[] args)&#123;        Student std1 = new Student(200, &quot;Lee&quot;);        Student std2 = new Student(200, &quot;Lee&quot;);        System.out.println(std1==std2); //false        System.out.println(std1.equals(std2)); //true        // hashCode() 가 studentNum을 return하도록 overriding하였음.        System.out.println(std1.hashCode());        System.out.println(std2.hashCode());        // 원래 hashCode값 출력하는 방법        System.out.println(System.identityHashCode(std1));        System.out.println(System.identityHashCode(std2));    &#125;&#125;\n\n\n\nclone() 메서드\n객체를 생성자를 통해 생성할 때, clone()을 사용하면 원본 객체와 원본을 복제하는데 사용한다.\n생성자 : 초기값을 가지고 생성이 된다.\nclone() : 중간에 멤버변수가 변하면 변한 값을 그대로 복제한다.\nprivate까지 모두 복제가 되어 객체 보호의 관점에서 위배할 수 있다.\n명시적으로 clone() 메서드의 사용을 허용한다는 의미로 Cloneable interface를 명시해준다.\npublic class A implements Cloneable &#123;~&#125;\nA 클래스 내에서 clone() 메서드를 Override한다.1234@Overrideprotected Object clone() throws CloneNotSupportedException &#123;return super.clone();&#125;\n클론 코드\nStudent copyStd = (Student)std1.clone();\n\n\n\n","dateCreated":"2021-08-19T19:11:19+09:00","dateModified":"2021-08-19T19:13:52+09:00","datePublished":"2021-08-19T19:11:19+09:00","description":"Java의 유용한 클래스들Object Class\n모든 클래스의 최상위 클래스\n모든 class는 Object클래스를 상속받는다.\n메서드 중 일부는 필요에 의해 재정의 할 수 있다.\njava.lang 패키지 안에 포함되어 있다.\n\njava.lang\n프로그래밍 시 자동으로 import된다\n많이 사용하는 기본 클래스들이 속한 패키지\nString, Integer, System 등\n\ntoString() 메서드\n객체의 정보를 String으로 바꾸어서 사용할 때 쓰인다.\n재정의하여 참조변수가 멤버 변수 값을 return하게 할 수 있다.\n예제 코드 확인하기\n\n1234567891011121314151617181920212223class Book&#123;    private String title;    private String author;    public Book(String title, String author)&#123;        this.title = title;        this.author = author;    &#125;    @Override    public String toString() &#123;        return title + &quot;,&quot; + author;    &#125;&#125;public class BookTest &#123;public static void main(String[] args)&#123;Book book = new Book(&quot;데미안&quot;, &quot;헤르만 헤세&quot;);System.out.println(book);&#125;&#125;\n\n\nequals(), hashCode() 메서드\nequals() 메서드와 hashCode() 메서드는 짝을 이룬다.\n\nequals()를 overriding하면 객체가 반환하는 hash값도 overriding해줘야 한다.\nequals에서 사용한 멤버 변수를 hashCode 값으로 반환해주면 된다.\n\n","headline":"자바의 클래스","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/19/JavaClasses/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/08/19/JavaClasses/","keywords":"Java, Class"}</script>
-    <meta name="description" content="Java의 유용한 클래스들Object Class 모든 클래스의 최상위 클래스 모든 class는 Object클래스를 상속받는다. 메서드 중 일부는 필요에 의해 재정의 할 수 있다. java.lang 패키지 안에 포함되어 있다.  java.lang 프로그래밍 시 자동으로 import된다 많이 사용하는 기본 클래스들이 속한 패키지 String, Integer,">
-<meta property="og:type" content="blog">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\nJava의 유용한 클래스들Object Class\n모든 클래스의 최상위 클래스\n모든 class는 Object클래스를 상속받는다.\n메서드 중 일부는 필요에 의해 재정의 할 수 있다.\njava.lang 패키지 안에 포함되어 있다.\n\njava.lang\n프로그래밍 시 자동으로 import된다\n많이 사용하는 기본 클래스들이 속한 패키지\nString, Integer, System 등\n\ntoString() 메서드\n객체의 정보를 String으로 바꾸어서 사용할 때 쓰인다.\n재정의하여 참조변수가 멤버 변수 값을 return하게 할 수 있다.\n예제 코드 확인하기\n\n1234567891011121314151617181920212223class Book&#123;    private String title;    private String author;    public Book(String title, String author)&#123;        this.title = title;        this.author = author;    &#125;    @Override    public String toString() &#123;        return title + &quot;,&quot; + author;    &#125;&#125;public class BookTest &#123;public static void main(String[] args)&#123;Book book = new Book(&quot;데미안&quot;, &quot;헤르만 헤세&quot;);System.out.println(book);&#125;&#125;\n\n\nequals(), hashCode() 메서드\nequals() 메서드와 hashCode() 메서드는 짝을 이룬다.\n\nequals()를 overriding하면 객체가 반환하는 hash값도 overriding해줘야 한다.\nequals에서 사용한 멤버 변수를 hashCode 값으로 반환해주면 된다.\n\n\nequals() 메서드\n두 인스턴스의 주소 값을 비교하여 true/false를 반환\n인스턴스가 다르더라도 논리적으로 동일한 경우 true를 반환하도록 재정의 할 수 있다.\n두 객체가 논리적으로 같다라고 하면 반환하는 Hash Code 값이 같아야한다.\nJava에서 주소 값은 Hash Code(해쉬 값)이라고 한다.\nheap 메모리를 관리하는 방식이 Hash방식이다.\n\nhashCode() 메서드\n인스턴스의 저장 주소를 반환한다.\nhash : 정보를 저장, 검색하는 자료 구조\n자료의 특정 값(key)에 대한 저장 위치를 반환해주는 hash함수를 사용한다.\nindex(저장위치) = hash(key)\n\n\n Overriding 코드 확인하기 \n\n12345678910111213141516171819202122232425262728293031323334package ch02;public class Student &#123;private int studentNum;private String studentName;    public Student(int StudentNum, String studentName)&#123;        this.studentNum = studentNum;        this.studentName = studentName;    &#125;    @Override    public String toString()&#123;        return studentNum + &quot;,&quot; + studentName;    &#125;    @Override    public boolean equals(Object obj) &#123;        if (obj instanceof Student) &#123;            // 다운캐스팅            Student std = (Student)obj;            if (this.studentNum == std.studentNum)&#123;                return true;            &#125;        &#125;        return false;    &#125;    @Override    public int hashCode() &#123;        return studentNum;    &#125;&#125;\n\n\n\n예제 코드 확인하기\n\n1234567891011121314151617181920package ch02;public class EqualsTest &#123;public static void main(String[] args)&#123;        Student std1 = new Student(200, &quot;Lee&quot;);        Student std2 = new Student(200, &quot;Lee&quot;);        System.out.println(std1==std2); //false        System.out.println(std1.equals(std2)); //true        // hashCode() 가 studentNum을 return하도록 overriding하였음.        System.out.println(std1.hashCode());        System.out.println(std2.hashCode());        // 원래 hashCode값 출력하는 방법        System.out.println(System.identityHashCode(std1));        System.out.println(System.identityHashCode(std2));    &#125;&#125;\n\n\n\nclone() 메서드\n객체를 생성자를 통해 생성할 때, clone()을 사용하면 원본 객체와 원본을 복제하는데 사용한다.\n생성자 : 초기값을 가지고 생성이 된다.\nclone() : 중간에 멤버변수가 변하면 변한 값을 그대로 복제한다.\nprivate까지 모두 복제가 되어 객체 보호의 관점에서 위배할 수 있다.\n명시적으로 clone() 메서드의 사용을 허용한다는 의미로 Cloneable interface를 명시해준다.\npublic class A implements Cloneable &#123;~&#125;\nA 클래스 내에서 clone() 메서드를 Override한다.1234@Overrideprotected Object clone() throws CloneNotSupportedException &#123;return super.clone();&#125;\n클론 코드\nStudent copyStd = (Student)std1.clone();\n\n\n\n","dateCreated":"2021-08-19T19:11:19+09:00","dateModified":"2021-09-09T23:06:04+09:00","datePublished":"2021-08-19T19:11:19+09:00","description":"","headline":"자바의 클래스","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/19/JavaClasses/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/08/19/JavaClasses/","keywords":"Java, Class"}</script>
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="자바의 클래스">
 <meta property="og:url" content="http://bedongryeol.github.io/08/19/JavaClasses/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="Java의 유용한 클래스들Object Class 모든 클래스의 최상위 클래스 모든 class는 Object클래스를 상속받는다. 메서드 중 일부는 필요에 의해 재정의 할 수 있다. java.lang 패키지 안에 포함되어 있다.  java.lang 프로그래밍 시 자동으로 import된다 많이 사용하는 기본 클래스들이 속한 패키지 String, Integer,">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-08-19T10:11:19.000Z">
-<meta property="article:modified_time" content="2021-08-19T10:13:52.044Z">
+<meta property="article:modified_time" content="2021-09-09T14:06:04.794Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Class">
@@ -33,6 +31,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
     
     
     
@@ -57,6 +57,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -78,6 +82,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -85,8 +91,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -237,7 +261,9 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h1 id="Java의-유용한-클래스들"><a href="#Java의-유용한-클래스들" class="headerlink" title="Java의 유용한 클래스들"></a>Java의 유용한 클래스들</h1><h2 id="Object-Class"><a href="#Object-Class" class="headerlink" title="Object Class"></a>Object Class</h2><ul>
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+<h1 id="Java의-유용한-클래스들"><a href="#Java의-유용한-클래스들" class="headerlink" title="Java의 유용한 클래스들"></a>Java의 유용한 클래스들</h1><h2 id="Object-Class"><a href="#Object-Class" class="headerlink" title="Object Class"></a>Object Class</h2><ul>
 <li>모든 클래스의 최상위 클래스</li>
 <li>모든 class는 Object클래스를 상속받는다.</li>
 <li>메서드 중 일부는 필요에 의해 재정의 할 수 있다.</li>
@@ -584,11 +610,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

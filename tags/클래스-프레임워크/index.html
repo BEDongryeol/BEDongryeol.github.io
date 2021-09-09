@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -236,34 +262,7 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h1 id="컬렉션-프레임워크"><a href="#컬렉션-프레임워크" class="headerlink" title="컬렉션 프레임워크"></a>컬렉션 프레임워크</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul>
-<li>프로그램 구현에 필요한 자료구조를 구현해 놓은 JDK 라이브러리</li>
-<li><code>java.util</code> 패키지에 구현되어 있다.</li>
-</ul>
-<h2 id="종류"><a href="#종류" class="headerlink" title="종류"></a>종류</h2><h3 id="Collection-인터페이스"><a href="#Collection-인터페이스" class="headerlink" title="Collection 인터페이스"></a>Collection 인터페이스</h3><ul>
-<li>하나의 요소를 관리할 때 사용한다.</li>
-<li>하위에 List와 Set 인터페이스가 있다.<h4 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h4></li>
-<li>컬렉션 프레임워크에 저장된 요소를 하나씩 차례로 참조한다.</li>
-<li>List 인터페이스 : 순서가 정해져 있으므로 get(I)를 사용하여 참조 또한 가능하다.</li>
-<li>Set 인터페이스 : get(I) 메서드가 제공되지 않으므로 Iterator를 활용하여 객체를 순회한다.</li>
-<li>Iterator 함수를 호출하면 iterator가 반환이 된다.</li>
-</ul>
-<ul>
-<li><code>hasNext()</code> : 이후에 요소가 더 있는지를 체크하는 메서드</li>
-<li><code>E.next()</code> : 다음에 있는 요소를 반환</li>
-</ul>
-<details>
-<summary>구현 코드 확인하기</summary>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Member&gt; ir = arrayList.iterator();</span><br><span class="line"><span class="keyword">while</span> (ir.hasNext())&#123;</span><br><span class="line">    Member member = ir.next();</span><br><span class="line">    <span class="keyword">int</span> tempId = member.getMemberId();</span><br><span class="line">    <span class="keyword">if</span> (tempId == memberId)&#123;</span><br><span class="line">        arrayList.remove(member);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(memberId + <span class="string">&quot;가 존재하지 않습니다.&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">false</span>;</span><br></pre></td></tr></table></figure>
-</details>
-
-<h4 id="List"><a href="#List" class="headerlink" title="List"></a>List</h4><ul>
-<li>객체를 순서에 따라 저장 및 관리할 때 필요한 메서드가 선언된 인터페이스</li>
-<li>리스트 자료구조의 구현을 위한 인터페이스</li>
-<li>객체의 중복을 허용한다.</li>
-<li>ArrayList, Vector, Queue, Stack, LinkedList 등</li>
-</ul>
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
                         <a
                             href="/08/24/ClassFramework/"
@@ -303,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

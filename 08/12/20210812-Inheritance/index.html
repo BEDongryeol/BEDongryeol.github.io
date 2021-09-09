@@ -15,16 +15,14 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"Java 상속, 형변환, 재정의상속\n구현되어 있는 기능, 속성을 확장하여 재사용하는 것 \n class B extends A{ }\nextends 뒤에는 하나의 클래스만 올 수 있다.\n자바는 안정성을 위해 단일 상속만을 지원한다.\n상속 하는 클래스 : 상위 클래스, parent class, child class\n상속 받는 클래스 :  하위, child, sub\n\n상속을 사용하는 경우\n객체 지향 프로그래밍에서는 크게 2가지 방법을 사용할 수 있다.\nIS-A 관계 (is a relationship : inheritance), HAS-A관계(composition)\nIS-A관계에서 상속을 사용한다.\n\n\nIS-A 관계\n\n\n예시 : 포유류 - 인간, 호랑이, 사자 등\n일반적인 개념과 구체적인 개념의 관계\n뼈대를 구축하고 이를 확장해서 사용할 때 자주 사용된다.\n상속은 클래스간의 결합도가 높은 설계이다.\n계층구조가 복잡하거나 hiearchy가 높으면 좋지 않다.\n\n\nHAS-A 관계\n\n\n예시 : Java의 ArrayList 클래스를 사용하는 경우\n클래스가 다른 클래스를 포함하는 관계 (변수로 선언)\n코드 재사용의 가장 일반적인 방법\n\n상속을 구현하는 경우\n일반적인 클래스로부터 보다 구체적인 클래스를 생성하고 싶을 때 사용한다.\n직업 (일반 클래스) - 개발자 (구체적인 클래스)\n\n하위 클래스가 생성되는 과정\nextends로 하위클래스를 생성하면 상위 클래스가 먼저 생성된다.\n하위 클래스의 생성자가 상위 클래스의 생성자를 호출하게 된다.\n컴파일러가  하위 클래스의 생성자 내에 super()를 자동으로 입력하여 default 생성자를 호출한다.\n생성자에 매개 변수가 존재할 경우, super(매개변수)를 이용하여 명시적으로 호출해주어야 한다.\n\n\n\n형변환\n상위 클래스로 변수를 생성하고 하위 클래스의 생성자로 인스턴스를 생성\n\n상위 클래스 타입의 변수에 하위 클래스의 변수가 대입 (업 캐스팅)\n\n메서드의 인자에 하위 클래스 타입을 넣어도 상위 클래스 타입으로 형변환이 가능하다.\n\n하위 클래스는 상위 클래스의 타입을 내포하고 있으므로 묵시적 형변환이 가능하다.\n12345class B extends A &#123;&#125;A instanceA = new B();method(instanceB);type method(A instanceA)&#123;&#125;\n하위 클래스로 생성이 되었지만 type이 상위 클래스의 type이므로 하위 클래스에서 생성한 method 등에는 접근할 수 없다.\n\n\n재정의 (Overriding)\n상위 클래스에서 정의한 method를 하위 클래스에서 재정의하고 싶을 때 사용\n메서드 정의 부분 (Function Signiture)은 동일하게 입력해야한다.\n다르게 입력할 시 새로운 method를 정의하는 것처럼 해석된다.\n사용법\n@Override 를 Annotation으로 입력해준다.\n\nAnnotation (주석)\n컴파일러에게 특별한 정보를 제공해주는 역할을 한다.\nOverride\n재정의된 메서드라는 정보 제공\nFuctionalInterface\n함수형 인터페이스라는 정보 제공\nDeprecated\n이후 버전에서 사용되지 않을 수 있는 변수\n메서드에서 사용된다.\nSuppressWarnings(“~”)\n특정 경고가 나타나지 않도록함\n\n","dateCreated":"2021-08-12T20:42:15+09:00","dateModified":"2021-08-12T20:46:44+09:00","datePublished":"2021-08-12T20:42:15+09:00","description":"Java 상속, 형변환, 재정의상속\n구현되어 있는 기능, 속성을 확장하여 재사용하는 것 \n class B extends A{ }\nextends 뒤에는 하나의 클래스만 올 수 있다.\n자바는 안정성을 위해 단일 상속만을 지원한다.\n상속 하는 클래스 : 상위 클래스, parent class, child class\n상속 받는 클래스 :  하위, child, sub\n\n상속을 사용하는 경우\n객체 지향 프로그래밍에서는 크게 2가지 방법을 사용할 수 있다.\nIS-A 관계 (is a relationship : inheritance), HAS-A관계(composition)\nIS-A관계에서 상속을 사용한다.\n\n\nIS-A 관계\n\n\n예시 : 포유류 - 인간, 호랑이, 사자 등\n일반적인 개념과 구체적인 개념의 관계\n뼈대를 구축하고 이를 확장해서 사용할 때 자주 사용된다.\n상속은 클래스간의 결합도가 높은 설계이다.\n계층구조가 복잡하거나 hiearchy가 높으면 좋지 않다.\n\n\nHAS-A 관계\n\n\n예시 : Java의 ArrayList 클래스를 사용하는 경우\n클래스가 다른 클래스를 포함하는 관계 (변수로 선언)\n코드 재사용의 가장 일반적인 방법\n\n상속을 구현하는 경우","headline":"상속(Inheritance)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/12/20210812-Inheritance/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/08/12/20210812-Inheritance/","keywords":"Java, 자바, 상속, Inheritance"}</script>
-    <meta name="description" content="Java 상속, 형변환, 재정의상속 구현되어 있는 기능, 속성을 확장하여 재사용하는 것   class B extends A{ } extends 뒤에는 하나의 클래스만 올 수 있다. 자바는 안정성을 위해 단일 상속만을 지원한다. 상속 하는 클래스 : 상위 클래스, parent class, child class 상속 받는 클래스 :  하위, child, sub">
-<meta property="og:type" content="blog">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\nJava 상속, 형변환, 재정의상속\n구현되어 있는 기능, 속성을 확장하여 재사용하는 것 \n class B extends A{ }\nextends 뒤에는 하나의 클래스만 올 수 있다.\n자바는 안정성을 위해 단일 상속만을 지원한다.\n상속 하는 클래스 : 상위 클래스, parent class, child class\n상속 받는 클래스 :  하위, child, sub\n\n상속을 사용하는 경우\n객체 지향 프로그래밍에서는 크게 2가지 방법을 사용할 수 있다.\nIS-A 관계 (is a relationship : inheritance), HAS-A관계(composition)\nIS-A관계에서 상속을 사용한다.\n\n\nIS-A 관계\n\n\n예시 : 포유류 - 인간, 호랑이, 사자 등\n일반적인 개념과 구체적인 개념의 관계\n뼈대를 구축하고 이를 확장해서 사용할 때 자주 사용된다.\n상속은 클래스간의 결합도가 높은 설계이다.\n계층구조가 복잡하거나 hiearchy가 높으면 좋지 않다.\n\n\nHAS-A 관계\n\n\n예시 : Java의 ArrayList 클래스를 사용하는 경우\n클래스가 다른 클래스를 포함하는 관계 (변수로 선언)\n코드 재사용의 가장 일반적인 방법\n\n상속을 구현하는 경우\n일반적인 클래스로부터 보다 구체적인 클래스를 생성하고 싶을 때 사용한다.\n직업 (일반 클래스) - 개발자 (구체적인 클래스)\n\n하위 클래스가 생성되는 과정\nextends로 하위클래스를 생성하면 상위 클래스가 먼저 생성된다.\n하위 클래스의 생성자가 상위 클래스의 생성자를 호출하게 된다.\n컴파일러가  하위 클래스의 생성자 내에 super()를 자동으로 입력하여 default 생성자를 호출한다.\n생성자에 매개 변수가 존재할 경우, super(매개변수)를 이용하여 명시적으로 호출해주어야 한다.\n\n\n\n형변환\n상위 클래스로 변수를 생성하고 하위 클래스의 생성자로 인스턴스를 생성\n\n상위 클래스 타입의 변수에 하위 클래스의 변수가 대입 (업 캐스팅)\n\n메서드의 인자에 하위 클래스 타입을 넣어도 상위 클래스 타입으로 형변환이 가능하다.\n\n하위 클래스는 상위 클래스의 타입을 내포하고 있으므로 묵시적 형변환이 가능하다.\n12345class B extends A &#123;&#125;A instanceA = new B();method(instanceB);type method(A instanceA)&#123;&#125;\n하위 클래스로 생성이 되었지만 type이 상위 클래스의 type이므로 하위 클래스에서 생성한 method 등에는 접근할 수 없다.\n\n\n재정의 (Overriding)\n상위 클래스에서 정의한 method를 하위 클래스에서 재정의하고 싶을 때 사용\n메서드 정의 부분 (Function Signiture)은 동일하게 입력해야한다.\n다르게 입력할 시 새로운 method를 정의하는 것처럼 해석된다.\n사용법\n@Override 를 Annotation으로 입력해준다.\n\nAnnotation (주석)\n컴파일러에게 특별한 정보를 제공해주는 역할을 한다.\nOverride\n재정의된 메서드라는 정보 제공\nFuctionalInterface\n함수형 인터페이스라는 정보 제공\nDeprecated\n이후 버전에서 사용되지 않을 수 있는 변수\n메서드에서 사용된다.\nSuppressWarnings(“~”)\n특정 경고가 나타나지 않도록함\n\n","dateCreated":"2021-08-12T20:42:15+09:00","dateModified":"2021-09-09T23:08:21+09:00","datePublished":"2021-08-12T20:42:15+09:00","description":"","headline":"상속(Inheritance)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/12/20210812-Inheritance/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/08/12/20210812-Inheritance/","keywords":"Java, 자바, 상속, Inheritance"}</script>
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="상속(Inheritance)">
 <meta property="og:url" content="http://bedongryeol.github.io/08/12/20210812-Inheritance/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="Java 상속, 형변환, 재정의상속 구현되어 있는 기능, 속성을 확장하여 재사용하는 것   class B extends A{ } extends 뒤에는 하나의 클래스만 올 수 있다. 자바는 안정성을 위해 단일 상속만을 지원한다. 상속 하는 클래스 : 상위 클래스, parent class, child class 상속 받는 클래스 :  하위, child, sub">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-08-12T11:42:15.000Z">
-<meta property="article:modified_time" content="2021-08-12T11:46:44.244Z">
+<meta property="article:modified_time" content="2021-09-09T14:08:21.680Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="자바">
@@ -35,6 +33,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
     
     
     
@@ -59,6 +59,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -80,6 +84,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -87,8 +93,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -239,7 +263,9 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h1 id="Java-상속-형변환-재정의"><a href="#Java-상속-형변환-재정의" class="headerlink" title="Java 상속, 형변환, 재정의"></a>Java 상속, 형변환, 재정의</h1><h2 id="상속"><a href="#상속" class="headerlink" title="상속"></a>상속</h2><ul>
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+<h1 id="Java-상속-형변환-재정의"><a href="#Java-상속-형변환-재정의" class="headerlink" title="Java 상속, 형변환, 재정의"></a>Java 상속, 형변환, 재정의</h1><h2 id="상속"><a href="#상속" class="headerlink" title="상속"></a>상속</h2><ul>
 <li>구현되어 있는 기능, 속성을 <code>확장하여</code> 재사용하는 것 </li>
 <li> class B extends A{ }</li>
 <li>extends 뒤에는 하나의 클래스만 올 수 있다.</li>
@@ -595,11 +621,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

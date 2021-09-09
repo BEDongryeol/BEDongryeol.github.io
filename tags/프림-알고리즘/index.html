@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -236,33 +262,7 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h1 id="프림-알고리즘-Prim’s-Algorithm"><a href="#프림-알고리즘-Prim’s-Algorithm" class="headerlink" title="프림 알고리즘 (Prim’s Algorithm)"></a>프림 알고리즘 (Prim’s Algorithm)</h1><h2 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h2><h3 id="프림-알고리즘"><a href="#프림-알고리즘" class="headerlink" title="프림 알고리즘"></a>프림 알고리즘</h3><ul>
-<li>가중치가 있는 연결된 무향 그래프의 모든 꼭짓점을 포함하면서 각 변의 비용의 합이 최소가 되는 부분 그래프인 트리, 즉 <code>최소 신장트리</code> 를 찾는 알고리즘이다<h3 id="최소-신장트리-Minimum-Spanning-Tree-MST"><a href="#최소-신장트리-Minimum-Spanning-Tree-MST" class="headerlink" title="최소 신장트리 (Minimum Spanning Tree, MST)"></a>최소 신장트리 (Minimum Spanning Tree, MST)</h3></li>
-<li>신장 트리 중에서 간선의 가중치 합이 가장 작은 트리 <blockquote>
-<p>신장트리</p>
-<ul>
-<li>특정한 그래프에서 모든 정점을 포함하는 그래프</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h2 id="프림-알고리즘-1"><a href="#프림-알고리즘-1" class="headerlink" title="프림 알고리즘"></a>프림 알고리즘</h2><blockquote>
-<ol start="0">
-<li>처음에 트리는 비어있다고 가정한다.</li>
-<li>그래프에서 정점 하나를 선택하여 트리에 포함시킨다.</li>
-<li>1에서 포함된 정점과 인접한 노드의 간선 중에서 가중치가 가장 작은 간선을 찾아 포함시킨다.</li>
-<li>2번을 모든 노드가 포함될 때까지 반복한다.</li>
-</ol>
-</blockquote>
-<h2 id="동작-과정"><a href="#동작-과정" class="headerlink" title="동작 과정"></a>동작 과정</h2><blockquote>
-<p>이미지 삽입 예정</p>
-</blockquote>
-<h2 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h2><details>
-<summary>모든 코드 확인하기</summary>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line">#define _CRT_SECURE_NO_WARNINGS</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;limits.h&gt;</span><br><span class="line">#define NODE_MAX 1001</span><br><span class="line">#define EDGE_MAX 200001 // 양방향 간선이므로 100,000개</span><br><span class="line"></span><br><span class="line">// 구조체 정의</span><br><span class="line">typedef struct &#123;</span><br><span class="line">int cost;</span><br><span class="line">int node;</span><br><span class="line">&#125; Edge;</span><br><span class="line"></span><br><span class="line">// 데이터 위치 변환을 위한 함수 구현</span><br><span class="line">void swap(Edge *a, Edge *b) &#123;</span><br><span class="line">Edge temp;</span><br><span class="line">temp.cost = a-&gt;cost;</span><br><span class="line">temp.node = a-&gt;node;</span><br><span class="line">a-&gt;cost = b-&gt;cost;</span><br><span class="line">a-&gt;node = b-&gt;node;</span><br><span class="line">b-&gt;cost = temp.cost;</span><br><span class="line">b-&gt;node = temp.node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 우선순위 큐 정의</span><br><span class="line">typedef struct &#123;</span><br><span class="line">Edge *heap[EDGE_MAX];</span><br><span class="line">int count;</span><br><span class="line">&#125; priorityQueue;</span><br><span class="line"></span><br><span class="line">// 데이터 삽입 함수</span><br><span class="line">void push(priorityQueue *pq, Edge *edge) &#123;</span><br><span class="line">    if (pq-&gt;count &gt;= EDGE_MAX) return;</span><br><span class="line">    pq-&gt;heap[pq-&gt;count] = edge;</span><br><span class="line">    int now = pq-&gt;count;</span><br><span class="line">    int parent = (pq-&gt;count - 1) / 2;</span><br><span class="line">    </span><br><span class="line">    // 새 원소를 삽입한 이후에 상향식으로 힙을 구성한다.</span><br><span class="line">    while (now &gt; 0 &amp;&amp; pq-&gt;heap[now]-&gt;cost &lt; pq-&gt;heap[parent]-&gt;cost) &#123;</span><br><span class="line">        swap(pq-&gt;heap[now], pq-&gt;heap[parent]);</span><br><span class="line">        now = parent;</span><br><span class="line">        parent = (parent - 1) / 2;</span><br><span class="line">    &#125;</span><br><span class="line">    pq-&gt;count++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 데이터 추출함수 구현</span><br><span class="line">Edge* pop(priorityQueue *pq) &#123;</span><br><span class="line">if (pq-&gt;count &lt;= 0) return NULL;</span><br><span class="line">Edge *res = pq-&gt;heap[0];</span><br><span class="line">pq-&gt;count--;</span><br><span class="line">pq-&gt;heap[0] = pq-&gt;heap[pq-&gt;count];</span><br><span class="line">int now = 0, leftChild = 1, rightChild = 2;</span><br><span class="line">int target = now;</span><br><span class="line"></span><br><span class="line">// 새 원소를 추출한 이후에 하향식으로 힙을 구성합니다.</span><br><span class="line">while (leftChild &lt; pq-&gt;count) &#123;</span><br><span class="line">    if (pq-&gt;heap[target]-&gt;cost &gt; pq-&gt;heap[leftChild]-&gt;cost) target = leftChild;</span><br><span class="line">    if (pq-&gt;heap[target]-&gt;cost &gt; pq-&gt;heap[rightChild]-&gt;cost &amp;&amp; rightChild &lt; pq-&gt;count) target = rightChild;</span><br><span class="line">    if (target == now) break; // 더 이상 내려가지 않아도 될 때 종료</span><br><span class="line">    else &#123;</span><br><span class="line">        swap(pq-&gt;heap[now], pq-&gt;heap[target]);</span><br><span class="line">        now = target;</span><br><span class="line">        leftChild = now * 2 + 1;</span><br><span class="line">        rightChild = now * 2 + 2;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 데이터 연결리스트 구현</span><br><span class="line">typedef struct Node &#123;</span><br><span class="line">Edge *data;</span><br><span class="line">struct Node *next;</span><br><span class="line">&#125; Node;</span><br><span class="line"></span><br><span class="line">Node** adj;</span><br><span class="line">int d[NODE_MAX];</span><br><span class="line"></span><br><span class="line">// 노드 추가를 위한 함수</span><br><span class="line">void addNode(Node** target, int index, Edge* edge) &#123;</span><br><span class="line">    if (target[index] == NULL) &#123;</span><br><span class="line">        target[index] = (Node*)malloc(sizeof(Node));</span><br><span class="line">        target[index]-&gt;data = edge;</span><br><span class="line">        target[index]-&gt;next = NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        Node* node = (Node*)malloc(sizeof(Node));</span><br><span class="line">        node-&gt;data = edge;</span><br><span class="line">        node-&gt;next = target[index];</span><br><span class="line">        target[index] = node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 알고리즘 실행</span><br><span class="line">int main(void) &#123;</span><br><span class="line">    int n, m;</span><br><span class="line">    scanf(&quot;%d %d&quot;, &amp;n, &amp;m);</span><br><span class="line">    // 큐 초기화</span><br><span class="line">    adj = (Node**)malloc(sizeof(Node*) * (n + 1));</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">    adj[i] = NULL;</span><br><span class="line">&#125;</span><br><span class="line">priorityQueue *pq;</span><br><span class="line">pq = (priorityQueue*)malloc(sizeof(priorityQueue));</span><br><span class="line">pq-&gt;count = 0;</span><br><span class="line">for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">    int a, b, c;</span><br><span class="line">    scanf(&quot;%d %d %d&quot;, &amp;a, &amp;b, &amp;c);</span><br><span class="line">    Edge *edge1 = (Edge*)malloc(sizeof(Edge));</span><br><span class="line">    edge1-&gt;node = b;</span><br><span class="line">    edge1-&gt;cost = c;</span><br><span class="line">    addNode(adj, a, edge1);</span><br><span class="line">    Edge *edge2 = (Edge*)malloc(sizeof(Edge));</span><br><span class="line">    edge2-&gt;node = a;</span><br><span class="line">    edge2-&gt;cost = c;</span><br><span class="line">    addNode(adj, b, edge2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</details>
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
                         <a
                             href="/08/05/20210805-prims/"
@@ -302,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

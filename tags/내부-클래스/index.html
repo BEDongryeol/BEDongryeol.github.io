@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -236,39 +262,7 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h1 id="내부-클래스"><a href="#내부-클래스" class="headerlink" title="내부 클래스"></a>내부 클래스</h1><h2 id="종류"><a href="#종류" class="headerlink" title="종류"></a>종류</h2><h3 id="인스턴스-instance-내부-클래스"><a href="#인스턴스-instance-내부-클래스" class="headerlink" title="인스턴스(instance) 내부 클래스"></a>인스턴스(instance) 내부 클래스</h3><ul>
-<li>인스턴스 변수와 생성 위치, 방법, Scope가 동일하다.</li>
-<li>내부적으로 사용할 클래스를 선언 (private으로 선언하는 것을 권장)</li>
-<li><code>외부 클래스가 생성된 후 생성됨</code></li>
-<li>private이 아닌 내부 클래스는 다른 외부 클래스에서 생성할 수 있다.<ul>
-<li>문법적으로는 가능하지만 잘 사용하지 않는다.</li>
-</ul>
-</li>
-</ul>
-<details>
-<summary>예제 코드 확인하기</summary>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ch01;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OutClass</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> sNum = <span class="number">20</span>;</span><br><span class="line">    <span class="keyword">private</span> InClass inClass;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OutClass</span><span class="params">()</span></span>&#123;</span><br><span class="line">        inClass = <span class="keyword">new</span> InClass();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">InClass</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> iNum = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">inTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;OutClass num = &quot;</span> +num + <span class="string">&quot;(외부 클래스의 인스턴스 변수)&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;OutClass sNum = &quot;</span> + sNum + <span class="string">&quot;(외부 클래스의 스태틱 변수)&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;InClass inNum = &quot;</span> + iNum + <span class="string">&quot;(내부 클래스의 인스턴스 변수)&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">usingClass</span><span class="params">()</span></span>&#123;</span><br><span class="line">        inClass.inTest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        OutClass outClass = <span class="keyword">new</span> OutClass();</span><br><span class="line">        outClass.usingClass();</span><br><span class="line">        System.out.println(<span class="string">&quot;=========&quot;</span>);</span><br><span class="line">        OutClass.InClass inner = outClass.<span class="function">new <span class="title">InClass</span><span class="params">()</span></span>;</span><br><span class="line">        inner.inTest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</details>
-
-<h3 id="정적-static-내부-클래스"><a href="#정적-static-내부-클래스" class="headerlink" title="정적(static) 내부 클래스"></a>정적(static) 내부 클래스</h3><ul>
-<li>정적 변수와 정적 메서드를 사용한다.</li>
-<li>내부 클래스의 인스턴스, 스태틱 변수, 외부 클래스의 스태틱 변수를 사용할 수 있다.</li>
-<li><code>외부 클래스 생성과 무관하게 사용할 수 있다.</code></li>
-</ul>
-<blockquote>
-<ul>
-<li>외부 클래스가 생성되지 않아도 사용할 수 있기 때문에 정적 내부 클래스에서 외부 클래스의 인스턴스 변수를 사용할 수 없다.</li>
-<li>정적 내부 클래스의 정적 메서드는 스태틱 변수만 사용할 수 있다.</li>
-</ul>
-</blockquote>
-<details>
-<summary>예제 코드 확인하기</summary>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">InStaticClass</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> iNum = <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">int</span> sInNum = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">inTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;inClass num = &quot;</span> +iNum + <span class="string">&quot;(외부 클래스의 인스턴스 변수)&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;OutClass sNum = &quot;</span> + sNum + <span class="string">&quot;(외부 클래스의 스태틱 변수)&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;InClass inNum = &quot;</span> + sInNum + <span class="string">&quot;(내부 클래스의 인스턴스 변수)&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;OutClass sNum = &quot;</span> + sNum + <span class="string">&quot;(외부 클래스의 스태틱 변수)&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;InClass inNum = &quot;</span> + sInNum + <span class="string">&quot;(내부 클래스의 인스턴스 변수)&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</details>
-
-<h3 id="지역-local-내부-클래스"><a href="#지역-local-내부-클래스" class="headerlink" title="지역(local) 내부 클래스"></a>지역(local) 내부 클래스</h3>
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
                         <a
                             href="/08/24/InnerClass/"
@@ -308,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -203,7 +229,7 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -235,28 +261,17 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <h1 id="reduce-메서드"><a href="#reduce-메서드" class="headerlink" title="reduce 메서드"></a>reduce 메서드</h1><h2 id="reduce-연산"><a href="#reduce-연산" class="headerlink" title="reduce() 연산"></a>reduce() 연산</h2><ul>
-<li>기존에 정의된 연산이 아닌 직접 구현한 연산을 적용한다.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">T <span class="title">reduce</span><span class="params">(T identify, BinaryOperator&lt;T&gt; accumulator)</span></span></span><br></pre></td></tr></table></figure></li>
-<li>최종 연산으로 스트림을 요소를 소모하여 연산을 수행한다.</li>
-<li>예시<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ch06;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.function.BinaryOperator;</span><br><span class="line"><span class="comment">// parameter BinaryOperator&lt;T&gt;를 구현하여 사용</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CompareString</span> <span class="keyword">implements</span> <span class="title">BinaryOperator</span>&lt;<span class="title">String</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">apply</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s1.getBytes().length &gt;= s2.getBytes().length) <span class="keyword">return</span> s1;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> s2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReduceTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        String greetings[] = &#123;<span class="string">&quot;안녕히계세요~~~&quot;</span>, <span class="string">&quot;hello&quot;</span>, <span class="string">&quot;Goood morning&quot;</span>, <span class="string">&quot;반갑습니다&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1. 직접 작성</span></span><br><span class="line">        System.out.println(Arrays.stream(greetings).reduce(<span class="string">&quot;&quot;</span>, (s1,s2)-&gt;</span><br><span class="line">            &#123;<span class="keyword">if</span> (s1.getBytes().length &gt;= s2.getBytes().length) <span class="keyword">return</span> s1;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> s2;&#125;</span><br><span class="line">        ));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. BinaryOperator&lt;T&gt;의 메서드 implement</span></span><br><span class="line">        <span class="comment">// 새로운 클래스로 생성하여 사용한다.</span></span><br><span class="line">        String str = Arrays.stream(greetings).reduce(<span class="keyword">new</span> CompareString()).get();</span><br><span class="line">        System.out.println(str);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-
+                <div class="postShorten-excerpt">
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
+                        <a
+                            href="/08/25/reduce/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": reduce 메서드"
+                        >
+                            계속 읽기
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/08/25/reduce/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                댓글 공유
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -287,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

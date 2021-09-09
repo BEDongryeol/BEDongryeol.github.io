@@ -15,16 +15,14 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"다형성\n하나의 코드가 여러 자료형으로 구현되어 실행 되는 것\n같은 코드에서 여러가지 실행 결과가 나오는 것\n유연하고 확장성있고, 유지보수가 편리함 프로그램을 만들 수 있다.\n\n\n\n개념\n하위 클래스들을 상위 클래스로 형변환한다.\n이를 한번에 핸들링한다.\n각 인스턴스별로 다른 실행 결과를 얻을 수 있다.\n결합도가 높아진다.\n\n예시\n 모든 코드 확인하기 \n\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081package polymorphismTest;import java.util.ArrayList;class Animal&#123;\t// 공통된 기능을 정의 할 때 상위 클래스인 Animal에 기능을 입력한다.\tpublic void move() &#123;\t\tSystem.out.println(&quot;동물이 움직입니다.&quot;);\t&#125;\t&#125;class Human extends Animal &#123;\t@Override\tpublic void move() &#123;\t\tSystem.out.println(&quot;사람이 두 발로 걷습니다.&quot;);\t&#125;\tpublic void readBook() &#123;\t\tSystem.out.println(&quot;사람이 책을 읽습니다.&quot;);\t&#125;&#125;class Tiger extends Animal &#123;\t@Override\tpublic void move() &#123;\t\tSystem.out.println(&quot;호랑이가 네 발로 뜁니다.&quot;);\t&#125;\t\tpublic void hunting() &#123;\t\tSystem.out.println(&quot;호랑이가 사냥을 합니다.&quot;);\t&#125;&#125;class Eagle extends Animal &#123;\t\t@Override\tpublic void move() &#123;\t\tSystem.out.println(&quot;독수리가 하늘을 납니다.&quot;);\t&#125;\t\tpublic void flying() &#123;\t\tSystem.out.println(&quot;독수리가 양날개를 쭉 펴고 날아다닙니다.&quot;);\t&#125;&#125;public class AnimalTest &#123;\t \tpublic static void main (String[] args) &#123;\t\t// 형변환 (업캐스팅 : 상위 클래스의 타입으로 변환)\t\tAnimal hAnimal = new Human();\t\tAnimal tAnimal = new Tiger();\t\tAnimal eAnimal = new Eagle();\t\t\t\tAnimalTest test = new AnimalTest();\t\t// 상위 클래스인 Animal로 형변환이 가능하다.\t\t// 각자의 가상 메서드 테이블을 갖게 된다.\t\ttest.moveAnimal(hAnimal);\t\ttest.moveAnimal(tAnimal);\t\ttest.moveAnimal(eAnimal);\t\t\t\t// 세 동물을 ArrayList에 삽입하고 싶을 때\t\tArrayList&lt;Animal&gt; animalList = new ArrayList&lt;&gt;();\t\tanimalList.add(hAnimal);\t\tanimalList.add(tAnimal);\t\tanimalList.add(eAnimal);\t\t// enhanced for문을 통한 출력\t\tfor (Animal a : animalList) &#123;\t\t\ta.move();\t\t&#125;\t\t\t\t\t&#125;\tpublic void moveAnimal(Animal animal) &#123;\t\tanimal.move();\t&#125;&#125;\n\n\n\n사용하는 이유\n 상속과 메서드의 재정의를 활용하여 확장성 있는 프로그램을 만들 수 있다.\n위 예시로 보았을 때 동물을 추가하고 싶을 때 편하게 추가할 수 있다.\n상위 클래스에 공통된 기능과 하위 클래스에 특정한 기능을 구분하여 코딩할 수 있다.\n\n","dateCreated":"2021-08-12T20:42:28+09:00","dateModified":"2021-08-12T20:54:12+09:00","datePublished":"2021-08-12T20:42:28+09:00","description":"","headline":"다형성(Polymorphism)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/12/20210812-Polymorphism/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/08/12/20210812-Polymorphism/","keywords":"Java, 자바, 다형성, PolyMorphism"}</script>
-    <meta name="description" content="다형성 하나의 코드가 여러 자료형으로 구현되어 실행 되는 것 같은 코드에서 여러가지 실행 결과가 나오는 것 유연하고 확장성있고, 유지보수가 편리함 프로그램을 만들 수 있다.    개념 하위 클래스들을 상위 클래스로 형변환한다. 이를 한번에 핸들링한다. 각 인스턴스별로 다른 실행 결과를 얻을 수 있다. 결합도가 높아진다.  예시  모든 코드 확인하기   12">
-<meta property="og:type" content="blog">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n다형성\n하나의 코드가 여러 자료형으로 구현되어 실행 되는 것\n같은 코드에서 여러가지 실행 결과가 나오는 것\n유연하고 확장성있고, 유지보수가 편리함 프로그램을 만들 수 있다.\n\n\n\n개념\n하위 클래스들을 상위 클래스로 형변환한다.\n이를 한번에 핸들링한다.\n각 인스턴스별로 다른 실행 결과를 얻을 수 있다.\n결합도가 높아진다.\n\n예시\n 모든 코드 확인하기 \n\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081package polymorphismTest;import java.util.ArrayList;class Animal&#123;\t// 공통된 기능을 정의 할 때 상위 클래스인 Animal에 기능을 입력한다.\tpublic void move() &#123;\t\tSystem.out.println(&quot;동물이 움직입니다.&quot;);\t&#125;\t&#125;class Human extends Animal &#123;\t@Override\tpublic void move() &#123;\t\tSystem.out.println(&quot;사람이 두 발로 걷습니다.&quot;);\t&#125;\tpublic void readBook() &#123;\t\tSystem.out.println(&quot;사람이 책을 읽습니다.&quot;);\t&#125;&#125;class Tiger extends Animal &#123;\t@Override\tpublic void move() &#123;\t\tSystem.out.println(&quot;호랑이가 네 발로 뜁니다.&quot;);\t&#125;\t\tpublic void hunting() &#123;\t\tSystem.out.println(&quot;호랑이가 사냥을 합니다.&quot;);\t&#125;&#125;class Eagle extends Animal &#123;\t\t@Override\tpublic void move() &#123;\t\tSystem.out.println(&quot;독수리가 하늘을 납니다.&quot;);\t&#125;\t\tpublic void flying() &#123;\t\tSystem.out.println(&quot;독수리가 양날개를 쭉 펴고 날아다닙니다.&quot;);\t&#125;&#125;public class AnimalTest &#123;\t \tpublic static void main (String[] args) &#123;\t\t// 형변환 (업캐스팅 : 상위 클래스의 타입으로 변환)\t\tAnimal hAnimal = new Human();\t\tAnimal tAnimal = new Tiger();\t\tAnimal eAnimal = new Eagle();\t\t\t\tAnimalTest test = new AnimalTest();\t\t// 상위 클래스인 Animal로 형변환이 가능하다.\t\t// 각자의 가상 메서드 테이블을 갖게 된다.\t\ttest.moveAnimal(hAnimal);\t\ttest.moveAnimal(tAnimal);\t\ttest.moveAnimal(eAnimal);\t\t\t\t// 세 동물을 ArrayList에 삽입하고 싶을 때\t\tArrayList&lt;Animal&gt; animalList = new ArrayList&lt;&gt;();\t\tanimalList.add(hAnimal);\t\tanimalList.add(tAnimal);\t\tanimalList.add(eAnimal);\t\t// enhanced for문을 통한 출력\t\tfor (Animal a : animalList) &#123;\t\t\ta.move();\t\t&#125;\t\t\t\t\t&#125;\tpublic void moveAnimal(Animal animal) &#123;\t\tanimal.move();\t&#125;&#125;\n\n\n\n사용하는 이유\n 상속과 메서드의 재정의를 활용하여 확장성 있는 프로그램을 만들 수 있다.\n위 예시로 보았을 때 동물을 추가하고 싶을 때 편하게 추가할 수 있다.\n상위 클래스에 공통된 기능과 하위 클래스에 특정한 기능을 구분하여 코딩할 수 있다.\n\n","dateCreated":"2021-08-12T20:42:28+09:00","dateModified":"2021-09-09T23:08:30+09:00","datePublished":"2021-08-12T20:42:28+09:00","description":"","headline":"다형성(Polymorphism)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/12/20210812-Polymorphism/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/08/12/20210812-Polymorphism/","keywords":"Java, 자바, 다형성, PolyMorphism"}</script>
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="다형성(Polymorphism)">
 <meta property="og:url" content="http://bedongryeol.github.io/08/12/20210812-Polymorphism/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="다형성 하나의 코드가 여러 자료형으로 구현되어 실행 되는 것 같은 코드에서 여러가지 실행 결과가 나오는 것 유연하고 확장성있고, 유지보수가 편리함 프로그램을 만들 수 있다.    개념 하위 클래스들을 상위 클래스로 형변환한다. 이를 한번에 핸들링한다. 각 인스턴스별로 다른 실행 결과를 얻을 수 있다. 결합도가 높아진다.  예시  모든 코드 확인하기   12">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-08-12T11:42:28.000Z">
-<meta property="article:modified_time" content="2021-08-12T11:54:12.024Z">
+<meta property="article:modified_time" content="2021-09-09T14:08:30.051Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="자바">
@@ -35,6 +33,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
     
     
     
@@ -59,6 +59,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -80,6 +84,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -87,8 +93,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -239,7 +263,9 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h1 id="다형성"><a href="#다형성" class="headerlink" title="다형성"></a>다형성</h1><ul>
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+<h1 id="다형성"><a href="#다형성" class="headerlink" title="다형성"></a>다형성</h1><ul>
 <li>하나의 코드가 여러 자료형으로 구현되어 실행 되는 것</li>
 <li>같은 코드에서 여러가지 실행 결과가 나오는 것<blockquote>
 <p>유연하고 확장성있고, 유지보수가 편리함 프로그램을 만들 수 있다.</p>
@@ -546,11 +572,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

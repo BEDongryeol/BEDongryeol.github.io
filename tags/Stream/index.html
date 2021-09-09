@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -236,37 +262,7 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h1 id="스트림-Stream"><a href="#스트림-Stream" class="headerlink" title="스트림 (Stream)"></a>스트림 (Stream)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul>
-<li>배열, collection 자료가 모여있을 때 연산의 처리를 일관성 있게 한다.<ul>
-<li>자료 처리에 대한 추상화가 구현되었다고 한다.</li>
-</ul>
-</li>
-<li>일관성 있는 연산으로 자료의 처리를 쉽고 간단하게 한다.</li>
-<li>한번 생성하고 사용한 스트림은 재사용 할 수 없다.<ul>
-<li>다른 연산을 수행하기 위해서는 스트림을 다시 생성해야 한다.</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ch06;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.IntStream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntArrayStreamTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : arr) &#123;</span><br><span class="line">            System.out.println(num);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;========&quot;</span>);</span><br><span class="line">        <span class="comment">// 모든 Array는 Arrays 클래스를 활용할 수 있다.</span></span><br><span class="line">        IntStream is = Arrays.stream(arr);</span><br><span class="line">        is.forEach(n -&gt; System.out.println(n));</span><br><span class="line">        <span class="comment">//is는 한번 소모하였으니 다시 사용할 수 없다.</span></span><br><span class="line">        <span class="comment">// 재사용하고 싶을 때 재생성</span></span><br><span class="line">        <span class="keyword">int</span> sum = Arrays.stream(arr).sum();</span><br><span class="line">        System.out.println(sum);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="연산"><a href="#연산" class="headerlink" title="연산"></a>연산</h2><ul>
-<li>스트림의 연산은 중간 연산과 최종 연산으로 구분된다.</li>
-<li>중간 연산은 여러 개의 연산이 적용될 수 있지만 최종 연산은 마지마게 한 번만 적용된다.</li>
-<li><code>지연 연산</code><ul>
-<li>최종 연산이 호출되어야 중간 연산에 대한 수행이 이루어지고 결과가 만들어진다.</li>
-</ul>
-</li>
-</ul>
-<h3 id="중간연산"><a href="#중간연산" class="headerlink" title="중간연산"></a>중간연산</h3><ul>
-<li><code>filter()</code> : 조건에 맞는 요소를 추출</li>
-<li><code>map()</code> : 조건에 맞는 요소를 변환</li>
-<li><code>sorted()</code> : 정렬</li>
-</ul>
-<h3 id="최종연산"><a href="#최종연산" class="headerlink" title="최종연산"></a>최종연산</h3><ul>
-<li><code>forEach()</code> : 요소를 하나씩 꺼내옴</li>
-<li><code>count()</code> : 요소의 개수 반환</li>
-<li><code>sum()</code> : 요소들의 합</li>
-</ul>
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
                         <a
                             href="/08/25/Stream/"
@@ -306,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

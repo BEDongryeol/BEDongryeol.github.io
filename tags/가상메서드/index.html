@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -203,7 +229,7 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -235,43 +261,17 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <h1 id="가상-메서드"><a href="#가상-메서드" class="headerlink" title="가상 메서드"></a>가상 메서드</h1><h2 id="메서드-Method"><a href="#메서드-Method" class="headerlink" title="메서드 (Method)"></a>메서드 (Method)</h2><ul>
-<li>명령어의 집합 (set)</li>
-<li>Java에서 모든 메서드는 가상 메서드이다. </li>
-<li><code>메서드의 이름</code>은 <code>주소값</code>을 나타낸다.</li>
-<li>메서드를 호출하면 이름과 mapping되어 있는 주소값이 호출된다.<h3 id="함수-호출-방식"><a href="#함수-호출-방식" class="headerlink" title="함수 호출 방식"></a>함수 호출 방식</h3></li>
-</ul>
-<ol>
-<li>프로그램이 로드되면 <code>메서드 영역(코드 영역)</code>에 <code>명령어 set</code>이 위치한다.</li>
-<li>메서드가 호출되면 명령어 set이 위치한 주소를 찾아가 명령어가 실행된다.</li>
-</ol>
-<ul>
-<li>이 때 메서드에 위치한 변수들은 stack메모리에 위치하게 된다.<blockquote>
-<p>서로 다른 인스턴스가 동일한 메서드를 호출하면 같은 method가 호출된다.<br>인스턴스가 생성되면 변수는 heap메모리에 저장이 되지만, 메서드 명령어 set은 한 번만 로드된다.</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="가상-메서드-Virtual-Method"><a href="#가상-메서드-Virtual-Method" class="headerlink" title="가상 메서드 (Virtual Method)"></a>가상 메서드 (Virtual Method)</h2><ul>
-<li>클래스마다 가상 메서드 테이블(Virtual Method Table)에 메서드의 address를 가지고 있다.</li>
-<li>메서드가 재정의되면 재정의된 클래스의 테이블에 address가 추가된다.</li>
-</ul>
-
+                <div class="postShorten-excerpt">
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
+                        <a
+                            href="/08/12/20210812-VirtualMethod/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 가상메서드(VirtualMethod)"
+                        >
+                            계속 읽기
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/08/12/20210812-VirtualMethod/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                댓글 공유
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -302,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -236,36 +262,7 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h1 id="람다식-Lambda-Expression"><a href="#람다식-Lambda-Expression" class="headerlink" title="람다식 (Lambda Expression)"></a>람다식 (Lambda Expression)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul>
-<li>java8부터 함수형 프로그래밍 방식을 지원하고, 이를 <code>람다식</code>이라고 한다.</li>
-<li>함수형 프로그래밍<ul>
-<li>매개 변수만을 사용하여 만드는 함수인 <code>순수 함수</code>를 구현</li>
-<li>외부 자료를 사용하지 않으므로 side effect가 없다</li>
-<li>여러 자료를 동시에 처리하는 병렬처리가 가능하다.<ul>
-<li>함수의 기능이 자료에 독립적이다.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="문법"><a href="#문법" class="headerlink" title="문법"></a>문법</h2><ul>
-<li>익명 함수 만들기</li>
-<li>매개변수와 매개변수를 이용한 실행문으로 구현된다.</li>
-<li>java는 OOP언어이기 때문에 람다식, 함수로만 클래스를 구성할 수 없다.<ul>
-<li>interface의 메소드를 구현하는 방식으로 한다.</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ch02;</span><br><span class="line"></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Add</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ch02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AddTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Add add = (x, y) -&gt; &#123;<span class="keyword">return</span> x+y;&#125;;</span><br><span class="line">        System.out.println(add.add(<span class="number">2</span>, <span class="number">3</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="람다식과-OOP-방식-비교"><a href="#람다식과-OOP-방식-비교" class="headerlink" title="람다식과 OOP 방식 비교"></a>람다식과 OOP 방식 비교</h2><ul>
-<li>람다식에서는 FunctionalInterface 익명 내부 클래스가 생성된다.</li>
-<li>OOP 방식에서는 Interface를 implement하여 구현하고, 메서드를 호출한다.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ch04;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringConcatTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">        String s1 = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">        String s2 = <span class="string">&quot;World&quot;</span>;</span><br><span class="line">        <span class="comment">// OOP 방식    </span></span><br><span class="line">        StringConcatImp strImp = <span class="keyword">new</span> StringConcatImp();</span><br><span class="line">        strImp.makeString(s1, s2);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 1. 람다식 구현 방식</span></span><br><span class="line">        StringConcat concat = (s,v)-&gt; System.out.println(s+<span class="string">&quot;,&quot;</span>+v);</span><br><span class="line">        concat.makeString(s1,s2);</span><br><span class="line">        <span class="comment">// 2. 람다식 구현 방식</span></span><br><span class="line">        StringConcat concat2 = <span class="keyword">new</span> StringConcat() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeString</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">                System.out.println(s1+<span class="string">&quot;,&quot;</span>+s2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
                         <a
                             href="/08/25/Lambda/"
@@ -305,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

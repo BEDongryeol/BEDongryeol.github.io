@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -203,7 +229,7 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -229,42 +255,17 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <h1 id="추상-클래스-Abstract-Class"><a href="#추상-클래스-Abstract-Class" class="headerlink" title="추상 클래스 (Abstract Class)"></a>추상 클래스 (Abstract Class)</h1><h2 id="의미"><a href="#의미" class="headerlink" title="의미"></a>의미</h2><blockquote>
-<p>구현 코드없이 메서드의 선언만 있는 <code>추상 메서드를 포함한 클래스</code></p>
-<ul>
-<li>메서드를 생성할 때 반환값, 메서드 이름, 매개변수로 구성되어있다.</li>
-</ul>
-<p>구현은 상속받은 <code>자식 클래스</code>가 한다.</p>
-<p>추상 클래스는 인스턴스화(new 로 생성) 할 수 없다.</p>
-<ul>
-<li>기능이 완벽하지 않기 때문</li>
-<li>일반 클래스도 abstract 라고 명시하면 이를 생성할 수 없다.</li>
-</ul>
-</blockquote>
-<ul>
-<li>자식클래스에서 추상 메서드 중 하나라도 구현하지 않으면 자식클래스도 추상클래스가 된다.</li>
-<li>구체적(Concrete)과 반대되는 말로, 구현부를 작성하지 않은 클래스라고 생각할 수 있다.</li>
-<li><code>추상 클래스</code>를 생성하는 것은 <code>선언</code>이라고 한다.</li>
-<li>어떤 기능을 할지 구현부를 작성하면 메서드를 <code>정의</code>한다고 한다.</li>
-<li>다이어그램으로 나타낼 때 추상 메서드와 클래스는 Italic체로 작성한다.<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int add(int a, intb);	 //선언 (추상 메서드)</span><br><span class="line">int add(int a, intb)&#123;	 //정의</span><br><span class="line">	구현할 기능ㅔ</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
+                <div class="postShorten-excerpt">
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
+                        <a
+                            href="/08/12/20210812-Abstract/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 추상 클래스 (Abstract Class)"
+                        >
+                            계속 읽기
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/08/12/20210812-Abstract/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                댓글 공유
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -295,11 +296,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

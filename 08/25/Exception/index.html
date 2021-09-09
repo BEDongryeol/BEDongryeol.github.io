@@ -15,16 +15,14 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"예외처리 (Exception)특징\nJava에서 발생하는 문제는 오류(Error)와 예외(Exception)로 구분할 수 있다.\n\n오류 (Error)\n시스템 오류(Error) : 가상머신에서 발생하고, 개발자가 처리할 수 없는 오류\n동적 메모리가 없는 경우, 스택 오버플로우 등\n\n\n\n컴파일 오류 (Compile Error)\n프로그램 코드 작성 중 발생하는 문법적인 오류\nIDE에서 컴파일 오류를 detection할 수 있다.\n\n실행 오류 (Runtime Error)\n실행 중인 프로그램이 중단되거나 의도하지 않은 동작(bug)을 하는 오류\n\n예외 (Exception)\n프로그램에서 제어할 수 있는 오류\nDB, Network Connection 등\n\n중요성\n프로그램의 비정상적인 종료를 피할 수 있다.\nlog를 적절하게 남기고, 분석을 통해 원인을 파악하고 bug를 수정하여야 한다.\n상세하게 level별로 남겨야한다.\n\n\n\n예외 클래스\nhttps://docs.oracle.com/javase/7/docs/api/java/lang/Exception.html\n\n예외 처리try-catch문12345try&#123;    예외가 발생할 수 있는 코드&#125; catch (처리할 예외 타입) &#123;    try 블록 안에서 예외가 발생했을 때 예외처리 코드&#125;\n\n예제코드 확인하기\n\n12345678910111213141516171819package ch08;public class ArrayindexExceptionTest &#123;    public static void main(String[] args) &#123;        int[] arr = &#123;1,2,3,4,5&#125;;        try&#123;            for (int i = 0 ; i &lt;=5 ; i++)&#123;                System.out.println(arr[i]);            &#125;        &#125; catch(ArrayIndexOutOfBoundsException e)&#123;            System.out.println(e.getMessage());            System.out.println(e.toString());        &#125;            &#125;&#125;\n\n\ntry-catch-finally문\ntry()블럭이 수행되면 finally() 블럭은 항상 수행된다.\nreturn이 포함되어 있어도 수행된다.\n\n\n\n\n예제 코드 확인하기\n\n123456789101112131415161718192021222324252627282930package ch08;import java.io.FileInputStream;import java.io.FileNotFoundException;import java.io.IOException;public class FileExceptionHandling &#123;    public static void main(String[] args) &#123;        FileInputStream fis = null ;        try &#123;            fis = new FileInputStream(&quot;a.txt&quot;);            System.out.println(&quot;read&quot;);        &#125; catch (FileNotFoundException e) &#123;            System.out.println(e);            return;        &#125; finally &#123;            if (fis != null) &#123;                try &#123;                    fis.close();                &#125; catch (IOException e) &#123;                    e.printStackTrace();                &#125;            &#125;            System.out.println(&quot;finally&quot;);        &#125;        System.out.println(&quot;end&quot;);    &#125;&#125;\n\n\ntry-with-resource문\njava7 이후로 FileInputStream클래스가 AutoCloseable 인터페이스를 implement하여 close를 하지 않아도 자동으로 해제된다.\njava9부터 리소스는 try() 외부에서 선언하고 try(var)와 같이 사용할 수 있다.1234FileInputStream fis = new FileInputStream(&quot;a.text&quot;);try(fis)&#123;...&#125;\n\n\n예제 코드 확인하기\n\n12345678910111213141516171819202122package ch08;import java.io.FileInputStream;import java.io.FileNotFoundException;import java.io.IOException;public class FileExceptionHandling &#123;    public static void main(String[] args) &#123;        // 자동으로 close가 된다.        try (FileInputStream fis = new FileInputStream(&quot;a.txt&quot;))&#123;            System.out.println(&quot;read&quot;);        // file을 불러올 때 생길 수 있는 에러        &#125; catch (FileNotFoundException e) &#123;            e.printStackTrace();        // file을 close할 때 생길 수 있는 에러        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;        System.out.println(&quot;end&quot;);    &#125;&#125;\n\n\n예외처리 미루기\nmain함수에서 throws를 하게되면 VM으로 넘어가서 abort된다.\nthrows를 이용하여 예외를 발생시키는 문장에서 예외를 처리하게 미룰 수 있다.\ncatch(Exception e) 구문을 통하여 default 처리를 할 수 있다.\ncatch 구문 중 가장 아랫줄에 작성해야 다른 exception을 개별 처리할 수 있다.\n\n\n\n\n예제 코드 확인하기\n\n12345678910111213141516171819202122232425262728293031package ch08;import java.io.FileInputStream;import java.io.FileNotFoundException;public class ThrowsException &#123;  // throws하여 메서드를 사용할 때 Exception을 처리하도록 한다.  public Class loadClass(String fileName, String className) throws ClassNotFoundException, FileNotFoundException &#123;    FileInputStream fis = new FileInputStream(fileName);    Class c = Class.forName(className);    return c;  &#125;  public static void main(String[] args) &#123;    ThrowsException test = new ThrowsException();    try &#123;      test.loadClass(&quot;a.txt&quot;, &quot;abc&quot;);    &#125; catch (ClassNotFoundException e) &#123;      System.out.println(e);    &#125; catch (FileNotFoundException e) &#123;      System.out.println(e);    &#125; catch (Exception e) &#123;      System.out.println(&quot;default Exception&quot;);    &#125;    System.out.println(&quot;end&quot;);  &#125;&#125;\n\n\n사용자 정의 예외클래스\n자바에서 제공되는 exception 외 필요한 exception을 생성할 수 있다.\n기존 클래스 중 가장 유사한 클래스를 상속을 받거나, Exception 클래스를 상속받는다.\nException을 정의하고, 필요한 순간에 어떠한 exception이 어느 순간에 불려야하는지 구현한다.\nthrows\n\n예외를 호출하는 메서드에게 전가하는 것\n메서드에서 상위 메서드로 예외를 던진다.\n\nthrow\n\nexception을 실제로 던지는 것\n메서드 내에서 상위 블럭으로 예외를 던진다.\n\n\n\n\n\nException 정의하기\n\n12345678package ch10;public class PassWordException extends Exception&#123;    public PassWordException(String message)&#123;        super(message);    &#125;&#125;\n\n\n\n사용자 정의 Exception\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364package ch10;public class PassWordTest &#123;    private String password;    public String getPassword() &#123;        return password;    &#125;    public void setPassword(String password) throws PassWordException &#123;        if(password == null) &#123;            throw new PassWordException(&quot;비밀번호는 null이 될 수 없습니다.&quot;);        &#125;        else if (password.length() &lt; 5 ) &#123;            throw new PassWordException(&quot;비밀번호는 5자 이상이어야 합니다..&quot;);        &#125;        else if (password.matches(&quot;[a-zA-Z]+&quot;))&#123;            throw new PassWordException(&quot;비밀번호는 숫자나 특수문자를 포함해야 합니다.&quot;);        &#125;        this.password = password;    &#125;    public static void main(String[] args) &#123;        PassWordTest test = new PassWordTest();        String password = null;        try &#123;            test.setPassword(password);            System.out.println(&quot;오류없음1&quot;);        &#125; catch (PassWordException e) &#123;            System.out.println(e.getMessage());        &#125;        password = &quot;abc&quot;;        try &#123;            test.setPassword(password);            System.out.println(&quot;오류없음2&quot;);        &#125; catch (PassWordException e) &#123;            System.out.println(e.getMessage());        &#125;        password = &quot;abcde&quot;;        try &#123;            test.setPassword(password);            System.out.println(&quot;오류없음3&quot;);        &#125; catch (PassWordException e) &#123;            System.out.println(e.getMessage());        &#125;        password = &quot;abcde1#&quot;;        try &#123;            test.setPassword(password);            System.out.println(&quot;오류없음4&quot;);        &#125; catch (PassWordException e) &#123;            System.out.println(e.getMessage());        &#125;    &#125;&#125;\n\n\n\n","dateCreated":"2021-08-25T21:23:20+09:00","dateModified":"2021-08-25T21:26:24+09:00","datePublished":"2021-08-25T21:23:20+09:00","description":"예외처리 (Exception)특징\nJava에서 발생하는 문제는 오류(Error)와 예외(Exception)로 구분할 수 있다.\n\n오류 (Error)\n시스템 오류(Error) : 가상머신에서 발생하고, 개발자가 처리할 수 없는 오류\n동적 메모리가 없는 경우, 스택 오버플로우 등\n\n\n\n컴파일 오류 (Compile Error)\n프로그램 코드 작성 중 발생하는 문법적인 오류\nIDE에서 컴파일 오류를 detection할 수 있다.\n\n실행 오류 (Runtime Error)\n실행 중인 프로그램이 중단되거나 의도하지 않은 동작(bug)을 하는 오류\n\n예외 (Exception)","headline":"예외처리","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/25/Exception/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/08/25/Exception/","keywords":"Exception, Custom Exception"}</script>
-    <meta name="description" content="예외처리 (Exception)특징 Java에서 발생하는 문제는 오류(Error)와 예외(Exception)로 구분할 수 있다.  오류 (Error) 시스템 오류(Error) : 가상머신에서 발생하고, 개발자가 처리할 수 없는 오류 동적 메모리가 없는 경우, 스택 오버플로우 등    컴파일 오류 (Compile Error) 프로그램 코드 작성 중 발생하는 문">
-<meta property="og:type" content="blog">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n예외처리 (Exception)특징\nJava에서 발생하는 문제는 오류(Error)와 예외(Exception)로 구분할 수 있다.\n\n오류 (Error)\n시스템 오류(Error) : 가상머신에서 발생하고, 개발자가 처리할 수 없는 오류\n동적 메모리가 없는 경우, 스택 오버플로우 등\n\n\n\n컴파일 오류 (Compile Error)\n프로그램 코드 작성 중 발생하는 문법적인 오류\nIDE에서 컴파일 오류를 detection할 수 있다.\n\n실행 오류 (Runtime Error)\n실행 중인 프로그램이 중단되거나 의도하지 않은 동작(bug)을 하는 오류\n\n예외 (Exception)\n프로그램에서 제어할 수 있는 오류\nDB, Network Connection 등\n\n중요성\n프로그램의 비정상적인 종료를 피할 수 있다.\nlog를 적절하게 남기고, 분석을 통해 원인을 파악하고 bug를 수정하여야 한다.\n상세하게 level별로 남겨야한다.\n\n\n\n예외 클래스\nhttps://docs.oracle.com/javase/7/docs/api/java/lang/Exception.html\n\n예외 처리try-catch문12345try&#123;    예외가 발생할 수 있는 코드&#125; catch (처리할 예외 타입) &#123;    try 블록 안에서 예외가 발생했을 때 예외처리 코드&#125;\n\n예제코드 확인하기\n\n12345678910111213141516171819package ch08;public class ArrayindexExceptionTest &#123;    public static void main(String[] args) &#123;        int[] arr = &#123;1,2,3,4,5&#125;;        try&#123;            for (int i = 0 ; i &lt;=5 ; i++)&#123;                System.out.println(arr[i]);            &#125;        &#125; catch(ArrayIndexOutOfBoundsException e)&#123;            System.out.println(e.getMessage());            System.out.println(e.toString());        &#125;            &#125;&#125;\n\n\ntry-catch-finally문\ntry()블럭이 수행되면 finally() 블럭은 항상 수행된다.\nreturn이 포함되어 있어도 수행된다.\n\n\n\n\n예제 코드 확인하기\n\n123456789101112131415161718192021222324252627282930package ch08;import java.io.FileInputStream;import java.io.FileNotFoundException;import java.io.IOException;public class FileExceptionHandling &#123;    public static void main(String[] args) &#123;        FileInputStream fis = null ;        try &#123;            fis = new FileInputStream(&quot;a.txt&quot;);            System.out.println(&quot;read&quot;);        &#125; catch (FileNotFoundException e) &#123;            System.out.println(e);            return;        &#125; finally &#123;            if (fis != null) &#123;                try &#123;                    fis.close();                &#125; catch (IOException e) &#123;                    e.printStackTrace();                &#125;            &#125;            System.out.println(&quot;finally&quot;);        &#125;        System.out.println(&quot;end&quot;);    &#125;&#125;\n\n\ntry-with-resource문\njava7 이후로 FileInputStream클래스가 AutoCloseable 인터페이스를 implement하여 close를 하지 않아도 자동으로 해제된다.\njava9부터 리소스는 try() 외부에서 선언하고 try(var)와 같이 사용할 수 있다.1234FileInputStream fis = new FileInputStream(&quot;a.text&quot;);try(fis)&#123;...&#125;\n\n\n예제 코드 확인하기\n\n12345678910111213141516171819202122package ch08;import java.io.FileInputStream;import java.io.FileNotFoundException;import java.io.IOException;public class FileExceptionHandling &#123;    public static void main(String[] args) &#123;        // 자동으로 close가 된다.        try (FileInputStream fis = new FileInputStream(&quot;a.txt&quot;))&#123;            System.out.println(&quot;read&quot;);        // file을 불러올 때 생길 수 있는 에러        &#125; catch (FileNotFoundException e) &#123;            e.printStackTrace();        // file을 close할 때 생길 수 있는 에러        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;        System.out.println(&quot;end&quot;);    &#125;&#125;\n\n\n예외처리 미루기\nmain함수에서 throws를 하게되면 VM으로 넘어가서 abort된다.\nthrows를 이용하여 예외를 발생시키는 문장에서 예외를 처리하게 미룰 수 있다.\ncatch(Exception e) 구문을 통하여 default 처리를 할 수 있다.\ncatch 구문 중 가장 아랫줄에 작성해야 다른 exception을 개별 처리할 수 있다.\n\n\n\n\n예제 코드 확인하기\n\n12345678910111213141516171819202122232425262728293031package ch08;import java.io.FileInputStream;import java.io.FileNotFoundException;public class ThrowsException &#123;  // throws하여 메서드를 사용할 때 Exception을 처리하도록 한다.  public Class loadClass(String fileName, String className) throws ClassNotFoundException, FileNotFoundException &#123;    FileInputStream fis = new FileInputStream(fileName);    Class c = Class.forName(className);    return c;  &#125;  public static void main(String[] args) &#123;    ThrowsException test = new ThrowsException();    try &#123;      test.loadClass(&quot;a.txt&quot;, &quot;abc&quot;);    &#125; catch (ClassNotFoundException e) &#123;      System.out.println(e);    &#125; catch (FileNotFoundException e) &#123;      System.out.println(e);    &#125; catch (Exception e) &#123;      System.out.println(&quot;default Exception&quot;);    &#125;    System.out.println(&quot;end&quot;);  &#125;&#125;\n\n\n사용자 정의 예외클래스\n자바에서 제공되는 exception 외 필요한 exception을 생성할 수 있다.\n기존 클래스 중 가장 유사한 클래스를 상속을 받거나, Exception 클래스를 상속받는다.\nException을 정의하고, 필요한 순간에 어떠한 exception이 어느 순간에 불려야하는지 구현한다.\nthrows\n\n예외를 호출하는 메서드에게 전가하는 것\n메서드에서 상위 메서드로 예외를 던진다.\n\nthrow\n\nexception을 실제로 던지는 것\n메서드 내에서 상위 블럭으로 예외를 던진다.\n\n\n\n\n\nException 정의하기\n\n12345678package ch10;public class PassWordException extends Exception&#123;    public PassWordException(String message)&#123;        super(message);    &#125;&#125;\n\n\n\n사용자 정의 Exception\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364package ch10;public class PassWordTest &#123;    private String password;    public String getPassword() &#123;        return password;    &#125;    public void setPassword(String password) throws PassWordException &#123;        if(password == null) &#123;            throw new PassWordException(&quot;비밀번호는 null이 될 수 없습니다.&quot;);        &#125;        else if (password.length() &lt; 5 ) &#123;            throw new PassWordException(&quot;비밀번호는 5자 이상이어야 합니다..&quot;);        &#125;        else if (password.matches(&quot;[a-zA-Z]+&quot;))&#123;            throw new PassWordException(&quot;비밀번호는 숫자나 특수문자를 포함해야 합니다.&quot;);        &#125;        this.password = password;    &#125;    public static void main(String[] args) &#123;        PassWordTest test = new PassWordTest();        String password = null;        try &#123;            test.setPassword(password);            System.out.println(&quot;오류없음1&quot;);        &#125; catch (PassWordException e) &#123;            System.out.println(e.getMessage());        &#125;        password = &quot;abc&quot;;        try &#123;            test.setPassword(password);            System.out.println(&quot;오류없음2&quot;);        &#125; catch (PassWordException e) &#123;            System.out.println(e.getMessage());        &#125;        password = &quot;abcde&quot;;        try &#123;            test.setPassword(password);            System.out.println(&quot;오류없음3&quot;);        &#125; catch (PassWordException e) &#123;            System.out.println(e.getMessage());        &#125;        password = &quot;abcde1#&quot;;        try &#123;            test.setPassword(password);            System.out.println(&quot;오류없음4&quot;);        &#125; catch (PassWordException e) &#123;            System.out.println(e.getMessage());        &#125;    &#125;&#125;\n\n\n\n","dateCreated":"2021-08-25T21:23:20+09:00","dateModified":"2021-09-09T23:06:51+09:00","datePublished":"2021-08-25T21:23:20+09:00","description":"","headline":"예외처리","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/25/Exception/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/08/25/Exception/","keywords":"Exception, Custom Exception"}</script>
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="예외처리">
 <meta property="og:url" content="http://bedongryeol.github.io/08/25/Exception/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="예외처리 (Exception)특징 Java에서 발생하는 문제는 오류(Error)와 예외(Exception)로 구분할 수 있다.  오류 (Error) 시스템 오류(Error) : 가상머신에서 발생하고, 개발자가 처리할 수 없는 오류 동적 메모리가 없는 경우, 스택 오버플로우 등    컴파일 오류 (Compile Error) 프로그램 코드 작성 중 발생하는 문">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-08-25T12:23:20.000Z">
-<meta property="article:modified_time" content="2021-08-25T12:26:24.521Z">
+<meta property="article:modified_time" content="2021-09-09T14:06:51.391Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="Exception">
 <meta property="article:tag" content="Custom Exception">
@@ -33,6 +31,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
     
     
     
@@ -57,6 +57,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -78,6 +82,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -85,8 +91,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -237,7 +261,9 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h1 id="예외처리-Exception"><a href="#예외처리-Exception" class="headerlink" title="예외처리 (Exception)"></a>예외처리 (Exception)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul>
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+<h1 id="예외처리-Exception"><a href="#예외처리-Exception" class="headerlink" title="예외처리 (Exception)"></a>예외처리 (Exception)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul>
 <li>Java에서 발생하는 문제는 오류(Error)와 예외(Exception)로 구분할 수 있다.</li>
 </ul>
 <h2 id="오류-Error"><a href="#오류-Error" class="headerlink" title="오류 (Error)"></a>오류 (Error)</h2><ul>
@@ -622,11 +648,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

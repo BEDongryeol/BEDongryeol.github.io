@@ -15,16 +15,14 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"프림 알고리즘 (Prim’s Algorithm)개요프림 알고리즘\n가중치가 있는 연결된 무향 그래프의 모든 꼭짓점을 포함하면서 각 변의 비용의 합이 최소가 되는 부분 그래프인 트리, 즉 최소 신장트리 를 찾는 알고리즘이다최소 신장트리 (Minimum Spanning Tree, MST)\n신장 트리 중에서 간선의 가중치 합이 가장 작은 트리 \n신장트리\n\n특정한 그래프에서 모든 정점을 포함하는 그래프\n\n\n\n\n프림 알고리즘\n\n처음에 트리는 비어있다고 가정한다.\n그래프에서 정점 하나를 선택하여 트리에 포함시킨다.\n1에서 포함된 정점과 인접한 노드의 간선 중에서 가중치가 가장 작은 간선을 찾아 포함시킨다.\n2번을 모든 노드가 포함될 때까지 반복한다.\n\n\n동작 과정\n이미지 삽입 예정\n\n구현\n모든 코드 확인하기\n\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119#define _CRT_SECURE_NO_WARNINGS#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;limits.h&gt;#define NODE_MAX 1001#define EDGE_MAX 200001 // 양방향 간선이므로 100,000개// 구조체 정의typedef struct &#123;int cost;int node;&#125; Edge;// 데이터 위치 변환을 위한 함수 구현void swap(Edge *a, Edge *b) &#123;Edge temp;temp.cost = a-&gt;cost;temp.node = a-&gt;node;a-&gt;cost = b-&gt;cost;a-&gt;node = b-&gt;node;b-&gt;cost = temp.cost;b-&gt;node = temp.node;&#125;// 우선순위 큐 정의typedef struct &#123;Edge *heap[EDGE_MAX];int count;&#125; priorityQueue;// 데이터 삽입 함수void push(priorityQueue *pq, Edge *edge) &#123;    if (pq-&gt;count &gt;= EDGE_MAX) return;    pq-&gt;heap[pq-&gt;count] = edge;    int now = pq-&gt;count;    int parent = (pq-&gt;count - 1) / 2;        // 새 원소를 삽입한 이후에 상향식으로 힙을 구성한다.    while (now &gt; 0 &amp;&amp; pq-&gt;heap[now]-&gt;cost &lt; pq-&gt;heap[parent]-&gt;cost) &#123;        swap(pq-&gt;heap[now], pq-&gt;heap[parent]);        now = parent;        parent = (parent - 1) / 2;    &#125;    pq-&gt;count++;&#125;// 데이터 추출함수 구현Edge* pop(priorityQueue *pq) &#123;if (pq-&gt;count &lt;= 0) return NULL;Edge *res = pq-&gt;heap[0];pq-&gt;count--;pq-&gt;heap[0] = pq-&gt;heap[pq-&gt;count];int now = 0, leftChild = 1, rightChild = 2;int target = now;// 새 원소를 추출한 이후에 하향식으로 힙을 구성합니다.while (leftChild &lt; pq-&gt;count) &#123;    if (pq-&gt;heap[target]-&gt;cost &gt; pq-&gt;heap[leftChild]-&gt;cost) target = leftChild;    if (pq-&gt;heap[target]-&gt;cost &gt; pq-&gt;heap[rightChild]-&gt;cost &amp;&amp; rightChild &lt; pq-&gt;count) target = rightChild;    if (target == now) break; // 더 이상 내려가지 않아도 될 때 종료    else &#123;        swap(pq-&gt;heap[now], pq-&gt;heap[target]);        now = target;        leftChild = now * 2 + 1;        rightChild = now * 2 + 2;    &#125;  &#125;  return res;&#125;// 데이터 연결리스트 구현typedef struct Node &#123;Edge *data;struct Node *next;&#125; Node;Node** adj;int d[NODE_MAX];// 노드 추가를 위한 함수void addNode(Node** target, int index, Edge* edge) &#123;    if (target[index] == NULL) &#123;        target[index] = (Node*)malloc(sizeof(Node));        target[index]-&gt;data = edge;        target[index]-&gt;next = NULL;    &#125;    else &#123;        Node* node = (Node*)malloc(sizeof(Node));        node-&gt;data = edge;        node-&gt;next = target[index];        target[index] = node;    &#125;&#125;// 알고리즘 실행int main(void) &#123;    int n, m;    scanf(&quot;%d %d&quot;, &amp;n, &amp;m);    // 큐 초기화    adj = (Node**)malloc(sizeof(Node*) * (n + 1));    for (int i = 1; i &lt;= n; i++) &#123;    adj[i] = NULL;&#125;priorityQueue *pq;pq = (priorityQueue*)malloc(sizeof(priorityQueue));pq-&gt;count = 0;for (int i = 0; i &lt; m; i++) &#123;    int a, b, c;    scanf(&quot;%d %d %d&quot;, &amp;a, &amp;b, &amp;c);    Edge *edge1 = (Edge*)malloc(sizeof(Edge));    edge1-&gt;node = b;    edge1-&gt;cost = c;    addNode(adj, a, edge1);    Edge *edge2 = (Edge*)malloc(sizeof(Edge));    edge2-&gt;node = a;    edge2-&gt;cost = c;    addNode(adj, b, edge2);&#125;\n\n\n\n","dateCreated":"2021-08-05T20:54:56+09:00","dateModified":"2021-08-06T20:39:45+09:00","datePublished":"2021-08-05T20:54:56+09:00","description":"프림 알고리즘 (Prim’s Algorithm)개요프림 알고리즘\n가중치가 있는 연결된 무향 그래프의 모든 꼭짓점을 포함하면서 각 변의 비용의 합이 최소가 되는 부분 그래프인 트리, 즉 최소 신장트리 를 찾는 알고리즘이다최소 신장트리 (Minimum Spanning Tree, MST)\n신장 트리 중에서 간선의 가중치 합이 가장 작은 트리 \n신장트리\n\n특정한 그래프에서 모든 정점을 포함하는 그래프\n\n\n\n\n프림 알고리즘\n\n처음에 트리는 비어있다고 가정한다.\n그래프에서 정점 하나를 선택하여 트리에 포함시킨다.\n1에서 포함된 정점과 인접한 노드의 간선 중에서 가중치가 가장 작은 간선을 찾아 포함시킨다.\n2번을 모든 노드가 포함될 때까지 반복한다.\n\n\n동작 과정\n이미지 삽입 예정\n\n구현\n모든 코드 확인하기\n\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119#define _CRT_SECURE_NO_WARNINGS#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;limits.h&gt;#define NODE_MAX 1001#define EDGE_MAX 200001 // 양방향 간선이므로 100,000개// 구조체 정의typedef struct &#123;int cost;int node;&#125; Edge;// 데이터 위치 변환을 위한 함수 구현void swap(Edge *a, Edge *b) &#123;Edge temp;temp.cost = a-&gt;cost;temp.node = a-&gt;node;a-&gt;cost = b-&gt;cost;a-&gt;node = b-&gt;node;b-&gt;cost = temp.cost;b-&gt;node = temp.node;&#125;// 우선순위 큐 정의typedef struct &#123;Edge *heap[EDGE_MAX];int count;&#125; priorityQueue;// 데이터 삽입 함수void push(priorityQueue *pq, Edge *edge) &#123;    if (pq-&gt;count &gt;= EDGE_MAX) return;    pq-&gt;heap[pq-&gt;count] = edge;    int now = pq-&gt;count;    int parent = (pq-&gt;count - 1) / 2;        // 새 원소를 삽입한 이후에 상향식으로 힙을 구성한다.    while (now &gt; 0 &amp;&amp; pq-&gt;heap[now]-&gt;cost &lt; pq-&gt;heap[parent]-&gt;cost) &#123;        swap(pq-&gt;heap[now], pq-&gt;heap[parent]);        now = parent;        parent = (parent - 1) / 2;    &#125;    pq-&gt;count++;&#125;// 데이터 추출함수 구현Edge* pop(priorityQueue *pq) &#123;if (pq-&gt;count &lt;= 0) return NULL;Edge *res = pq-&gt;heap[0];pq-&gt;count--;pq-&gt;heap[0] = pq-&gt;heap[pq-&gt;count];int now = 0, leftChild = 1, rightChild = 2;int target = now;// 새 원소를 추출한 이후에 하향식으로 힙을 구성합니다.while (leftChild &lt; pq-&gt;count) &#123;    if (pq-&gt;heap[target]-&gt;cost &gt; pq-&gt;heap[leftChild]-&gt;cost) target = leftChild;    if (pq-&gt;heap[target]-&gt;cost &gt; pq-&gt;heap[rightChild]-&gt;cost &amp;&amp; rightChild &lt; pq-&gt;count) target = rightChild;    if (target == now) break; // 더 이상 내려가지 않아도 될 때 종료    else &#123;        swap(pq-&gt;heap[now], pq-&gt;heap[target]);        now = target;        leftChild = now * 2 + 1;        rightChild = now * 2 + 2;    &#125;  &#125;  return res;&#125;// 데이터 연결리스트 구현typedef struct Node &#123;Edge *data;struct Node *next;&#125; Node;Node** adj;int d[NODE_MAX];// 노드 추가를 위한 함수void addNode(Node** target, int index, Edge* edge) &#123;    if (target[index] == NULL) &#123;        target[index] = (Node*)malloc(sizeof(Node));        target[index]-&gt;data = edge;        target[index]-&gt;next = NULL;    &#125;    else &#123;        Node* node = (Node*)malloc(sizeof(Node));        node-&gt;data = edge;        node-&gt;next = target[index];        target[index] = node;    &#125;&#125;// 알고리즘 실행int main(void) &#123;    int n, m;    scanf(&quot;%d %d&quot;, &amp;n, &amp;m);    // 큐 초기화    adj = (Node**)malloc(sizeof(Node*) * (n + 1));    for (int i = 1; i &lt;= n; i++) &#123;    adj[i] = NULL;&#125;priorityQueue *pq;pq = (priorityQueue*)malloc(sizeof(priorityQueue));pq-&gt;count = 0;for (int i = 0; i &lt; m; i++) &#123;    int a, b, c;    scanf(&quot;%d %d %d&quot;, &amp;a, &amp;b, &amp;c);    Edge *edge1 = (Edge*)malloc(sizeof(Edge));    edge1-&gt;node = b;    edge1-&gt;cost = c;    addNode(adj, a, edge1);    Edge *edge2 = (Edge*)malloc(sizeof(Edge));    edge2-&gt;node = a;    edge2-&gt;cost = c;    addNode(adj, b, edge2);&#125;\n\n","headline":"프림 알고리즘","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/05/20210805-prims/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/08/05/20210805-prims/","keywords":"자료구조, 알고리즘, 프림 알고리즘, Prim's Algorithm"}</script>
-    <meta name="description" content="프림 알고리즘 (Prim’s Algorithm)개요프림 알고리즘 가중치가 있는 연결된 무향 그래프의 모든 꼭짓점을 포함하면서 각 변의 비용의 합이 최소가 되는 부분 그래프인 트리, 즉 최소 신장트리 를 찾는 알고리즘이다최소 신장트리 (Minimum Spanning Tree, MST) 신장 트리 중에서 간선의 가중치 합이 가장 작은 트리  신장트리  특정한">
-<meta property="og:type" content="blog">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n프림 알고리즘 (Prim’s Algorithm)개요프림 알고리즘\n가중치가 있는 연결된 무향 그래프의 모든 꼭짓점을 포함하면서 각 변의 비용의 합이 최소가 되는 부분 그래프인 트리, 즉 최소 신장트리 를 찾는 알고리즘이다최소 신장트리 (Minimum Spanning Tree, MST)\n신장 트리 중에서 간선의 가중치 합이 가장 작은 트리 \n신장트리\n\n특정한 그래프에서 모든 정점을 포함하는 그래프\n\n\n\n\n프림 알고리즘\n\n처음에 트리는 비어있다고 가정한다.\n그래프에서 정점 하나를 선택하여 트리에 포함시킨다.\n1에서 포함된 정점과 인접한 노드의 간선 중에서 가중치가 가장 작은 간선을 찾아 포함시킨다.\n2번을 모든 노드가 포함될 때까지 반복한다.\n\n\n동작 과정\n이미지 삽입 예정\n\n구현\n모든 코드 확인하기\n\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119#define _CRT_SECURE_NO_WARNINGS#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;limits.h&gt;#define NODE_MAX 1001#define EDGE_MAX 200001 // 양방향 간선이므로 100,000개// 구조체 정의typedef struct &#123;int cost;int node;&#125; Edge;// 데이터 위치 변환을 위한 함수 구현void swap(Edge *a, Edge *b) &#123;Edge temp;temp.cost = a-&gt;cost;temp.node = a-&gt;node;a-&gt;cost = b-&gt;cost;a-&gt;node = b-&gt;node;b-&gt;cost = temp.cost;b-&gt;node = temp.node;&#125;// 우선순위 큐 정의typedef struct &#123;Edge *heap[EDGE_MAX];int count;&#125; priorityQueue;// 데이터 삽입 함수void push(priorityQueue *pq, Edge *edge) &#123;    if (pq-&gt;count &gt;= EDGE_MAX) return;    pq-&gt;heap[pq-&gt;count] = edge;    int now = pq-&gt;count;    int parent = (pq-&gt;count - 1) / 2;        // 새 원소를 삽입한 이후에 상향식으로 힙을 구성한다.    while (now &gt; 0 &amp;&amp; pq-&gt;heap[now]-&gt;cost &lt; pq-&gt;heap[parent]-&gt;cost) &#123;        swap(pq-&gt;heap[now], pq-&gt;heap[parent]);        now = parent;        parent = (parent - 1) / 2;    &#125;    pq-&gt;count++;&#125;// 데이터 추출함수 구현Edge* pop(priorityQueue *pq) &#123;if (pq-&gt;count &lt;= 0) return NULL;Edge *res = pq-&gt;heap[0];pq-&gt;count--;pq-&gt;heap[0] = pq-&gt;heap[pq-&gt;count];int now = 0, leftChild = 1, rightChild = 2;int target = now;// 새 원소를 추출한 이후에 하향식으로 힙을 구성합니다.while (leftChild &lt; pq-&gt;count) &#123;    if (pq-&gt;heap[target]-&gt;cost &gt; pq-&gt;heap[leftChild]-&gt;cost) target = leftChild;    if (pq-&gt;heap[target]-&gt;cost &gt; pq-&gt;heap[rightChild]-&gt;cost &amp;&amp; rightChild &lt; pq-&gt;count) target = rightChild;    if (target == now) break; // 더 이상 내려가지 않아도 될 때 종료    else &#123;        swap(pq-&gt;heap[now], pq-&gt;heap[target]);        now = target;        leftChild = now * 2 + 1;        rightChild = now * 2 + 2;    &#125;  &#125;  return res;&#125;// 데이터 연결리스트 구현typedef struct Node &#123;Edge *data;struct Node *next;&#125; Node;Node** adj;int d[NODE_MAX];// 노드 추가를 위한 함수void addNode(Node** target, int index, Edge* edge) &#123;    if (target[index] == NULL) &#123;        target[index] = (Node*)malloc(sizeof(Node));        target[index]-&gt;data = edge;        target[index]-&gt;next = NULL;    &#125;    else &#123;        Node* node = (Node*)malloc(sizeof(Node));        node-&gt;data = edge;        node-&gt;next = target[index];        target[index] = node;    &#125;&#125;// 알고리즘 실행int main(void) &#123;    int n, m;    scanf(&quot;%d %d&quot;, &amp;n, &amp;m);    // 큐 초기화    adj = (Node**)malloc(sizeof(Node*) * (n + 1));    for (int i = 1; i &lt;= n; i++) &#123;    adj[i] = NULL;&#125;priorityQueue *pq;pq = (priorityQueue*)malloc(sizeof(priorityQueue));pq-&gt;count = 0;for (int i = 0; i &lt; m; i++) &#123;    int a, b, c;    scanf(&quot;%d %d %d&quot;, &amp;a, &amp;b, &amp;c);    Edge *edge1 = (Edge*)malloc(sizeof(Edge));    edge1-&gt;node = b;    edge1-&gt;cost = c;    addNode(adj, a, edge1);    Edge *edge2 = (Edge*)malloc(sizeof(Edge));    edge2-&gt;node = a;    edge2-&gt;cost = c;    addNode(adj, b, edge2);&#125;\n\n\n\n","dateCreated":"2021-08-05T20:54:56+09:00","dateModified":"2021-09-09T23:08:00+09:00","datePublished":"2021-08-05T20:54:56+09:00","description":"","headline":"프림 알고리즘","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/05/20210805-prims/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/08/05/20210805-prims/","keywords":"자료구조, 알고리즘, 프림 알고리즘, Prim's Algorithm"}</script>
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="프림 알고리즘">
 <meta property="og:url" content="http://bedongryeol.github.io/08/05/20210805-prims/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="프림 알고리즘 (Prim’s Algorithm)개요프림 알고리즘 가중치가 있는 연결된 무향 그래프의 모든 꼭짓점을 포함하면서 각 변의 비용의 합이 최소가 되는 부분 그래프인 트리, 즉 최소 신장트리 를 찾는 알고리즘이다최소 신장트리 (Minimum Spanning Tree, MST) 신장 트리 중에서 간선의 가중치 합이 가장 작은 트리  신장트리  특정한">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-08-05T11:54:56.000Z">
-<meta property="article:modified_time" content="2021-08-06T11:39:45.061Z">
+<meta property="article:modified_time" content="2021-09-09T14:08:00.180Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="자료구조">
 <meta property="article:tag" content="알고리즘">
@@ -35,6 +33,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
     
     
     
@@ -59,6 +59,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -80,6 +84,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -87,8 +93,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -239,7 +263,9 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h1 id="프림-알고리즘-Prim’s-Algorithm"><a href="#프림-알고리즘-Prim’s-Algorithm" class="headerlink" title="프림 알고리즘 (Prim’s Algorithm)"></a>프림 알고리즘 (Prim’s Algorithm)</h1><h2 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h2><h3 id="프림-알고리즘"><a href="#프림-알고리즘" class="headerlink" title="프림 알고리즘"></a>프림 알고리즘</h3><ul>
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+<h1 id="프림-알고리즘-Prim’s-Algorithm"><a href="#프림-알고리즘-Prim’s-Algorithm" class="headerlink" title="프림 알고리즘 (Prim’s Algorithm)"></a>프림 알고리즘 (Prim’s Algorithm)</h1><h2 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h2><h3 id="프림-알고리즘"><a href="#프림-알고리즘" class="headerlink" title="프림 알고리즘"></a>프림 알고리즘</h3><ul>
 <li>가중치가 있는 연결된 무향 그래프의 모든 꼭짓점을 포함하면서 각 변의 비용의 합이 최소가 되는 부분 그래프인 트리, 즉 <code>최소 신장트리</code> 를 찾는 알고리즘이다<h3 id="최소-신장트리-Minimum-Spanning-Tree-MST"><a href="#최소-신장트리-Minimum-Spanning-Tree-MST" class="headerlink" title="최소 신장트리 (Minimum Spanning Tree, MST)"></a>최소 신장트리 (Minimum Spanning Tree, MST)</h3></li>
 <li>신장 트리 중에서 간선의 가중치 합이 가장 작은 트리 <blockquote>
 <p>신장트리</p>
@@ -549,11 +575,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

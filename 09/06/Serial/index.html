@@ -15,16 +15,14 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"직렬화 (Serialization)정의\n인스턴스의 상태를 그대로 저장(파일), 전송(네트워크), 복원하는 방식\n바이트 스트림의 연속으로 객체 정보를 저장하고, 복원한다.\n보조 스트림을 활용한다.\n\n인터페이스\n직렬화는 인스턴스의 정보가 외부로 유출되는 것이다.\n직렬화를 하려면 명시해줘야한다. (Marker interface)\nimplements Serializable\n구현코드가 없는 interface\n\n\n클래스 내에서 직렬화하고 싶지 않은 변수, 불가능한 변수는 transient로 명시한다.\n default 값으로 출력된다. (String = null)\n\n\n\n\n예제코드 확인하기\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849package ch17;import java.io.*;class Person implements Serializable&#123;    String name;    transient String job;    public Person()&#123;&#125;    public Person(String name, String job)&#123;        this.name = name;        this.job = job;    &#125;    public String toString()&#123;        return name + &quot;,&quot; + job;    &#125;&#125;public class SerializationTest &#123;    public static void main(String[] args) &#123;        Person personLee = new Person(&quot;이순신&quot;, &quot;대표&quot;);        Person personKim = new Person(&quot;김유신&quot;, &quot;상무이사&quot;);        try (FileOutputStream fos = new FileOutputStream(&quot;serial.txt&quot;);             ObjectOutputStream oos = new ObjectOutputStream(fos))        &#123;            // Serialization            oos.writeObject(personLee);            oos.writeObject(personKim);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;        try (FileInputStream fis = new FileInputStream(&quot;serial.txt&quot;);             ObjectInputStream ois = new ObjectInputStream(fis))        &#123;            Person pLee = (Person)ois.readObject();            Person pKim = (Person)ois.readObject();            System.out.println(pLee);            System.out.println(pKim);        &#125; catch (IOException | ClassNotFoundException e) &#123;            e.printStackTrace();        &#125;    &#125;&#125;\n\n\n\nimplements Externalizable\n읽고 쓰는 메서드를 구현해주어야 한다.\n\n\n\n\n예제 코드 확인하기\n\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859package ch17;import java.io.*;class People implements Externalizable &#123;    String name;    String job;    public People()&#123;&#125;    public People(String name, String job)&#123;        this.name = name;        this.job = job;    &#125;    public String toString()&#123;        return name + &quot;, &quot; + job;    &#125;    @Override    public void writeExternal(ObjectOutput out) throws IOException &#123;        out.writeUTF(name);        out.writeUTF(job);    &#125;    @Override    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException &#123;        name = in.readUTF();        job = in.readUTF();    &#125;&#125;public class ExternalizableTest &#123;    public static void main(String[] args) &#123;        People peopleLee = new People(&quot;이순신&quot;, &quot;대표&quot;);        People peopleKim = new People(&quot;김유신&quot;, &quot;상무이사&quot;);        try (FileOutputStream fos = new FileOutputStream(&quot;external.txt&quot;);             ObjectOutputStream oos = new ObjectOutputStream(fos))        &#123;            oos.writeObject(peopleLee);            oos.writeObject(peopleKim);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;        try (FileInputStream fis = new FileInputStream(&quot;external.txt&quot;);             ObjectInputStream ois = new ObjectInputStream(fis))&#123;            People peopleL = (People)ois.readObject();            People peopleK = (People)ois.readObject();            System.out.println(peopleL);            System.out.println(peopleK);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125; catch (ClassNotFoundException e) &#123;            e.printStackTrace();        &#125;    &#125;&#125;\n\n\n","dateCreated":"2021-09-06T21:36:07+09:00","dateModified":"2021-09-06T21:38:17+09:00","datePublished":"2021-09-06T21:36:07+09:00","description":"","headline":"직렬화 (Serialization)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/09/06/Serial/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/09/06/Serial/","keywords":"Serialization, 직렬화"}</script>
-    <meta name="description" content="직렬화 (Serialization)정의 인스턴스의 상태를 그대로 저장(파일), 전송(네트워크), 복원하는 방식 바이트 스트림의 연속으로 객체 정보를 저장하고, 복원한다. 보조 스트림을 활용한다.  인터페이스 직렬화는 인스턴스의 정보가 외부로 유출되는 것이다. 직렬화를 하려면 명시해줘야한다. (Marker interface) implements Seriali">
-<meta property="og:type" content="blog">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n직렬화 (Serialization)정의\n인스턴스의 상태를 그대로 저장(파일), 전송(네트워크), 복원하는 방식\n바이트 스트림의 연속으로 객체 정보를 저장하고, 복원한다.\n보조 스트림을 활용한다.\n\n인터페이스\n직렬화는 인스턴스의 정보가 외부로 유출되는 것이다.\n직렬화를 하려면 명시해줘야한다. (Marker interface)\nimplements Serializable\n구현코드가 없는 interface\n\n\n클래스 내에서 직렬화하고 싶지 않은 변수, 불가능한 변수는 transient로 명시한다.\n default 값으로 출력된다. (String = null)\n\n\n\n\n예제코드 확인하기\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849package ch17;import java.io.*;class Person implements Serializable&#123;    String name;    transient String job;    public Person()&#123;&#125;    public Person(String name, String job)&#123;        this.name = name;        this.job = job;    &#125;    public String toString()&#123;        return name + &quot;,&quot; + job;    &#125;&#125;public class SerializationTest &#123;    public static void main(String[] args) &#123;        Person personLee = new Person(&quot;이순신&quot;, &quot;대표&quot;);        Person personKim = new Person(&quot;김유신&quot;, &quot;상무이사&quot;);        try (FileOutputStream fos = new FileOutputStream(&quot;serial.txt&quot;);             ObjectOutputStream oos = new ObjectOutputStream(fos))        &#123;            // Serialization            oos.writeObject(personLee);            oos.writeObject(personKim);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;        try (FileInputStream fis = new FileInputStream(&quot;serial.txt&quot;);             ObjectInputStream ois = new ObjectInputStream(fis))        &#123;            Person pLee = (Person)ois.readObject();            Person pKim = (Person)ois.readObject();            System.out.println(pLee);            System.out.println(pKim);        &#125; catch (IOException | ClassNotFoundException e) &#123;            e.printStackTrace();        &#125;    &#125;&#125;\n\n\n\nimplements Externalizable\n읽고 쓰는 메서드를 구현해주어야 한다.\n\n\n\n\n예제 코드 확인하기\n\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859package ch17;import java.io.*;class People implements Externalizable &#123;    String name;    String job;    public People()&#123;&#125;    public People(String name, String job)&#123;        this.name = name;        this.job = job;    &#125;    public String toString()&#123;        return name + &quot;, &quot; + job;    &#125;    @Override    public void writeExternal(ObjectOutput out) throws IOException &#123;        out.writeUTF(name);        out.writeUTF(job);    &#125;    @Override    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException &#123;        name = in.readUTF();        job = in.readUTF();    &#125;&#125;public class ExternalizableTest &#123;    public static void main(String[] args) &#123;        People peopleLee = new People(&quot;이순신&quot;, &quot;대표&quot;);        People peopleKim = new People(&quot;김유신&quot;, &quot;상무이사&quot;);        try (FileOutputStream fos = new FileOutputStream(&quot;external.txt&quot;);             ObjectOutputStream oos = new ObjectOutputStream(fos))        &#123;            oos.writeObject(peopleLee);            oos.writeObject(peopleKim);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;        try (FileInputStream fis = new FileInputStream(&quot;external.txt&quot;);             ObjectInputStream ois = new ObjectInputStream(fis))&#123;            People peopleL = (People)ois.readObject();            People peopleK = (People)ois.readObject();            System.out.println(peopleL);            System.out.println(peopleK);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125; catch (ClassNotFoundException e) &#123;            e.printStackTrace();        &#125;    &#125;&#125;\n\n\n","dateCreated":"2021-09-06T21:36:07+09:00","dateModified":"2021-09-09T23:05:51+09:00","datePublished":"2021-09-06T21:36:07+09:00","description":"","headline":"직렬화 (Serialization)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/09/06/Serial/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/09/06/Serial/","keywords":"Serialization, 직렬화"}</script>
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="직렬화 (Serialization)">
 <meta property="og:url" content="http://bedongryeol.github.io/09/06/Serial/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="직렬화 (Serialization)정의 인스턴스의 상태를 그대로 저장(파일), 전송(네트워크), 복원하는 방식 바이트 스트림의 연속으로 객체 정보를 저장하고, 복원한다. 보조 스트림을 활용한다.  인터페이스 직렬화는 인스턴스의 정보가 외부로 유출되는 것이다. 직렬화를 하려면 명시해줘야한다. (Marker interface) implements Seriali">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-09-06T12:36:07.000Z">
-<meta property="article:modified_time" content="2021-09-06T12:38:17.552Z">
+<meta property="article:modified_time" content="2021-09-09T14:05:51.956Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="Serialization">
 <meta property="article:tag" content="직렬화">
@@ -33,6 +31,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
     
     
     
@@ -57,6 +57,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -78,6 +82,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -85,8 +91,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -237,7 +261,9 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h1 id="직렬화-Serialization"><a href="#직렬화-Serialization" class="headerlink" title="직렬화 (Serialization)"></a>직렬화 (Serialization)</h1><h2 id="정의"><a href="#정의" class="headerlink" title="정의"></a>정의</h2><ul>
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+<h1 id="직렬화-Serialization"><a href="#직렬화-Serialization" class="headerlink" title="직렬화 (Serialization)"></a>직렬화 (Serialization)</h1><h2 id="정의"><a href="#정의" class="headerlink" title="정의"></a>정의</h2><ul>
 <li>인스턴스의 상태를 그대로 저장(파일), 전송(네트워크), 복원하는 방식</li>
 <li>바이트 스트림의 연속으로 객체 정보를 저장하고, 복원한다.</li>
 <li>보조 스트림을 활용한다.</li>
@@ -554,11 +580,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

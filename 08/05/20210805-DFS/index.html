@@ -15,16 +15,14 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"그래프 탐색깊이 우선 탐색 (Depth First Search)특징\n깊은 것을 우선적으로 탐색한다. \n전체 노드를 탐색하며, 모든 경우의 수를 탐색한다.\n스택 자료구조에 기초하며, O(N)이 소요된다.\n\n구현\n모든 노드는 탐색되지 않은 상태임을 가정\n스택에 삽입되면 탐색이 완료된 것으로 간주한다.\n\n\n탐색을 시작할 노드를 스택에 삽입(탐색)한다.\n시작 노드와 인접한 노드를 순차적으로 스택에 삽입(탐색)한다.\n더이상 인접한 노드가 없을 때는 스택에서 순차적으로 노드를 꺼낸다.\n\n너비 우선 탐색 (Breadth First Search)특징\n너비를 우선으로 하여 탐색을 수행한다.\n전체 노드를 탐색하고, DFS보다 빠르다.\n큐 자료구조에 기초하며, O(N)이 소요된다.\n고급 그래프 탐색 알고리즘에서 자주 활용된다.  \n\n구현\n모든 노드는 탐색되지 않은 상태임을 가정\n스택에 삽입되면 탐색이 완료된 것으로 간주한다.\n\n\n탐색을 시작할 노드를 큐에 삽입한다.\n삽입한 노드를 꺼내고, 인접 노드를 삽입한다.\n2를 더이상 수행할 수 없을 때까지 반복한다.\n\n","dateCreated":"2021-08-05T13:45:16+09:00","dateModified":"2021-08-05T14:02:09+09:00","datePublished":"2021-08-05T13:45:16+09:00","description":"그래프 탐색깊이 우선 탐색 (Depth First Search)특징\n깊은 것을 우선적으로 탐색한다. \n전체 노드를 탐색하며, 모든 경우의 수를 탐색한다.\n스택 자료구조에 기초하며, O(N)이 소요된다.\n\n구현\n모든 노드는 탐색되지 않은 상태임을 가정\n스택에 삽입되면 탐색이 완료된 것으로 간주한다.\n\n\n탐색을 시작할 노드를 스택에 삽입(탐색)한다.\n시작 노드와 인접한 노드를 순차적으로 스택에 삽입(탐색)한다.\n더이상 인접한 노드가 없을 때는 스택에서 순차적으로 노드를 꺼낸다.\n\n너비 우선 탐색 (Breadth First Search)특징\n너비를 우선으로 하여 탐색을 수행한다.\n전체 노드를 탐색하고, DFS보다 빠르다.\n큐 자료구조에 기초하며, O(N)이 소요된다.\n고급 그래프 탐색 알고리즘에서 자주 활용된다.  \n","headline":"그래프 탐색","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/05/20210805-DFS/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/08/05/20210805-DFS/","keywords":"자료구조, 알고리즘, DFS, 깊이 우선 탐색, BFS, 너비 우선 탐색"}</script>
-    <meta name="description" content="그래프 탐색깊이 우선 탐색 (Depth First Search)특징 깊은 것을 우선적으로 탐색한다.  전체 노드를 탐색하며, 모든 경우의 수를 탐색한다. 스택 자료구조에 기초하며, O(N)이 소요된다.  구현 모든 노드는 탐색되지 않은 상태임을 가정 스택에 삽입되면 탐색이 완료된 것으로 간주한다.   탐색을 시작할 노드를 스택에 삽입(탐색)한다. 시작 노드">
-<meta property="og:type" content="blog">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n그래프 탐색깊이 우선 탐색 (Depth First Search)특징\n깊은 것을 우선적으로 탐색한다. \n전체 노드를 탐색하며, 모든 경우의 수를 탐색한다.\n스택 자료구조에 기초하며, O(N)이 소요된다.\n\n구현\n모든 노드는 탐색되지 않은 상태임을 가정\n스택에 삽입되면 탐색이 완료된 것으로 간주한다.\n\n\n탐색을 시작할 노드를 스택에 삽입(탐색)한다.\n시작 노드와 인접한 노드를 순차적으로 스택에 삽입(탐색)한다.\n더이상 인접한 노드가 없을 때는 스택에서 순차적으로 노드를 꺼낸다.\n\n너비 우선 탐색 (Breadth First Search)특징\n너비를 우선으로 하여 탐색을 수행한다.\n전체 노드를 탐색하고, DFS보다 빠르다.\n큐 자료구조에 기초하며, O(N)이 소요된다.\n고급 그래프 탐색 알고리즘에서 자주 활용된다.  \n\n구현\n모든 노드는 탐색되지 않은 상태임을 가정\n스택에 삽입되면 탐색이 완료된 것으로 간주한다.\n\n\n탐색을 시작할 노드를 큐에 삽입한다.\n삽입한 노드를 꺼내고, 인접 노드를 삽입한다.\n2를 더이상 수행할 수 없을 때까지 반복한다.\n\n","dateCreated":"2021-08-05T13:45:16+09:00","dateModified":"2021-09-09T23:07:52+09:00","datePublished":"2021-08-05T13:45:16+09:00","description":"","headline":"그래프 탐색","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/05/20210805-DFS/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/08/05/20210805-DFS/","keywords":"자료구조, 알고리즘, DFS, 깊이 우선 탐색, BFS, 너비 우선 탐색"}</script>
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="그래프 탐색">
 <meta property="og:url" content="http://bedongryeol.github.io/08/05/20210805-DFS/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="그래프 탐색깊이 우선 탐색 (Depth First Search)특징 깊은 것을 우선적으로 탐색한다.  전체 노드를 탐색하며, 모든 경우의 수를 탐색한다. 스택 자료구조에 기초하며, O(N)이 소요된다.  구현 모든 노드는 탐색되지 않은 상태임을 가정 스택에 삽입되면 탐색이 완료된 것으로 간주한다.   탐색을 시작할 노드를 스택에 삽입(탐색)한다. 시작 노드">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2021-08-05T04:45:16.000Z">
-<meta property="article:modified_time" content="2021-08-05T05:02:09.094Z">
+<meta property="article:modified_time" content="2021-09-09T14:07:52.458Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="자료구조">
 <meta property="article:tag" content="알고리즘">
@@ -37,6 +35,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
     
     
     
@@ -61,6 +61,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -82,6 +86,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -89,8 +95,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -241,7 +265,9 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h1 id="그래프-탐색"><a href="#그래프-탐색" class="headerlink" title="그래프 탐색"></a>그래프 탐색</h1><h2 id="깊이-우선-탐색-Depth-First-Search"><a href="#깊이-우선-탐색-Depth-First-Search" class="headerlink" title="깊이 우선 탐색 (Depth First Search)"></a>깊이 우선 탐색 (Depth First Search)</h2><h3 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h3><ul>
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+<h1 id="그래프-탐색"><a href="#그래프-탐색" class="headerlink" title="그래프 탐색"></a>그래프 탐색</h1><h2 id="깊이-우선-탐색-Depth-First-Search"><a href="#깊이-우선-탐색-Depth-First-Search" class="headerlink" title="깊이 우선 탐색 (Depth First Search)"></a>깊이 우선 탐색 (Depth First Search)</h2><h3 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h3><ul>
 <li>깊은 것을 우선적으로 탐색한다. </li>
 <li>전체 노드를 탐색하며, 모든 경우의 수를 탐색한다.</li>
 <li>스택 자료구조에 기초하며, O(N)이 소요된다.</li>
@@ -552,11 +578,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

@@ -15,19 +15,17 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"연결리스트 (Linked List)특징\n\n데이터를 선형적으로 저장 및 처리한다.\n\n\n삽입과 삭제가 많은 경우 효율적이다.\n\n\n리스트의 중간 지점에 노드의 추가/삭제가 가능하여야 한다.\n\n\n메모리 공간을 미리 할당하는 배열을 보완하여 공간 낭비를 감소시킨다.\n\n\n✚ 배열 기반의 리스트\n\n장점 : 즉시 접근이 가능하다.\n\n단점 : 삽입 삭제가 비효율적이며 메모리 공간을 미리 할당한다.\n\n\n종류단일 연결리스트\n\n단일 연결리스트는 가장 앞의 노드를 가르키는 HEAD를 갖는다.\n\n각 노드별로 동적 메모리를 할당하여야 하며, 각 노드를 연결시켜주어야 한다.\n\n\n####︎︎ 노드 삽입\n\nHEAD 다음에 노드를 삽입한다고 가정\n\n‘HEAD의 *next’가 ‘삽입 노드의 값’을 가리키게 한다.\n\n‘삽입 노드의 *next’가 ‘기존 노드의 값’을 가리키게 한다.\n\n\n노드 삭제\n\nHEAD 다음에 위치한 노드를 삭제한다고 가정\n\n‘HEAD의 *next’가 ‘삭제될 노드의 다음 값’을 가리키게 한다.\n\n삭제된 노드의 동적 메모리를 해제하여 메모리 누수를 방지한다.\n\n\n","dateCreated":"2021-07-30T00:00:00+09:00","dateModified":"2021-08-04T21:49:42+09:00","datePublished":"2021-07-30T00:00:00+09:00","description":"연결리스트 (Linked List)특징\n\n데이터를 선형적으로 저장 및 처리한다.\n\n\n삽입과 삭제가 많은 경우 효율적이다.\n\n\n리스트의 중간 지점에 노드의 추가/삭제가 가능하여야 한다.\n\n\n메모리 공간을 미리 할당하는 배열을 보완하여 공간 낭비를 감소시킨다.\n\n\n✚ 배열 기반의 리스트\n\n장점 : 즉시 접근이 가능하다.\n\n단점 : 삽입 삭제가 비효율적이며 메모리 공간을 미리 할당한다.\n\n\n종류단일 연결리스트\n\n단일 연결리스트는 가장 앞의 노드를 가르키는 HEAD를 갖는다.\n\n각 노드별로 동적 메모리를 할당하여야 하며, 각 노드를 연결시켜주어야 한다.\n\n\n####︎︎ 노드 삽입","headline":"연결리스트","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/07/30/20210730-til1/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/07/30/20210730-til1/","keywords":"자료구조, 알고리즘, 리스트"}</script>
-    <meta name="description" content="연결리스트 (Linked List)특징  데이터를 선형적으로 저장 및 처리한다.   삽입과 삭제가 많은 경우 효율적이다.   리스트의 중간 지점에 노드의 추가&#x2F;삭제가 가능하여야 한다.   메모리 공간을 미리 할당하는 배열을 보완하여 공간 낭비를 감소시킨다.   ✚ 배열 기반의 리스트  장점 : 즉시 접근이 가능하다.  단점 : 삽입 삭제가 비효율적이며 메모">
-<meta property="og:type" content="blog">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\n\n연결리스트 (Linked List)특징\n\n데이터를 선형적으로 저장 및 처리한다.\n\n\n삽입과 삭제가 많은 경우 효율적이다.\n\n\n리스트의 중간 지점에 노드의 추가/삭제가 가능하여야 한다.\n\n\n메모리 공간을 미리 할당하는 배열을 보완하여 공간 낭비를 감소시킨다.\n\n\n✚ 배열 기반의 리스트\n\n장점 : 즉시 접근이 가능하다.\n\n단점 : 삽입 삭제가 비효율적이며 메모리 공간을 미리 할당한다.\n\n\n종류단일 연결리스트\n\n단일 연결리스트는 가장 앞의 노드를 가르키는 HEAD를 갖는다.\n\n각 노드별로 동적 메모리를 할당하여야 하며, 각 노드를 연결시켜주어야 한다.\n\n\n####︎︎ 노드 삽입\n\nHEAD 다음에 노드를 삽입한다고 가정\n\n‘HEAD의 *next’가 ‘삽입 노드의 값’을 가리키게 한다.\n\n‘삽입 노드의 *next’가 ‘기존 노드의 값’을 가리키게 한다.\n\n\n노드 삭제\n\nHEAD 다음에 위치한 노드를 삭제한다고 가정\n\n‘HEAD의 *next’가 ‘삭제될 노드의 다음 값’을 가리키게 한다.\n\n삭제된 노드의 동적 메모리를 해제하여 메모리 누수를 방지한다.\n\n\n","dateCreated":"2021-07-30T00:00:00+09:00","dateModified":"2021-09-09T23:07:22+09:00","datePublished":"2021-07-30T00:00:00+09:00","description":"","headline":"연결리스트","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/07/30/20210730-til1/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/07/30/20210730-til1/","keywords":"자료구조, 알고리즘, 리스트"}</script>
+    <meta property="og:type" content="blog">
 <meta property="og:title" content="연결리스트">
 <meta property="og:url" content="http://bedongryeol.github.io/07/30/20210730-til1/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:description" content="연결리스트 (Linked List)특징  데이터를 선형적으로 저장 및 처리한다.   삽입과 삭제가 많은 경우 효율적이다.   리스트의 중간 지점에 노드의 추가&#x2F;삭제가 가능하여야 한다.   메모리 공간을 미리 할당하는 배열을 보완하여 공간 낭비를 감소시킨다.   ✚ 배열 기반의 리스트  장점 : 즉시 접근이 가능하다.  단점 : 삽입 삭제가 비효율적이며 메모">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="http://bedongryeol.github.io/image/single.PNG">
 <meta property="og:image" content="http://bedongryeol.github.io/image/push.PNG">
 <meta property="og:image" content="http://bedongryeol.github.io/image/pop.PNG">
 <meta property="article:published_time" content="2021-07-29T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-08-04T12:49:42.688Z">
+<meta property="article:modified_time" content="2021-09-09T14:07:22.718Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="자료구조">
 <meta property="article:tag" content="알고리즘">
@@ -38,6 +36,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
     
     
     
@@ -62,6 +62,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -83,6 +87,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -90,8 +96,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -242,7 +266,11 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h1 id="연결리스트-Linked-List"><a href="#연결리스트-Linked-List" class="headerlink" title="연결리스트 (Linked List)"></a>연결리스트 (Linked List)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><blockquote>
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+
+
+<h1 id="연결리스트-Linked-List"><a href="#연결리스트-Linked-List" class="headerlink" title="연결리스트 (Linked List)"></a>연결리스트 (Linked List)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><blockquote>
 <ol>
 <li>데이터를 선형적으로 저장 및 처리한다.</li>
 </ol>
@@ -564,11 +592,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

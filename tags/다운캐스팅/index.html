@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -203,7 +229,7 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -235,33 +261,17 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <h1 id="다운캐스팅-DownCasting"><a href="#다운캐스팅-DownCasting" class="headerlink" title="다운캐스팅 (DownCasting)"></a>다운캐스팅 (DownCasting)</h1><h2 id="의미"><a href="#의미" class="headerlink" title="의미"></a>의미</h2><ul>
-<li>업캐스팅된 클래스를 원래의 타입으로 다시 형변환하는 것</li>
-<li>하위 클래스로의 형변환(다운캐스팅)은 명시적으로 해야한다.</li>
-<li>클래스B가 클래스A에게 상속받는 경우<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A instance = new B(); // 묵시적</span><br><span class="line">B instanceB = (B)instance; //명시적</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="유의-사항"><a href="#유의-사항" class="headerlink" title="유의 사항"></a>유의 사항</h2><ul>
-<li>클래스 B와 C가 클래스 A에게 상속 받는 경우<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// A의 타입으로 B, C의 인스턴스를 생성해준다.</span><br><span class="line">A ins1 = new B();</span><br><span class="line">A ins2 = new C();</span><br><span class="line"></span><br><span class="line">// C타입을 B타입인 ins3로 생성을 시도한다.</span><br><span class="line">// 실행전까지는 에러가 나지 않지만 실행 시 에러가 발생한다.</span><br><span class="line">B ins3 = (B)ins2;</span><br></pre></td></tr></table></figure></li>
-<li>아래와 같은 방어 코드로 에러를 방지할 수 있다.</li>
-<li><code>instanceof</code> : in2가 B클래스로 생성된 인스턴스인지 확인한다<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if ( in2 instanceof B )&#123;</span><br><span class="line">B ins3 = (B)ins2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
+                <div class="postShorten-excerpt">
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
+                        <a
+                            href="/08/12/20210812-DownCasting/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 다운캐스팅(DownCasting)"
+                        >
+                            계속 읽기
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/08/12/20210812-DownCasting/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                댓글 공유
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -292,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -203,7 +229,7 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -235,41 +261,17 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <h1 id="퀵-정렬-Quick-Sort"><a href="#퀵-정렬-Quick-Sort" class="headerlink" title="퀵 정렬 (Quick Sort)"></a>퀵 정렬 (Quick Sort)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul>
-<li>C++ Algorithm 라이브러리에서 sort()를 통해 사용할 수 있다.</li>
-<li>피벗을 기준으로 큰 값, 작은 값을 교체한다.</li>
-<li>완전 이진 트리와 흡사한 형태를 가진다.</li>
-</ul>
-<h2 id="퀵정렬을-통한-오름차순-구현"><a href="#퀵정렬을-통한-오름차순-구현" class="headerlink" title="퀵정렬을 통한 오름차순 구현"></a>퀵정렬을 통한 오름차순 구현</h2><h3 id="순서"><a href="#순서" class="headerlink" title="순서"></a>순서</h3><ul>
-<li>피벗 : 가장 왼쪽에 위치한 값이라 가정</li>
-<li>start : 피벗 다음에 위치한 값</li>
-<li>end : 가장 오른쪽에 위치한 값<blockquote>
-<ol>
-<li>start : 앞에서부터 뒤로 이동하며 피벗보다 큰 값을 찾음</li>
-<li>end : 뒤에서 앞으로 이동하며 피벗보다 작은 값을 찾음</li>
-<li>start와 end가 엇갈리는 시점에서 작은 값과 피벗을 교체함</li>
-<li>피벗을 기준으로 왼쪽, 오른쪽에서 다시 퀵정렬을 수행한다.</li>
-</ol>
-</blockquote>
-</li>
-</ul>
-
+                <div class="postShorten-excerpt">
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
+                        <a
+                            href="/08/04/20210804-til4/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 퀵 정렬"
+                        >
+                            계속 읽기
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/08/04/20210804-til4/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                댓글 공유
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -300,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         

@@ -30,6 +30,8 @@
         
     
     
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
     
     
     
@@ -50,6 +52,10 @@
             <!-- Define author's picture -->
 
 
+    
+        
+            
+        
     
 
 <header id="header" data-behavior="2">
@@ -72,6 +78,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
         </a>
     
 </header>
@@ -79,8 +87,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -236,31 +262,7 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h1 id="String-관련-Class"><a href="#String-관련-Class" class="headerlink" title="String 관련 Class"></a>String 관련 Class</h1><h2 id="String-클래스"><a href="#String-클래스" class="headerlink" title="String 클래스"></a>String 클래스</h2><h3 id="선언"><a href="#선언" class="headerlink" title="선언"></a>선언</h3><ol>
-<li><code>String str = new String(“abc”);</code><ul>
-<li>힙 메모리에 생성된다.</li>
-</ul>
-</li>
-<li><code>String str2 = “abc”;</code><ul>
-<li>상수 pool의 abc라는 String에 address가 생성된다.</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>두 개의 인스턴스는 다르다.</li>
-<li>힙 메모리는 생성될 때마다 다른 주소값을 가지지만, 상수 pool의 문자열은 모두 같은 주소를 가진다.</li>
-</ul>
-<h3 id="메모리"><a href="#메모리" class="headerlink" title="메모리"></a>메모리</h3><ul>
-<li>한번 생성된 String은 immutable(불변)이다.</li>
-<li>String을 연결하면 기존의 String에 연결되는 것이 아닌 새로운 문자열을 위한 메모리가 생성된다.<details>
-<summary>예제 코드 확인하기</summary></details></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String java = new String(“java”); </span><br><span class="line">String android = new String(“android”); </span><br><span class="line"></span><br><span class="line">java = java.concat(android) // 위 2가지 문자열을 합해주고 java가 가리키게 한다.</span><br><span class="line"></span><br><span class="line">// 문자열 java, android, javaandroid을 위한 메모리가 계속해서 할당되어 있고, java는 “java”가 아닌 “javaandroid”를 가리킨다.</span><br><span class="line"></span><br><span class="line">// 기존 메모리에 덮어쓰는 것이 아닌 새로운 메모리를 할당한다.</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="StringBuilder-StringBuffer"><a href="#StringBuilder-StringBuffer" class="headerlink" title="StringBuilder, StringBuffer"></a>StringBuilder, StringBuffer</h2><blockquote>
-<p>위 메모리 낭비를 해결하기 위해 <code>StringBuilder</code>, <code>StringBuffer</code>를 활용한다.</p>
-</blockquote>
+                    <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
                     
                         <a
                             href="/08/19/String/"
@@ -300,11 +302,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
         
             <h4 id="about-card-name">Dongryeol Jeong</h4>
         
