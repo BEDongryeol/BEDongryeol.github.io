@@ -1,6 +1,244 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Class 클래스 - Fintech - Backend Developer</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="DonryeorryBehappy"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DonryeorryBehappy"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Class 클래스 사용하기 자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.  클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.   컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.   클래스 동적 로딩Class.forName(“클래스 이름”) Class c &amp;#x3D; Class.f"><meta property="og:type" content="blog"><meta property="og:title" content="Class 클래스"><meta property="og:url" content="http://bedongryeol.github.io/08/19/Class/"><meta property="og:site_name" content="Fintech - Backend Developer"><meta property="og:description" content="Class 클래스 사용하기 자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.  클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.   컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.   클래스 동적 로딩Class.forName(“클래스 이름”) Class c &amp;#x3D; Class.f"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://bedongryeol.github.io/img/og_image.png"><meta property="article:published_time" content="2021-08-19T10:11:26.000Z"><meta property="article:modified_time" content="2021-08-19T10:13:41.450Z"><meta property="article:author" content="Dongryeol Jeong"><meta property="article:tag" content="Java"><meta property="article:tag" content="자바"><meta property="article:tag" content="Class 클래스"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/19/Class/"},"headline":"Class 클래스","image":["http://bedongryeol.github.io/img/og_image.png"],"datePublished":"2021-08-19T10:11:26.000Z","dateModified":"2021-08-19T10:13:41.450Z","author":{"@type":"Person","name":"Dongryeol Jeong"},"publisher":{"@type":"Organization","name":"Fintech - Backend Developer","logo":{"@type":"ImageObject","url":"http://bedongryeol.github.io/img/logo.svg"}},"description":"Class 클래스 사용하기 자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.  클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.   컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.   클래스 동적 로딩Class.forName(“클래스 이름”) Class c &#x3D; Class.f"}</script><link rel="canonical" href="http://bedongryeol.github.io/08/19/Class/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Fintech - Backend Developer" type="application/atom+xml">
-</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-08-19T10:11:26.000Z" title="2021. 8. 19. 오후 7:11:26">2021-08-19</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-08-19T10:13:41.450Z" title="2021. 8. 19. 오후 7:13:41">2021-08-19</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile">Class 클래스</h1><div class="content"><h1 id="Class-클래스-사용하기"><a href="#Class-클래스-사용하기" class="headerlink" title="Class 클래스 사용하기"></a>Class 클래스 사용하기</h1><ul>
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Fintech - Backend Developer">
+    <title>Class 클래스 - Fintech - Backend Developer</title>
+    <meta name="author" content="Dongryeol Jeong">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"Class 클래스 사용하기\n자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.\n\n클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.\n\n\n컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.\n\n\n클래스 동적 로딩Class.forName(“클래스 이름”)\nClass c = Class.forName(&quot;java.lang.String&quot;)\n동적 로딩\n\n일반적으로 Class가 Local에 있는지 살펴보고 binding되어 type으로 정의하여 변수가 사용된다.\nCompile 할 때가 아닌, 실질적으로 실행할 때 필요한 클래스를 binding하는 방법\nex) JDBC 드라이버에서 실행 전까지 DB의 라이브러리가 어떤 것인지 모르고, property파일 등을 읽을 때 변수로 갖고 있다가 Oracle 드라이버 이름을 String변수에 넣어준다.\n\n\n\n장점 : 동적으로  원하는 클래스를 로딩할 수 있다.\n단점 : 로딩할 때 Local에 class나 라이브러리가 없는 등 오류가 발생하면 시스템이 다운될 수 있다.\n\n사용 방법\n주로 remote에 있는 class를 호출할 때 사용한다.\nLocal에 클래스가 없을 때\n\n\n아래 코드를 reflection 프로그래밍이라고 한다.\n예제 코드 확인하기\n\n1234567891011121314151617181920212223package ch04;import java.lang.reflect.Constructor;import java.lang.reflect.Method;public class StringTest &#123;    public static void main(String[] args) throws ClassNotFoundException &#123;        Class c = Class.forName(&quot;java.lang.String&quot;);                // Constructor의 목록을 배열로 가져온다.        Constructor[] cons = c.getConstructors();        for (Constructor co : cons) &#123;            System.out.println(co);        &#125;        // 메소드의 목록을 가져온다.        Method[] m = c.getMethods();        for (Method mth : m) &#123;            System.out.println(mth);        &#125;    &#125;&#125;\n\n\n\n인스턴스 생성\nreflection 프로그래밍\nClass 클래스를 사용하여 클래스의 정보 등을 알 수 있고, 인스턴스를 생성, 메서드를 호출하는 방식의 프로그래밍\n로컬 메모리에 객체가 없는 경우\n원격 프로그래밍 (서로 다른 프로세스)\n객체의 타입을 알 수 없는 경우\n\n\njava.lang.reflect 패키지의 클래스를 활용하여 사용\n자료형을 알고 있는 경우에는 사용하지 않음\n\n\n\n\n 예제 코드 확인하기 \n\n123456789101112131415161718192021222324252627282930313233343536package ch04;import java.lang.reflect.Constructor;import java.lang.reflect.InvocationTargetException;public class ClassTest &#123;    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException &#123;        // 1. Class 이름으로 invoke(호출)하기        Class c1 = Class.forName(&quot;ch04.Person&quot;);        // Person 타입으로 Casting        Person person = (Person)c1.newInstance();        person.setName(&quot;Lee&quot;);        System.out.println(person);        // 2. 이미 생성된 객체로 invoke        Class c2 = person.getClass();        // 2-1. 인스턴스화, Person타입으로 Casting        Person person2 = (Person)c2.newInstance();        person2.setName(&quot;Kim&quot;);        System.out.println(person2);        // 3. 생성자를 호출하여 객체 생성        Class[] classArray = &#123;String.class&#125;;        Constructor cons = c2.getConstructor(classArray);        // 3-1. Object 배열 형태        Object[] initargs = &#123;&quot;Jeong&quot;&#125;;        // Line23에서 불러온 생성자로 객체 생성        Person person3 = (Person)cons.newInstance(initargs);        System.out.println(person3);    &#125;&#125;\n\n\n\n","dateCreated":"2021-08-19T19:11:26+09:00","dateModified":"2021-08-19T19:13:41+09:00","datePublished":"2021-08-19T19:11:26+09:00","description":"Class 클래스 사용하기\n자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.\n\n클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.\n\n\n컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.\n\n\n클래스 동적 로딩Class.forName(“클래스 이름”)\nClass c = Class.forName(&quot;java.lang.String&quot;)\n동적 로딩\n\n일반적으로 Class가 Local에 있는지 살펴보고 binding되어 type으로 정의하여 변수가 사용된다.\nCompile 할 때가 아닌, 실질적으로 실행할 때 필요한 클래스를 binding하는 방법\nex) JDBC 드라이버에서 실행 전까지 DB의 라이브러리가 어떤 것인지 모르고, property파일 등을 읽을 때 변수로 갖고 있다가 Oracle 드라이버 이름을 String변수에 넣어준다.\n\n\n\n장점 : 동적으로  원하는 클래스를 로딩할 수 있다.\n단점 : 로딩할 때 Local에 class나 라이브러리가 없는 등 오류가 발생하면 시스템이 다운될 수 있다.\n\n사용 방법\n주로 remote에 있는 class를 호출할 때 사용한다.\nLocal에 클래스가 없을 때\n\n\n아래 코드를 reflection 프로그래밍이라고 한다.\n예제 코드 확인하기\n\n1234567891011121314151617181920212223package ch04;import java.lang.reflect.Constructor;import java.lang.reflect.Method;public class StringTest &#123;    public static void main(String[] args) throws ClassNotFoundException &#123;        Class c = Class.forName(&quot;java.lang.String&quot;);                // Constructor의 목록을 배열로 가져온다.        Constructor[] cons = c.getConstructors();        for (Constructor co : cons) &#123;            System.out.println(co);        &#125;        // 메소드의 목록을 가져온다.        Method[] m = c.getMethods();        for (Method mth : m) &#123;            System.out.println(mth);        &#125;    &#125;&#125;\n\n\n\n인스턴스 생성\nreflection 프로그래밍\nClass 클래스를 사용하여 클래스의 정보 등을 알 수 있고, 인스턴스를 생성, 메서드를 호출하는 방식의 프로그래밍\n로컬 메모리에 객체가 없는 경우\n원격 프로그래밍 (서로 다른 프로세스)\n객체의 타입을 알 수 없는 경우\n\n\njava.lang.reflect 패키지의 클래스를 활용하여 사용\n자료형을 알고 있는 경우에는 사용하지 않음\n\n\n","headline":"Class 클래스","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/19/Class/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/08/19/Class/","keywords":"Java, 자바, Class 클래스"}</script>
+    <meta name="description" content="Class 클래스 사용하기 자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.  클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.   컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.   클래스 동적 로딩Class.forName(“클래스 이름”) Class c &#x3D; Class.f">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Class 클래스">
+<meta property="og:url" content="http://bedongryeol.github.io/08/19/Class/index.html">
+<meta property="og:site_name" content="Fintech - Backend Developer">
+<meta property="og:description" content="Class 클래스 사용하기 자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.  클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.   컴파일 된 class 파일을 로드하여 객체를 동적으로 로드하고, 정보를 가져오는 메서드가 제공된다.   클래스 동적 로딩Class.forName(“클래스 이름”) Class c &#x3D; Class.f">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-08-19T10:11:26.000Z">
+<meta property="article:modified_time" content="2021-08-19T10:13:41.450Z">
+<meta property="article:author" content="Dongryeol Jeong">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="자바">
+<meta property="article:tag" content="Class 클래스">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-sqim1sfvlrl9cczsjyssnk4uipcaudaclj78xhhuhwr57rvgzccjmhkhcg1e.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Fintech - Backend Developer
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Class 클래스
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2021-08-19T19:11:26+09:00">
+	
+		    2021/08/19
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="Class-클래스-사용하기"><a href="#Class-클래스-사용하기" class="headerlink" title="Class 클래스 사용하기"></a>Class 클래스 사용하기</h1><ul>
 <li><p>자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.</p>
 <ul>
 <li>클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.</li>
@@ -54,48 +292,331 @@
 </details>
 
 
-</div><div class="article-licensing box"><div class="licensing-title"><p>Class 클래스</p><p><a href="http://bedongryeol.github.io/08/19/Class/">http://bedongryeol.github.io/08/19/Class/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Dongryeol Jeong</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2021-08-19</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-08-19</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Java/">Java</a><a class="link-muted mr-2" rel="tag" href="/tags/%EC%9E%90%EB%B0%94/">자바</a><a class="link-muted mr-2" rel="tag" href="/tags/Class-%ED%81%B4%EB%9E%98%EC%8A%A4/">Class 클래스</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/08/20/JavaArray/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">자바 배열 구현</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/08/19/JavaClasses/"><span class="level-item">자바의 클래스</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/profile.jpg" alt="Dongryeol Jeong"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Dongryeol Jeong</p><p class="is-size-6 is-block">Fintech-Backend</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Seoul, South Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">36</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">62</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/BEDongryeol" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/BEDongryeol"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="/"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/BEDongryeol" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">GitHub</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Basic/"><span class="level-start"><span class="level-item">Basic</span></span><span class="level-end"><span class="level-item tag">20</span></span></a><ul><li><a class="level is-mobile" href="/categories/Basic/Java/"><span class="level-start"><span class="level-item">Java</span></span><span class="level-end"><span class="level-item tag">20</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"><span class="level-start"><span class="level-item">자료구조</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:13.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/DecoratorPattern/">데코레이터 패턴(Decorator Pattern)</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:07.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/Serial/">직렬화 (Serialization)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:02.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/Thread/">쓰레드 (Thread)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-02T12:44:47.000Z">2021-09-02</time></p><p class="title"><a href="/09/02/IOStream/">IOStream</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-08-31T07:06:50.000Z">2021-08-31</time></p><p class="title"><a href="/08/31/Log/">로그 (Log)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a><p class="is-size-7"><span>&copy; 2021 Dongryeol Jeong</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "This website uses cookies to improve your experience.",
-          dismiss: "Got it!",
-          allow: "Allow cookies",
-          deny: "Decline",
-          link: "Learn more",
-          policy: "Cookie Policy",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
-        });</script></body></html>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">태그</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/Class-%ED%81%B4%EB%9E%98%EC%8A%A4/" rel="tag">Class 클래스</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/Java/" rel="tag">Java</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/%EC%9E%90%EB%B0%94/" rel="tag">자바</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/08/20/JavaArray/"
+                    data-tooltip="자바 배열 구현"
+                    aria-label="이전: 자바 배열 구현"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/08/19/JavaClasses/"
+                    data-tooltip="자바의 클래스"
+                    aria-label="다음: 자바의 클래스"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/08/19/Class/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/08/19/Class/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/08/19/Class/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2021 Dongryeol Jeong. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/08/20/JavaArray/"
+                    data-tooltip="자바 배열 구현"
+                    aria-label="이전: 자바 배열 구현"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/08/19/JavaClasses/"
+                    data-tooltip="자바의 클래스"
+                    aria-label="다음: 자바의 클래스"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/08/19/Class/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/08/19/Class/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/08/19/Class/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/08/19/Class/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/08/19/Class/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/08/19/Class/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Dongryeol Jeong</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/green.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ykixqvf3qqvhboif10iqwrzvzbwvwkviecn1aeoflkjcszizeoypxail33s5.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

@@ -1,6 +1,243 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>IOStream - Fintech - Backend Developer</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="DonryeorryBehappy"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DonryeorryBehappy"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="IO 스트림IO Stream (입출력 스트림) 스트림 : 네트워크에서 자료의 흐름이 물의 흐름과 같다는 비유에서 유래 java의 입출력을 위한 스트림 입출력 매개체에 독립적으로 일관성있는 입출력을 제공한다. 키보드, 마우스, 네트워크, 메모리 등    구분대상 기준 입력과 출력 스트림은 독립적으로 구분된다.   대상 기준에 따른 스트림  입력 스트림(입력용"><meta property="og:type" content="blog"><meta property="og:title" content="IOStream"><meta property="og:url" content="http://bedongryeol.github.io/09/02/IOStream/"><meta property="og:site_name" content="Fintech - Backend Developer"><meta property="og:description" content="IO 스트림IO Stream (입출력 스트림) 스트림 : 네트워크에서 자료의 흐름이 물의 흐름과 같다는 비유에서 유래 java의 입출력을 위한 스트림 입출력 매개체에 독립적으로 일관성있는 입출력을 제공한다. 키보드, 마우스, 네트워크, 메모리 등    구분대상 기준 입력과 출력 스트림은 독립적으로 구분된다.   대상 기준에 따른 스트림  입력 스트림(입력용"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://bedongryeol.github.io/img/og_image.png"><meta property="article:published_time" content="2021-09-02T12:44:47.000Z"><meta property="article:modified_time" content="2021-09-06T05:07:21.270Z"><meta property="article:author" content="Dongryeol Jeong"><meta property="article:tag" content="IOStream"><meta property="article:tag" content="입출력 스트림"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/09/02/IOStream/"},"headline":"IOStream","image":["http://bedongryeol.github.io/img/og_image.png"],"datePublished":"2021-09-02T12:44:47.000Z","dateModified":"2021-09-06T05:07:21.270Z","author":{"@type":"Person","name":"Dongryeol Jeong"},"publisher":{"@type":"Organization","name":"Fintech - Backend Developer","logo":{"@type":"ImageObject","url":"http://bedongryeol.github.io/img/logo.svg"}},"description":"IO 스트림IO Stream (입출력 스트림) 스트림 : 네트워크에서 자료의 흐름이 물의 흐름과 같다는 비유에서 유래 java의 입출력을 위한 스트림 입출력 매개체에 독립적으로 일관성있는 입출력을 제공한다. 키보드, 마우스, 네트워크, 메모리 등    구분대상 기준 입력과 출력 스트림은 독립적으로 구분된다.   대상 기준에 따른 스트림  입력 스트림(입력용"}</script><link rel="canonical" href="http://bedongryeol.github.io/09/02/IOStream/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Fintech - Backend Developer" type="application/atom+xml">
-</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-09-02T12:44:47.000Z" title="2021. 9. 2. 오후 9:44:47">2021-09-02</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-09-06T05:07:21.270Z" title="2021. 9. 6. 오후 2:07:21">2021-09-06</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile">IOStream</h1><div class="content"><h1 id="IO-스트림"><a href="#IO-스트림" class="headerlink" title="IO 스트림"></a>IO 스트림</h1><h2 id="IO-Stream-입출력-스트림"><a href="#IO-Stream-입출력-스트림" class="headerlink" title="IO Stream (입출력 스트림)"></a>IO Stream (입출력 스트림)</h2><ul>
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Fintech - Backend Developer">
+    <title>IOStream - Fintech - Backend Developer</title>
+    <meta name="author" content="Dongryeol Jeong">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"IO 스트림IO Stream (입출력 스트림)\n스트림 : 네트워크에서 자료의 흐름이 물의 흐름과 같다는 비유에서 유래\njava의 입출력을 위한 스트림\n입출력 매개체에 독립적으로 일관성있는 입출력을 제공한다.\n키보드, 마우스, 네트워크, 메모리 등\n\n\n\n구분대상 기준\n입력과 출력 스트림은 독립적으로 구분된다.\n\n\n대상 기준에 따른 스트림\n\n입력 스트림(입력용)\nFileInputStream\nFileReader\nBufferedInputStream\nBufferedReader …\n\n출력 스트림(출력용)\nFileOutputStream\nFileWriter\nBufferedOutputStream\nBufferedWriter …\n\n자료의 종류\n자료의 종류에 따른 스트림\n\n바이트 스트림\n동영상, 음악 파일, 실행 파일 등을 읽고 쓸 때 사용\nFileInputStream\nFileOutputStream\nBufferedInputStream\nBufferedOutputStream …\n\n문자 스트림\n바이트 단위로 자료를 처리하면 문자는 깨진다.\n인코딩에 맞게 2바이트 이상으로 처리할 때 사용\nFileReader\nFileWriter\nBufferedReader\nBufferedWriter …\n\n기능\n기능에 따른 스트림\n\n기반 스트림\n대상에 직접 자료를 읽고 쓰는 기능의 스트림\nFileInputStream\nFileOutputStream\nFileReader\nFileWriter\n\n보조 스트림\n실제로 읽고 쓰는 기능은 없으나, 다른 스트림을 감싸서(wrap), 다른 스트림이 하는 일을 보조해준다.\n다른 기반 스트림이나, 보조 스트림을 생성자의 매개변수로 갖는다.\nInputStreamReader\nOutputStreamWriter\nBufferedInputStream\nBufferedOutputStream\n\n표준 입출력 스트림\nSystem.out\n\n표준 출력(모니터) 스트림\nSystem.out.println(&quot;출력 메세지&quot;);\n\n\nSystem.in\n\n표준 입력(키보드) 스트림\nint d = System.in.read() // 한 바이트 읽기\n한 바이트로 읽으면 한글과 같은 2바이트 이상은 불러올 수 없기 때문에 보조스트림으로 감싸주어야한다.\n\n\n\n\nSystem.err\n\n표준 에러 출력(모니터) 스트림\nSystem.err.println(&quot;에러 메세지&quot;);\n\n\n\n\n한 바이트 읽기\n\n1234567891011121314151617181920212223package ch13;import java.io.IOException;import java.io.InputStreamReader;public class SystemInTest &#123;    public static void main(String[] args) &#123;        System.out.println(&quot;알파벳 여러 개를 쓰고 [Enter]를 누르세요&quot;);        int i;        try &#123;            InputStreamReader irs = new InputStreamReader(System.in);            while ((i = irs.read()) != &#x27;\\n&#x27;) &#123;                System.out.print((char)i);            &#125;        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;    &#125;&#125;\n\n\n\n보조 스트림으로 감싸기\n\n1234567891011121314151617181920212223package ch13;import java.io.IOException;import java.io.InputStreamReader;public class SystemInTest &#123;    public static void main(String[] args) &#123;        System.out.println(&quot;알파벳 여러 개를 쓰고 [Enter]를 누르세요&quot;);        int i;        try &#123;            InputStreamReader irs = new InputStreamReader(System.in);            while ((i = irs.read()) != &#x27;\\n&#x27;) &#123;                System.out.println((char)i);            &#125;        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;    &#125;&#125;\n\n\n바이트 단위 입출력 스트림InputStream\n바이트 단위 입력 스트림의 최상위 추상 클래스\n다양한 추상 메서드들이 선언되어 있고, 하위 스트림 클래스가 상속받아서 구현한다.\n\n하위 클래스\nFileInputStream\n파일에서 바이트 단위로 자료를 읽는다.\n\n\nByteArrayInputStream\n바이트 배열 메모리에서 바이트 단위로 자료를 읽는다.\n\n\nFilterInputStream\n기반 스트림에서 자료를 읽을 때 추가 기능을 제공하는 보조 스트림의 상위 클래스\n\n\n\n주요 메서드\nint read() \n입력 스트림으로부터 한 바이트의 자료를 읽고, 바이트 수를 반환\n\n\nint read(byte b[])\nb 크기의 자료를 읽고, 바이트 수를 반환\n\n\nint read(byte b[], int off, int len)\nb 크기 자료에서의 인덱스 0으로부터 Off만큼 떨어진 곳부터 len까지 자료를 읽고, 바이트 수를 반환\n\n\nvoid close()\n파일, 스트림을 불러왔을 때는 항상 close를 해주어야한다.\n\n\n\n\nint read() 하나씩 출력하기\n\n1234567891011121314151617181920212223242526272829303132333435package ch14;import java.io.FileInputStream;import java.io.IOException;public class FileInputStreamTest &#123;    public static void main(String[] args) &#123;        FileInputStream fis = null;        try &#123;            fis = new FileInputStream(&quot;input.txt&quot;);            System.out.println((char)fis.read());            System.out.println((char)fis.read());            System.out.println((char)fis.read());        &#125; catch (IOException e) &#123;            System.out.println(e);            try &#123;                fis.close();            &#125; catch (IOException ioException) &#123;                System.out.println(ioException);            &#125; catch (Exception e2) &#123;                System.out.println(e2);            &#125;        &#125; finally &#123;            try &#123;                fis.close();            &#125; catch (IOException e) &#123;                System.out.println(e);            &#125; catch (Exception e2) &#123;                System.out.println(e2);            &#125;        &#125;        System.out.println(&quot;end&quot;);    &#125;&#125;\n\n\n\n파일 내 데이터 모두 불러오기\n\n1234567891011121314151617181920package ch14;import java.io.FileInputStream;import java.io.FileNotFoundException;import java.io.IOException;public class FileTest &#123;    public static void main(String[] args) &#123;        // try의 resource에 파일을 넣어주면 AutoClosable이 되어 close를 하지 않아도 된다.        int i ;        try(FileInputStream fis = new FileInputStream(&quot;input.txt&quot;))&#123;            // read()메서드는 파일의 끝에서 -1을 반환해준다.            while ( (i = fis.read()) != -1 )&#123;                System.out.print((char)i);            &#125;        &#125; catch (IOException e) &#123;            System.out.println(e);        &#125;    &#125;&#125;\n\n\n\nint read(바이트 배열) 출력하기\n\n123456789101112131415161718192021222324package ch14;import java.io.FileInputStream;import java.io.IOException;public class FileTest2 &#123;    public static void main(String[] args) &#123;        int i;        try(FileInputStream fis = new FileInputStream(&quot;input2.txt&quot;);)&#123;            byte[] bs = new byte[10];            while ((i = fis.read(bs)) != -1) &#123;                for (int j = 0 ; j &lt; i ; j++) &#123;                    System.out.print((char)bs[j]);                &#125;                System.out.println(&quot; : &quot; + i + &quot;바이트 읽음&quot;);            &#125;        &#125; catch (IOException e) &#123;            System.out.println(e);        &#125;    &#125;&#125;\n\n\nOutputStream\n바이트 단위 출력 스트림의 최상위 클래스\nInputStream과 같이 하위 스트림이 상속받아 구현한다.\n\n하위 클래스\nFileOutputStream\n\n파일에서 바이트 단위로 자료를 쓴다.\n파일을 불러올 때 해당 이름의 파일이 없으면 생성한다.\n\ndefault : Overwrite(덮어쓰기, 기존 데이터는 무시한다.)\nappend를 true로 설정하여 이어서 작성할 수 있다.\nnew FileOutputStrem(&quot;a.txt&quot;, true);\n\n\n\n\n\n\n\nByteArrayOutputStream\n\nbyte배열에서 바이트 단위로 자료를 쓴다.\n\n\nFilterOutputStream\n\n기반 스트림에서 자료를 쓸 때 추가 기능을 제공하는 보조 스트림의 상위 클래스\n\n\n\n주요 메서드\nint write() \n한 바이트를 출력한다.\n\n\nint write(byte b[])\nb[] 크기의 자료를 출력한다.\n\n\nint write(byte b[], int off, int len)\nb 크기 자료에서의 인덱스 0으로부터 Off만큼 떨어진 곳부터 len까지 자료를 출력\n\n\nint flush()\n네트워크에서 socket을 쓰면 socket의 출력용 버퍼테 일정 크기의 데이터가 쌓이면 전송이된다.\n강제적으로 버퍼를 비워 자료를 출력하게한다.\n\n\nvoid close()\n리소스를 닫으면서 flush()를 수행한다.\n\n\n\n\nByte별로 write하기\n\n123456789101112131415161718package ch14;import java.io.FileOutputStream;import java.io.IOException;public class FileOutputTest &#123;    public static void main(String[] args) &#123;        try (FileOutputStream fos = new FileOutputStream(&quot;output.txt&quot;))&#123;            fos.write(65);            fos.write(66);            fos.write(67);        &#125; catch (IOException e)&#123;            System.out.println(e);        &#125;        System.out.println(&quot;end&quot;);    &#125;&#125;\n\n\n\nByte 배열 write하기\n\n1234567891011121314151617181920212223242526package ch14;import java.io.FileNotFoundException;import java.io.FileOutputStream;import java.io.IOException;public class FileOutputTest2 &#123;    public static void main(String[] args) throws FileNotFoundException &#123;        FileOutputStream fos = new FileOutputStream(&quot;output2.txt&quot;);        try(fos)&#123; //java9 이후로 제공            byte[] bs = new byte[26];            byte data = 65; // ASCII &#x27;A&#x27;값            for (int j = 0 ; j &lt; bs.length ; j++)&#123;                bs[j] = data;                data++;            &#125;            fos.write(bs);        &#125;catch(IOException e) &#123;            System.out.println(e);        &#125;        System.out.println(&quot;완료되었습니다.&quot;);    &#125;&#125;\n\n\n문자단위 입출력 스트림Reader\n문자 단위 입력 스트림의 최상위 추상 클래스\n추상 메서드를 하위 스트림이 상속받아 구현한다.\n\n하위 클래스\nFileReader\n파일에서 문자 단위로 읽는 스트림 클래스\n\n\nInputStreamReader\n보조 스트림\n바이트 단위로 읽은 자료(스트림)를 문자로 변환\n\n\nBufferedReader\n보조 스트림\n배열을 제공하여 한꺼번에 읽을 수 있는 기능을 제공\n\n\n\n주요 메서드\n문자, 문자열을 읽어 온다.\nint read()\nint read(char[] buf)\nint read(char[] buf, int off, int len)\nvoid close()\n\n\n예제 코드 확인하기\n\n12345678910111213141516171819package Online;import java.io.FileReader;import java.io.IOException;public class IOTest &#123;    public static void main(String[] args) &#123;        try(FileReader fr = new FileReader(&quot;reader.txt&quot;))&#123;            int i;            while ((i = fr.read()) != -1) &#123;                System.out.print((char) i);            &#125;        &#125; catch (IOException e) &#123;        &#125;    &#125;&#125;\n\n\nWriter\n문자 단위 출력 스트림의 최상위 클래스\n추상 메서드를 하위 스트림이 상속받아 구현한다.\n\n하위 클래스\nFileWriter\nOutputStreamWriter\nBuffered Writer\n\n주요 메서드\nint write(int c)\nint write(char[] buf)\nint write(char[] buf, int off, int len)\nint write(String str)\nint write(String str, int off, int len)\nint flush()\nvoid close()\n\n\n예제 코드 확인하기\n\n12345678910111213141516171819202122package Online;import java.io.FileWriter;import java.io.IOException;public class WriterTest &#123;    public static void main(String[] args) &#123;        try (FileWriter fw = new FileWriter(&quot;writer.txt&quot;)) &#123;            fw.write(&#x27;A&#x27;);            char buf[] = &#123;&#x27;B&#x27;, &#x27;C&#x27;, &#x27;D&#x27;, &#x27;E&#x27;, &#x27;F&#x27;&#125;;            fw.write(buf);            fw.write(&quot;안녕하세요.&quot;);            fw.write(buf, 1, 2);            fw.write(&quot;65&quot;);        &#125;catch (IOException e) &#123;        &#125;    &#125;&#125;\n\n\n보조 스트림\n실제 읽고 쓰는 스트림이 아닌 보조 기능을 제공하는 스트림이다.\nFileInputStream과 FileOutputStream의 하위 클래스\n\n\n여러 기능을 조합하여 사용할 수 있는 Decorator Pattern으로 구현된다.\n생성자의 매개 변수로 파일 이름이 아닌 기반 스트림, 보조 스트림을 갖는다.\n\nInputStreamReader, OutputStreamReader\n예제코드 확인하기\n\n1234567891011121314151617181920package Online;import java.io.FileInputStream;import java.io.IOException;import java.io.InputStreamReader;public class InputStreamReaderTest &#123;    public static void main(String[] args) &#123;        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(&quot;reader.txt&quot;))) &#123;            int i;            while( (i = isr.read()) != -1) &#123;                System.out.print((char)i);            &#125;        &#125; catch(IOException e) &#123;        &#125;    &#125;&#125;\n\n\nBufferedInputStream, BufferedOutputStream\n예제코드 확인하기\n\n123456789101112131415161718192021222324252627package Online;import java.io.*;public class CopyTest &#123;    public static void main(String[] args) &#123;        long millisecond = 0;        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(&quot;reader.txt&quot;));             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(&quot;copy.txt&quot;))) &#123;            millisecond = System.currentTimeMillis();            int i;            while ((i = bis.read()) != -1) &#123;                bos.write(i);            &#125;            millisecond = System.currentTimeMillis() - millisecond;        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;        System.out.println(millisecond + &quot;소요되었습니다.&quot;);    &#125;&#125;\n\n\nDataInputStream, DataOutputStream\n자료가 메모리에 저장된 상태 그대로 읽거나 쓰는 스트림\n자료형, 크기를 유지하여 읽고 쓴다.\n\n\n기록한 자료형 그대로 불러와야한다.\n\n\n\n\n1234567891011121314151617181920212223242526272829303132package Online;import java.io.*;public class DataIOTest &#123;    public static void main(String[] args) &#123;        try (FileOutputStream fos = new FileOutputStream(&quot;data.txt&quot;);             DataOutputStream dos = new DataOutputStream(fos)) &#123;            dos.writeByte(100);            dos.writeChar(&#x27;A&#x27;);            dos.writeInt(10);            dos.writeFloat(3.14f);            dos.writeUTF(&quot;Test&quot;);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;        try (FileInputStream fis = new FileInputStream(&quot;data.txt&quot;);             DataInputStream dis = new DataInputStream(fis))        &#123;            System.out.println(dis.readByte());            System.out.println(dis.readChar());            System.out.println(dis.readInt());            System.out.println(dis.readFloat());            System.out.println(dis.readUTF());        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;    &#125;&#125;\n\n","dateCreated":"2021-09-02T21:44:47+09:00","dateModified":"2021-09-06T21:42:55+09:00","datePublished":"2021-09-02T21:44:47+09:00","description":"IO 스트림IO Stream (입출력 스트림)\n스트림 : 네트워크에서 자료의 흐름이 물의 흐름과 같다는 비유에서 유래\njava의 입출력을 위한 스트림\n입출력 매개체에 독립적으로 일관성있는 입출력을 제공한다.\n키보드, 마우스, 네트워크, 메모리 등\n\n\n\n구분대상 기준\n입력과 출력 스트림은 독립적으로 구분된다.\n\n\n대상 기준에 따른 스트림\n\n입력 스트림(입력용)\nFileInputStream\nFileReader\nBufferedInputStream\nBufferedReader …\n\n출력 스트림(출력용)\nFileOutputStream\nFileWriter\nBufferedOutputStream\nBufferedWriter …\n\n자료의 종류\n자료의 종류에 따른 스트림\n\n바이트 스트림\n동영상, 음악 파일, 실행 파일 등을 읽고 쓸 때 사용\nFileInputStream\nFileOutputStream\nBufferedInputStream\nBufferedOutputStream …\n\n문자 스트림\n바이트 단위로 자료를 처리하면 문자는 깨진다.\n인코딩에 맞게 2바이트 이상으로 처리할 때 사용\nFileReader\nFileWriter\nBufferedReader\nBufferedWriter …\n\n기능","headline":"IOStream","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/09/02/IOStream/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/09/02/IOStream/","keywords":"IOStream, 입출력 스트림"}</script>
+    <meta name="description" content="IO 스트림IO Stream (입출력 스트림) 스트림 : 네트워크에서 자료의 흐름이 물의 흐름과 같다는 비유에서 유래 java의 입출력을 위한 스트림 입출력 매개체에 독립적으로 일관성있는 입출력을 제공한다. 키보드, 마우스, 네트워크, 메모리 등    구분대상 기준 입력과 출력 스트림은 독립적으로 구분된다.   대상 기준에 따른 스트림  입력 스트림(입력용">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="IOStream">
+<meta property="og:url" content="http://bedongryeol.github.io/09/02/IOStream/index.html">
+<meta property="og:site_name" content="Fintech - Backend Developer">
+<meta property="og:description" content="IO 스트림IO Stream (입출력 스트림) 스트림 : 네트워크에서 자료의 흐름이 물의 흐름과 같다는 비유에서 유래 java의 입출력을 위한 스트림 입출력 매개체에 독립적으로 일관성있는 입출력을 제공한다. 키보드, 마우스, 네트워크, 메모리 등    구분대상 기준 입력과 출력 스트림은 독립적으로 구분된다.   대상 기준에 따른 스트림  입력 스트림(입력용">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-09-02T12:44:47.000Z">
+<meta property="article:modified_time" content="2021-09-06T12:42:55.144Z">
+<meta property="article:author" content="Dongryeol Jeong">
+<meta property="article:tag" content="IOStream">
+<meta property="article:tag" content="입출력 스트림">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-sqim1sfvlrl9cczsjyssnk4uipcaudaclj78xhhuhwr57rvgzccjmhkhcg1e.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Fintech - Backend Developer
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            IOStream
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2021-09-02T21:44:47+09:00">
+	
+		    2021/09/02
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="IO-스트림"><a href="#IO-스트림" class="headerlink" title="IO 스트림"></a>IO 스트림</h1><h2 id="IO-Stream-입출력-스트림"><a href="#IO-Stream-입출력-스트림" class="headerlink" title="IO Stream (입출력 스트림)"></a>IO Stream (입출력 스트림)</h2><ul>
 <li>스트림 : 네트워크에서 자료의 흐름이 물의 흐름과 같다는 비유에서 유래</li>
 <li>java의 입출력을 위한 스트림</li>
 <li>입출력 매개체에 독립적으로 일관성있는 입출력을 제공한다.<ul>
@@ -306,48 +543,331 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Online;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataIOTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> (FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;data.txt&quot;</span>);</span><br><span class="line">             DataOutputStream dos = <span class="keyword">new</span> DataOutputStream(fos)) &#123;</span><br><span class="line"></span><br><span class="line">            dos.writeByte(<span class="number">100</span>);</span><br><span class="line">            dos.writeChar(<span class="string">&#x27;A&#x27;</span>);</span><br><span class="line">            dos.writeInt(<span class="number">10</span>);</span><br><span class="line">            dos.writeFloat(<span class="number">3.14f</span>);</span><br><span class="line">            dos.writeUTF(<span class="string">&quot;Test&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> (FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;data.txt&quot;</span>);</span><br><span class="line">             DataInputStream dis = <span class="keyword">new</span> DataInputStream(fis))</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(dis.readByte());</span><br><span class="line">            System.out.println(dis.readChar());</span><br><span class="line">            System.out.println(dis.readInt());</span><br><span class="line">            System.out.println(dis.readFloat());</span><br><span class="line">            System.out.println(dis.readUTF());</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </details>
-</div><div class="article-licensing box"><div class="licensing-title"><p>IOStream</p><p><a href="http://bedongryeol.github.io/09/02/IOStream/">http://bedongryeol.github.io/09/02/IOStream/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Dongryeol Jeong</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2021-09-02</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-09-06</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/IOStream/">IOStream</a><a class="link-muted mr-2" rel="tag" href="/tags/%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%8A%A4%ED%8A%B8%EB%A6%BC/">입출력 스트림</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/09/06/Thread/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">쓰레드 (Thread)</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/08/31/Log/"><span class="level-item">로그 (Log)</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/profile.jpg" alt="Dongryeol Jeong"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Dongryeol Jeong</p><p class="is-size-6 is-block">Fintech-Backend</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Seoul, South Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">36</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">62</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/BEDongryeol" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/BEDongryeol"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="/"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/BEDongryeol" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">GitHub</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Basic/"><span class="level-start"><span class="level-item">Basic</span></span><span class="level-end"><span class="level-item tag">20</span></span></a><ul><li><a class="level is-mobile" href="/categories/Basic/Java/"><span class="level-start"><span class="level-item">Java</span></span><span class="level-end"><span class="level-item tag">20</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"><span class="level-start"><span class="level-item">자료구조</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:13.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/DecoratorPattern/">데코레이터 패턴(Decorator Pattern)</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:07.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/Serial/">직렬화 (Serialization)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:02.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/Thread/">쓰레드 (Thread)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-02T12:44:47.000Z">2021-09-02</time></p><p class="title"><a href="/09/02/IOStream/">IOStream</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-08-31T07:06:50.000Z">2021-08-31</time></p><p class="title"><a href="/08/31/Log/">로그 (Log)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a><p class="is-size-7"><span>&copy; 2021 Dongryeol Jeong</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "This website uses cookies to improve your experience.",
-          dismiss: "Got it!",
-          allow: "Allow cookies",
-          deny: "Decline",
-          link: "Learn more",
-          policy: "Cookie Policy",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
-        });</script></body></html>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">태그</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/IOStream/" rel="tag">IOStream</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%8A%A4%ED%8A%B8%EB%A6%BC/" rel="tag">입출력 스트림</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/09/06/Thread/"
+                    data-tooltip="쓰레드 (Thread)"
+                    aria-label="이전: 쓰레드 (Thread)"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/08/31/Log/"
+                    data-tooltip="로그 (Log)"
+                    aria-label="다음: 로그 (Log)"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/09/02/IOStream/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/09/02/IOStream/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/09/02/IOStream/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2021 Dongryeol Jeong. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/09/06/Thread/"
+                    data-tooltip="쓰레드 (Thread)"
+                    aria-label="이전: 쓰레드 (Thread)"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/08/31/Log/"
+                    data-tooltip="로그 (Log)"
+                    aria-label="다음: 로그 (Log)"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/09/02/IOStream/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/09/02/IOStream/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/09/02/IOStream/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/09/02/IOStream/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/09/02/IOStream/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/09/02/IOStream/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Dongryeol Jeong</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/green.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ykixqvf3qqvhboif10iqwrzvzbwvwkviecn1aeoflkjcszizeoypxail33s5.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

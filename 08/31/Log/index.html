@@ -1,6 +1,244 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>로그 (Log) - Fintech - Backend Developer</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="DonryeorryBehappy"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DonryeorryBehappy"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Log (로그)Logging 시스템 운영에 대한 기록 오류가 발생했을 때 오류에 대한 기록을 남겨 디버깅을 용이하게 할 수 있다.   java.util.logging.Logger 활용 Exception을 handling할 때 로그를 남겨주어야 한다. Log가 너무 많으면 빈번한 file 입출력의 오버헤드 및 백업 문제 등이 발생할 수 있다.    레벨 se"><meta property="og:type" content="blog"><meta property="og:title" content="로그 (Log)"><meta property="og:url" content="http://bedongryeol.github.io/08/31/Log/"><meta property="og:site_name" content="Fintech - Backend Developer"><meta property="og:description" content="Log (로그)Logging 시스템 운영에 대한 기록 오류가 발생했을 때 오류에 대한 기록을 남겨 디버깅을 용이하게 할 수 있다.   java.util.logging.Logger 활용 Exception을 handling할 때 로그를 남겨주어야 한다. Log가 너무 많으면 빈번한 file 입출력의 오버헤드 및 백업 문제 등이 발생할 수 있다.    레벨 se"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://bedongryeol.github.io/img/og_image.png"><meta property="article:published_time" content="2021-08-31T07:06:50.000Z"><meta property="article:modified_time" content="2021-08-31T07:07:45.590Z"><meta property="article:author" content="Dongryeol Jeong"><meta property="article:tag" content="Java"><meta property="article:tag" content="Log"><meta property="article:tag" content="로그"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/31/Log/"},"headline":"로그 (Log)","image":["http://bedongryeol.github.io/img/og_image.png"],"datePublished":"2021-08-31T07:06:50.000Z","dateModified":"2021-08-31T07:07:45.590Z","author":{"@type":"Person","name":"Dongryeol Jeong"},"publisher":{"@type":"Organization","name":"Fintech - Backend Developer","logo":{"@type":"ImageObject","url":"http://bedongryeol.github.io/img/logo.svg"}},"description":"Log (로그)Logging 시스템 운영에 대한 기록 오류가 발생했을 때 오류에 대한 기록을 남겨 디버깅을 용이하게 할 수 있다.   java.util.logging.Logger 활용 Exception을 handling할 때 로그를 남겨주어야 한다. Log가 너무 많으면 빈번한 file 입출력의 오버헤드 및 백업 문제 등이 발생할 수 있다.    레벨 se"}</script><link rel="canonical" href="http://bedongryeol.github.io/08/31/Log/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Fintech - Backend Developer" type="application/atom+xml">
-</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-08-31T07:06:50.000Z" title="2021. 8. 31. 오후 4:06:50">2021-08-31</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-08-31T07:07:45.590Z" title="2021. 8. 31. 오후 4:07:45">2021-08-31</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile">로그 (Log)</h1><div class="content"><h1 id="Log-로그"><a href="#Log-로그" class="headerlink" title="Log (로그)"></a>Log (로그)</h1><h2 id="Logging"><a href="#Logging" class="headerlink" title="Logging"></a>Logging</h2><ul>
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Fintech - Backend Developer">
+    <title>로그 (Log) - Fintech - Backend Developer</title>
+    <meta name="author" content="Dongryeol Jeong">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"Log (로그)Logging\n시스템 운영에 대한 기록\n오류가 발생했을 때 오류에 대한 기록을 남겨 디버깅을 용이하게 할 수 있다.\n\n\njava.util.logging.Logger 활용\nException을 handling할 때 로그를 남겨주어야 한다.\nLog가 너무 많으면 빈번한 file 입출력의 오버헤드 및 백업 문제 등이 발생할 수 있다.\n\n\n\n레벨\nsevere\nwarning\ninfo\nconfig\nfine\nfiner\nfinest\n\n사용\n처음 System을 오픈할 때는 모든 level을 찍고, 안정화된 후에 info level부터 찍는 등 다양한 방법이 있다.\nlogger의 level을 ALL로 설정하면 다른 FileHandler는 모든 범위 내에서 설정이 가능하다.\n같은 패키지 내에 로그 파일이 저장된다.\n\n\n예제코드1 확인하기\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182package Online;import java.io.IOException;import java.util.logging.FileHandler;import java.util.logging.Level;import java.util.logging.Logger;import java.util.logging.SimpleFormatter;public class MyLog &#123;    // 1. Singleton과 유사하게 인스턴스 생성    Logger logger = Logger.getLogger(&quot;mylogger&quot;);    private static MyLog instance = new MyLog();    // 2. 파일 이름 설정    public static final String errorLog = &quot;log.txt&quot;;    public static final String warningLog = &quot;warning.txt&quot;;    public static final String fineLog = &quot;fine.txt&quot;;    // 3. 위 파일별 log를 설정할 FileHandler 객체 생성    // 객체명은 오류 레벨과 맞춰서 설정하였음    private FileHandler logFile = null;    private FileHandler warningFile = null;    private FileHandler fineFile = null;    // 4. 생성자 구현    private MyLog()&#123;        try &#123;            // 4-1. 인스턴스 생성 (파일이름, append 여부)            logFile = new FileHandler(errorLog, true);            warningFile = new FileHandler(warningLog, true);            fineFile = new FileHandler(fineLog, true);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125; catch (SecurityException e) &#123;            e.printStackTrace();        &#125;        // 4-2. Log기록의 형식 지정 (SimpleFormatter : 기본 형식)        logFile.setFormatter(new SimpleFormatter());        warningFile.setFormatter(new SimpleFormatter());        fineFile.setFormatter(new SimpleFormatter());        // 4-3. 로그 레벨 설정        // 모든 로그 레벨 기록        logger.setLevel(Level.ALL);        // FileHandler마다 레벨을 다르게 설정할 수 있다.        warningFile.setLevel(Level.WARNING);        fineFile.setLevel(Level.FINE);;        // 4-4. 4-1에서 생성한 Handler 추가        logger.addHandler(logFile);        logger.addHandler(warningFile);        logger.addHandler(fineFile);    &#125;    // 4-5. getter 생성    public static MyLog getLog() &#123;        return instance;    &#125;    // 5. 로그 기록 남기는 함수    // logger에 설정한 레벨에 해당하는 log만 사용가능    public void log(String msg)&#123;        // logger가 finest level을 handle 할 수 있도록 addHandler를 해주었으므로 가능하다.        logger.finest(msg);        logger.finer(msg);        logger.fine(msg);        logger.config(msg);        logger.info(msg);        logger.warning(msg);        logger.severe(msg);    &#125;    // 5-1. fine level 메세지 출력함수    public void fine(String msg)&#123;        logger.fine(msg);    &#125;    // 5-2. warning level 메시지 출력함수    public void warning(String msg)&#123;        logger.warning(msg);    &#125;&#125;\n\n\n\n\nlogger의 level을 INFO로 설정하면 다른 FileHandler는 INFO 내에서 설정이 가능하다.\nFileHandler 중 fineFile은 범위를 fine부터 설정하였지만 INFO 범위 내에 포함되지 않으므로 INFO 레벨부터 로그가 기록된다.\n\n\n\n\n예제코드2 확인하기\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182package Online;import java.io.IOException;import java.util.logging.FileHandler;import java.util.logging.Level;import java.util.logging.Logger;import java.util.logging.SimpleFormatter;public class MyLog &#123;    // 1. Singleton과 유사하게 인스턴스 생성    Logger logger = Logger.getLogger(&quot;mylogger&quot;);    private static MyLog instance = new MyLog();    // 2. 파일 이름 설정    public static final String errorLog = &quot;log.txt&quot;;    public static final String warningLog = &quot;warning.txt&quot;;    public static final String fineLog = &quot;fine.txt&quot;;    // 3. 위 파일별 log를 설정할 FileHandler 객체 생성    // 객체명은 오류 레벨과 맞춰서 설정하였음    private FileHandler logFile = null;    private FileHandler warningFile = null;    private FileHandler fineFile = null;    // 4. 생성자 구현    private MyLog()&#123;        try &#123;            // 4-1. 인스턴스 생성 (파일이름, append 여부)            logFile = new FileHandler(errorLog, true);            warningFile = new FileHandler(warningLog, true);            fineFile = new FileHandler(fineLog, true);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125; catch (SecurityException e) &#123;            e.printStackTrace();        &#125;        // 4-2. Log기록의 형식 지정 (SimpleFormatter : 기본 형식)        logFile.setFormatter(new SimpleFormatter());        warningFile.setFormatter(new SimpleFormatter());        fineFile.setFormatter(new SimpleFormatter());        // 4-3. 로그 레벨 설정        // 모든 로그 레벨 기록        logger.setLevel(Level.INFO);        // FileHandler마다 레벨을 다르게 설정할 수 있다.        warningFile.setLevel(Level.WARNING);        fineFile.setLevel(Level.FINE);;        // 4-4. 4-1에서 생성한 Handler 추가        logger.addHandler(logFile);        logger.addHandler(warningFile);        logger.addHandler(fineFile);    &#125;    // 4-5. getter 생성    public static MyLog getLog() &#123;        return instance;    &#125;    // 5. 로그 기록 남기는 함수    // logger에 설정한 레벨에 해당하는 log만 사용가능    public void log(String msg)&#123;        // logger가 finest level을 handle 할 수 있도록 addHandler를 해주었으므로 가능하다.        logger.finest(msg);        logger.finer(msg);        logger.fine(msg);        logger.config(msg);        logger.info(msg);        logger.warning(msg);        logger.severe(msg);    &#125;    // 5-1. fine level 메세지 출력함수    public void fine(String msg)&#123;        logger.fine(msg);    &#125;    // 5-2. warning level 메시지 출력함수    public void warning(String msg)&#123;        logger.warning(msg);    &#125;&#125;\n\n\n\n테스트 코드\n\n12345678910package Online;public class LogTest &#123;    public static void main(String[] args) &#123;        // Singleton으로 구현하였으므로 getLog를 통해서 호출        MyLog logger = MyLog.getLog();        logger.log(&quot;Log Test&quot;);    &#125;&#125;\n\n\n\n콘솔 파일은 Mac OS 기준으로 jre 내의 conf 폴더에 properties파일이 저장된다.\n파일 내에서 정보 date, Thread Name 등을 설정할 수 있다.\n\n\n콘솔 파일 내용 확인하기\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#############################################################  \tDefault Logging Configuration File## You can use a different file by specifying a filename# with the java.util.logging.config.file system property.  # For example java -Djava.util.logging.config.file=myfile#########################################################################################################################  \tGlobal properties############################################################# &quot;handlers&quot; specifies a comma separated list of log Handler # classes.  These handlers will be installed during VM startup.# Note that these classes must be on the system classpath.# By default we only configure a ConsoleHandler, which will only# show messages at the INFO and above levels.handlers= java.util.logging.ConsoleHandler# To also add the FileHandler, use the following line instead.#handlers= java.util.logging.FileHandler, java.util.logging.ConsoleHandler# Default global logging level.# This specifies which kinds of events are logged across# all loggers.  For any given facility this global level# can be overriden by a facility specific level# Note that the ConsoleHandler also has a separate level# setting to limit messages printed to the console..level= INFO############################################################# Handler specific properties.# Describes specific configuration info for Handlers.############################################################# default file output is in user&#x27;s home directory.java.util.logging.FileHandler.pattern = %h/java%u.logjava.util.logging.FileHandler.limit = 50000java.util.logging.FileHandler.count = 1# Default number of locks FileHandler can obtain synchronously.# This specifies maximum number of attempts to obtain lock file by FileHandler# implemented by incrementing the unique field %u as per FileHandler API documentation.java.util.logging.FileHandler.maxLocks = 100java.util.logging.FileHandler.formatter = java.util.logging.XMLFormatter# Limit the message that are printed on the console to INFO and above.java.util.logging.ConsoleHandler.level = INFOjava.util.logging.ConsoleHandler.formatter = java.util.logging.SimpleFormatter# Example to customize the SimpleFormatter output format # to print one-line log message like this:#     &lt;level&gt;: &lt;log message&gt; [&lt;date/time&gt;]## java.util.logging.SimpleFormatter.format=%4$s: %5$s [%1$tc]%n############################################################# Facility specific properties.# Provides extra control for each logger.############################################################# For example, set the com.xyz.foo logger to only log SEVERE# messages:# com.xyz.foo.level = SEVERE\n\n\nException과 함께 사용\nException 상황에서는 항상 적절한 level의 log를 남겨야한다.\n\n\nCustom Exception 코드\n\n12345678package Online;public class StudentNameFormatException extends IllegalArgumentException&#123;    public StudentNameFormatException(String message)&#123;        super(message);    &#125;&#125;\n\n\n\n예제 클래스 \n\n1234567891011121314151617181920212223package Online;public class Student &#123;  private String studentName;  MyLog myLog = MyLog.getLog();  public Student(String studentName)&#123;    if (studentName == null)&#123;      throw new StudentNameFormatException(&quot;Name must not be null&quot;);    &#125;    if (studentName.split(&quot; &quot;).length &gt; 3) &#123;      throw new StudentNameFormatException(&quot;너무 긴 이름입니다.&quot;);    &#125;    this.studentName = studentName;  &#125;  public String getStudentName()&#123;    myLog.fine(&quot;begin getStudentName&quot;);    return studentName;  &#125;&#125;\n\n\n\n생성자에는 Exception을 throws하지 않는다.\nCustom Exception의 extends에 Exception이 아닌 IllegalArgumentException을 extends하여 핸들링할 수 있다.\n\n\n테스트 코드 확인하기\n\n123456789101112131415161718192021222324package Online;public class StudentTest &#123;    public static void main(String[] args) &#123;        MyLog myLog = MyLog.getLog();        String name = null;        // 1. 예외상황1 테스트        try &#123;            Student student = new Student(name);        &#125; catch (StudentNameFormatException e) &#123;            myLog.warning(e.getMessage());        &#125;        // 2. 예외상황2 테스트        try &#123;            Student student = new Student(&quot;Edward John Kim Test&quot;);        &#125; catch (StudentNameFormatException e) &#123;            myLog.warning(e.getMessage());        &#125;        Student student = new Student(&quot;James&quot;);    &#125;&#125;\n\n\n\n결과 확인하기\n\n12348월 31, 2021 3:24:58 오후 Online.MyLog warningWARNING: Name must not be null8월 31, 2021 3:24:58 오후 Online.MyLog warningWARNING: 너무 긴 이름입니다.\n\n\n","dateCreated":"2021-08-31T16:06:50+09:00","dateModified":"2021-08-31T16:07:45+09:00","datePublished":"2021-08-31T16:06:50+09:00","description":"Log (로그)Logging\n시스템 운영에 대한 기록\n오류가 발생했을 때 오류에 대한 기록을 남겨 디버깅을 용이하게 할 수 있다.\n\n\njava.util.logging.Logger 활용\nException을 handling할 때 로그를 남겨주어야 한다.\nLog가 너무 많으면 빈번한 file 입출력의 오버헤드 및 백업 문제 등이 발생할 수 있다.\n\n\n\n레벨\nsevere\nwarning\ninfo\nconfig\nfine\nfiner\nfinest\n\n사용\n처음 System을 오픈할 때는 모든 level을 찍고, 안정화된 후에 info level부터 찍는 등 다양한 방법이 있다.\nlogger의 level을 ALL로 설정하면 다른 FileHandler는 모든 범위 내에서 설정이 가능하다.\n같은 패키지 내에 로그 파일이 저장된다.\n\n\n예제코드1 확인하기\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182package Online;import java.io.IOException;import java.util.logging.FileHandler;import java.util.logging.Level;import java.util.logging.Logger;import java.util.logging.SimpleFormatter;public class MyLog &#123;    // 1. Singleton과 유사하게 인스턴스 생성    Logger logger = Logger.getLogger(&quot;mylogger&quot;);    private static MyLog instance = new MyLog();    // 2. 파일 이름 설정    public static final String errorLog = &quot;log.txt&quot;;    public static final String warningLog = &quot;warning.txt&quot;;    public static final String fineLog = &quot;fine.txt&quot;;    // 3. 위 파일별 log를 설정할 FileHandler 객체 생성    // 객체명은 오류 레벨과 맞춰서 설정하였음    private FileHandler logFile = null;    private FileHandler warningFile = null;    private FileHandler fineFile = null;    // 4. 생성자 구현    private MyLog()&#123;        try &#123;            // 4-1. 인스턴스 생성 (파일이름, append 여부)            logFile = new FileHandler(errorLog, true);            warningFile = new FileHandler(warningLog, true);            fineFile = new FileHandler(fineLog, true);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125; catch (SecurityException e) &#123;            e.printStackTrace();        &#125;        // 4-2. Log기록의 형식 지정 (SimpleFormatter : 기본 형식)        logFile.setFormatter(new SimpleFormatter());        warningFile.setFormatter(new SimpleFormatter());        fineFile.setFormatter(new SimpleFormatter());        // 4-3. 로그 레벨 설정        // 모든 로그 레벨 기록        logger.setLevel(Level.ALL);        // FileHandler마다 레벨을 다르게 설정할 수 있다.        warningFile.setLevel(Level.WARNING);        fineFile.setLevel(Level.FINE);;        // 4-4. 4-1에서 생성한 Handler 추가        logger.addHandler(logFile);        logger.addHandler(warningFile);        logger.addHandler(fineFile);    &#125;    // 4-5. getter 생성    public static MyLog getLog() &#123;        return instance;    &#125;    // 5. 로그 기록 남기는 함수    // logger에 설정한 레벨에 해당하는 log만 사용가능    public void log(String msg)&#123;        // logger가 finest level을 handle 할 수 있도록 addHandler를 해주었으므로 가능하다.        logger.finest(msg);        logger.finer(msg);        logger.fine(msg);        logger.config(msg);        logger.info(msg);        logger.warning(msg);        logger.severe(msg);    &#125;    // 5-1. fine level 메세지 출력함수    public void fine(String msg)&#123;        logger.fine(msg);    &#125;    // 5-2. warning level 메시지 출력함수    public void warning(String msg)&#123;        logger.warning(msg);    &#125;&#125;\n\n\n\n\nlogger의 level을 INFO로 설정하면 다른 FileHandler는 INFO 내에서 설정이 가능하다.\nFileHandler 중 fineFile은 범위를 fine부터 설정하였지만 INFO 범위 내에 포함되지 않으므로 INFO 레벨부터 로그가 기록된다.\n\n\n\n\n예제코드2 확인하기\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182package Online;import java.io.IOException;import java.util.logging.FileHandler;import java.util.logging.Level;import java.util.logging.Logger;import java.util.logging.SimpleFormatter;public class MyLog &#123;    // 1. Singleton과 유사하게 인스턴스 생성    Logger logger = Logger.getLogger(&quot;mylogger&quot;);    private static MyLog instance = new MyLog();    // 2. 파일 이름 설정    public static final String errorLog = &quot;log.txt&quot;;    public static final String warningLog = &quot;warning.txt&quot;;    public static final String fineLog = &quot;fine.txt&quot;;    // 3. 위 파일별 log를 설정할 FileHandler 객체 생성    // 객체명은 오류 레벨과 맞춰서 설정하였음    private FileHandler logFile = null;    private FileHandler warningFile = null;    private FileHandler fineFile = null;    // 4. 생성자 구현    private MyLog()&#123;        try &#123;            // 4-1. 인스턴스 생성 (파일이름, append 여부)            logFile = new FileHandler(errorLog, true);            warningFile = new FileHandler(warningLog, true);            fineFile = new FileHandler(fineLog, true);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125; catch (SecurityException e) &#123;            e.printStackTrace();        &#125;        // 4-2. Log기록의 형식 지정 (SimpleFormatter : 기본 형식)        logFile.setFormatter(new SimpleFormatter());        warningFile.setFormatter(new SimpleFormatter());        fineFile.setFormatter(new SimpleFormatter());        // 4-3. 로그 레벨 설정        // 모든 로그 레벨 기록        logger.setLevel(Level.INFO);        // FileHandler마다 레벨을 다르게 설정할 수 있다.        warningFile.setLevel(Level.WARNING);        fineFile.setLevel(Level.FINE);;        // 4-4. 4-1에서 생성한 Handler 추가        logger.addHandler(logFile);        logger.addHandler(warningFile);        logger.addHandler(fineFile);    &#125;    // 4-5. getter 생성    public static MyLog getLog() &#123;        return instance;    &#125;    // 5. 로그 기록 남기는 함수    // logger에 설정한 레벨에 해당하는 log만 사용가능    public void log(String msg)&#123;        // logger가 finest level을 handle 할 수 있도록 addHandler를 해주었으므로 가능하다.        logger.finest(msg);        logger.finer(msg);        logger.fine(msg);        logger.config(msg);        logger.info(msg);        logger.warning(msg);        logger.severe(msg);    &#125;    // 5-1. fine level 메세지 출력함수    public void fine(String msg)&#123;        logger.fine(msg);    &#125;    // 5-2. warning level 메시지 출력함수    public void warning(String msg)&#123;        logger.warning(msg);    &#125;&#125;\n","headline":"로그 (Log)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/31/Log/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/08/31/Log/","keywords":"Java, Log, 로그"}</script>
+    <meta name="description" content="Log (로그)Logging 시스템 운영에 대한 기록 오류가 발생했을 때 오류에 대한 기록을 남겨 디버깅을 용이하게 할 수 있다.   java.util.logging.Logger 활용 Exception을 handling할 때 로그를 남겨주어야 한다. Log가 너무 많으면 빈번한 file 입출력의 오버헤드 및 백업 문제 등이 발생할 수 있다.    레벨 se">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="로그 (Log)">
+<meta property="og:url" content="http://bedongryeol.github.io/08/31/Log/index.html">
+<meta property="og:site_name" content="Fintech - Backend Developer">
+<meta property="og:description" content="Log (로그)Logging 시스템 운영에 대한 기록 오류가 발생했을 때 오류에 대한 기록을 남겨 디버깅을 용이하게 할 수 있다.   java.util.logging.Logger 활용 Exception을 handling할 때 로그를 남겨주어야 한다. Log가 너무 많으면 빈번한 file 입출력의 오버헤드 및 백업 문제 등이 발생할 수 있다.    레벨 se">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-08-31T07:06:50.000Z">
+<meta property="article:modified_time" content="2021-08-31T07:07:45.590Z">
+<meta property="article:author" content="Dongryeol Jeong">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Log">
+<meta property="article:tag" content="로그">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-sqim1sfvlrl9cczsjyssnk4uipcaudaclj78xhhuhwr57rvgzccjmhkhcg1e.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Fintech - Backend Developer
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            로그 (Log)
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2021-08-31T16:06:50+09:00">
+	
+		    2021/08/31
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="Log-로그"><a href="#Log-로그" class="headerlink" title="Log (로그)"></a>Log (로그)</h1><h2 id="Logging"><a href="#Logging" class="headerlink" title="Logging"></a>Logging</h2><ul>
 <li>시스템 운영에 대한 기록<ul>
 <li>오류가 발생했을 때 오류에 대한 기록을 남겨 디버깅을 용이하게 할 수 있다.</li>
 </ul>
@@ -91,48 +329,331 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span>월 <span class="number">31</span>, <span class="number">2021</span> <span class="number">3</span>:<span class="number">24</span>:<span class="number">58</span> 오후 Online.MyLog warning</span><br><span class="line">WARNING: Name must not be <span class="keyword">null</span></span><br><span class="line"><span class="number">8</span>월 <span class="number">31</span>, <span class="number">2021</span> <span class="number">3</span>:<span class="number">24</span>:<span class="number">58</span> 오후 Online.MyLog warning</span><br><span class="line">WARNING: 너무 긴 이름입니다.</span><br></pre></td></tr></table></figure>
 </details>
 
-</div><div class="article-licensing box"><div class="licensing-title"><p>로그 (Log)</p><p><a href="http://bedongryeol.github.io/08/31/Log/">http://bedongryeol.github.io/08/31/Log/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Dongryeol Jeong</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2021-08-31</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-08-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Java/">Java</a><a class="link-muted mr-2" rel="tag" href="/tags/Log/">Log</a><a class="link-muted mr-2" rel="tag" href="/tags/%EB%A1%9C%EA%B7%B8/">로그</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/09/02/IOStream/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">IOStream</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/08/25/Exception/"><span class="level-item">예외처리</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/profile.jpg" alt="Dongryeol Jeong"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Dongryeol Jeong</p><p class="is-size-6 is-block">Fintech-Backend</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Seoul, South Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">36</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">62</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/BEDongryeol" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/BEDongryeol"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="/"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/BEDongryeol" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">GitHub</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Basic/"><span class="level-start"><span class="level-item">Basic</span></span><span class="level-end"><span class="level-item tag">20</span></span></a><ul><li><a class="level is-mobile" href="/categories/Basic/Java/"><span class="level-start"><span class="level-item">Java</span></span><span class="level-end"><span class="level-item tag">20</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"><span class="level-start"><span class="level-item">자료구조</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:13.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/DecoratorPattern/">데코레이터 패턴(Decorator Pattern)</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:07.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/Serial/">직렬화 (Serialization)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:02.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/Thread/">쓰레드 (Thread)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-02T12:44:47.000Z">2021-09-02</time></p><p class="title"><a href="/09/02/IOStream/">IOStream</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-08-31T07:06:50.000Z">2021-08-31</time></p><p class="title"><a href="/08/31/Log/">로그 (Log)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a><p class="is-size-7"><span>&copy; 2021 Dongryeol Jeong</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "This website uses cookies to improve your experience.",
-          dismiss: "Got it!",
-          allow: "Allow cookies",
-          deny: "Decline",
-          link: "Learn more",
-          policy: "Cookie Policy",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
-        });</script></body></html>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">태그</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/Java/" rel="tag">Java</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/Log/" rel="tag">Log</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/%EB%A1%9C%EA%B7%B8/" rel="tag">로그</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/09/02/IOStream/"
+                    data-tooltip="IOStream"
+                    aria-label="이전: IOStream"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/08/25/Exception/"
+                    data-tooltip="예외처리"
+                    aria-label="다음: 예외처리"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/08/31/Log/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/08/31/Log/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/08/31/Log/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2021 Dongryeol Jeong. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/09/02/IOStream/"
+                    data-tooltip="IOStream"
+                    aria-label="이전: IOStream"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/08/25/Exception/"
+                    data-tooltip="예외처리"
+                    aria-label="다음: 예외처리"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/08/31/Log/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/08/31/Log/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/08/31/Log/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/08/31/Log/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/08/31/Log/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/08/31/Log/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Dongryeol Jeong</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/green.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ykixqvf3qqvhboif10iqwrzvzbwvwkviecn1aeoflkjcszizeoypxail33s5.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

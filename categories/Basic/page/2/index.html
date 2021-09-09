@@ -1,6 +1,242 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Category: Basic - Fintech - Backend Developer</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="DonryeorryBehappy"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DonryeorryBehappy"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Java&amp;#x2F;Kotlin&amp;#x2F;Spring&amp;#x2F;SpringBoot"><meta property="og:type" content="blog"><meta property="og:title" content="Fintech - Backend Developer"><meta property="og:url" content="http://bedongryeol.github.io/"><meta property="og:site_name" content="Fintech - Backend Developer"><meta property="og:description" content="Java&amp;#x2F;Kotlin&amp;#x2F;Spring&amp;#x2F;SpringBoot"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://bedongryeol.github.io/img/og_image.png"><meta property="article:author" content="Dongryeol Jeong"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io"},"headline":"Fintech - Backend Developer","image":["http://bedongryeol.github.io/img/og_image.png"],"author":{"@type":"Person","name":"Dongryeol Jeong"},"publisher":{"@type":"Organization","name":"Fintech - Backend Developer","logo":{"@type":"ImageObject","url":"http://bedongryeol.github.io/img/logo.svg"}},"description":"Java&#x2F;Kotlin&#x2F;Spring&#x2F;SpringBoot"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Fintech - Backend Developer" type="application/atom+xml">
-</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/categories">Categories</a></li><li class="is-active"><a href="#" aria-current="page">Basic</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-08-20T11:34:23.000Z" title="2021. 8. 20. 오후 8:34:23">2021-08-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-08-20T11:37:32.723Z" title="2021. 8. 20. 오후 8:37:32">2021-08-20</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/08/20/JavaArray/">자바 배열 구현</a></h1><div class="content"><h1 id="Array-구현"><a href="#Array-구현" class="headerlink" title="Array 구현"></a>Array 구현</h1><ul>
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Fintech - Backend Developer">
+    <title>카테고리: Basic - Fintech - Backend Developer</title>
+    <meta name="author" content="Dongryeol Jeong">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{}</script>
+    <meta name="description" content="Java&#x2F;Spring&#x2F;SpringBoot">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Fintech - Backend Developer">
+<meta property="og:url" content="http://bedongryeol.github.io/categories/Basic/page/2/index.html">
+<meta property="og:site_name" content="Fintech - Backend Developer">
+<meta property="og:description" content="Java&#x2F;Spring&#x2F;SpringBoot">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:author" content="Dongryeol Jeong">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-sqim1sfvlrl9cczsjyssnk4uipcaudaclj78xhhuhwr57rvgzccjmhkhcg1e.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Fintech - Backend Developer
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="2">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+    <section class="postShorten-group main-content-wrap">
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/08/20/JavaArray/"
+                            aria-label=": 자바 배열 구현"
+                        >
+                            자바 배열 구현
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2021-08-20T20:34:23+09:00">
+	
+		    2021/08/20
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h1 id="Array-구현"><a href="#Array-구현" class="headerlink" title="Array 구현"></a>Array 구현</h1><ul>
 <li>jdk 클래스 : ArrayList, Vector<h2 id="구현-함수"><a href="#구현-함수" class="headerlink" title="구현 함수"></a>구현 함수</h2></li>
 <li>배열은 크기를 미리 정해주어야 한다.<blockquote>
 <ul>
@@ -23,7 +259,64 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] intArr;</span><br><span class="line">    <span class="keyword">int</span> count;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> ARRAY_SIZE;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ERROR_NUM = -<span class="number">999999999</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        count = <span class="number">0</span>;</span><br><span class="line">        ARRAY_SIZE = <span class="number">10</span>;</span><br><span class="line">        intArr = <span class="keyword">new</span> <span class="keyword">int</span>[ARRAY_SIZE];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        count = <span class="number">0</span>;</span><br><span class="line">        ARRAY_SIZE = size;</span><br><span class="line">        intArr = <span class="keyword">new</span> <span class="keyword">int</span>[ARRAY_SIZE];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addElement</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (count &gt;= ARRAY_SIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Not enough Memory&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        intArr[count++] = num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertElement</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> i = count - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (count &gt;= ARRAY_SIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Not enough Memory&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; count) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Insert Error&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (i &gt; index) &#123;</span><br><span class="line">            intArr[i + <span class="number">1</span>] = intArr[i];</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        intArr[index] = num;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ret = ERROR_NUM;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;There is no element&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> ret;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= count)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;index Error&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> ret;</span><br><span class="line">        &#125;</span><br><span class="line">        ret = intArr[index];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = index; i&lt;count-<span class="number">1</span>; i++)&#123;</span><br><span class="line">            intArr[i] = intArr[i+<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        count--;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (count == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getElement</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; count-<span class="number">1</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;검색 위치 오류입니다. 현재 리스트의 개수는 &quot;</span> + count + <span class="string">&quot;입니다.&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> ERROR_NUM;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> intArr[index];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (count == <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;출력할 값이 없습니다.&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; count; i++)&#123;</span><br><span class="line">            System.out.println(intArr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++)&#123;</span><br><span class="line">            intArr[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        count = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-08-19T10:11:26.000Z" title="2021. 8. 19. 오후 7:11:26">2021-08-19</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-08-19T10:13:41.450Z" title="2021. 8. 19. 오후 7:13:41">2021-08-19</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/08/19/Class/">Class 클래스</a></h1><div class="content"><h1 id="Class-클래스-사용하기"><a href="#Class-클래스-사용하기" class="headerlink" title="Class 클래스 사용하기"></a>Class 클래스 사용하기</h1><ul>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/08/20/JavaArray/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                댓글 공유
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/08/19/Class/"
+                            aria-label=": Class 클래스"
+                        >
+                            Class 클래스
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2021-08-19T19:11:26+09:00">
+	
+		    2021/08/19
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <h1 id="Class-클래스-사용하기"><a href="#Class-클래스-사용하기" class="headerlink" title="Class 클래스 사용하기"></a>Class 클래스 사용하기</h1><ul>
 <li><p>자바의 모든 클래스와 인터페이스는 컴파일 후 class파일이 생성된다.</p>
 <ul>
 <li>클래스 내의 메서드, 생성자 배열 등 모든 정보가 들어있다.</li>
@@ -51,10 +344,10 @@
 </ul>
 </li>
 <li>아래 코드를 <code>reflection 프로그래밍</code>이라고 한다.<details>
-<summary>예제 코드 확인하기</summary></li>
+<summary>예제 코드 확인하기</summary></details></li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package ch04;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line">public class StringTest &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException &#123;</span><br><span class="line"></span><br><span class="line">        Class c = Class.forName(&quot;java.lang.String&quot;);</span><br><span class="line">        </span><br><span class="line">        // Constructor의 목록을 배열로 가져온다.</span><br><span class="line">        Constructor[] cons = c.getConstructors();</span><br><span class="line">        for (Constructor co : cons) &#123;</span><br><span class="line">            System.out.println(co);</span><br><span class="line">        &#125;</span><br><span class="line">        // 메소드의 목록을 가져온다.</span><br><span class="line">        Method[] m = c.getMethods();</span><br><span class="line">        for (Method mth : m) &#123;</span><br><span class="line">            System.out.println(mth);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</details>
+
 
 
 <h2 id="인스턴스-생성"><a href="#인스턴스-생성" class="headerlink" title="인스턴스 생성"></a>인스턴스 생성</h2><ul>
@@ -70,14 +363,57 @@
 </ul>
 </li>
 </ul>
-<details>
-<summary> 예제 코드 확인하기 </summary>
+                    
+                        <a
+                            href="/08/19/Class/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": Class 클래스"
+                        >
+                            계속 읽기
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/08/19/JavaClasses/"
+                            aria-label=": 자바의 클래스"
+                        >
+                            자바의 클래스
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2021-08-19T19:11:19+09:00">
+	
+		    2021/08/19
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">package ch04;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line">public class ClassTest &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException &#123;</span><br><span class="line">        // 1. Class 이름으로 invoke(호출)하기</span><br><span class="line">        Class c1 = Class.forName(&quot;ch04.Person&quot;);</span><br><span class="line">        // Person 타입으로 Casting</span><br><span class="line">        Person person = (Person)c1.newInstance();</span><br><span class="line"></span><br><span class="line">        person.setName(&quot;Lee&quot;);</span><br><span class="line">        System.out.println(person);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        // 2. 이미 생성된 객체로 invoke</span><br><span class="line">        Class c2 = person.getClass();</span><br><span class="line">        // 2-1. 인스턴스화, Person타입으로 Casting</span><br><span class="line">        Person person2 = (Person)c2.newInstance();</span><br><span class="line">        person2.setName(&quot;Kim&quot;);</span><br><span class="line">        System.out.println(person2);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        // 3. 생성자를 호출하여 객체 생성</span><br><span class="line">        Class[] classArray = &#123;String.class&#125;;</span><br><span class="line">        Constructor cons = c2.getConstructor(classArray);</span><br><span class="line">        // 3-1. Object 배열 형태</span><br><span class="line">        Object[] initargs = &#123;&quot;Jeong&quot;&#125;;</span><br><span class="line">        // Line23에서 불러온 생성자로 객체 생성</span><br><span class="line">        Person person3 = (Person)cons.newInstance(initargs);</span><br><span class="line">        System.out.println(person3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</details>
 
+    
+</div>
 
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-08-19T10:11:19.000Z" title="2021. 8. 19. 오후 7:11:19">2021-08-19</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-08-19T10:13:52.044Z" title="2021. 8. 19. 오후 7:13:52">2021-08-19</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/08/19/JavaClasses/">자바의 클래스</a></h1><div class="content"><h1 id="Java의-유용한-클래스들"><a href="#Java의-유용한-클래스들" class="headerlink" title="Java의 유용한 클래스들"></a>Java의 유용한 클래스들</h1><h2 id="Object-Class"><a href="#Object-Class" class="headerlink" title="Object Class"></a>Object Class</h2><ul>
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <h1 id="Java의-유용한-클래스들"><a href="#Java의-유용한-클래스들" class="headerlink" title="Java의 유용한 클래스들"></a>Java의 유용한 클래스들</h1><h2 id="Object-Class"><a href="#Object-Class" class="headerlink" title="Object Class"></a>Object Class</h2><ul>
 <li>모든 클래스의 최상위 클래스</li>
 <li>모든 class는 Object클래스를 상속받는다.</li>
 <li>메서드 중 일부는 필요에 의해 재정의 할 수 있다.</li>
@@ -91,10 +427,10 @@
 <h3 id="toString-메서드"><a href="#toString-메서드" class="headerlink" title="toString() 메서드"></a>toString() 메서드</h3><ul>
 <li>객체의 정보를 String으로 바꾸어서 사용할 때 쓰인다.</li>
 <li>재정의하여 참조변수가 멤버 변수 값을 return하게 할 수 있다.<details>
-<summary>예제 코드 확인하기</summary></li>
+<summary>예제 코드 확인하기</summary></details></li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Book&#123;</span><br><span class="line"></span><br><span class="line">    private String title;</span><br><span class="line">    private String author;</span><br><span class="line"></span><br><span class="line">    public Book(String title, String author)&#123;</span><br><span class="line">        this.title = title;</span><br><span class="line">        this.author = author;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return title + &quot;,&quot; + author;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class BookTest &#123;</span><br><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">Book book = new Book(&quot;데미안&quot;, &quot;헤르만 헤세&quot;);</span><br><span class="line">System.out.println(book);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</details>
+
 
 <h3 id="equals-hashCode-메서드"><a href="#equals-hashCode-메서드" class="headerlink" title="equals(), hashCode() 메서드"></a>equals(), hashCode() 메서드</h3><blockquote>
 <p>equals() 메서드와 hashCode() 메서드는 짝을 이룬다.</p>
@@ -103,46 +439,57 @@
 <li>equals에서 사용한 멤버 변수를 hashCode 값으로 반환해주면 된다.</li>
 </ul>
 </blockquote>
-<h4 id="equals-메서드"><a href="#equals-메서드" class="headerlink" title="equals() 메서드"></a>equals() 메서드</h4><ul>
-<li>두 인스턴스의 <code>주소 값을 비교</code>하여 true/false를 반환</li>
-<li>인스턴스가 다르더라도 논리적으로 동일한 경우 true를 반환하도록 재정의 할 수 있다.</li>
-<li>두 객체가 논리적으로 같다라고 하면 반환하는 Hash Code 값이 같아야한다.</li>
-<li>Java에서 주소 값은 <code>Hash Code(해쉬 값)</code>이라고 한다.</li>
-<li>heap 메모리를 관리하는 방식이 Hash방식이다.</li>
-</ul>
-<h4 id="hashCode-메서드"><a href="#hashCode-메서드" class="headerlink" title="hashCode() 메서드"></a>hashCode() 메서드</h4><ul>
-<li>인스턴스의 저장 주소를 반환한다.</li>
-<li>hash : 정보를 저장, 검색하는 자료 구조</li>
-<li>자료의 특정 값(key)에 대한 저장 위치를 반환해주는 hash함수를 사용한다.</li>
-<li><code>index(저장위치) = hash(key)</code></li>
-</ul>
-<details>
-<summary> Overriding 코드 확인하기 </summary>
+                    
+                        <a
+                            href="/08/19/JavaClasses/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 자바의 클래스"
+                        >
+                            계속 읽기
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/08/19/String/"
+                            aria-label=": String 관련 Class"
+                        >
+                            String 관련 Class
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2021-08-19T19:11:12+09:00">
+	
+		    2021/08/19
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">package ch02;</span><br><span class="line"></span><br><span class="line">public class Student &#123;</span><br><span class="line">private int studentNum;</span><br><span class="line">private String studentName;</span><br><span class="line"></span><br><span class="line">    public Student(int StudentNum, String studentName)&#123;</span><br><span class="line">        this.studentNum = studentNum;</span><br><span class="line">        this.studentName = studentName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString()&#123;</span><br><span class="line">        return studentNum + &quot;,&quot; + studentName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean equals(Object obj) &#123;</span><br><span class="line">        if (obj instanceof Student) &#123;</span><br><span class="line">            // 다운캐스팅</span><br><span class="line">            Student std = (Student)obj;</span><br><span class="line">            if (this.studentNum == std.studentNum)&#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int hashCode() &#123;</span><br><span class="line">        return studentNum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</details>
 
-<details>
-<summary>예제 코드 확인하기</summary>
+    
+</div>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package ch02;</span><br><span class="line"></span><br><span class="line">public class EqualsTest &#123;</span><br><span class="line">public static void main(String[] args)&#123;</span><br><span class="line"></span><br><span class="line">        Student std1 = new Student(200, &quot;Lee&quot;);</span><br><span class="line">        Student std2 = new Student(200, &quot;Lee&quot;);</span><br><span class="line"></span><br><span class="line">        System.out.println(std1==std2); //false</span><br><span class="line">        System.out.println(std1.equals(std2)); //true</span><br><span class="line">        // hashCode() 가 studentNum을 return하도록 overriding하였음.</span><br><span class="line">        System.out.println(std1.hashCode());</span><br><span class="line">        System.out.println(std2.hashCode());</span><br><span class="line"></span><br><span class="line">        // 원래 hashCode값 출력하는 방법</span><br><span class="line">        System.out.println(System.identityHashCode(std1));</span><br><span class="line">        System.out.println(System.identityHashCode(std2));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</details>
-
-
-<h3 id="clone-메서드"><a href="#clone-메서드" class="headerlink" title="clone() 메서드"></a>clone() 메서드</h3><ul>
-<li>객체를 생성자를 통해 생성할 때, clone()을 사용하면 원본 객체와 원본을 복제하는데 사용한다.</li>
-<li>생성자 : 초기값을 가지고 생성이 된다.</li>
-<li>clone() : 중간에 멤버변수가 변하면 변한 값을 그대로 복제한다.</li>
-<li>private까지 모두 복제가 되어 객체 보호의 관점에서 위배할 수 있다.</li>
-<li>명시적으로 clone() 메서드의 사용을 허용한다는 의미로 <code>Cloneable</code> interface를 명시해준다.</li>
-<li><code>public class A implements Cloneable &#123;~&#125;</code></li>
-<li>A 클래스 내에서 clone() 메서드를 Override한다.<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected Object clone() throws CloneNotSupportedException &#123;</span><br><span class="line">return super.clone();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>클론 코드<ul>
-<li><code>Student copyStd = (Student)std1.clone();</code></li>
-</ul>
-</li>
-</ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-08-19T10:11:12.000Z" title="2021. 8. 19. 오후 7:11:12">2021-08-19</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-08-19T10:14:32.455Z" title="2021. 8. 19. 오후 7:14:32">2021-08-19</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/08/19/String/">String 관련 Class</a></h1><div class="content"><h1 id="String-관련-Class"><a href="#String-관련-Class" class="headerlink" title="String 관련 Class"></a>String 관련 Class</h1><h2 id="String-클래스"><a href="#String-클래스" class="headerlink" title="String 클래스"></a>String 클래스</h2><h3 id="선언"><a href="#선언" class="headerlink" title="선언"></a>선언</h3><ol>
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <h1 id="String-관련-Class"><a href="#String-관련-Class" class="headerlink" title="String 관련 Class"></a>String 관련 Class</h1><h2 id="String-클래스"><a href="#String-클래스" class="headerlink" title="String 클래스"></a>String 클래스</h2><h3 id="선언"><a href="#선언" class="headerlink" title="선언"></a>선언</h3><ol>
 <li><code>String str = new String(“abc”);</code><ul>
 <li>힙 메모리에 생성된다.</li>
 </ul>
@@ -159,40 +506,65 @@
 <h3 id="메모리"><a href="#메모리" class="headerlink" title="메모리"></a>메모리</h3><ul>
 <li>한번 생성된 String은 immutable(불변)이다.</li>
 <li>String을 연결하면 기존의 String에 연결되는 것이 아닌 새로운 문자열을 위한 메모리가 생성된다.<details>
-<summary>예제 코드 확인하기</summary></li>
+<summary>예제 코드 확인하기</summary></details></li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String java = new String(“java”); </span><br><span class="line">String android = new String(“android”); </span><br><span class="line"></span><br><span class="line">java = java.concat(android) // 위 2가지 문자열을 합해주고 java가 가리키게 한다.</span><br><span class="line"></span><br><span class="line">// 문자열 java, android, javaandroid을 위한 메모리가 계속해서 할당되어 있고, java는 “java”가 아닌 “javaandroid”를 가리킨다.</span><br><span class="line"></span><br><span class="line">// 기존 메모리에 덮어쓰는 것이 아닌 새로운 메모리를 할당한다.</span><br></pre></td></tr></table></figure>
-</details>
+
 
 <h2 id="StringBuilder-StringBuffer"><a href="#StringBuilder-StringBuffer" class="headerlink" title="StringBuilder, StringBuffer"></a>StringBuilder, StringBuffer</h2><blockquote>
 <p>위 메모리 낭비를 해결하기 위해 <code>StringBuilder</code>, <code>StringBuffer</code>를 활용한다.</p>
 </blockquote>
-<ul>
-<li>내부적으로 가변적인 char[]를 멤버 변수를 가진다.</li>
-<li>새로운 인스턴스를 생성하지 않고, char[]를 변경한다.</li>
-<li>문자열을 연결, 변경할 때 유용하게 사용할 수 있다.<h3 id="차이점"><a href="#차이점" class="headerlink" title="차이점"></a>차이점</h3></li>
-<li>StringBuilder : 단일 쓰레드에서 사용한다.</li>
-<li>StringBuffer : 멀티 쓰레드 프로그래밍에서 동기화를 보장한다.</li>
-<li>두 개 이상의 쓰레드가 같은 메모리에 접근할 때 순서를 가지게 된다.<details>
-<summary> 예제 코드 확인하기 </summary></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package ch03;</span><br><span class="line"></span><br><span class="line">public class StringBuilderTest &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">String java = new String(&quot;java&quot;);</span><br><span class="line">String android = new String(&quot;android&quot;);</span><br><span class="line"></span><br><span class="line">        // 매개변수로 String을 받는다.</span><br><span class="line">        StringBuilder buffer = new StringBuilder(java);</span><br><span class="line">        System.out.println(System.identityHashCode(buffer));</span><br><span class="line">        // 문자열을 추가, 변경해도 메모리값은 변하지 않는다.</span><br><span class="line">        buffer.append(android);</span><br><span class="line">        System.out.println(System.identityHashCode(buffer));</span><br><span class="line"></span><br><span class="line">        System.out.println(buffer.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</details>
+                    
+                        <a
+                            href="/08/19/String/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": String 관련 Class"
+                        >
+                            계속 읽기
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/08/12/20210812-Polymorphism/"
+                            aria-label=": 다형성(Polymorphism)"
+                        >
+                            다형성(Polymorphism)
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2021-08-12T20:42:28+09:00">
+	
+		    2021/08/12
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
 
-<h2 id="Text-Block-사용하기"><a href="#Text-Block-사용하기" class="headerlink" title="Text Block 사용하기"></a>Text Block 사용하기</h2><ul>
-<li>Java 13 이상부터 제공한다.</li>
-<li>하나의 string을 연결해서 사용할 때 사용한다.</li>
-<li>서블릿 등 서버사이드에서 클라이언트 쪽으로 데이터를 html, json 프로토콜로  요청할 때 유용하다.</li>
-<li><code>“”” “”” </code> 안에 string을 넣어 사용한다.<details>
-<summary> 예제 코드 확인하기 </summary></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package ch03;</span><br><span class="line"></span><br><span class="line">public class TextBlockTest &#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        String textBlocks = &quot;&quot;&quot;</span><br><span class="line">                Hello,</span><br><span class="line">                hi,</span><br><span class="line">                how r u</span><br><span class="line">                &quot;&quot;&quot;;</span><br><span class="line"></span><br><span class="line">        System.out.println(textBlocks);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-</details>
+    
+</div>
 
-
-
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-08-12T11:42:28.000Z" title="2021. 8. 12. 오후 8:42:28">2021-08-12</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-08-12T11:54:12.024Z" title="2021. 8. 12. 오후 8:54:12">2021-08-12</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/08/12/20210812-Polymorphism/">다형성(Polymorphism)</a></h1><div class="content"><h1 id="다형성"><a href="#다형성" class="headerlink" title="다형성"></a>다형성</h1><ul>
+            </div>
+            
+                <div class="postShorten-content">
+                    <h1 id="다형성"><a href="#다형성" class="headerlink" title="다형성"></a>다형성</h1><ul>
 <li>하나의 코드가 여러 자료형으로 구현되어 실행 되는 것</li>
 <li>같은 코드에서 여러가지 실행 결과가 나오는 것<blockquote>
 <p>유연하고 확장성있고, 유지보수가 편리함 프로그램을 만들 수 있다.</p>
@@ -217,7 +589,64 @@
 <li>위 예시로 보았을 때 동물을 추가하고 싶을 때 편하게 추가할 수 있다.</li>
 <li>상위 클래스에 공통된 기능과 하위 클래스에 특정한 기능을 구분하여 코딩할 수 있다.</li>
 </ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-08-12T11:42:21.000Z" title="2021. 8. 12. 오후 8:42:21">2021-08-12</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-08-12T11:47:07.646Z" title="2021. 8. 12. 오후 8:47:07">2021-08-12</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/08/12/20210812-VirtualMethod/">가상메서드(VirtualMethod)</a></h1><div class="content"><h1 id="가상-메서드"><a href="#가상-메서드" class="headerlink" title="가상 메서드"></a>가상 메서드</h1><h2 id="메서드-Method"><a href="#메서드-Method" class="headerlink" title="메서드 (Method)"></a>메서드 (Method)</h2><ul>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/08/12/20210812-Polymorphism/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                댓글 공유
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/08/12/20210812-VirtualMethod/"
+                            aria-label=": 가상메서드(VirtualMethod)"
+                        >
+                            가상메서드(VirtualMethod)
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2021-08-12T20:42:21+09:00">
+	
+		    2021/08/12
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h1 id="가상-메서드"><a href="#가상-메서드" class="headerlink" title="가상 메서드"></a>가상 메서드</h1><h2 id="메서드-Method"><a href="#메서드-Method" class="headerlink" title="메서드 (Method)"></a>메서드 (Method)</h2><ul>
 <li>명령어의 집합 (set)</li>
 <li>Java에서 모든 메서드는 가상 메서드이다. </li>
 <li><code>메서드의 이름</code>은 <code>주소값</code>을 나타낸다.</li>
@@ -237,7 +666,64 @@
 <li>클래스마다 가상 메서드 테이블(Virtual Method Table)에 메서드의 address를 가지고 있다.</li>
 <li>메서드가 재정의되면 재정의된 클래스의 테이블에 address가 추가된다.</li>
 </ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-08-12T11:42:15.000Z" title="2021. 8. 12. 오후 8:42:15">2021-08-12</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-08-12T11:46:44.244Z" title="2021. 8. 12. 오후 8:46:44">2021-08-12</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/08/12/20210812-Inheritance/">상속(Inheritance)</a></h1><div class="content"><h1 id="Java-상속-형변환-재정의"><a href="#Java-상속-형변환-재정의" class="headerlink" title="Java 상속, 형변환, 재정의"></a>Java 상속, 형변환, 재정의</h1><h2 id="상속"><a href="#상속" class="headerlink" title="상속"></a>상속</h2><ul>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/08/12/20210812-VirtualMethod/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                댓글 공유
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/08/12/20210812-Inheritance/"
+                            aria-label=": 상속(Inheritance)"
+                        >
+                            상속(Inheritance)
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2021-08-12T20:42:15+09:00">
+	
+		    2021/08/12
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <h1 id="Java-상속-형변환-재정의"><a href="#Java-상속-형변환-재정의" class="headerlink" title="Java 상속, 형변환, 재정의"></a>Java 상속, 형변환, 재정의</h1><h2 id="상속"><a href="#상속" class="headerlink" title="상속"></a>상속</h2><ul>
 <li>구현되어 있는 기능, 속성을 <code>확장하여</code> 재사용하는 것 </li>
 <li> class B extends A{ }</li>
 <li>extends 뒤에는 하나의 클래스만 올 수 있다.</li>
@@ -268,50 +754,58 @@
 <li>클래스가 다른 클래스를 포함하는 관계 (변수로 선언)</li>
 <li>코드 재사용의 가장 일반적인 방법</li>
 </ul>
-<h3 id="상속을-구현하는-경우"><a href="#상속을-구현하는-경우" class="headerlink" title="상속을 구현하는 경우"></a>상속을 구현하는 경우</h3><ul>
-<li>일반적인 클래스로부터 보다 구체적인 클래스를 생성하고 싶을 때 사용한다.</li>
-<li>직업 (일반 클래스) - 개발자 (구체적인 클래스)</li>
-</ul>
-<h3 id="하위-클래스가-생성되는-과정"><a href="#하위-클래스가-생성되는-과정" class="headerlink" title="하위 클래스가 생성되는 과정"></a>하위 클래스가 생성되는 과정</h3><ul>
-<li>extends로 하위클래스를 생성하면 상위 클래스가 먼저 생성된다.</li>
-<li>하위 클래스의 생성자가 상위 클래스의 생성자를 호출하게 된다.</li>
-<li>컴파일러가  하위 클래스의 생성자 내에 <code>super()</code>를 자동으로 입력하여 <code>default 생성자</code>를 호출한다.<blockquote>
-<p>생성자에 매개 변수가 존재할 경우, <code>super(매개변수)</code>를 이용하여 명시적으로 호출해주어야 한다.</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="형변환"><a href="#형변환" class="headerlink" title="형변환"></a>형변환</h2><ul>
-<li><p>상위 클래스로 변수를 생성하고 하위 클래스의 생성자로 인스턴스를 생성</p>
-</li>
-<li><p>상위 클래스 타입의 변수에 하위 클래스의 변수가 대입 (업 캐스팅)</p>
-</li>
-<li><p>메서드의 인자에 하위 클래스 타입을 넣어도 상위 클래스 타입으로 형변환이 가능하다.</p>
-</li>
-<li><p>하위 클래스는 상위 클래스의 타입을 내포하고 있으므로 묵시적 형변환이 가능하다.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class B extends A &#123;&#125;</span><br><span class="line">A instanceA = new B();</span><br><span class="line">method(instanceB);</span><br><span class="line"></span><br><span class="line">type method(A instanceA)&#123;&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>하위 클래스로 생성이 되었지만 type이 상위 클래스의 type이므로 하위 클래스에서 생성한 method 등에는 접근할 수 없다.</p>
-</li>
-</ul>
-<h2 id="재정의-Overriding"><a href="#재정의-Overriding" class="headerlink" title="재정의 (Overriding)"></a>재정의 (Overriding)</h2><ul>
-<li>상위 클래스에서 정의한 method를 하위 클래스에서 재정의하고 싶을 때 사용</li>
-<li>메서드 정의 부분 (Function Signiture)은 동일하게 입력해야한다.</li>
-<li>다르게 입력할 시 새로운 method를 정의하는 것처럼 해석된다.</li>
-<li>사용법<blockquote>
-<p><code>@Override</code> 를 Annotation으로 입력해준다.</p>
-</blockquote>
-<h4 id="Annotation-주석"><a href="#Annotation-주석" class="headerlink" title="Annotation (주석)"></a>Annotation (주석)</h4></li>
-<li>컴파일러에게 특별한 정보를 제공해주는 역할을 한다.</li>
-<li>Override</li>
-<li>재정의된 메서드라는 정보 제공</li>
-<li>FuctionalInterface</li>
-<li>함수형 인터페이스라는 정보 제공</li>
-<li>Deprecated</li>
-<li>이후 버전에서 사용되지 않을 수 있는 변수</li>
-<li>메서드에서 사용된다.</li>
-<li>SuppressWarnings(“~”)</li>
-<li>특정 경고가 나타나지 않도록함</li>
-</ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-08-12T11:42:07.000Z" title="2021. 8. 12. 오후 8:42:07">2021-08-12</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-08-12T11:46:34.177Z" title="2021. 8. 12. 오후 8:46:34">2021-08-12</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/08/12/20210812-DownCasting/">다운캐스팅(DownCasting)</a></h1><div class="content"><h1 id="다운캐스팅-DownCasting"><a href="#다운캐스팅-DownCasting" class="headerlink" title="다운캐스팅 (DownCasting)"></a>다운캐스팅 (DownCasting)</h1><h2 id="의미"><a href="#의미" class="headerlink" title="의미"></a>의미</h2><ul>
+<h3 id="상속을-구현하는-경우"><a href="#상속을-구현하는-경우" class="headerlink" title="상속을 구현하는 경우"></a>상속을 구현하는 경우</h3>
+                    
+                        <a
+                            href="/08/12/20210812-Inheritance/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 상속(Inheritance)"
+                        >
+                            계속 읽기
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/08/12/20210812-DownCasting/"
+                            aria-label=": 다운캐스팅(DownCasting)"
+                        >
+                            다운캐스팅(DownCasting)
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2021-08-12T20:42:07+09:00">
+	
+		    2021/08/12
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h1 id="다운캐스팅-DownCasting"><a href="#다운캐스팅-DownCasting" class="headerlink" title="다운캐스팅 (DownCasting)"></a>다운캐스팅 (DownCasting)</h1><h2 id="의미"><a href="#의미" class="headerlink" title="의미"></a>의미</h2><ul>
 <li>업캐스팅된 클래스를 원래의 타입으로 다시 형변환하는 것</li>
 <li>하위 클래스로의 형변환(다운캐스팅)은 명시적으로 해야한다.</li>
 <li>클래스B가 클래스A에게 상속받는 경우<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A instance = new B(); // 묵시적</span><br><span class="line">B instanceB = (B)instance; //명시적</span><br></pre></td></tr></table></figure></li>
@@ -321,7 +815,64 @@
 <li>아래와 같은 방어 코드로 에러를 방지할 수 있다.</li>
 <li><code>instanceof</code> : in2가 B클래스로 생성된 인스턴스인지 확인한다<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if ( in2 instanceof B )&#123;</span><br><span class="line">B ins3 = (B)ins2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-08-12T05:20:41.000Z" title="2021. 8. 12. 오후 2:20:41">2021-08-12</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-08-12T06:23:40.592Z" title="2021. 8. 12. 오후 3:23:40">2021-08-12</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/08/12/20210812-java2/">자바 기초</a></h1><div class="content"><h1 id="자바-기초"><a href="#자바-기초" class="headerlink" title="자바 기초"></a>자바 기초</h1><h2 id="객체-지향-프로그래밍-OOP-Object-Oriented-Programming"><a href="#객체-지향-프로그래밍-OOP-Object-Oriented-Programming" class="headerlink" title="객체 지향 프로그래밍 (OOP; Object Oriented Programming)"></a>객체 지향 프로그래밍 (OOP; Object Oriented Programming)</h2><ul>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/08/12/20210812-DownCasting/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                댓글 공유
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/08/12/20210812-java2/"
+                            aria-label=": 자바 기초"
+                        >
+                            자바 기초
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2021-08-12T14:20:41+09:00">
+	
+		    2021/08/12
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <h1 id="자바-기초"><a href="#자바-기초" class="headerlink" title="자바 기초"></a>자바 기초</h1><h2 id="객체-지향-프로그래밍-OOP-Object-Oriented-Programming"><a href="#객체-지향-프로그래밍-OOP-Object-Oriented-Programming" class="headerlink" title="객체 지향 프로그래밍 (OOP; Object Oriented Programming)"></a>객체 지향 프로그래밍 (OOP; Object Oriented Programming)</h2><ul>
 <li>Java는 객체 지향 프로그래밍 언어 중 하나이다.<ul>
 <li>객체 : 구체적, 추상적 데이터의 단위 (사람, 사물, 주문 등)</li>
 </ul>
@@ -379,31 +930,58 @@
 </ul>
 </li>
 </ul>
-<h3 id="반환형-Return-Type"><a href="#반환형-Return-Type" class="headerlink" title="반환형 (Return Type)"></a>반환형 (Return Type)</h3><ul>
-<li>반환형에는 자료형을 삽입할 수 있다.</li>
-<li>생성한 class를 반환형으로 사용할 수도 있다.</li>
-</ul>
-<h2 id="메서드-Method"><a href="#메서드-Method" class="headerlink" title="메서드 (Method)"></a>메서드 (Method)</h2><ul>
-<li><code>클래스</code> 안에서 <code>멤버변수</code>를 이용하여 수행한다.</li>
-<li>메서드는 사용하는 객체에 맞게 작명하는 것이 중요하다.</li>
-</ul>
-<h2 id="생성자-Constructor"><a href="#생성자-Constructor" class="headerlink" title="생성자 (Constructor)"></a>생성자 (Constructor)</h2><ul>
-<li>객체를 사용할 때 항상 생성자를 통해 생성한 후에 사용한다.</li>
-<li>생성하면 <code>heap메모리</code>에 인스턴스가 생성된다.</li>
-<li>생성자를 별도로 구현하지 않아도, default constructor가 생성된다.</li>
-<li>기본 문법<ul>
-<li>&lt;ClassName&gt;([Argument]) {<br>  [Statements]<br>  }</li>
-</ul>
-</li>
-<li>생성자는 오버로딩이 가능하여, 1개 이상 존재할 수 있다.</li>
-</ul>
-<h3 id="오버로딩-Overloading"><a href="#오버로딩-Overloading" class="headerlink" title="오버로딩 (Overloading)"></a>오버로딩 (Overloading)</h3><ul>
-<li>사용자의 편의성을 위해 주로 사용된다.<ul>
-<li>예시: 회원 가입 시 필수 질문만 작성할 수 있고, 추가 정보를 작성하여 가입할 수도 있다.</li>
-</ul>
-</li>
-</ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-08-10T12:31:56.000Z" title="2021. 8. 10. 오후 9:31:56">2021-08-10</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-08-12T11:48:17.032Z" title="2021. 8. 12. 오후 8:48:17">2021-08-12</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/08/10/20210810-java/">자바란 ?</a></h1><div class="content"><h1 id="자바-Java"><a href="#자바-Java" class="headerlink" title="자바 (Java)"></a>자바 (Java)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul>
+<h3 id="반환형-Return-Type"><a href="#반환형-Return-Type" class="headerlink" title="반환형 (Return Type)"></a>반환형 (Return Type)</h3>
+                    
+                        <a
+                            href="/08/12/20210812-java2/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 자바 기초"
+                        >
+                            계속 읽기
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/08/10/20210810-java/"
+                            aria-label=": 자바란 ?"
+                        >
+                            자바란 ?
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2021-08-10T21:31:56+09:00">
+	
+		    2021/08/10
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <h1 id="자바-Java"><a href="#자바-Java" class="headerlink" title="자바 (Java)"></a>자바 (Java)</h1><h2 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h2><ul>
 <li>C, C++에 비해 안정적이다.</li>
 <li>객체 지향적 언어로 객체 간의 협력을 할 수 있다.</li>
 <li>플랫폼에 영향을 받지 않는다.<blockquote>
@@ -439,71 +1017,98 @@
 </ul>
 </li>
 </ul>
-<h3 id="실수"><a href="#실수" class="headerlink" title="실수"></a>실수</h3><ul>
-<li>float (4byte)</li>
-<li>double (8byte)<ul>
-<li>자바에서 실수의 기본형으로 사용된다.<h4 id="표현"><a href="#표현" class="headerlink" title="표현"></a>표현</h4></li>
-</ul>
-</li>
-<li>실수는 가수, 밑수, 지수로 나뉘어  부동 소수점 방식으로 값이 표현된다.</li>
-<li>컴퓨터에서는 밑수를 2로 사용한다.<h4 id="정규화"><a href="#정규화" class="headerlink" title="정규화"></a>정규화</h4></li>
-<li>가수가 밑수보다 작은 한자리까지 가수로 표현 되는 것</li>
-<li>예시 : 컴퓨터에서는 밑수가 2로 표현되므로, 정규화를 수행하면 가수부분의 첫 번째 자리 숫자는 항상 1로 표현된다.<h4 id="오류"><a href="#오류" class="headerlink" title="오류"></a>오류</h4></li>
-<li>부동 소수점 방식으로는 지수가 0을 표현할 수 없기 때문에 약간의 오차가 발생할 수 있다.</li>
-</ul>
-<h3 id="문자"><a href="#문자" class="headerlink" title="문자"></a>문자</h3><ul>
-<li>컴퓨터에서는 문자를 표현하기 위해 <code>문자세트(Charset)</code>를 사용한다.<ul>
-<li>문자세트 : 각 문자를 어떠한 숫자로 표현할 것인지 코드표로 나타낸 세트</li>
-<li>종류 : ASKII, euc-kr, uft-8, utf-16 등</li>
-</ul>
-</li>
-<li>자바에서는 문자를 나타내기 위해 세계 표준인 UNICODE를 사용한다.<ul>
-<li>utf-16 인코딩을 사용하여 모든 문자를 2바이트로 표시한다.</li>
-</ul>
-</li>
-</ul>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/categories/Basic/">Previous</a></div><div class="pagination-next is-invisible is-hidden-mobile"><a href="/categories/Basic/page/3/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/categories/Basic/">1</a></li><li><a class="pagination-link is-current" href="/categories/Basic/page/2/">2</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/profile.jpg" alt="Dongryeol Jeong"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Dongryeol Jeong</p><p class="is-size-6 is-block">Fintech-Backend</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Seoul, South Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">36</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">62</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/BEDongryeol" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/BEDongryeol"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="/"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/BEDongryeol" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">GitHub</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Basic/"><span class="level-start"><span class="level-item">Basic</span></span><span class="level-end"><span class="level-item tag">20</span></span></a><ul><li><a class="level is-mobile" href="/categories/Basic/Java/"><span class="level-start"><span class="level-item">Java</span></span><span class="level-end"><span class="level-item tag">20</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"><span class="level-start"><span class="level-item">자료구조</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:13.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/DecoratorPattern/">데코레이터 패턴(Decorator Pattern)</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:07.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/Serial/">직렬화 (Serialization)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:02.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/Thread/">쓰레드 (Thread)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-02T12:44:47.000Z">2021-09-02</time></p><p class="title"><a href="/09/02/IOStream/">IOStream</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-08-31T07:06:50.000Z">2021-08-31</time></p><p class="title"><a href="/08/31/Log/">로그 (Log)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a><p class="is-size-7"><span>&copy; 2021 Dongryeol Jeong</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "This website uses cookies to improve your experience.",
-          dismiss: "Got it!",
-          allow: "Allow cookies",
-          deny: "Decline",
-          link: "Learn more",
-          policy: "Cookie Policy",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
-        });</script></body></html>
+                    
+                        <a
+                            href="/08/10/20210810-java/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": 자바란 ?"
+                        >
+                            계속 읽기
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
+        
+          <li class="pagination-prev">
+            <a
+                class="btn btn--default btn--small"
+                href="/categories/Basic/"
+                aria-label="최근 포스트"
+            >
+              <i class="fa fa-angle-left text-base icon-mr"></i>
+              <span>최근 포스트</span>
+            </a>
+          </li>
+        
+        
+        <li class="pagination-number">page 2 of 2</li>
+    </ul>
+</div>
+
+</section>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2021 Dongryeol Jeong. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Dongryeol Jeong</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/green.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ykixqvf3qqvhboif10iqwrzvzbwvwkviecn1aeoflkjcszizeoypxail33s5.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+
+
+
+    </body>
+</html>

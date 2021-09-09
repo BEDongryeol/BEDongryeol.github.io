@@ -1,6 +1,243 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>쓰레드 (Thread) - Fintech - Backend Developer</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="DonryeorryBehappy"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DonryeorryBehappy"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="쓰레드개념프로세스 (Process) 실행 중인 프로그램이 실행되면 OS로부터 메모리를 할당받아 프로세스 상태가 된다. 프로그램이 메모리에 올라간 상태 프로세스는 하나 이상의 쓰레드를 가지게 된다.  쓰레드 (Thread) 프로세스가 메모리를 점유하고 CPU에서 수행이 된다. 쓰레드 : CPU에서 프로세스가 실행되는 단위 스케줄러 : 쓰레드의 배분 웹서버에"><meta property="og:type" content="blog"><meta property="og:title" content="쓰레드 (Thread)"><meta property="og:url" content="http://bedongryeol.github.io/09/06/Thread/"><meta property="og:site_name" content="Fintech - Backend Developer"><meta property="og:description" content="쓰레드개념프로세스 (Process) 실행 중인 프로그램이 실행되면 OS로부터 메모리를 할당받아 프로세스 상태가 된다. 프로그램이 메모리에 올라간 상태 프로세스는 하나 이상의 쓰레드를 가지게 된다.  쓰레드 (Thread) 프로세스가 메모리를 점유하고 CPU에서 수행이 된다. 쓰레드 : CPU에서 프로세스가 실행되는 단위 스케줄러 : 쓰레드의 배분 웹서버에"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://bedongryeol.github.io/img/og_image.png"><meta property="article:published_time" content="2021-09-06T12:36:02.000Z"><meta property="article:modified_time" content="2021-09-06T12:36:59.136Z"><meta property="article:author" content="Dongryeol Jeong"><meta property="article:tag" content="Thread"><meta property="article:tag" content="쓰레드"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/09/06/Thread/"},"headline":"쓰레드 (Thread)","image":["http://bedongryeol.github.io/img/og_image.png"],"datePublished":"2021-09-06T12:36:02.000Z","dateModified":"2021-09-06T12:36:59.136Z","author":{"@type":"Person","name":"Dongryeol Jeong"},"publisher":{"@type":"Organization","name":"Fintech - Backend Developer","logo":{"@type":"ImageObject","url":"http://bedongryeol.github.io/img/logo.svg"}},"description":"쓰레드개념프로세스 (Process) 실행 중인 프로그램이 실행되면 OS로부터 메모리를 할당받아 프로세스 상태가 된다. 프로그램이 메모리에 올라간 상태 프로세스는 하나 이상의 쓰레드를 가지게 된다.  쓰레드 (Thread) 프로세스가 메모리를 점유하고 CPU에서 수행이 된다. 쓰레드 : CPU에서 프로세스가 실행되는 단위 스케줄러 : 쓰레드의 배분 웹서버에"}</script><link rel="canonical" href="http://bedongryeol.github.io/09/06/Thread/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Fintech - Backend Developer" type="application/atom+xml">
-</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-09-06T12:36:02.000Z" title="2021. 9. 6. 오후 9:36:02">2021-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-09-06T12:36:59.136Z" title="2021. 9. 6. 오후 9:36:59">2021-09-06</time></span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Java/">Java</a></span></div></div><h1 class="title is-3 is-size-4-mobile">쓰레드 (Thread)</h1><div class="content"><h1 id="쓰레드"><a href="#쓰레드" class="headerlink" title="쓰레드"></a>쓰레드</h1><h2 id="개념"><a href="#개념" class="headerlink" title="개념"></a>개념</h2><h3 id="프로세스-Process"><a href="#프로세스-Process" class="headerlink" title="프로세스 (Process)"></a>프로세스 (Process)</h3><ul>
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Fintech - Backend Developer">
+    <title>쓰레드 (Thread) - Fintech - Backend Developer</title>
+    <meta name="author" content="Dongryeol Jeong">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"},"articleBody":"쓰레드개념프로세스 (Process)\n실행 중인 프로그램이 실행되면 OS로부터 메모리를 할당받아 프로세스 상태가 된다.\n프로그램이 메모리에 올라간 상태\n프로세스는 하나 이상의 쓰레드를 가지게 된다.\n\n쓰레드 (Thread)\n프로세스가 메모리를 점유하고 CPU에서 수행이 된다.\n쓰레드 : CPU에서 프로세스가 실행되는 단위\n스케줄러 : 쓰레드의 배분\n웹서버에 멀티쓰레드가 구현되어 있기 때문에 웹프로그래밍에서는 멀티쓰레드를 구현할 일이 없다.\n쓰레드는 자신만의 작업 공간인 context(변수 정보 등)를 가지고 있다.\n\n쓰레드 상태 (Thread Status)\nRunnable  \n\n쓰레드가 start 되면 쓰레드 풀에서 대기하게 된다.\n언제든지 CPU가 배분되면 실행될 수 있는 상태\n\n\nNot Runnable\n\nCPU를 절대 점유할 수 없는 상태\n자바에서 메서드를 통해 Not Runnable로 만들 수 있다.\nsleep(millisecond)\nmillisecond후에 Runnable로 변경 \n\n\nwait()\n자원이 한정되어 있을 때, 유효한 thread가 생길 때 까지 대기상태\n유효한 상태가 되면 notify, notifyAll을 통해 쓰레드를 불러온다.\n\n\njoin()\n한 개의 쓰레드가 다른 쓰레드를 참조할 때 join()을 하면 참조하는 쓰레드가 끝날 때 까지 자기 자신을 Not Runnable 상태로 만든다.\n\n\n\n\n\n\nDead\n\n쓰레드가 다 수행된 상태, 종료된 상태\n\n\n\nwait() / notify()\n리소스가 유효하지 않은 경우 유효할 때 까지 Thread는 wait상태가 된다.\n유효한 리소스가 생기면 notify()/notifyAll()를 통해 Thread가 호출된다.\nnotify() : 무작위 쓰레드 호출\nnotifyAll() : wait상태의 Thread 모두 호출\n유효한 리소스만큼 호출되며, 자원을 갖지 못하면 다시 wait상태가 된다.\n\n\n\n\n예제\n도서관(공유 자원)에서 책을 빌리려하는 학생(Thread)이 있다.\n책(자원)은 한정되어 있고, 학생(쓰레드)들이 책(자원)을 빌리려 할 때 책이 없으면 wait()\n책(자원)이 반납되면 다른 학생(쓰레드)가 빌림\n\n\n\n\nnotify 예제 코드 확인하기\n\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081package ch17;import java.util.ArrayList;import java.util.InputMismatchException;class Library &#123;    public ArrayList&lt;String&gt; shelf = new ArrayList&lt;&gt;();    public Library() &#123;        shelf.add(&quot;태백산맥1&quot;);        shelf.add(&quot;태백산맥2&quot;);        shelf.add(&quot;태백산맥3&quot;);    &#125;    public synchronized String lendBook() throws InterruptedException &#123;        Thread t = Thread.currentThread();        if (shelf.size() == 0) &#123;            System.out.println(t.getName() + &quot; : waiting start&quot;);            wait();            System.out.println(t.getName() + &quot; : waiting end&quot;);        &#125;        if (shelf.size() &gt; 0 )&#123;            String book = shelf.remove(0);            System.out.println(t.getName() + &quot; : &quot; + book + &quot; lend&quot;);            return book;        &#125; else return null;    &#125;    public synchronized void returnBook(String book) &#123;        Thread t = Thread.currentThread();        shelf.add(book);        System.out.println(t.getName() + &quot; : &quot; + book + &quot; return&quot;);        notify();    &#125;&#125;class Student extends Thread&#123;    public Student(String name) &#123;        super(name);    &#125;    @Override    public void run() &#123;        try&#123;            String title = LibraryMain.library.lendBook();            if (title == null) &#123;                System.out.println(getName() + &quot; : 빌리지 못했음&quot;);                return;            &#125;            sleep(5000);            LibraryMain.library.returnBook(title);        &#125; catch (InterruptedException e) &#123;            System.out.println(e);        &#125;    &#125;&#125;public class LibraryMain &#123;    public static Library library = new Library();    public static void main(String[] args) &#123;        Student std1 = new Student(&quot;std1&quot;);        Student std2 = new Student(&quot;std2&quot;);        Student std3 = new Student(&quot;std3&quot;);        Student std4 = new Student(&quot;std4&quot;);        Student std5 = new Student(&quot;std5&quot;);        Student std6 = new Student(&quot;std6&quot;);        std1.start();        std2.start();        std3.start();        std4.start();        std5.start();        std6.start();    &#125;&#125;\n\n\n\nnotifyAll() 예제코드 확인하기\n\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081package ch17;import java.util.ArrayList;import java.util.InputMismatchException;class Library &#123;    public ArrayList&lt;String&gt; shelf = new ArrayList&lt;&gt;();    public Library() &#123;        shelf.add(&quot;태백산맥1&quot;);        shelf.add(&quot;태백산맥2&quot;);        shelf.add(&quot;태백산맥3&quot;);    &#125;    public synchronized String lendBook() throws InterruptedException &#123;        Thread t = Thread.currentThread();        while (shelf.size() == 0) &#123;            System.out.println(t.getName() + &quot; : waiting start&quot;);            wait();            System.out.println(t.getName() + &quot; : waiting end&quot;);        &#125;        if (shelf.size() &gt; 0 )&#123;            String book = shelf.remove(0);            System.out.println(t.getName() + &quot; : &quot; + book + &quot; lend&quot;);            return book;        &#125; else return null;    &#125;    public synchronized void returnBook(String book) &#123;        Thread t = Thread.currentThread();        shelf.add(book);        System.out.println(t.getName() + &quot; : &quot; + book + &quot; return&quot;);        notifyAll();    &#125;&#125;class Student extends Thread&#123;    public Student(String name) &#123;        super(name);    &#125;    @Override    public void run() &#123;        try&#123;            String title = LibraryMain.library.lendBook();            if (title == null) &#123;                System.out.println(getName() + &quot; : 빌리지 못했음&quot;);                return;            &#125;            sleep(5000);            LibraryMain.library.returnBook(title);        &#125; catch (InterruptedException e) &#123;            System.out.println(e);        &#125;    &#125;&#125;public class LibraryMain &#123;    public static Library library = new Library();    public static void main(String[] args) &#123;        Student std1 = new Student(&quot;std1&quot;);        Student std2 = new Student(&quot;std2&quot;);        Student std3 = new Student(&quot;std3&quot;);        Student std4 = new Student(&quot;std4&quot;);        Student std5 = new Student(&quot;std5&quot;);        Student std6 = new Student(&quot;std6&quot;);        std1.start();        std2.start();        std3.start();        std4.start();        std5.start();        std6.start();    &#125;&#125;\n\n\n멀티 쓰레딩 (Multi-Threading)\n여러 thread가 동시에 수행되는 프로그래밍, 여러 작업이 동시에 실행되는 효과\nthread는 각각 자신만의 작업 공간을 가짐 (context)\n각 thread 사이에서 공유하는 자원이 있을 수 있음 (자바에서는 static instance)\n여러 thread가 자원을 공유하여 작업이 수행되는 경우 서로 자원을 차지하려는 race condition이 발생할 수 있음\n이렇게 여러 thread가 공유하는 자원 중 경쟁이 발생하는 부분을 critical section이라고 함\ncritical section에 대한 동기화(일종의 순차적 수행)를 구현하지 않으면 오류가 발생할 수 있음\n관련 : Synchronization, Monitor, Semaphore 등\n\n\n\n동기화 (Synchronization)\n공유 자원을 사용할 때 한 쓰레드가 사용 중이면 Lock을 걸어서 다른 쓰레드의 접근을 막는다\n메서드에 synchronized 키워드 입력\nsynchronized 블록 생성 @쓰레드, 메서드\nsynchronized(참조형 수식) &#123;&#125;\n\n\n\n\n\n\n예제 코드1 확인하기\n\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374package ch17;class Bank&#123;    private int money = 10000;    public synchronized void saveMoney(int save)&#123;        int m = getMoney();        try &#123;            Thread.sleep(3000);        &#125; catch (InterruptedException e) &#123;            e.printStackTrace();        &#125;        setMoney(m + save);    &#125;    public synchronized void minusMoney(int minus)&#123;        int m = getMoney();        try &#123;            Thread.sleep(200);        &#125; catch (InterruptedException e) &#123;            e.printStackTrace();        &#125;        setMoney(m-minus);    &#125;    public int getMoney() &#123;        return money;    &#125;    public void setMoney(int money) &#123;        this.money = money;    &#125;&#125;class Park extends Thread&#123;    @Override    public void run() &#123;        System.out.println(&quot;start save&quot;);        SyncMain.myBank.saveMoney(3000);        System.out.println(&quot;saveMoney : &quot; + SyncMain.myBank.getMoney());    &#125;&#125;class ParkWife extends Thread&#123;    @Override    public void run() &#123;        System.out.println(&quot;start minus&quot;);        SyncMain.myBank.minusMoney(1000);        System.out.println(&quot;minusMoney : &quot; + SyncMain.myBank.getMoney());    &#125;&#125;public class SyncMain &#123;    public static Bank myBank = new Bank();    public static void main(String[] args) &#123;        Park p = new Park();        p.start();        try &#123;            Thread.sleep(200);        &#125; catch (InterruptedException e) &#123;            e.printStackTrace();        &#125;        ParkWife pw = new ParkWife();        pw.start();    &#125;&#125;\n\n\n\n예제 코드 2 확인하기\n\n12345678910111213public void saveMoney(int save)&#123;    synchronized (this) &#123;        int m = getMoney();        try &#123;            Thread.sleep(3000);        &#125; catch (InterruptedException e) &#123;            e.printStackTrace();        &#125;        setMoney(m + save);    &#125;&#125;\n\n\n메서드우선순위\nThread.MIN_PRIORITY(=1) ~ Thread.MAX_PRIORITY(=10)\n디폴트 우선순위 : Thread.NORMAL_PRIORITY(=5)\n우선 순위가 높은 Thread가 CPU의 배분을 받을 확률이 높다\n우선순위 설정 및 호출이 가능하다\nsetPriority()/getPriority()\n\n\n\n\n예제 코드 확인하기\n\n1234567891011121314151617181920212223242526272829class PriorityThread extends Thread&#123;\t\tpublic void run()&#123;\t\t\tint sum = 0;\t\t\t\tThread t = Thread.currentThread();\t\tSystem.out.println( t + &quot;start&quot;);\t\t\t\tfor(int i =0; i&lt;=1000000; i++)&#123;\t\t\tsum += i;\t\t&#125;\t\tSystem.out.println( t.getPriority() + &quot;end&quot;);\t&#125;&#125;public class PriorityTest &#123;\tpublic static void main(String[] args) &#123;\t\tint i;\t\tfor(i=Thread.MIN_PRIORITY; i&lt;= Thread.MAX_PRIORITY; i++)&#123;\t\t\t\t\t\tPriorityThread pt = new PriorityThread();\t\t\tpt.setPriority(i);\t\t\tpt.start();\t\t&#125;\t&#125;&#125;\n\n\njoin\n동시에 두 개 이상의 Thread가 실행 될 때 다른 Thread의 결과를 참조 하여 실행해야 하는 경우 join() 함수를 사용\njoin() 함수를 호출한 Thread가 not-runnable 상태가 감\n다른 Thread의 수행이 끝나면 runnable 상태로 돌아옴\n\n\n예제 코드 확인하기\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546package ch17;public class JoinTest extends Thread&#123;    int start;    int end;    int total;    public JoinTest(int start, int end) &#123;        this.start = start;        this.end = end;    &#125;    public void run() &#123;        int i;        for (i = start; i &lt;= end; i++)&#123;            total += i;        &#125;    &#125;    public static void main(String[] args) &#123;        JoinTest jt1 = new JoinTest(1, 50);        JoinTest jt2 = new JoinTest(51, 100);        jt1.start();        jt2.start();        // jt1, jt2가 끝날 때까지 main thread는 Not Runnable 상태가 된다.        // 무한 루프 등 hang을 해결하기 위해 Exception을 날려준다.        try &#123;            jt1.join();            jt2.join();        &#125; catch (InterruptedException e) &#123;            e.printStackTrace();        &#125;        // 아직 계산하고 있는 중이라서 값이 할당되지 않을 수 있다.        int lastTotal = jt1.total + jt2.total;        System.out.println(&quot;jt1.total = &quot; + jt1.total);        System.out.println(&quot;jt2.total = &quot; + jt2.total);        System.out.println(&quot;LastTotal = &quot; + lastTotal);    &#125;&#125;\n\n\ninterrupt\n다른 Thread에 예외를 발생시키는 interrupt를 보낸다.\njoin(), sleep(), wait()에 의해 Not Runnable 상태일 때, 호출하면 다시 runnable 상태가 된다.\n\n쓰레드 종료\n무한 반복의 경우 while(flag)의 flag를 false로 바꾸어 종료시킨다.\nwhile(true)가 아닌 다른 값을 입력해주기 위해 변수를 사용한다.\n\n\n예제 코드 확인하기\n\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263public class TerminateThread extends Thread&#123;\tprivate boolean flag = false;\tint i;\t\tpublic TerminateThread(String name)&#123;\t\tsuper(name);\t&#125;\t\tpublic void run()&#123;\t\t\t\t\t\twhile(!flag)&#123;\t\t\ttry &#123;\t\t\t\tsleep(100);\t\t\t&#125; catch (InterruptedException e) &#123;\t\t\t\t// TODO Auto-generated catch block\t\t\t\te.printStackTrace();\t\t\t&#125;\t\t&#125;\t\t\t\tSystem.out.println( getName() + &quot; end&quot; );\t\t\t&#125;\t\tpublic void setFlag(boolean flag)&#123;\t\tthis.flag = flag;\t&#125;\t\t\tpublic static void main(String[] args) throws IOException &#123;\t\tTerminateThread threadA = new TerminateThread(&quot;A&quot;);\t\tTerminateThread threadB = new TerminateThread(&quot;B&quot;);\t\tTerminateThread threadC = new TerminateThread(&quot;C&quot;);\t\t\t\tthreadA.start();\t\tthreadB.start();\t\tthreadC.start();\t\t\t\tint in;\t\twhile(true)&#123;\t\t\tin = System.in.read();\t\t\tif ( in == &#x27;A&#x27;)&#123;\t\t\t\tthreadA.setFlag(true);\t\t\t&#125;else if(in == &#x27;B&#x27;)&#123;\t\t\t\tthreadB.setFlag(true);\t\t\t&#125;else if( in == &#x27;C&#x27;)&#123;\t\t\t\tthreadC.setFlag(true);\t\t\t&#125;else if( in == &#x27;M&#x27;)&#123;\t\t\t\tthreadA.setFlag(true);\t\t\t\tthreadB.setFlag(true);\t\t\t\tthreadC.setFlag(true);\t\t\t\tbreak;\t\t\t&#125;else&#123;\t\t\t\tSystem.out.println(&quot;type again&quot;);\t\t\t&#125;\t\t&#125;\t\t\t\tSystem.out.println(&quot;main end&quot;);\t\t\t&#125;&#125;\n\n\n구현extends Thread\nThread가 수행이되면 run 메서드가 실행된다.\n기본적으로 메인 쓰레드가 수행이된다.\n예제에서 쓰레드 2개를 추가하여 테스트 (메인 포함 총 3개 쓰레드)\n\n\n예제 코드 확인하기\n\n123456789101112131415161718192021222324package ch17;class MyThread extends Thread &#123;    public void run() &#123;        int i;        for (i = 1; i&lt;=200; i++)&#123;            System.out.print(i + &quot;\\t&quot;);        &#125;    &#125;&#125;public class ThreadTest &#123;    public static void main(String[] args) &#123;        // 현재 main 내의 thread확인        // [호출한 함수, priority, threadGroup]        System.out.println(Thread.currentThread() + &quot;start&quot;);        MyThread th1 = new MyThread();        MyThread th2 = new MyThread();        th1.start();        th2.start();        System.out.println(Thread.currentThread() + &quot;end&quot;);    &#125;&#125;\n\n\nimplements Runnable\nrun 메서드를 override 해주어어야 한다.\nMain에서 Thread를 생성할 때 runnable 객체를 생성하여 생성자의 parameter로 넣어준다. \n\n\n예제 코드 확인하기\n\n1234567891011121314151617181920212223242526272829package ch17;class MyThread implements Runnable &#123;    @Override    public void run() &#123;        int i;        for (i = 0; i &lt;= 200; i++) &#123;            System.out.print(i + &quot;\\t&quot;);        &#125;    &#125;&#125;public class ThreadTest &#123;    public static void main(String[] args) &#123;        System.out.println(Thread.currentThread() + &quot;start&quot;);        // runnable 객체 생성        MyThread runnable = new MyThread();        // runnable기반으로 쓰레드가 돌아간다.        Thread th1 = new Thread(runnable);        Thread th2 = new Thread(runnable);        th1.start();        th2.start();        System.out.println(Thread.currentThread() + &quot;end&quot;);    &#125;&#125;\n\n\n\n\n    \n    \n","dateCreated":"2021-09-06T21:36:02+09:00","dateModified":"2021-09-06T21:36:59+09:00","datePublished":"2021-09-06T21:36:02+09:00","description":"쓰레드개념프로세스 (Process)\n실행 중인 프로그램이 실행되면 OS로부터 메모리를 할당받아 프로세스 상태가 된다.\n프로그램이 메모리에 올라간 상태\n프로세스는 하나 이상의 쓰레드를 가지게 된다.\n\n쓰레드 (Thread)\n프로세스가 메모리를 점유하고 CPU에서 수행이 된다.\n쓰레드 : CPU에서 프로세스가 실행되는 단위\n스케줄러 : 쓰레드의 배분\n웹서버에 멀티쓰레드가 구현되어 있기 때문에 웹프로그래밍에서는 멀티쓰레드를 구현할 일이 없다.\n쓰레드는 자신만의 작업 공간인 context(변수 정보 등)를 가지고 있다.\n\n쓰레드 상태 (Thread Status)\nRunnable  \n\n쓰레드가 start 되면 쓰레드 풀에서 대기하게 된다.\n언제든지 CPU가 배분되면 실행될 수 있는 상태\n\n\nNot Runnable\n\nCPU를 절대 점유할 수 없는 상태\n자바에서 메서드를 통해 Not Runnable로 만들 수 있다.\nsleep(millisecond)\nmillisecond후에 Runnable로 변경 \n\n\nwait()\n자원이 한정되어 있을 때, 유효한 thread가 생길 때 까지 대기상태\n유효한 상태가 되면 notify, notifyAll을 통해 쓰레드를 불러온다.\n\n\njoin()\n한 개의 쓰레드가 다른 쓰레드를 참조할 때 join()을 하면 참조하는 쓰레드가 끝날 때 까지 자기 자신을 Not Runnable 상태로 만든다.\n\n\n\n\n\n\nDead\n\n쓰레드가 다 수행된 상태, 종료된 상태\n\n\n\nwait() / notify()\n리소스가 유효하지 않은 경우 유효할 때 까지 Thread는 wait상태가 된다.\n유효한 리소스가 생기면 notify()/notifyAll()를 통해 Thread가 호출된다.\nnotify() : 무작위 쓰레드 호출\nnotifyAll() : wait상태의 Thread 모두 호출\n유효한 리소스만큼 호출되며, 자원을 갖지 못하면 다시 wait상태가 된다.\n\n\n\n\n예제\n도서관(공유 자원)에서 책을 빌리려하는 학생(Thread)이 있다.\n책(자원)은 한정되어 있고, 학생(쓰레드)들이 책(자원)을 빌리려 할 때 책이 없으면 wait()\n책(자원)이 반납되면 다른 학생(쓰레드)가 빌림\n\n\n","headline":"쓰레드 (Thread)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/09/06/Thread/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/a3b92c2bb5326442703a01fdd4256103"}},"url":"http://bedongryeol.github.io/09/06/Thread/","keywords":"Thread, 쓰레드"}</script>
+    <meta name="description" content="쓰레드개념프로세스 (Process) 실행 중인 프로그램이 실행되면 OS로부터 메모리를 할당받아 프로세스 상태가 된다. 프로그램이 메모리에 올라간 상태 프로세스는 하나 이상의 쓰레드를 가지게 된다.  쓰레드 (Thread) 프로세스가 메모리를 점유하고 CPU에서 수행이 된다. 쓰레드 : CPU에서 프로세스가 실행되는 단위 스케줄러 : 쓰레드의 배분 웹서버에">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="쓰레드 (Thread)">
+<meta property="og:url" content="http://bedongryeol.github.io/09/06/Thread/index.html">
+<meta property="og:site_name" content="Fintech - Backend Developer">
+<meta property="og:description" content="쓰레드개념프로세스 (Process) 실행 중인 프로그램이 실행되면 OS로부터 메모리를 할당받아 프로세스 상태가 된다. 프로그램이 메모리에 올라간 상태 프로세스는 하나 이상의 쓰레드를 가지게 된다.  쓰레드 (Thread) 프로세스가 메모리를 점유하고 CPU에서 수행이 된다. 쓰레드 : CPU에서 프로세스가 실행되는 단위 스케줄러 : 쓰레드의 배분 웹서버에">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-09-06T12:36:02.000Z">
+<meta property="article:modified_time" content="2021-09-06T12:36:59.136Z">
+<meta property="article:author" content="Dongryeol Jeong">
+<meta property="article:tag" content="Thread">
+<meta property="article:tag" content="쓰레드">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-sqim1sfvlrl9cczsjyssnk4uipcaudaclj78xhhuhwr57rvgzccjmhkhcg1e.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Fintech - Backend Developer
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            쓰레드 (Thread)
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2021-09-06T21:36:02+09:00">
+	
+		    2021/09/06
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Java/">Java</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="쓰레드"><a href="#쓰레드" class="headerlink" title="쓰레드"></a>쓰레드</h1><h2 id="개념"><a href="#개념" class="headerlink" title="개념"></a>개념</h2><h3 id="프로세스-Process"><a href="#프로세스-Process" class="headerlink" title="프로세스 (Process)"></a>프로세스 (Process)</h3><ul>
 <li>실행 중인 프로그램이 실행되면 OS로부터 메모리를 할당받아 프로세스 상태가 된다.</li>
 <li>프로그램이 메모리에 올라간 상태</li>
 <li>프로세스는 하나 이상의 쓰레드를 가지게 된다.</li>
@@ -173,48 +410,331 @@
 
     
     
-</div><div class="article-licensing box"><div class="licensing-title"><p>쓰레드 (Thread)</p><p><a href="http://bedongryeol.github.io/09/06/Thread/">http://bedongryeol.github.io/09/06/Thread/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Dongryeol Jeong</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2021-09-06</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-09-06</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Thread/">Thread</a><a class="link-muted mr-2" rel="tag" href="/tags/%EC%93%B0%EB%A0%88%EB%93%9C/">쓰레드</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/09/06/Serial/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">직렬화 (Serialization)</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/09/02/IOStream/"><span class="level-item">IOStream</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/profile.jpg" alt="Dongryeol Jeong"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Dongryeol Jeong</p><p class="is-size-6 is-block">Fintech-Backend</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Seoul, South Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">36</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">62</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/BEDongryeol" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/BEDongryeol"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="/"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/BEDongryeol" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">GitHub</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Basic/"><span class="level-start"><span class="level-item">Basic</span></span><span class="level-end"><span class="level-item tag">20</span></span></a><ul><li><a class="level is-mobile" href="/categories/Basic/Java/"><span class="level-start"><span class="level-item">Java</span></span><span class="level-end"><span class="level-item tag">20</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"><span class="level-start"><span class="level-item">자료구조</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:13.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/DecoratorPattern/">데코레이터 패턴(Decorator Pattern)</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:07.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/Serial/">직렬화 (Serialization)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-06T12:36:02.000Z">2021-09-06</time></p><p class="title"><a href="/09/06/Thread/">쓰레드 (Thread)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-02T12:44:47.000Z">2021-09-02</time></p><p class="title"><a href="/09/02/IOStream/">IOStream</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-08-31T07:06:50.000Z">2021-08-31</time></p><p class="title"><a href="/08/31/Log/">로그 (Log)</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Java/">Java</a></p></div></article></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a><p class="is-size-7"><span>&copy; 2021 Dongryeol Jeong</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "This website uses cookies to improve your experience.",
-          dismiss: "Got it!",
-          allow: "Allow cookies",
-          deny: "Decline",
-          link: "Learn more",
-          policy: "Cookie Policy",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
-        });</script></body></html>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">태그</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/Thread/" rel="tag">Thread</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/%EC%93%B0%EB%A0%88%EB%93%9C/" rel="tag">쓰레드</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/09/06/Serial/"
+                    data-tooltip="직렬화 (Serialization)"
+                    aria-label="이전: 직렬화 (Serialization)"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/09/02/IOStream/"
+                    data-tooltip="IOStream"
+                    aria-label="다음: IOStream"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/09/06/Thread/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/09/06/Thread/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/09/06/Thread/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2021 Dongryeol Jeong. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/09/06/Serial/"
+                    data-tooltip="직렬화 (Serialization)"
+                    aria-label="이전: 직렬화 (Serialization)"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/09/02/IOStream/"
+                    data-tooltip="IOStream"
+                    aria-label="다음: IOStream"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/09/06/Thread/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/09/06/Thread/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/09/06/Thread/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/09/06/Thread/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/09/06/Thread/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/09/06/Thread/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Dongryeol Jeong</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/green.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ykixqvf3qqvhboif10iqwrzvzbwvwkviecn1aeoflkjcszizeoypxail33s5.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
