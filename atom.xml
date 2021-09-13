@@ -6,7 +6,7 @@
   <link href="http://bedongryeol.github.io/atom.xml" rel="self"/>
   
   <link href="http://bedongryeol.github.io/"/>
-  <updated>2021-09-10T04:21:01.751Z</updated>
+  <updated>2021-09-13T14:15:05.471Z</updated>
   <id>http://bedongryeol.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AOP (Aspect Oriented Programming)</title>
+    <link href="http://bedongryeol.github.io/09/13/AOP/"/>
+    <id>http://bedongryeol.github.io/09/13/AOP/</id>
+    <published>2021-09-13T12:49:28.000Z</published>
+    <updated>2021-09-13T14:15:05.471Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h1 id="AOP-Aspect-Oriented-Programming"><a href="#AOP-Aspect-Oriented-Programming" class="headerlink" title="AOP (Aspect Oriented Programming)"></a>AOP (Aspect Oriented Programming)</h1></blockquote><p>관점 지향 프로그래밍이라고도 불리는 AOP는 로직을 <span class="highlight-text success">핵심, 부가적인 관점을 나누어 각각 모듈화하는 프로그래밍</span>이다.</p><ul><li>소스코드 내 복잡도 등을 해결하기 위해 중복되는 코드를 Aspect로 모듈화하여 재사용성을 높일 수 있다.<ul><li><p>중복되는 코드들을 <span class="highlight-text success">흩어진 관심사(Crosscutting Concerns)</span> 라고 칭한다.</p></li></ul></li><li>실행 전 후 특정 기능 추가(method의 실행시간 체크 등), response 정보 저장 등    <ul><li>핵심적인 관점 : 핵심 비즈니스 로직</li><li>부가적인 관점 : DB 연결, 로깅, 파일 입출력 등</li></ul></li></ul><blockquote><h2 id="AOP-구성-요소"><a href="#AOP-구성-요소" class="headerlink" title="AOP 구성 요소"></a>AOP 구성 요소</h2></blockquote><div class="figure fig-50 center" style="width:;"><img class="fig-img" src="https://res.cloudinary.com/practicaldev/image/fetch/s--6mjjk9E6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/pe617dbmwowpyyo1ycgw.png" alt=""></div><div style="clear:both;"></div><blockquote><p>Aspect : 중복되는 코드(흩어진 관심사)를 모듈화한 것</p></blockquote><blockquote><p>Target Object : Aspect가 적용되는 클래스, 메서드 등의 객체</p></blockquote><blockquote><p>Proxy : Aspect와 Target을 연결해주는 클래스</p></blockquote><blockquote><p>Join Point : Advice가 적용되는 지점 (실행 전 후 특정 기능 추가와 관련)</p></blockquote><blockquote><p>Point Cut : JointPoint를 구체화한 Advice가 실행 될 지점 </p></blockquote><blockquote><p>Advice : Joint Point, Point Cut에서 실행되는 코드, 실질적인 구현부</p></blockquote><blockquote><p>Weaving : Joint Point에 Advice를 적용하는 방법</p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="Spring" scheme="http://bedongryeol.github.io/categories/Spring/"/>
+    
+    <category term="DesignPattern" scheme="http://bedongryeol.github.io/categories/Spring/DesignPattern/"/>
+    
+    
+    <category term="AOP" scheme="http://bedongryeol.github.io/tags/AOP/"/>
+    
+    <category term="DesignPattern" scheme="http://bedongryeol.github.io/tags/DesignPattern/"/>
+    
+  </entry>
   
   <entry>
     <title>데코레이터 패턴(Decorator Pattern)</title>
@@ -510,35 +535,6 @@
     <category term="상속" scheme="http://bedongryeol.github.io/tags/%EC%83%81%EC%86%8D/"/>
     
     <category term="Inheritance" scheme="http://bedongryeol.github.io/tags/Inheritance/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>다운캐스팅(DownCasting)</title>
-    <link href="http://bedongryeol.github.io/08/12/20210812-DownCasting/"/>
-    <id>http://bedongryeol.github.io/08/12/20210812-DownCasting/</id>
-    <published>2021-08-12T11:42:07.000Z</published>
-    <updated>2021-09-09T14:08:23.914Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><h1 id="다운캐스팅-DownCasting"><a href="#다운캐스팅-DownCasting" class="headerlink" title="다운캐스팅 (DownCasting)"></a>다운캐스팅 (DownCasting)</h1><h2 id="의미"><a href="#의미" class="headerlink" title="의미"></a>의미</h2><ul><li>업캐스팅된 클래스를 원래의 타입으로 다시 형변환하는 것</li><li>하위 클래스로의 형변환(다운캐스팅)은 명시적으로 해야한다.</li><li>클래스B가 클래스A에게 상속받는 경우<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A instance = new B(); // 묵시적</span><br><span class="line">B instanceB = (B)instance; //명시적</span><br></pre></td></tr></table></figure></li></ul><h2 id="유의-사항"><a href="#유의-사항" class="headerlink" title="유의 사항"></a>유의 사항</h2><ul><li>클래스 B와 C가 클래스 A에게 상속 받는 경우<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// A의 타입으로 B, C의 인스턴스를 생성해준다.</span><br><span class="line">A ins1 = new B();</span><br><span class="line">A ins2 = new C();</span><br><span class="line"></span><br><span class="line">// C타입을 B타입인 ins3로 생성을 시도한다.</span><br><span class="line">// 실행전까지는 에러가 나지 않지만 실행 시 에러가 발생한다.</span><br><span class="line">B ins3 = (B)ins2;</span><br></pre></td></tr></table></figure></li><li>아래와 같은 방어 코드로 에러를 방지할 수 있다.</li><li><code>instanceof</code> : in2가 B클래스로 생성된 인스턴스인지 확인한다<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if ( in2 instanceof B )&#123;</span><br><span class="line">B ins3 = (B)ins2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
-    
-    <category term="Java" scheme="http://bedongryeol.github.io/categories/Basic/Java/"/>
-    
-    
-    <category term="Java" scheme="http://bedongryeol.github.io/tags/Java/"/>
-    
-    <category term="자바" scheme="http://bedongryeol.github.io/tags/%EC%9E%90%EB%B0%94/"/>
-    
-    <category term="다운캐스팅" scheme="http://bedongryeol.github.io/tags/%EB%8B%A4%EC%9A%B4%EC%BA%90%EC%8A%A4%ED%8C%85/"/>
-    
-    <category term="DownCasting" scheme="http://bedongryeol.github.io/tags/DownCasting/"/>
     
   </entry>
   
