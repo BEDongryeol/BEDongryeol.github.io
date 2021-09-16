@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>gRPC (Google Remote Procedure Call)</title>
+      <link href="/09/16/gRPC/"/>
+      <url>/09/16/gRPC/</url>
+      
+        <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h1 id="gRPC는-무엇인가"><a href="#gRPC는-무엇인가" class="headerlink" title="gRPC는 무엇인가?"></a>gRPC는 무엇인가?</h1></blockquote><p>Google사에서 개발한 RPC(Remote Procedure Call) 시스템으로, HTTP 2.0, TCP/IP 프로토콜을 사용한다.</p><ul><li>RPC는 원격 프로시저 호출로 별도의 코딩없이 다른 주소의 메서드나 프로시저를 실행할 수 있게하는 프로세스 간의 통신 기술이다.</li></ul><p>프로토콜 버퍼(protocol buffer)를 인터페이스 정의어(IDL),  메세지 교환 형식으로 사용한다.</p><ul><li>프로토콜 버퍼를 사용하여 보다 빠르고, 편리하게 통신할 수 있다.</li><li><a href="https://jeong-pro.tistory.com/190">프로토콜 버퍼란?</a> (개인적으로 프로토콜 버퍼를 이해할 때 참고한 블로그입니다.)<ul><li>장점<ul><li>통신이 빠르다</li><li>파싱을 할 필요가 없다</li></ul></li><li>단점<ul><li>프로토콜 버퍼에서 독자적으로 쓰이는 proto 문법을 익혀야한다.</li><li>모든 클라이언트에서 proto파일이 있어야 하기 때문에 내부 서비스 데이터 교환에서 주로 쓰인다.</li></ul></li></ul></li></ul><p>gRPC를 사용하면 클라이언트 단에서 서버 단의 메소드를 로컬 객체처럼 바로 호출할 수 있다.</p><ul><li>Server side : 인터페이스를 구현하여 Client 요청을 handling할 수 있다.</li><li>Client side : 서버에 있는 메소드와 동일한 stub을 제공한다.<ul><li>stub을 client라 칭하는 언어도 있다.</li></ul></li></ul><div class="figure center" style="width:;"><img class="fig-img" src="https://grpc.io/img/landing-2.svg" alt=""></div><div style="clear:both;"></div><p>출처 : <a href="https://grpc.io/">https://grpc.io/</a></p><p>서버와 클라이언트 구글 내부 서버부터 데스크톱까지 다양한 환경에서 실행도 가능하다.</p><p>API에서도 지원하여 기능 구현에 용이하다.  </p><p>지원하는 언어로 서버와 클라이언트를 구현할 수 있다.</p><ul><li>서버는 java, 클라이언트는 python과 같이 다른 언어로 구현할 수 있다.</li></ul><span class="highlight-text success">빠른 데이터 처리, 편리하고 유연한 환경을 계속해서 강조하고 있다. </span> <blockquote><h1 id="RPC-Life-Cycle"><a href="#RPC-Life-Cycle" class="headerlink" title="RPC Life Cycle"></a>RPC Life Cycle</h1></blockquote><h2 id="Unary-RPC-단항-RPC"><a href="#Unary-RPC-단항-RPC" class="headerlink" title="Unary RPC (단항 RPC)"></a>Unary RPC (단항 RPC)</h2><p>클라이언트에서 <strong>단일 요청</strong>을 보내고 <strong>단일 응답</strong> 받는다.</p><ol><li>클라이언트가 stub 메서드를 호출하면 이에 대한 메타데이터(요청, 메소드명, 대기시간 등)를 서버에 알린다.<ul><li>서버는 response를 보내기 전에 초기 메타데이터를 클라이언트에 바로 되돌려주거나, 요청 메시지를 기다린다.    </li><li>어떤 것이 먼저 발생할 지는 application마다 다르다.</li></ul></li><li>클라이언트의 요청 메시지를 받으면 서버에서는 응답 생성에 필요한 모든 실행을 한다.<ul><li>성공적으로 생성 시 status code, message 등과 함께 response를 보낸다.</li></ul></li></ol><h2 id="Server-Streaming-RPC"><a href="#Server-Streaming-RPC" class="headerlink" title="Server Streaming RPC"></a>Server Streaming RPC</h2><ul><li>클라이언트가 <strong>단일 요청</strong> 시 서버는 응답에 대해 <strong>stream을 응답</strong>하는 것을 제외하면 단항 RPC와 동일하다.</li></ul><h2 id="Client-streaming-RPC"><a href="#Client-streaming-RPC" class="headerlink" title="Client streaming RPC"></a>Client streaming RPC</h2><ul><li>클라이언트가 단일 요청이 아닌 메시지의 <strong>stream으로 요청</strong>하는 것을 제외하면 단항 RPC와 동일하다.</li></ul><h2 id="Bidirectional-streaming-RPC"><a href="#Bidirectional-streaming-RPC" class="headerlink" title="Bidirectional streaming RPC"></a>Bidirectional streaming RPC</h2><p>클라이언트가 메서드를 호출하고, 서버가 client의 메타데이터를 받으면 시작된다.</p><ul><li>서버는 초기 메타데이터를 응답하거나, 클라이언트가 메시지를 streaming할 때 까지 대기한다.</li></ul><p>Client side와 Server side의 스트림 처리는 애플리케이션마다 다르다.<br>    - 두 스트림이 독립적이므로 순서에 상관없이 메시지를 읽고 쓸 수 있다.<br>        - 클라이언트의 모든 메시지를 수신할 때까지 서버는 대기하거나, 계속 해서 요청과 응답을 주고받을 수 있다.</p><blockquote><h1 id="Terminate-Cancel"><a href="#Terminate-Cancel" class="headerlink" title="Terminate | Cancel"></a>Terminate | Cancel</h1></blockquote><h2 id="Terminate-종료"><a href="#Terminate-종료" class="headerlink" title="Terminate (종료)"></a>Terminate (종료)</h2><p>클라이언트와 서버에서는 <strong>호출에 대한 성공 여부</strong>를 각각 독립적이고, local하게 결정을 내린다.</p><ul><li>서버에서는 성공, 클라이언트에서는 실패가 나올 수 있다.</li><li>서버에서 모든 response를 성공적으로 보내도, 클라이언트의 Deadline이 지나서 응답하면 클라이언트는 실패로 인식한다.<ul><li>클라이언트는 요청에 대한 응답까지의 시간을 지정할 수 있으며, 시간이 지나면 <code>DEADLINE_EXCEEDED</code> Error로 종료된다.  </li><li>서버에서는 DeadLine까지 남은 시간과 시간이 만료된 요청이 있는지 query를 통해 확인할 수 있다.</li></ul></li></ul><p>클라이언트의 요청이 끝나지않아도 서버에서 완료 처리를 할 수 있다.</p><h2 id="Cancel-취소"><a href="#Cancel-취소" class="headerlink" title="Cancel (취소)"></a>Cancel (취소)</h2><p>클라이언트와 서버단에서 언제든 RPC에 대해 취소할 수 있고, 취소할 시 RPC가 즉시 종료된다.</p><ul><li>취소 이전의 내용은 복구할 수 없음에 유의하여야 한다.</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docs </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> gRPC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>AOP (Aspect Oriented Programming)</title>
       <link href="/09/13/AOP/"/>
       <url>/09/13/AOP/</url>
@@ -376,9 +401,9 @@
             
             <tag> Java </tag>
             
-            <tag> 자바 </tag>
-            
             <tag> Array </tag>
+            
+            <tag> 자바 </tag>
             
             <tag> 배열 </tag>
             
@@ -467,9 +492,9 @@
       
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> String </tag>
+            
+            <tag> Java </tag>
             
         </tags>
       

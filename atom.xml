@@ -6,7 +6,7 @@
   <link href="http://bedongryeol.github.io/atom.xml" rel="self"/>
   
   <link href="http://bedongryeol.github.io/"/>
-  <updated>2021-09-14T08:35:44.622Z</updated>
+  <updated>2021-09-16T12:45:28.298Z</updated>
   <id>http://bedongryeol.github.io/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>gRPC (Google Remote Procedure Call)</title>
+    <link href="http://bedongryeol.github.io/09/16/gRPC/"/>
+    <id>http://bedongryeol.github.io/09/16/gRPC/</id>
+    <published>2021-09-16T10:44:25.000Z</published>
+    <updated>2021-09-16T12:45:28.298Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h1 id="gRPC는-무엇인가"><a href="#gRPC는-무엇인가" class="headerlink" title="gRPC는 무엇인가?"></a>gRPC는 무엇인가?</h1></blockquote><p>Google사에서 개발한 RPC(Remote Procedure Call) 시스템으로, HTTP 2.0, TCP/IP 프로토콜을 사용한다.</p><ul><li>RPC는 원격 프로시저 호출로 별도의 코딩없이 다른 주소의 메서드나 프로시저를 실행할 수 있게하는 프로세스 간의 통신 기술이다.</li></ul><p>프로토콜 버퍼(protocol buffer)를 인터페이스 정의어(IDL),  메세지 교환 형식으로 사용한다.</p><ul><li>프로토콜 버퍼를 사용하여 보다 빠르고, 편리하게 통신할 수 있다.</li><li><a href="https://jeong-pro.tistory.com/190">프로토콜 버퍼란?</a> (개인적으로 프로토콜 버퍼를 이해할 때 참고한 블로그입니다.)<ul><li>장점<ul><li>통신이 빠르다</li><li>파싱을 할 필요가 없다</li></ul></li><li>단점<ul><li>프로토콜 버퍼에서 독자적으로 쓰이는 proto 문법을 익혀야한다.</li><li>모든 클라이언트에서 proto파일이 있어야 하기 때문에 내부 서비스 데이터 교환에서 주로 쓰인다.</li></ul></li></ul></li></ul><p>gRPC를 사용하면 클라이언트 단에서 서버 단의 메소드를 로컬 객체처럼 바로 호출할 수 있다.</p><ul><li>Server side : 인터페이스를 구현하여 Client 요청을 handling할 수 있다.</li><li>Client side : 서버에 있는 메소드와 동일한 stub을 제공한다.<ul><li>stub을 client라 칭하는 언어도 있다.</li></ul></li></ul><div class="figure center" style="width:;"><img class="fig-img" src="https://grpc.io/img/landing-2.svg" alt=""></div><div style="clear:both;"></div><p>출처 : <a href="https://grpc.io/">https://grpc.io/</a></p><p>서버와 클라이언트 구글 내부 서버부터 데스크톱까지 다양한 환경에서 실행도 가능하다.</p><p>API에서도 지원하여 기능 구현에 용이하다.  </p><p>지원하는 언어로 서버와 클라이언트를 구현할 수 있다.</p><ul><li>서버는 java, 클라이언트는 python과 같이 다른 언어로 구현할 수 있다.</li></ul><span class="highlight-text success">빠른 데이터 처리, 편리하고 유연한 환경을 계속해서 강조하고 있다. </span> <blockquote><h1 id="RPC-Life-Cycle"><a href="#RPC-Life-Cycle" class="headerlink" title="RPC Life Cycle"></a>RPC Life Cycle</h1></blockquote><h2 id="Unary-RPC-단항-RPC"><a href="#Unary-RPC-단항-RPC" class="headerlink" title="Unary RPC (단항 RPC)"></a>Unary RPC (단항 RPC)</h2><p>클라이언트에서 <strong>단일 요청</strong>을 보내고 <strong>단일 응답</strong> 받는다.</p><ol><li>클라이언트가 stub 메서드를 호출하면 이에 대한 메타데이터(요청, 메소드명, 대기시간 등)를 서버에 알린다.<ul><li>서버는 response를 보내기 전에 초기 메타데이터를 클라이언트에 바로 되돌려주거나, 요청 메시지를 기다린다.    </li><li>어떤 것이 먼저 발생할 지는 application마다 다르다.</li></ul></li><li>클라이언트의 요청 메시지를 받으면 서버에서는 응답 생성에 필요한 모든 실행을 한다.<ul><li>성공적으로 생성 시 status code, message 등과 함께 response를 보낸다.</li></ul></li></ol><h2 id="Server-Streaming-RPC"><a href="#Server-Streaming-RPC" class="headerlink" title="Server Streaming RPC"></a>Server Streaming RPC</h2><ul><li>클라이언트가 <strong>단일 요청</strong> 시 서버는 응답에 대해 <strong>stream을 응답</strong>하는 것을 제외하면 단항 RPC와 동일하다.</li></ul><h2 id="Client-streaming-RPC"><a href="#Client-streaming-RPC" class="headerlink" title="Client streaming RPC"></a>Client streaming RPC</h2><ul><li>클라이언트가 단일 요청이 아닌 메시지의 <strong>stream으로 요청</strong>하는 것을 제외하면 단항 RPC와 동일하다.</li></ul><h2 id="Bidirectional-streaming-RPC"><a href="#Bidirectional-streaming-RPC" class="headerlink" title="Bidirectional streaming RPC"></a>Bidirectional streaming RPC</h2><p>클라이언트가 메서드를 호출하고, 서버가 client의 메타데이터를 받으면 시작된다.</p><ul><li>서버는 초기 메타데이터를 응답하거나, 클라이언트가 메시지를 streaming할 때 까지 대기한다.</li></ul><p>Client side와 Server side의 스트림 처리는 애플리케이션마다 다르다.<br>    - 두 스트림이 독립적이므로 순서에 상관없이 메시지를 읽고 쓸 수 있다.<br>        - 클라이언트의 모든 메시지를 수신할 때까지 서버는 대기하거나, 계속 해서 요청과 응답을 주고받을 수 있다.</p><blockquote><h1 id="Terminate-Cancel"><a href="#Terminate-Cancel" class="headerlink" title="Terminate | Cancel"></a>Terminate | Cancel</h1></blockquote><h2 id="Terminate-종료"><a href="#Terminate-종료" class="headerlink" title="Terminate (종료)"></a>Terminate (종료)</h2><p>클라이언트와 서버에서는 <strong>호출에 대한 성공 여부</strong>를 각각 독립적이고, local하게 결정을 내린다.</p><ul><li>서버에서는 성공, 클라이언트에서는 실패가 나올 수 있다.</li><li>서버에서 모든 response를 성공적으로 보내도, 클라이언트의 Deadline이 지나서 응답하면 클라이언트는 실패로 인식한다.<ul><li>클라이언트는 요청에 대한 응답까지의 시간을 지정할 수 있으며, 시간이 지나면 <code>DEADLINE_EXCEEDED</code> Error로 종료된다.  </li><li>서버에서는 DeadLine까지 남은 시간과 시간이 만료된 요청이 있는지 query를 통해 확인할 수 있다.</li></ul></li></ul><p>클라이언트의 요청이 끝나지않아도 서버에서 완료 처리를 할 수 있다.</p><h2 id="Cancel-취소"><a href="#Cancel-취소" class="headerlink" title="Cancel (취소)"></a>Cancel (취소)</h2><p>클라이언트와 서버단에서 언제든 RPC에 대해 취소할 수 있고, 취소할 시 RPC가 즉시 종료된다.</p><ul><li>취소 이전의 내용은 복구할 수 없음에 유의하여야 한다.</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="Docs" scheme="http://bedongryeol.github.io/categories/Docs/"/>
+    
+    
+    <category term="gRPC" scheme="http://bedongryeol.github.io/tags/gRPC/"/>
+    
+  </entry>
+  
+  <entry>
     <title>AOP (Aspect Oriented Programming)</title>
     <link href="http://bedongryeol.github.io/09/13/AOP/"/>
     <id>http://bedongryeol.github.io/09/13/AOP/</id>
     <published>2021-09-13T12:49:28.000Z</published>
-    <updated>2021-09-14T08:35:44.622Z</updated>
+    <updated>2021-09-14T08:49:52.324Z</updated>
     
     <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h1 id="AOP-Aspect-Oriented-Programming"><a href="#AOP-Aspect-Oriented-Programming" class="headerlink" title="AOP (Aspect Oriented Programming)"></a>AOP (Aspect Oriented Programming)</h1></blockquote><p>관점 지향 프로그래밍이라고도 불리는 AOP는 로직을 <span class="highlight-text success">핵심, 부가적인 관점을 나누어 각각 모듈화하는 프로그래밍</span>이다.</p><ul><li>핵심적인 관점 : 핵심 비즈니스 로직</li><li>부가적인 관점 : DB 연결, 로깅, 파일 입출력 등</li></ul><p>AOP를 통해 스프링 IoC와 연동하여 중복 코드, 객체 간 복잡도 등에 대한 해결책을 지원한다.</p><ul><li>중복되는 코드를 Aspect로 모듈화하여 재사용성을 높일 수 있다.</li><li><p>중복되는 코드들을 <span class="highlight-text success">흩어진 관심사(Crosscutting Concerns)</span> 라고 칭한다.</p></li><li>실행 전 후 특정 기능 추가(method의 실행시간 체크 등), response 정보 저장 등    </li></ul><p>Spring Bean(스프링 빈)에만 적용 가능하며, 접근 제어와 부가 기능 추가를 위해 proxy패턴 기반의 구현체를 사용한다.</p><blockquote><h2 id="AOP-구성-요소"><a href="#AOP-구성-요소" class="headerlink" title="AOP 구성 요소"></a>AOP 구성 요소</h2></blockquote><div class="figure fig-50 center" style="width:;"><img class="fig-img" src="https://res.cloudinary.com/practicaldev/image/fetch/s--6mjjk9E6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/pe617dbmwowpyyo1ycgw.png" alt=""></div><div style="clear:both;"></div><p>출처 : cloudinary</p><ul><li><p><strong>Aspect</strong></p><ul><li>중복되는 코드(흩어진 관심사)를 모듈화한 것</li></ul></li><li><p><strong>Target Object</strong> </p><ul><li>Aspect가 적용되는 클래스, 메서드 등의 객체</li></ul></li><li><p><strong>Proxy</strong> </p><ul><li>Aspect와 Target을 연결해주는 클래스</li></ul></li><li><p><strong>Join Point</strong> </p><ul><li>Advice가 적용되는 지점 (실행 전 후 특정 기능 추가와 관련)</li></ul></li><li><p><strong>Point Cut</strong> </p><ul><li>JointPoint를 구체화한 Advice가 실행 될 지점 </li></ul></li><li><p><strong>Advice</strong> </p><ul><li>Joint Point, Point Cut에서 실행되는 코드, 실질적인 구현부</li></ul></li><li><p><strong>Weaving</strong> </p><ul><li>Joint Point에 Advice를 적용하는 방법</li></ul></li></ul>]]></content>
     
@@ -341,9 +362,9 @@
     
     <category term="Java" scheme="http://bedongryeol.github.io/tags/Java/"/>
     
-    <category term="자바" scheme="http://bedongryeol.github.io/tags/%EC%9E%90%EB%B0%94/"/>
-    
     <category term="Array" scheme="http://bedongryeol.github.io/tags/Array/"/>
+    
+    <category term="자바" scheme="http://bedongryeol.github.io/tags/%EC%9E%90%EB%B0%94/"/>
     
     <category term="배열" scheme="http://bedongryeol.github.io/tags/%EB%B0%B0%EC%97%B4/"/>
     
@@ -420,9 +441,9 @@
     <category term="Java" scheme="http://bedongryeol.github.io/categories/Basic/Java/"/>
     
     
-    <category term="Java" scheme="http://bedongryeol.github.io/tags/Java/"/>
-    
     <category term="String" scheme="http://bedongryeol.github.io/tags/String/"/>
+    
+    <category term="Java" scheme="http://bedongryeol.github.io/tags/Java/"/>
     
   </entry>
   
@@ -506,35 +527,6 @@
     <category term="가상메서드" scheme="http://bedongryeol.github.io/tags/%EA%B0%80%EC%83%81%EB%A9%94%EC%84%9C%EB%93%9C/"/>
     
     <category term="VirtualMethod" scheme="http://bedongryeol.github.io/tags/VirtualMethod/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>상속(Inheritance)</title>
-    <link href="http://bedongryeol.github.io/08/12/20210812-Inheritance/"/>
-    <id>http://bedongryeol.github.io/08/12/20210812-Inheritance/</id>
-    <published>2021-08-12T11:42:15.000Z</published>
-    <updated>2021-09-09T14:08:21.680Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><h1 id="Java-상속-형변환-재정의"><a href="#Java-상속-형변환-재정의" class="headerlink" title="Java 상속, 형변환, 재정의"></a>Java 상속, 형변환, 재정의</h1><h2 id="상속"><a href="#상속" class="headerlink" title="상속"></a>상속</h2><ul><li>구현되어 있는 기능, 속성을 <code>확장하여</code> 재사용하는 것 </li><li> class B extends A{ }</li><li>extends 뒤에는 하나의 클래스만 올 수 있다.</li><li>자바는 안정성을 위해 단일 상속만을 지원한다.</li><li>상속 하는 클래스 : 상위 클래스, parent class, child class</li><li>상속 받는 클래스 :  하위, child, sub</li></ul><h3 id="상속을-사용하는-경우"><a href="#상속을-사용하는-경우" class="headerlink" title="상속을 사용하는 경우"></a>상속을 사용하는 경우</h3><ul><li>객체 지향 프로그래밍에서는 크게 2가지 방법을 사용할 수 있다.</li><li><code>IS-A 관계 (is a relationship : inheritance)</code>, <code>HAS-A관계(composition)</code></li><li>IS-A관계에서 상속을 사용한다.</li></ul><ol><li>IS-A 관계</li></ol><ul><li>예시 : 포유류 - 인간, 호랑이, 사자 등</li><li>일반적인 개념과 구체적인 개념의 관계</li><li>뼈대를 구축하고 이를 <code>확장해서 사용할 때</code> 자주 사용된다.</li><li>상속은 클래스간의 결합도가 높은 설계이다.</li><li>계층구조가 복잡하거나 hiearchy가 높으면 좋지 않다.</li></ul><ol start="2"><li>HAS-A 관계</li></ol><ul><li>예시 : Java의 ArrayList 클래스를 사용하는 경우</li><li>클래스가 다른 클래스를 포함하는 관계 (변수로 선언)</li><li>코드 재사용의 가장 일반적인 방법</li></ul><h3 id="상속을-구현하는-경우"><a href="#상속을-구현하는-경우" class="headerlink" title="상속을 구현하는 경우"></a>상속을 구현하는 경우</h3><ul><li>일반적인 클래스로부터 보다 구체적인 클래스를 생성하고 싶을 때 사용한다.</li><li>직업 (일반 클래스) - 개발자 (구체적인 클래스)</li></ul><h3 id="하위-클래스가-생성되는-과정"><a href="#하위-클래스가-생성되는-과정" class="headerlink" title="하위 클래스가 생성되는 과정"></a>하위 클래스가 생성되는 과정</h3><ul><li>extends로 하위클래스를 생성하면 상위 클래스가 먼저 생성된다.</li><li>하위 클래스의 생성자가 상위 클래스의 생성자를 호출하게 된다.</li><li>컴파일러가  하위 클래스의 생성자 내에 <code>super()</code>를 자동으로 입력하여 <code>default 생성자</code>를 호출한다.<blockquote><p>생성자에 매개 변수가 존재할 경우, <code>super(매개변수)</code>를 이용하여 명시적으로 호출해주어야 한다.</p></blockquote></li></ul><h2 id="형변환"><a href="#형변환" class="headerlink" title="형변환"></a>형변환</h2><ul><li><p>상위 클래스로 변수를 생성하고 하위 클래스의 생성자로 인스턴스를 생성</p></li><li><p>상위 클래스 타입의 변수에 하위 클래스의 변수가 대입 (업 캐스팅)</p></li><li><p>메서드의 인자에 하위 클래스 타입을 넣어도 상위 클래스 타입으로 형변환이 가능하다.</p></li><li><p>하위 클래스는 상위 클래스의 타입을 내포하고 있으므로 묵시적 형변환이 가능하다.</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class B extends A &#123;&#125;</span><br><span class="line">A instanceA = new B();</span><br><span class="line">method(instanceB);</span><br><span class="line"></span><br><span class="line">type method(A instanceA)&#123;&#125;</span><br></pre></td></tr></table></figure></li><li><p>하위 클래스로 생성이 되었지만 type이 상위 클래스의 type이므로 하위 클래스에서 생성한 method 등에는 접근할 수 없다.</p></li></ul><h2 id="재정의-Overriding"><a href="#재정의-Overriding" class="headerlink" title="재정의 (Overriding)"></a>재정의 (Overriding)</h2><ul><li>상위 클래스에서 정의한 method를 하위 클래스에서 재정의하고 싶을 때 사용</li><li>메서드 정의 부분 (Function Signiture)은 동일하게 입력해야한다.</li><li>다르게 입력할 시 새로운 method를 정의하는 것처럼 해석된다.</li><li>사용법<blockquote><p><code>@Override</code> 를 Annotation으로 입력해준다.</p></blockquote><h4 id="Annotation-주석"><a href="#Annotation-주석" class="headerlink" title="Annotation (주석)"></a>Annotation (주석)</h4></li><li>컴파일러에게 특별한 정보를 제공해주는 역할을 한다.</li><li>Override</li><li>재정의된 메서드라는 정보 제공</li><li>FuctionalInterface</li><li>함수형 인터페이스라는 정보 제공</li><li>Deprecated</li><li>이후 버전에서 사용되지 않을 수 있는 변수</li><li>메서드에서 사용된다.</li><li>SuppressWarnings(“~”)</li><li>특정 경고가 나타나지 않도록함</li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
-    
-    <category term="Java" scheme="http://bedongryeol.github.io/categories/Basic/Java/"/>
-    
-    
-    <category term="Java" scheme="http://bedongryeol.github.io/tags/Java/"/>
-    
-    <category term="자바" scheme="http://bedongryeol.github.io/tags/%EC%9E%90%EB%B0%94/"/>
-    
-    <category term="상속" scheme="http://bedongryeol.github.io/tags/%EC%83%81%EC%86%8D/"/>
-    
-    <category term="Inheritance" scheme="http://bedongryeol.github.io/tags/Inheritance/"/>
     
   </entry>
   
