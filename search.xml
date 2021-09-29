@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>M1 환경에서 LINUX 설치</title>
+      <link href="/09/29/linux/"/>
+      <url>/09/29/linux/</url>
+      
+        <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h1 id="Virtual-Machine"><a href="#Virtual-Machine" class="headerlink" title="Virtual Machine"></a>Virtual Machine</h1><h3 id="Parallels-Desktop-for-Mac-버전-17"><a href="#Parallels-Desktop-for-Mac-버전-17" class="headerlink" title="Parallels Desktop for Mac 버전 17"></a>Parallels Desktop for Mac 버전 17</h3></blockquote><p>Intel 등의 CPU는 가상화 기술을 지원하지만 M1은 아직 안정적으로 지원하지 않고 있었다.</p><p>하지만 지난 8월 가상화 소프트웨어 전문 기업인 <strong>Parallels</strong>에서 애플 M1칩 기반 맥에서 정식적으로 가상화를 지원하는 <strong>Parallels Desktop for Mac 버전 17</strong>을 공개하였다.</p><div class="figure fig-75 center" style="width:;"><img class="fig-img" src="https://it.donga.com/media/__sized__/images/2021/8/13/e0ac8508028840e7-thumbnail-1920x1080-70.jpg" alt=""></div><div style="clear:both;"></div><p>출처 : Parallels 공식 홈페이지</p><p>M1 칩 맥에서도 Linux의 Ubuntu, Fedora, Windows 11버전 등의 가상화를 지원한다.</p><blockquote><h1 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h1></blockquote><p><a href="https://www.parallels.com/products/desktop/">Parallels 다운로드 링크</a></p><p><a href="https://ubuntu.com/download/server/arm">Ubuntu Server 다운로드 링크</a></p><h4 id="위-링크를-통해-Parallels와-Ubuntu-Server-이미지를-다운로드하였다"><a href="#위-링크를-통해-Parallels와-Ubuntu-Server-이미지를-다운로드하였다" class="headerlink" title="위 링크를 통해 Parallels와 Ubuntu Server 이미지를 다운로드하였다."></a>위 링크를 통해 Parallels와 Ubuntu Server 이미지를 다운로드하였다.</h4><p><img src="../image/img_1.png" alt="img_1.png"></p><p><img src="../image/img_3.png" alt="img_3.png"></p><h4 id="안정적으로-가상화가-되었다"><a href="#안정적으로-가상화가-되었다" class="headerlink" title="안정적으로 가상화가 되었다."></a>안정적으로 가상화가 되었다.</h4>]]></content>
+      
+      
+      <categories>
+          
+          <category> LINUX </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> M1 </tag>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>REST(Representational State Transfer)</title>
       <link href="/09/29/rest/"/>
       <url>/09/29/rest/</url>
@@ -430,9 +457,9 @@
             
             <tag> Java </tag>
             
-            <tag> 자바 </tag>
-            
             <tag> Array </tag>
+            
+            <tag> 자바 </tag>
             
             <tag> 배열 </tag>
             
