@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Fintech - Backend Developer">
-    <title>AOP (Aspect Oriented Programming) - Fintech - Backend Developer</title>
+    <title>REST(Representational State Transfer) - Fintech - Backend Developer</title>
     <meta name="author" content="Dongryeol Jeong">
     
     
@@ -15,20 +15,18 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\nAOP (Aspect Oriented Programming)\n관점 지향 프로그래밍이라고도 불리는 AOP는 로직을 핵심, 부가적인 관점을 나누어 각각 모듈화하는 프로그래밍이다.\n\n\n\n핵심적인 관점 : 핵심 비즈니스 로직\n부가적인 관점 : DB 연결, 로깅, 파일 입출력 등\n\nAOP를 통해 스프링 IoC와 연동하여 중복 코드, 객체 간 복잡도 등에 대한 해결책을 지원한다.\n\n중복되는 코드를 Aspect로 모듈화하여 재사용성을 높일 수 있다.\n중복되는 코드들을 흩어진 관심사(Crosscutting Concerns) 라고 칭한다.\n실행 전 후 특정 기능 추가(method의 실행시간 체크 등), response 정보 저장 등    \n\nSpring Bean(스프링 빈)에만 적용 가능하며, 접근 제어와 부가 기능 추가를 위해 proxy패턴 기반의 구현체를 사용한다.\n\nAOP 구성 요소\n\n출처 : cloudinary\n\nAspect\n\n중복되는 코드(흩어진 관심사)를 모듈화한 것\n\n\nTarget Object \n\nAspect가 적용되는 클래스, 메서드 등의 객체\n\n\nProxy \n\nAspect와 Target을 연결해주는 클래스\n\n\nJoin Point \n\nAdvice가 적용되는 지점 (실행 전 후 특정 기능 추가와 관련)\n\n\nPoint Cut \n\nJointPoint를 구체화한 Advice가 실행 될 지점 \n\n\nAdvice \n\nJoint Point, Point Cut에서 실행되는 코드, 실질적인 구현부\n\n\nWeaving \n\nJoint Point에 Advice를 적용하는 방법\n\n\n\n","dateCreated":"2021-09-13T21:49:28+09:00","dateModified":"2021-09-29T14:53:54+09:00","datePublished":"2021-09-13T21:49:28+09:00","description":"","headline":"AOP (Aspect Oriented Programming)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/09/13/AOP/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/09/13/AOP/","keywords":"AOP, DesignPattern"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\n\nREST (Representational State Transfer)\n조건\nClient와 Server의 분리\n서로 독립적으로 분리되어 있어야 한다.\n\n\nStateless\n요청에 대해서 클라이언트의 상태를 서버에 저장하지 않는다.\n매 요청을 새롭게 처리한다\n\n\nCache (캐시)\n클라이언트는 서버의 응답을 임시 저장하여, 재사용하고 부하를 낮추어야한다.\n\n\nLayered System (계층화)\n서버와 클라이언트 사이를 다양한 계층 형태로 구성하고, 이를 확장할 수 있어야한다.\n\n\n인터페이스 일관성\n인터페이스의 일관성을 지킨다.\n아키텍처를 단순화, 작은 단위로 분리하여 클라이언트, 서버를 독립적으로 개선할 수 있어야한다.\n\n\n\n\n인터페이스의 일관성을 기초로 REST를 잘 사용하였는지 판단할 수 있다.\n\n자원의 식별\nURI를 통하여 리소스에 접근한다.\n\n\n메시지를 통한 리소스 조작\n데이터의 타입을 알려주는 header부분의 content-type\n\n\n자기 서술적 메시지\n요청하는 데이터가 어떻게 처리되어야하는지 충분한 데이터 포함\n\n\n애플리케이션 상태에 대한 엔진으로써 하이퍼미디어\n요청에 대한 데이터만이 아닌 관련된 리소스에 대한 Link정보 포함\n\n\n\n\n\nCode On Demand\n특정 기능을 서버로부터 전달받아 클라이언트가 실행할 수 있어야한다.\n\n\n\nMethod\nGET\n리소스 취득\nCRUD 중 R(Read)\n\n\nPOST\n리소스 생성, 추가\nCRUD 중 C(Create)\n\n\nPUT\n리소스 갱신, 생성\nCRUD 중 C(Create)/U(Update)\n데이터가 없으면 생성하고, 있으면 갱신한다.\n\n\nDELETE\n리소스 삭제\nCRUD 중 D(Delete)\n\n\nHEAD\n헤더 데이터 취득\n\n\nOPTIONS\n지원하는 메소드 취득\n\n\nTRACE\n요청메시지 반환\n\n\nCONNECT\n프록시 동작의 터널 접속으로 변경\n\n\n\n","dateCreated":"2021-09-29T14:54:36+09:00","dateModified":"2021-09-29T14:56:38+09:00","datePublished":"2021-09-29T14:54:36+09:00","description":"","headline":"REST(Representational State Transfer)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/09/29/rest/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/09/29/rest/","keywords":"REST, Web"}</script>
     <meta property="og:type" content="blog">
-<meta property="og:title" content="AOP (Aspect Oriented Programming)">
-<meta property="og:url" content="http://bedongryeol.github.io/09/13/AOP/index.html">
+<meta property="og:title" content="REST(Representational State Transfer)">
+<meta property="og:url" content="http://bedongryeol.github.io/09/29/rest/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="https://res.cloudinary.com/practicaldev/image/fetch/s--6mjjk9E6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/pe617dbmwowpyyo1ycgw.png">
-<meta property="article:published_time" content="2021-09-13T12:49:28.000Z">
-<meta property="article:modified_time" content="2021-09-29T05:53:54.667Z">
+<meta property="article:published_time" content="2021-09-29T05:54:36.000Z">
+<meta property="article:modified_time" content="2021-09-29T05:56:38.268Z">
 <meta property="article:author" content="Dongryeol Jeong">
-<meta property="article:tag" content="AOP">
-<meta property="article:tag" content="DesignPattern">
+<meta property="article:tag" content="REST">
+<meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://res.cloudinary.com/practicaldev/image/fetch/s--6mjjk9E6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/pe617dbmwowpyyo1ycgw.png">
     
     
         
@@ -224,20 +222,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            AOP (Aspect Oriented Programming)
+            REST(Representational State Transfer)
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2021-09-13T21:49:28+09:00">
+    <time datetime="2021-09-29T14:54:36+09:00">
 	
-		    2021/09/13
+		    2021/09/29
     	
     </time>
     
         <span>카테고리 </span>
         
-    <a class="category-link" href="/categories/Java/">Java</a>, <a class="category-link" href="/categories/Java/DesignPattern/">DesignPattern</a>
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Web/">Web</a>
 
 
     
@@ -251,63 +249,99 @@
         <div class="main-content-wrap">
             <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
 <!-- excerpt -->
-<blockquote>
-<h1 id="AOP-Aspect-Oriented-Programming"><a href="#AOP-Aspect-Oriented-Programming" class="headerlink" title="AOP (Aspect Oriented Programming)"></a>AOP (Aspect Oriented Programming)</h1></blockquote>
-<p>관점 지향 프로그래밍이라고도 불리는 AOP는 로직을 <span class="highlight-text success">핵심, 부가적인 관점을 나누어 각각 모듈화하는 프로그래밍</span>이다.</p>
 
-
-<ul>
-<li>핵심적인 관점 : 핵심 비즈니스 로직</li>
-<li>부가적인 관점 : DB 연결, 로깅, 파일 입출력 등</li>
-</ul>
-<p>AOP를 통해 스프링 IoC와 연동하여 중복 코드, 객체 간 복잡도 등에 대한 해결책을 지원한다.</p>
-<ul>
-<li>중복되는 코드를 Aspect로 모듈화하여 재사용성을 높일 수 있다.</li>
-<li><p>중복되는 코드들을 <span class="highlight-text success">흩어진 관심사(Crosscutting Concerns)</span> 라고 칭한다.</p></li>
-<li>실행 전 후 특정 기능 추가(method의 실행시간 체크 등), response 정보 저장 등    </li>
-</ul>
-<p>Spring Bean(스프링 빈)에만 적용 가능하며, 접근 제어와 부가 기능 추가를 위해 proxy패턴 기반의 구현체를 사용한다.</p>
 <blockquote>
-<h2 id="AOP-구성-요소"><a href="#AOP-구성-요소" class="headerlink" title="AOP 구성 요소"></a>AOP 구성 요소</h2></blockquote>
-<div class="figure fig-50 center" style="width:;"><img class="fig-img" src="https://res.cloudinary.com/practicaldev/image/fetch/s--6mjjk9E6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/pe617dbmwowpyyo1ycgw.png" alt=""></div><div style="clear:both;"></div>
-<p>출처 : cloudinary</p>
-<ul>
-<li><p><strong>Aspect</strong></p>
-<ul>
-<li>중복되는 코드(흩어진 관심사)를 모듈화한 것</li>
+<h1 id="REST-Representational-State-Transfer"><a href="#REST-Representational-State-Transfer" class="headerlink" title="REST (Representational State Transfer)"></a>REST (Representational State Transfer)</h1></blockquote>
+<h2 id="조건"><a href="#조건" class="headerlink" title="조건"></a>조건</h2><ol>
+<li>Client와 Server의 분리<ul>
+<li>서로 독립적으로 분리되어 있어야 한다.</li>
 </ul>
 </li>
-<li><p><strong>Target Object</strong> </p>
-<ul>
-<li>Aspect가 적용되는 클래스, 메서드 등의 객체</li>
+<li>Stateless<ul>
+<li>요청에 대해서 클라이언트의 상태를 서버에 저장하지 않는다.</li>
+<li>매 요청을 새롭게 처리한다</li>
 </ul>
 </li>
-<li><p><strong>Proxy</strong> </p>
-<ul>
-<li>Aspect와 Target을 연결해주는 클래스</li>
+<li>Cache (캐시)<ul>
+<li>클라이언트는 서버의 응답을 임시 저장하여, 재사용하고 부하를 낮추어야한다.</li>
 </ul>
 </li>
-<li><p><strong>Join Point</strong> </p>
-<ul>
-<li>Advice가 적용되는 지점 (실행 전 후 특정 기능 추가와 관련)</li>
+<li>Layered System (계층화)<ul>
+<li>서버와 클라이언트 사이를 다양한 계층 형태로 구성하고, 이를 확장할 수 있어야한다.</li>
 </ul>
 </li>
-<li><p><strong>Point Cut</strong> </p>
-<ul>
-<li>JointPoint를 구체화한 Advice가 실행 될 지점 </li>
+<li>인터페이스 일관성<ul>
+<li>인터페이스의 일관성을 지킨다.</li>
+<li>아키텍처를 단순화, 작은 단위로 분리하여 클라이언트, 서버를 독립적으로 개선할 수 있어야한다.</li>
 </ul>
 </li>
-<li><p><strong>Advice</strong> </p>
+</ol>
+<blockquote>
+<p>인터페이스의 일관성을 기초로 REST를 잘 사용하였는지 판단할 수 있다.</p>
 <ul>
-<li>Joint Point, Point Cut에서 실행되는 코드, 실질적인 구현부</li>
+<li>자원의 식별<ul>
+<li>URI를 통하여 리소스에 접근한다.</li>
 </ul>
 </li>
-<li><p><strong>Weaving</strong> </p>
-<ul>
-<li>Joint Point에 Advice를 적용하는 방법</li>
+<li>메시지를 통한 리소스 조작<ul>
+<li>데이터의 타입을 알려주는 header부분의 content-type</li>
+</ul>
+</li>
+<li>자기 서술적 메시지<ul>
+<li>요청하는 데이터가 어떻게 처리되어야하는지 충분한 데이터 포함</li>
+</ul>
+</li>
+<li>애플리케이션 상태에 대한 엔진으로써 하이퍼미디어<ul>
+<li>요청에 대한 데이터만이 아닌 관련된 리소스에 대한 Link정보 포함</li>
 </ul>
 </li>
 </ul>
+</blockquote>
+<ol start="6">
+<li>Code On Demand<ul>
+<li>특정 기능을 서버로부터 전달받아 클라이언트가 실행할 수 있어야한다.</li>
+</ul>
+</li>
+</ol>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><ol>
+<li>GET<ul>
+<li>리소스 취득</li>
+<li>CRUD 중 R(Read)</li>
+</ul>
+</li>
+<li>POST<ul>
+<li>리소스 생성, 추가</li>
+<li>CRUD 중 C(Create)</li>
+</ul>
+</li>
+<li>PUT<ul>
+<li>리소스 갱신, 생성</li>
+<li>CRUD 중 C(Create)/U(Update)</li>
+<li>데이터가 없으면 생성하고, 있으면 갱신한다.</li>
+</ul>
+</li>
+<li>DELETE<ul>
+<li>리소스 삭제</li>
+<li>CRUD 중 D(Delete)</li>
+</ul>
+</li>
+<li>HEAD<ul>
+<li>헤더 데이터 취득</li>
+</ul>
+</li>
+<li>OPTIONS<ul>
+<li>지원하는 메소드 취득</li>
+</ul>
+</li>
+<li>TRACE<ul>
+<li>요청메시지 반환</li>
+</ul>
+</li>
+<li>CONNECT<ul>
+<li>프록시 동작의 터널 접속으로 변경</li>
+</ul>
+</li>
+</ol>
 
             
 
@@ -319,7 +353,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">태그</span><br/>
                 
-    <a class="tag tag--primary tag--small t-none-link" href="/tags/AOP/" rel="tag">AOP</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/DesignPattern/" rel="tag">DesignPattern</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/REST/" rel="tag">REST</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/Web/" rel="tag">Web</a>
 
             </div>
         
@@ -329,14 +363,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/09/16/gRPC/"
-                    data-tooltip="gRPC (Google Remote Procedure Call)"
-                    aria-label="이전: gRPC (Google Remote Procedure Call)"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
@@ -346,9 +377,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/09/06/DecoratorPattern/"
-                    data-tooltip="데코레이터 패턴(Decorator Pattern)"
-                    aria-label="다음: 데코레이터 패턴(Decorator Pattern)"
+                    href="/09/16/gRPC/"
+                    data-tooltip="gRPC (Google Remote Procedure Call)"
+                    aria-label="다음: gRPC (Google Remote Procedure Call)"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">다음</span>
@@ -373,7 +404,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/09/13/AOP/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/09/29/rest/"
                     title="Facebook에 공유하기"
                     aria-label="Facebook에 공유하기"
                 >
@@ -386,7 +417,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/09/13/AOP/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/09/29/rest/"
                     title="Twitter에 공유하기"
                     aria-label="Twitter에 공유하기"
                 >
@@ -399,7 +430,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/09/13/AOP/"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/09/29/rest/"
                     title="Google+에 공유하기"
                     aria-label="Google+에 공유하기"
                 >
@@ -444,14 +475,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/09/16/gRPC/"
-                    data-tooltip="gRPC (Google Remote Procedure Call)"
-                    aria-label="이전: gRPC (Google Remote Procedure Call)"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
@@ -461,9 +489,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/09/06/DecoratorPattern/"
-                    data-tooltip="데코레이터 패턴(Decorator Pattern)"
-                    aria-label="다음: 데코레이터 패턴(Decorator Pattern)"
+                    href="/09/16/gRPC/"
+                    data-tooltip="gRPC (Google Remote Procedure Call)"
+                    aria-label="다음: gRPC (Google Remote Procedure Call)"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">다음</span>
@@ -488,7 +516,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/09/13/AOP/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/09/29/rest/"
                     title="Facebook에 공유하기"
                     aria-label="Facebook에 공유하기"
                 >
@@ -501,7 +529,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/09/13/AOP/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/09/29/rest/"
                     title="Twitter에 공유하기"
                     aria-label="Twitter에 공유하기"
                 >
@@ -514,7 +542,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/09/13/AOP/"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/09/29/rest/"
                     title="Google+에 공유하기"
                     aria-label="Google+에 공유하기"
                 >
@@ -548,7 +576,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/09/13/AOP/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/09/29/rest/"
                         aria-label="Facebook에 공유하기"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
@@ -561,7 +589,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/09/13/AOP/"
+                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/09/29/rest/"
                         aria-label="Twitter에 공유하기"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
@@ -574,7 +602,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/09/13/AOP/"
+                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/09/29/rest/"
                         aria-label="Google+에 공유하기"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
