@@ -1,0 +1,660 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Fintech - Backend Developer">
+    <title>싱글톤 패턴 (Singleton Pattern) - Fintech - Backend Developer</title>
+    <meta name="author" content="Dongryeol Jeong">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\n\nSingleton Pattern 이란 무엇인가?프로그램 내에서 오로지 1개만 존재하는 객체를 생성하여, 내부에서 이를 호출하여 사용하는 경우가 있습니다.\n\n이벤트의 스케줄링, 환경설정, 로그 파일의 생성, 하드웨어 기기의 인터페이스, 캐시 등의 다양한 케이스가 있습니다.\n위와 같은 상황에서 Singleton 패턴을 이용하여 객체를 프로그램 내부에서 단 1개만 생성하고,멀티 쓰레드 환경에서 이 객체를 공유하고, 동시 접근으로 인해 발생하는 동시성 문제도 해결할 수 있습니다.\n정리\nSingleton 패턴\n프로그램 내에 특정 객체가 단 1개가 존재한다.\n프로그램 내부의 다른 부분에서 이 객체를 공유하며 사용한다.\n\n\n\n\nSingleton를 사용하는 이유\n장점\n인스턴스를 1개만 생성함으로써, 메모리 공간을 절약할 수 있다.\n호출할 때마다 생성하지 않아도 되므로, 로딩 시간이 절약된다.\n어디서든 전역 변수처럼 사용할 수 있고, 다른 인스턴스들과 데이터 공유가 잘 이루어진다.\n\n유의 사항\n클래스 내부에서 객체를 직접 생성하기 때문에 DIP(Dependency Inversion Principle) 를 위배하게 된다.\n\n특정 인터페이스에 의존하는 것이 아닌 한 개의 인스턴스에 의존, 전역적으로 직접 참조하게 됩니다.\n이는 의존성 주입(Dependency Injection)을 통해 피할 수 있습니다.\n\n\n멀티 쓰레드 환경에서 안전하게 구현하려면 Thread-Safe, 동기화 처리를 해주어야한다.\n\n\n\nSingleton 구현\n기본 구현12345678910111213// 객체에 대한 직접적인 접근을 막기위해 private으로 생성private static CentralBank centralBank;// 생성자를 외부에서 접근할 수 없도록 private으로 설정private CentralBank()&#123;&#125;;// 객체에 접근할 수 있는 public 코드 작성public static CentralBank getCentralBank()&#123;    // 객체가 null이면 객체 생성    if (centralBank == null) &#123;        centralBank = new CentralBank();    &#125;    // 객체 return    return centralBank;&#125;\n인스턴스와 생성자 모두 private으로 설정하여 외부에서 직접적인 접근을 막아줍니다.\ngetCentralBank() 메서드를 통해서만 인스턴스에 접근이 가능합니다.\n하지만 위 코드는 멀티 쓰레드 환경에서 Thread-safe를 보장하지 않습니다.\n인스턴스가 null인 상태에서 두 개의 쓰레드에서 동시에 getInstance를 호출하면 instance를 두 번 생성할 수 있게 됩니다.\n이를 해결하기 위해서는 동기화가 필요합니다.\n동기화 구현12345678910111213// 객체에 대한 직접적인 접근을 막기위해 private으로 생성private static CentralBank centralBank;// 생성자를 외부에서 접근할 수 없도록 private으로 설정private CentralBank()&#123;&#125;;// 객체에 접근할 수 있는 public 코드 작성public static synchronized CentralBank getCentralBank()&#123;    // 객체가 null이면 객체 생성    if (centralBank == null) &#123;        centralBank = new CentralBank();    &#125;    // 객체 return    return centralBank;&#125;\n\n여러 쓰레드가 동시 접근이 가능한 메서드에 synchronized 키워드를 추가하여 이를 해결할 수 있습니다.\n위 코드에서는 Thread-safe는 보장되지만 속도가 저하된다는 문제가 발생합니다.\n반갑게도 Thread-safe와 속도를 모두 보장하는 방법이 존재합니다.\n아래에서 두 가지 예시로 살펴보도록 하겠습니다.\nDouble Check Lock(DCL) 방식1234567891011121314151617181920public class CentralBank &#123;  // volatile 키워드를 통해 cache가 아닌 main memory에서 데이터를 읽고 쓴다.  private volatile static CentralBank centralBank;  private CentralBank() &#123;  &#125;  public static CentralBank getCentralBank() &#123;    // null인지 1번 체크    if (centralBank == null) &#123;      synchronized (CentralBank.class) &#123;        // 동기화 후에 null인지 다시 한번 체크 (Double check)        if (centralBank == null) &#123;          centralBank = new CentralBank();        &#125;      &#125;    &#125;    return centralBank;  &#125;&#125;\n\n여러 쓰레드가 접근하는 인스턴스에 volatile 키워드를 추가해줍니다.\n\nvolatile 키워드가 없을 때, 멀티 쓰레드 어플리케이션에서는 작업을 수행하는 동안 성능 향상을 위해 메인 메모리에서 읽은 변수의 값을 Cache에 저장합니다.\n이 때, 각 CPU Cache에 저장되는 값이 불일치하는 상황이 발생할 수 있습니다.\nvolatile 키워드를 추가하여 각 CPU의 Cache가 아닌 메인 메모리에 값을 저장하고 읽어오기 때문에, 불일치 문제를 해결할 수 있습니다.\n\n인스턴스를 return해주는 getCentralBank()함수에서 Double-Check를 수행하게 됩니다.\n\nFirst Check\n\n\n인스턴스를 호출할 때 null이면 동기화를 통해 class에 대한 접근을 Lock합니다.\n\n\nSecond Check\n\n\n접근을 막은 상태에서 다시 한 번 인스턴스가 null인지 확인하고, null이면 객체를 생성합니다.\n\nLazyHolder 방식123456789101112public class CentralBank &#123;  // 외부에서의 생성을 막기위해 private으로 설정  private CentralBank()&#123;&#125;  // private한 내부 클래스를 만들고, 그 안에서 final로 인스턴스를 상수화시켜 생성  private static class LazyHolder&#123;    private static final CentralBank centralBank = new CentralBank();  &#125;  // 호출 시 클래스에서 인스턴스를 호출  public CentralBank getCentralBank()&#123;    return LazyHolder.centralBank;  &#125;&#125;\n\nLazyHolder 방식은 윌리엄 푸가 제안한 방법으로 Bill Pugh Solution으로 불리기도 합니다.\n클래스 내부에 private static class를 만들어 사용하고 싶을 때 public static 메서드를 통해 호출하게 됩니다.\n이는 private static class의 특징을 이용하였습니다.\n\nprivate static class\nstatic이지만 메모리에 바로 올라가지 않고, 누군가가 getCentralBank() 메서드를 호출할 때만 호출이 되게 됩니다.\n처음 호출할 때 JVM이 LazyHolder를 load하여 초기화합니다.\nLazyHolder 클래스를 초기화하면 인스턴스(centralBank)가 초기화시키기 위해 생성자를 호출합니다.\n클래스 초기화 단계는 JLS에 의해 순차적으로 보장되므로, 호출 시에 추가적인 동기화는 불필요하게 됩니다.\n또한 static 변수인 centralBank를 순차적으로 입력하기 때문에 동기화가 불필요합니다.\n\n\n\n내부 변수 또한 final키워드를 통해 차후에 값이 변하지 않도록 설정하였습니다.\n","dateCreated":"2021-10-04T23:59:07+09:00","dateModified":"2021-10-05T00:42:09+09:00","datePublished":"2021-10-04T23:59:07+09:00","description":"","headline":"싱글톤 패턴 (Singleton Pattern)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/10/04/singleton/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/10/04/singleton/","keywords":"singleton, 디자인 패턴"}</script>
+    <meta property="og:type" content="blog">
+<meta property="og:title" content="싱글톤 패턴 (Singleton Pattern)">
+<meta property="og:url" content="http://bedongryeol.github.io/10/04/singleton/index.html">
+<meta property="og:site_name" content="Fintech - Backend Developer">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2021-10-04T14:59:07.000Z">
+<meta property="article:modified_time" content="2021-10-04T15:42:09.274Z">
+<meta property="article:author" content="Dongryeol Jeong">
+<meta property="article:tag" content="singleton">
+<meta property="article:tag" content="디자인 패턴">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-sqim1sfvlrl9cczsjyssnk4uipcaudaclj78xhhuhwr57rvgzccjmhkhcg1e.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Fintech - Backend Developer
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            싱글톤 패턴 (Singleton Pattern)
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2021-10-04T23:59:07+09:00">
+	
+		    2021/10/04
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Java/">Java</a>, <a class="category-link" href="/categories/Java/DesignPattern/">DesignPattern</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+
+<blockquote>
+<h2 id="Singleton-Pattern-이란-무엇인가"><a href="#Singleton-Pattern-이란-무엇인가" class="headerlink" title="Singleton Pattern 이란 무엇인가?"></a>Singleton Pattern 이란 무엇인가?</h2><p>프로그램 내에서 오로지 1개만 존재하는 객체를 생성하여, 내부에서 이를 호출하여 사용하는 경우가 있습니다.</p>
+</blockquote>
+<p>이벤트의 스케줄링, 환경설정, 로그 파일의 생성, 하드웨어 기기의 인터페이스, 캐시 등의 다양한 케이스가 있습니다.</p>
+<p>위와 같은 상황에서 <strong>Singleton 패턴</strong>을 이용하여 객체를 프로그램 내부에서 단 1개만 생성하고,<br>멀티 쓰레드 환경에서 이 객체를 공유하고, 동시 접근으로 인해 발생하는 동시성 문제도 해결할 수 있습니다.</p>
+<h3 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h3><ul>
+<li><h4 id="Singleton-패턴"><a href="#Singleton-패턴" class="headerlink" title="Singleton 패턴"></a><strong>Singleton 패턴</strong></h4><ol>
+<li>프로그램 내에 특정 객체가 단 1개가 존재한다.</li>
+<li>프로그램 내부의 다른 부분에서 이 객체를 공유하며 사용한다.</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<h2 id="Singleton를-사용하는-이유"><a href="#Singleton를-사용하는-이유" class="headerlink" title="Singleton를 사용하는 이유"></a>Singleton를 사용하는 이유</h2></blockquote>
+<h3 id="장점"><a href="#장점" class="headerlink" title="장점"></a>장점</h3><ul>
+<li>인스턴스를 1개만 생성함으로써, 메모리 공간을 절약할 수 있다.</li>
+<li>호출할 때마다 생성하지 않아도 되므로, 로딩 시간이 절약된다.</li>
+<li>어디서든 전역 변수처럼 사용할 수 있고, 다른 인스턴스들과 데이터 공유가 잘 이루어진다.</li>
+</ul>
+<h3 id="유의-사항"><a href="#유의-사항" class="headerlink" title="유의 사항"></a>유의 사항</h3><ul>
+<li><p>클래스 내부에서 객체를 직접 생성하기 때문에 DIP(Dependency Inversion Principle) 를 위배하게 된다.</p>
+<ul>
+<li>특정 인터페이스에 의존하는 것이 아닌 한 개의 인스턴스에 의존, 전역적으로 직접 참조하게 됩니다.</li>
+<li>이는 의존성 주입(Dependency Injection)을 통해 피할 수 있습니다.</li>
+</ul>
+</li>
+<li><p>멀티 쓰레드 환경에서 안전하게 구현하려면 <strong>Thread-Safe</strong>, <strong>동기화</strong> 처리를 해주어야한다.</p>
+</li>
+</ul>
+<blockquote>
+<h2 id="Singleton-구현"><a href="#Singleton-구현" class="headerlink" title="Singleton 구현"></a>Singleton 구현</h2></blockquote>
+<h3 id="기본-구현"><a href="#기본-구현" class="headerlink" title="기본 구현"></a>기본 구현</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 객체에 대한 직접적인 접근을 막기위해 private으로 생성</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> CentralBank centralBank;</span><br><span class="line"><span class="comment">// 생성자를 외부에서 접근할 수 없도록 private으로 설정</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">CentralBank</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line"><span class="comment">// 객체에 접근할 수 있는 public 코드 작성</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CentralBank <span class="title">getCentralBank</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// 객체가 null이면 객체 생성</span></span><br><span class="line">    <span class="keyword">if</span> (centralBank == <span class="keyword">null</span>) &#123;</span><br><span class="line">        centralBank = <span class="keyword">new</span> CentralBank();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 객체 return</span></span><br><span class="line">    <span class="keyword">return</span> centralBank;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>인스턴스와 생성자 모두 private으로 설정하여 외부에서 직접적인 접근을 막아줍니다.</p>
+<p>getCentralBank() 메서드를 통해서만 인스턴스에 접근이 가능합니다.</p>
+<p><strong>하지만 위 코드는 멀티 쓰레드 환경에서 Thread-safe</strong>를 보장하지 않습니다.</p>
+<p>인스턴스가 null인 상태에서 두 개의 쓰레드에서 동시에 getInstance를 호출하면 instance를 두 번 생성할 수 있게 됩니다.</p>
+<p>이를 해결하기 위해서는 <strong>동기화</strong>가 필요합니다.</p>
+<h3 id="동기화-구현"><a href="#동기화-구현" class="headerlink" title="동기화 구현"></a>동기화 구현</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 객체에 대한 직접적인 접근을 막기위해 private으로 생성</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> CentralBank centralBank;</span><br><span class="line"><span class="comment">// 생성자를 외부에서 접근할 수 없도록 private으로 설정</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">CentralBank</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line"><span class="comment">// 객체에 접근할 수 있는 public 코드 작성</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> CentralBank <span class="title">getCentralBank</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// 객체가 null이면 객체 생성</span></span><br><span class="line">    <span class="keyword">if</span> (centralBank == <span class="keyword">null</span>) &#123;</span><br><span class="line">        centralBank = <span class="keyword">new</span> CentralBank();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 객체 return</span></span><br><span class="line">    <span class="keyword">return</span> centralBank;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>여러 쓰레드가 동시 접근이 가능한 메서드에 <code>synchronized</code> 키워드를 추가하여 이를 해결할 수 있습니다.</p>
+<p>위 코드에서는 Thread-safe는 보장되지만 <strong>속도가 저하된다는 문제가 발생합니다.</strong></p>
+<p>반갑게도 Thread-safe와 속도를 모두 보장하는 방법이 존재합니다.</p>
+<p>아래에서 두 가지 예시로 살펴보도록 하겠습니다.</p>
+<h3 id="Double-Check-Lock-DCL-방식"><a href="#Double-Check-Lock-DCL-방식" class="headerlink" title="Double Check Lock(DCL) 방식"></a>Double Check Lock(DCL) 방식</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CentralBank</span> </span>&#123;</span><br><span class="line">  <span class="comment">// volatile 키워드를 통해 cache가 아닌 main memory에서 데이터를 읽고 쓴다.</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> CentralBank centralBank;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">CentralBank</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CentralBank <span class="title">getCentralBank</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// null인지 1번 체크</span></span><br><span class="line">    <span class="keyword">if</span> (centralBank == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">synchronized</span> (CentralBank.class) &#123;</span><br><span class="line">        <span class="comment">// 동기화 후에 null인지 다시 한번 체크 (Double check)</span></span><br><span class="line">        <span class="keyword">if</span> (centralBank == <span class="keyword">null</span>) &#123;</span><br><span class="line">          centralBank = <span class="keyword">new</span> CentralBank();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> centralBank;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>여러 쓰레드가 접근하는 인스턴스에 <code>volatile</code> 키워드를 추가해줍니다.</p>
+<ul>
+<li>volatile 키워드가 없을 때, 멀티 쓰레드 어플리케이션에서는 작업을 수행하는 동안 <strong>성능 향상</strong>을 위해 메인 메모리에서 읽은 변수의 값을 Cache에 저장합니다.</li>
+<li>이 때, 각 CPU Cache에 저장되는 값이 불일치하는 상황이 발생할 수 있습니다.</li>
+<li>volatile 키워드를 추가하여 각 CPU의 Cache가 아닌 메인 메모리에 값을 저장하고 읽어오기 때문에, 불일치 문제를 해결할 수 있습니다.</li>
+</ul>
+<p>인스턴스를 return해주는 <code>getCentralBank()</code>함수에서 <strong>Double-Check</strong>를 수행하게 됩니다.</p>
+<ol>
+<li><strong>First Check</strong></li>
+</ol>
+<ul>
+<li>인스턴스를 호출할 때 null이면 동기화를 통해 class에 대한 접근을 Lock합니다.</li>
+</ul>
+<ol start="2">
+<li><strong>Second Check</strong></li>
+</ol>
+<ul>
+<li>접근을 막은 상태에서 다시 한 번 인스턴스가 null인지 확인하고, null이면 객체를 생성합니다.</li>
+</ul>
+<h3 id="LazyHolder-방식"><a href="#LazyHolder-방식" class="headerlink" title="LazyHolder 방식"></a>LazyHolder 방식</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CentralBank</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 외부에서의 생성을 막기위해 private으로 설정</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">CentralBank</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">  <span class="comment">// private한 내부 클래스를 만들고, 그 안에서 final로 인스턴스를 상수화시켜 생성</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyHolder</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> CentralBank centralBank = <span class="keyword">new</span> CentralBank();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 호출 시 클래스에서 인스턴스를 호출</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> CentralBank <span class="title">getCentralBank</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> LazyHolder.centralBank;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>LazyHolder 방식은 <strong>윌리엄 푸</strong>가 제안한 방법으로 <strong>Bill Pugh Solution</strong>으로 불리기도 합니다.</p>
+<p>클래스 내부에 private static class를 만들어 사용하고 싶을 때 public static 메서드를 통해 호출하게 됩니다.</p>
+<p>이는 <code>private static class</code>의 특징을 이용하였습니다.</p>
+<ul>
+<li><strong>private static class</strong><ul>
+<li>static이지만 메모리에 바로 올라가지 않고, 누군가가 getCentralBank() 메서드를 호출할 때만 호출이 되게 됩니다.</li>
+<li>처음 호출할 때 JVM이 LazyHolder를 load하여 초기화합니다.</li>
+<li>LazyHolder 클래스를 초기화하면 인스턴스(centralBank)가 초기화시키기 위해 생성자를 호출합니다.</li>
+<li>클래스 초기화 단계는 <strong>JLS에 의해 순차적으로 보장</strong>되므로, 호출 시에 추가적인 동기화는 불필요하게 됩니다.</li>
+<li>또한 static 변수인 centralBank를 순차적으로 입력하기 때문에 동기화가 불필요합니다.</li>
+</ul>
+</li>
+</ul>
+<p>내부 변수 또한 <code>final</code>키워드를 통해 차후에 값이 변하지 않도록 설정하였습니다.</p>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">태그</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/singleton/" rel="tag">singleton</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/" rel="tag">디자인 패턴</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/09/29/Aboutlinux/"
+                    data-tooltip="LINUX의 사용"
+                    aria-label="다음: LINUX의 사용"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/04/singleton/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/04/singleton/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/04/singleton/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2021 Dongryeol Jeong. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/09/29/Aboutlinux/"
+                    data-tooltip="LINUX의 사용"
+                    aria-label="다음: LINUX의 사용"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/04/singleton/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/04/singleton/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/04/singleton/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/04/singleton/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/04/singleton/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/04/singleton/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
+            <h4 id="about-card-name">Dongryeol Jeong</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/navy.jpeg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ykixqvf3qqvhboif10iqwrzvzbwvwkviecn1aeoflkjcszizeoypxail33s5.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
