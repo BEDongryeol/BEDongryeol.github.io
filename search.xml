@@ -177,9 +177,9 @@
       
       <categories>
           
-          <category> Basic </category>
-          
           <category> Java </category>
+          
+          <category> DesignPattern </category>
           
       </categories>
       
