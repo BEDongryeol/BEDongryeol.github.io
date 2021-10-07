@@ -1,0 +1,719 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Fintech - Backend Developer">
+    <title>Object Mapper - Fintech - Backend Developer</title>
+    <meta name="author" content="Dongryeol Jeong">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\n\nObject Mapper\nObject Mapper를 통하여 Java에서 JSON 값을 가공 및 활용할 수 있습니다.\nJava Object를 JSON으로 Serializing 하거나 반대로 JSON 객체를 Object로 Deserializing 할 수 있습니다.\n\nDependency\n저는 Gradle과 Jackson Databind 2.12.3 API를 사용하였습니다.\nmaven repository 홈페이지에서 object mapper키워드를 검색해서 찾을 수 있습니다.\n편의를 위해 아래 코드 블럭에 위 버전의 dependency를 복사해두었습니다.\n다른 버전 이용은 아래 링크를 참고해주세요\nMVN REPOSITORY - jackson databind\n12// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databindimplementation group: &#x27;com.fasterxml.jackson.core&#x27;, name: &#x27;jackson-databind&#x27;, version: &#x27;2.12.3&#x27;\n\nbuild.gradle에 dependency를 추가하면 jar파일을 온라인에서 불러와 클래스 패스에 자체적으로 추가시켜줍니다.\n\nUsing Case\nUser 객체가 내부적으로 Car 객체의 배열을 갖는 형태로 구성하였습니다.\n이해를 돕기 위해 아래 사진을 첨부하였습니다.\n\nUser 클래스 멤버 변수\n\nString name\nint age\nList cars\n\nCar 클래스 멤버 변수\n\nString name\nString carNumber\nString type\n\n\nUser 객체 코드\n\n123456789101112131415161718192021222324252627282930313233343536373839404142package dto;import java.util.List;public class User &#123;    private String name;    private int age;    private List&lt;Car&gt; cars;    public List&lt;Car&gt; getCars() &#123;        return cars;    &#125;    public void setCars(List&lt;Car&gt; cars) &#123;        this.cars = cars;    &#125;    public String getName() &#123;        return name;    &#125;    public void setName(String name) &#123;        this.name = name;    &#125;    public int getAge() &#123;        return age;    &#125;    public void setAge(int age) &#123;        this.age = age;    &#125;    @Override    public String toString() &#123;        return &quot;User&#123;&quot; +                &quot;name=&#x27;&quot; + name + &#x27;\\&#x27;&#x27; +                &quot;, age=&quot; + age +                &quot;, cars=&quot; + cars +                &#x27;&#125;&#x27;;    &#125;&#125;\n\n\n\nCar 객체 코드\n\n1234567891011121314151617181920212223242526272829303132333435363738394041424344package dto;import com.fasterxml.jackson.annotation.JsonProperty;public class Car &#123;    private String name;    private String carNumber;    private String type;    public String getName() &#123;        return name;    &#125;    public void setName(String name) &#123;        this.name = name;    &#125;    public String getCarNumber() &#123;        return carNumber;    &#125;    public void setCarNumber(String car_number) &#123;        this.carNumber = car_number;    &#125;    public String getType() &#123;        return type;    &#125;    public void setType(String type) &#123;        this.type = type;    &#125;    @Override    public String toString() &#123;        return &quot;Car&#123;&quot; +                &quot;name=&#x27;&quot; + name + &#x27;\\&#x27;&#x27; +                &quot;, car_number=&#x27;&quot; + carNumber + &#x27;\\&#x27;&#x27; +                &quot;, type=&#x27;&quot; + type + &#x27;\\&#x27;&#x27; +                &#x27;&#125;&#x27;;    &#125;&#125;\n\n\n\n0. 객체 준비\n\nUser 객체에 나이와 이름을 setter를 통해 입력해줍니다.\n\ncar 객체 2개를 생성하여 이름, 차량 번호, type을 입력해줍니다.\n\nUser 객체에 보유한 차들을 List 형태로 가지고 있기 때문에 2개를 생성하였습니다.\n\n\n생성한 car 객체 2개를 Array 형태로 변환하여 User 객체에 넣어줍니다.\n\n\n\n객체 생성 코드\n\n12345678910111213141516var user = new User();user.setName(&quot;홍길동&quot;);user.setAge(10);var car1 = new Car();car1.setName(&quot;K5&quot;);car1.setCarNumber(&quot;11가 1111&quot;);car1.setType(&quot;sedan&quot;);var car2 = new Car();car2.setName(&quot;Q5&quot;);car2.setCarNumber(&quot;22가 2222&quot;);car2.setType(&quot;SUV&quot;);List&lt;Car&gt; carList = Arrays.asList(car1,car2);user.setCars(carList);\n\n\n\n\n1. Object를 JSON 등의 타입으로 변환\n\nObjectMapper 객체를 생성해줍니다.\nwriteValueAsString()메서드를 통하여 객체를 String으로 변환하고 String 변수에 담아줍니다.\nUser 객체를 JSON 형태로 설계하였기 때문에 JSON 형태의 String이 출력됩니다.\n객체의 Value를 String으로 저장한다라고 해석하시면 이해하기 편합니다.\n\n\n\n\n\nObject Mapper 코드\n\n123ObjectMapper objectMapper = new ObjectMapper();    String json = objectMapper.writeValueAsString(user);    System.out.println(json);\n\n12// 결과값// &#123;&quot;name&quot;:&quot;홍길동&quot;,&quot;age&quot;:10,&quot;cars&quot;:[&#123;&quot;name&quot;:&quot;K5&quot;,&quot;carNumber&quot;:&quot;11가 1111&quot;,&quot;type&quot;:&quot;sedan&quot;&#125;,&#123;&quot;name&quot;:&quot;Q5&quot;,&quot;carNumber&quot;:&quot;22가 2222&quot;,&quot;type&quot;:&quot;SUV&quot;&#125;]&#125;\n\n\n\n1-1. JSON 특정 key의 value 조회\nreadTree() 메서드JSON의 가장 바깥부분의 key들은 JsonNode를 가지고 있어, 이를 통해 JSON 객체에 직접적인 접근을 할 수 있습니다.\nJSON은 트리 구조와 같이 생겨서 Node를 읽어올 때는 readTree(객체) 메서드를 사용합니다.\n\nJsonNode 코드 확인하기\n\n123456JsonNode jsonNode = objectMapper.readTree(json);String _name = jsonNode.get(&quot;name&quot;).asText();int _age = jsonNode.get(&quot;age&quot;).asInt();System.out.println(&quot;name : &quot; + _name);System.out.println(&quot;age : &quot; + _age);\n\n123// 결과값// name : 홍길동// age : 10\n\n\n하지만, 일반적인 key, value 쌍과는 다르게 cars는 내부적으로 배열 형태를 띄고 있습니다.내부의 배열은 ArrayNode라는 타입을 이용하여 접근할 수 있습니다.\n순서\n\nJsonNode로 cars 배열의 Node 불러오기\nJsonNode를 ArrayNode로 명시적 형변환\n\n\nArrayNode 코드 확인하기\n\n123JsonNode _cars = jsonNode.get(&quot;cars&quot;);ArrayNode arrayNode = (ArrayNode)_cars;System.out.println(&quot;cars : &quot; + arrayNode);\n\n12// 결과값// cars : [&#123;&quot;name&quot;:&quot;K5&quot;,&quot;carNumber&quot;:&quot;11가 1111&quot;,&quot;type&quot;:&quot;sedan&quot;&#125;,&#123;&quot;name&quot;:&quot;Q5&quot;,&quot;carNumber&quot;:&quot;22가 2222&quot;,&quot;type&quot;:&quot;SUV&quot;&#125;]\n\n\n\n1-2. JSON 특정 key의 value 변경JsonNode는 value를 변경할 수 없도록 되어 있습니다. \n\n따라서 값을 변경하고 싶을 때는 JsonNode를 ObjectNode로 명시적 형변환 해준 뒤에 값을 변경할 수 있습니다.\n\n예제 코드 확인하기\n\n12ObjectNode objectNode = (ObjectNode) jsonNode;objectNode.put(&quot;name&quot;, &quot;정동렬&quot;);\n\n\n추가 적으로 objectNode의 값을 보기 편하게 출력하려면 toPrettyString()메서드를 사용하면 됩니다.\n\nSystem.out.println(objectNode.toPrettyString());\n\n\n2. JSON을 Object로 변환바로 위 ArrayNode 코드 확인하기에서 cars의 값을 arrayNode에 초기화시켜주었습니다.\n\n이번에는 역으로 JSON 형태로 존재하는 arrayNode를 기존 User객체에 넣어주었던 List 객체로 mapping 해보겠습니다.\nconvertValue(Object fromValue, TypeReference toValueTypeRef)\n\nfromValue : 변환하고 싶은 객체 (JSON형태의 값)\nTypeReference : mapping하고 싶은 객체의 타입 (List)\n\n\nObject로 mapping하기\n\n12List&lt;Car&gt; cars = objectMapper.convertValue(arrayNode, new TypeReference&lt;List&lt;Car&gt;&gt;() &#123;&#125;);System.out.println(cars);\n\n12// 결과값// [Car&#123;name=&#x27;K5&#x27;, car_number=&#x27;11가 1111&#x27;, type=&#x27;sedan&#x27;&#125;, Car&#123;name=&#x27;Q5&#x27;, car_number=&#x27;22가 2222&#x27;, type=&#x27;SUV&#x27;&#125;]\n","dateCreated":"2021-10-07T20:23:28+09:00","dateModified":"2021-10-07T22:24:37+09:00","datePublished":"2021-10-07T20:23:28+09:00","description":"","headline":"Object Mapper","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/10/07/obejctmapper/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/10/07/obejctmapper/","keywords":"Object Mapper"}</script>
+    <meta property="og:type" content="blog">
+<meta property="og:title" content="Object Mapper">
+<meta property="og:url" content="http://bedongryeol.github.io/10/07/obejctmapper/index.html">
+<meta property="og:site_name" content="Fintech - Backend Developer">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://bedongryeol.github.io/image/json.png">
+<meta property="og:image" content="http://bedongryeol.github.io/image/json2.png">
+<meta property="article:published_time" content="2021-10-07T11:23:28.000Z">
+<meta property="article:modified_time" content="2021-10-07T13:24:37.150Z">
+<meta property="article:author" content="Dongryeol Jeong">
+<meta property="article:tag" content="Object Mapper">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://bedongryeol.github.io/image/json.png">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-sqim1sfvlrl9cczsjyssnk4uipcaudaclj78xhhuhwr57rvgzccjmhkhcg1e.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Fintech - Backend Developer
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Object Mapper
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2021-10-07T20:23:28+09:00">
+	
+		    2021/10/07
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Spring/">Spring</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+
+<blockquote>
+<h2 id="Object-Mapper"><a href="#Object-Mapper" class="headerlink" title="Object Mapper"></a>Object Mapper</h2></blockquote>
+<p>Object Mapper를 통하여 Java에서 JSON 값을 가공 및 활용할 수 있습니다.</p>
+<p>Java Object를 JSON으로 <strong>Serializing</strong> 하거나 반대로 JSON 객체를 Object로 <strong>Deserializing</strong> 할 수 있습니다.</p>
+<blockquote>
+<h2 id="Dependency"><a href="#Dependency" class="headerlink" title="Dependency"></a>Dependency</h2></blockquote>
+<p>저는 <strong>Gradle</strong>과 <strong>Jackson Databind 2.12.3</strong> API를 사용하였습니다.</p>
+<p>maven repository 홈페이지에서 <code>object mapper</code>키워드를 검색해서 찾을 수 있습니다.</p>
+<p>편의를 위해 아래 코드 블럭에 위 버전의 dependency를 복사해두었습니다.</p>
+<p>다른 버전 이용은 아래 링크를 참고해주세요</p>
+<p><a target="_blank" rel="noopener" href="https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind">MVN REPOSITORY - jackson databind</a></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">//</span> <span class="string">https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind</span></span><br><span class="line"><span class="attr">implementation</span> <span class="string">group: &#x27;com.fasterxml.jackson.core&#x27;, name: &#x27;jackson-databind&#x27;, version: &#x27;2.12.3&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>build.gradle</strong>에 dependency를 추가하면 jar파일을 온라인에서 불러와 클래스 패스에 자체적으로 추가시켜줍니다.</p>
+<blockquote>
+<h2 id="Using-Case"><a href="#Using-Case" class="headerlink" title="Using Case"></a>Using Case</h2></blockquote>
+<p>User 객체가 내부적으로 Car 객체의 배열을 갖는 형태로 구성하였습니다.</p>
+<p>이해를 돕기 위해 아래 사진을 첨부하였습니다.</p>
+<p><img src="/image/json.png" alt="img.png"></p>
+<p><strong>User 클래스 멤버 변수</strong></p>
+<ul>
+<li>String name</li>
+<li>int age</li>
+<li>List<Car> cars</li>
+</ul>
+<p><strong>Car 클래스 멤버 변수</strong></p>
+<ul>
+<li>String name</li>
+<li>String carNumber</li>
+<li>String type</li>
+</ul>
+<details>
+<summary>User 객체 코드</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Car&gt; cars;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Car&gt; <span class="title">getCars</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cars;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCars</span><span class="params">(List&lt;Car&gt; cars)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cars = cars;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;User&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&quot;, cars=&quot;</span> + cars +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<details>
+<summary>Car 객체 코드</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.annotation.JsonProperty;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String carNumber;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String type;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCarNumber</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> carNumber;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCarNumber</span><span class="params">(String car_number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.carNumber = car_number;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> type;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setType</span><span class="params">(String type)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.type = type;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Car&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, car_number=&#x27;&quot;</span> + carNumber + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, type=&#x27;&quot;</span> + type + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<blockquote>
+<h3 id="0-객체-준비"><a href="#0-객체-준비" class="headerlink" title="0. 객체 준비"></a>0. 객체 준비</h3></blockquote>
+<ol>
+<li><p><strong>User 객체</strong>에 나이와 이름을 <code>setter</code>를 통해 입력해줍니다.</p>
+</li>
+<li><p><strong>car 객체</strong> 2개를 생성하여 이름, 차량 번호, type을 입력해줍니다.</p>
+<ul>
+<li>User 객체에 보유한 차들을 List 형태로 가지고 있기 때문에 2개를 생성하였습니다.</li>
+</ul>
+</li>
+<li><p>생성한 car 객체 2개를 Array 형태로 변환하여 User 객체에 넣어줍니다.</p>
+</li>
+</ol>
+<details>
+<summary>객체 생성 코드</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user = <span class="keyword">new</span> User();</span><br><span class="line">user.setName(<span class="string">&quot;홍길동&quot;</span>);</span><br><span class="line">user.setAge(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> car1 = <span class="keyword">new</span> Car();</span><br><span class="line">car1.setName(<span class="string">&quot;K5&quot;</span>);</span><br><span class="line">car1.setCarNumber(<span class="string">&quot;11가 1111&quot;</span>);</span><br><span class="line">car1.setType(<span class="string">&quot;sedan&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> car2 = <span class="keyword">new</span> Car();</span><br><span class="line">car2.setName(<span class="string">&quot;Q5&quot;</span>);</span><br><span class="line">car2.setCarNumber(<span class="string">&quot;22가 2222&quot;</span>);</span><br><span class="line">car2.setType(<span class="string">&quot;SUV&quot;</span>);</span><br><span class="line"></span><br><span class="line">List&lt;Car&gt; carList = Arrays.asList(car1,car2);</span><br><span class="line">user.setCars(carList);</span><br></pre></td></tr></table></figure>
+</details>
+
+
+<blockquote>
+<h3 id="1-Object를-JSON-등의-타입으로-변환"><a href="#1-Object를-JSON-등의-타입으로-변환" class="headerlink" title="1. Object를 JSON 등의 타입으로 변환"></a>1. Object를 JSON 등의 타입으로 변환</h3></blockquote>
+<ol>
+<li>ObjectMapper 객체를 생성해줍니다.</li>
+<li><code>writeValueAsString()</code>메서드를 통하여 객체를 String으로 변환하고 String 변수에 담아줍니다.<ul>
+<li>User 객체를 JSON 형태로 설계하였기 때문에 JSON 형태의 String이 출력됩니다.</li>
+<li>객체의 Value를 String으로 저장한다라고 해석하시면 이해하기 편합니다.</li>
+</ul>
+</li>
+</ol>
+<p><img src="/image/json2.png" alt="img.png"></p>
+<details>
+<summary>Object Mapper 코드</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">    String json = objectMapper.writeValueAsString(user);</span><br><span class="line">    System.out.println(json);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 결과값</span></span><br><span class="line"><span class="comment">// &#123;&quot;name&quot;:&quot;홍길동&quot;,&quot;age&quot;:10,&quot;cars&quot;:[&#123;&quot;name&quot;:&quot;K5&quot;,&quot;carNumber&quot;:&quot;11가 1111&quot;,&quot;type&quot;:&quot;sedan&quot;&#125;,&#123;&quot;name&quot;:&quot;Q5&quot;,&quot;carNumber&quot;:&quot;22가 2222&quot;,&quot;type&quot;:&quot;SUV&quot;&#125;]&#125;</span></span><br></pre></td></tr></table></figure>
+</details>
+
+<blockquote>
+<h3 id="1-1-JSON-특정-key의-value-조회"><a href="#1-1-JSON-특정-key의-value-조회" class="headerlink" title="1-1. JSON 특정 key의 value 조회"></a>1-1. JSON 특정 key의 value 조회</h3></blockquote>
+<h4 id="readTree-메서드"><a href="#readTree-메서드" class="headerlink" title="readTree() 메서드"></a>readTree() 메서드</h4><p>JSON의 가장 바깥부분의 key들은 JsonNode를 가지고 있어, 이를 통해 JSON 객체에 직접적인 접근을 할 수 있습니다.</p>
+<p>JSON은 트리 구조와 같이 생겨서 Node를 읽어올 때는 <code>readTree(객체)</code> 메서드를 사용합니다.</p>
+<details>
+<summary>JsonNode 코드 확인하기</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">JsonNode jsonNode = objectMapper.readTree(json);</span><br><span class="line">String _name = jsonNode.get(<span class="string">&quot;name&quot;</span>).asText();</span><br><span class="line"><span class="keyword">int</span> _age = jsonNode.get(<span class="string">&quot;age&quot;</span>).asInt();</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;name : &quot;</span> + _name);</span><br><span class="line">System.out.println(<span class="string">&quot;age : &quot;</span> + _age);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 결과값</span></span><br><span class="line"><span class="comment">// name : 홍길동</span></span><br><span class="line"><span class="comment">// age : 10</span></span><br></pre></td></tr></table></figure>
+</details>
+
+<p><strong>하지만, 일반적인 key, value 쌍과는 다르게 cars는 내부적으로 배열 형태를 띄고 있습니다.</strong><br>내부의 배열은 <strong>ArrayNode</strong>라는 타입을 이용하여 접근할 수 있습니다.</p>
+<p><strong>순서</strong></p>
+<ol>
+<li>JsonNode로 cars 배열의 Node 불러오기</li>
+<li>JsonNode를 ArrayNode로 명시적 형변환</li>
+</ol>
+<details>
+<summary>ArrayNode 코드 확인하기</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JsonNode _cars = jsonNode.get(<span class="string">&quot;cars&quot;</span>);</span><br><span class="line">ArrayNode arrayNode = (ArrayNode)_cars;</span><br><span class="line">System.out.println(<span class="string">&quot;cars : &quot;</span> + arrayNode);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 결과값</span></span><br><span class="line"><span class="comment">// cars : [&#123;&quot;name&quot;:&quot;K5&quot;,&quot;carNumber&quot;:&quot;11가 1111&quot;,&quot;type&quot;:&quot;sedan&quot;&#125;,&#123;&quot;name&quot;:&quot;Q5&quot;,&quot;carNumber&quot;:&quot;22가 2222&quot;,&quot;type&quot;:&quot;SUV&quot;&#125;]</span></span><br></pre></td></tr></table></figure>
+</details>
+
+<blockquote>
+<h3 id="1-2-JSON-특정-key의-value-변경"><a href="#1-2-JSON-특정-key의-value-변경" class="headerlink" title="1-2. JSON 특정 key의 value 변경"></a>1-2. JSON 특정 key의 value 변경</h3><p><strong>JsonNode는 value를 변경할 수 없도록 되어 있습니다.</strong> </p>
+</blockquote>
+<p>따라서 값을 변경하고 싶을 때는 JsonNode를 <strong>ObjectNode로 명시적 형변환</strong> 해준 뒤에 값을 변경할 수 있습니다.</p>
+<details>
+<summary>예제 코드 확인하기</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ObjectNode objectNode = (ObjectNode) jsonNode;</span><br><span class="line">objectNode.put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;정동렬&quot;</span>);</span><br></pre></td></tr></table></figure>
+</details>
+
+<p>추가 적으로 objectNode의 값을 보기 편하게 출력하려면 <code>toPrettyString()</code>메서드를 사용하면 됩니다.</p>
+<ul>
+<li><code>System.out.println(objectNode.toPrettyString());</code></li>
+</ul>
+<blockquote>
+<h3 id="2-JSON을-Object로-변환"><a href="#2-JSON을-Object로-변환" class="headerlink" title="2. JSON을 Object로 변환"></a>2. JSON을 Object로 변환</h3><p>바로 위 <strong>ArrayNode 코드 확인하기</strong>에서 cars의 값을 arrayNode에 초기화시켜주었습니다.</p>
+</blockquote>
+<p>이번에는 역으로 JSON 형태로 존재하는 arrayNode를 기존 User객체에 넣어주었던 List<Cars> 객체로 mapping 해보겠습니다.</p>
+<p><strong>convertValue(Object fromValue, TypeReference<T> toValueTypeRef)</strong></p>
+<ul>
+<li>fromValue : 변환하고 싶은 객체 (JSON형태의 값)</li>
+<li>TypeReference<T> : mapping하고 싶은 객체의 타입 (List<Car>)</li>
+</ul>
+<details>
+<summary>Object로 mapping하기</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Car&gt; cars = objectMapper.convertValue(arrayNode, <span class="keyword">new</span> TypeReference&lt;List&lt;Car&gt;&gt;() &#123;&#125;);</span><br><span class="line">System.out.println(cars);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 결과값</span></span><br><span class="line"><span class="comment">// [Car&#123;name=&#x27;K5&#x27;, car_number=&#x27;11가 1111&#x27;, type=&#x27;sedan&#x27;&#125;, Car&#123;name=&#x27;Q5&#x27;, car_number=&#x27;22가 2222&#x27;, type=&#x27;SUV&#x27;&#125;]</span></span><br></pre></td></tr></table></figure>
+</details>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">태그</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/Object-Mapper/" rel="tag">Object Mapper</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/10/04/singleton/"
+                    data-tooltip="싱글톤 패턴 (Singleton Pattern)"
+                    aria-label="다음: 싱글톤 패턴 (Singleton Pattern)"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/07/obejctmapper/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/07/obejctmapper/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/07/obejctmapper/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2021 Dongryeol Jeong. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/10/04/singleton/"
+                    data-tooltip="싱글톤 패턴 (Singleton Pattern)"
+                    aria-label="다음: 싱글톤 패턴 (Singleton Pattern)"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/07/obejctmapper/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/07/obejctmapper/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/07/obejctmapper/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/07/obejctmapper/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/07/obejctmapper/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/07/obejctmapper/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
+            <h4 id="about-card-name">Dongryeol Jeong</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/navy.jpeg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ykixqvf3qqvhboif10iqwrzvzbwvwkviecn1aeoflkjcszizeoypxail33s5.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
