@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\nArray 구현\njdk 클래스 : ArrayList, Vector구현 함수\n배열은 크기를 미리 정해주어야 한다.\n\nARRAY_SIZE = 배열의 크기 \ncount = 배열 내 요소 개수\naddElement = 요소 추가 함수\ninsertElement = 요소 삽입 함수\nremoveElement = 요소 제거 함수\ngetSize = 배열의 크기\ngetElement = 검색 함수\nprintAll = 모든 요소 출력\nremoveAll = 모든 요소 삭제\n\n\n\n\n\n예제코드 확인하기\n\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108public class Test &#123;    int[] intArr;    int count;    public int ARRAY_SIZE;    public static final int ERROR_NUM = -999999999;    public Test() &#123;        count = 0;        ARRAY_SIZE = 10;        intArr = new int[ARRAY_SIZE];    &#125;    public Test(int size) &#123;        count = 0;        ARRAY_SIZE = size;        intArr = new int[ARRAY_SIZE];    &#125;    public void addElement(int num) &#123;        if (count &gt;= ARRAY_SIZE) &#123;            System.out.println(&quot;Not enough Memory&quot;);            return;        &#125;        intArr[count++] = num;    &#125;    public void insertElement(int index, int num) &#123;        int i = count - 1;        if (count &gt;= ARRAY_SIZE) &#123;            System.out.println(&quot;Not enough Memory&quot;);            return;        &#125;        if (index &lt; 0 || index &gt; count) &#123;            System.out.println(&quot;Insert Error&quot;);            return;        &#125;        while (i &gt; index) &#123;            intArr[i + 1] = intArr[i];            i--;        &#125;        intArr[index] = num;        count++;    &#125;    public int removeElement(int index) &#123;        int ret = ERROR_NUM;        if (isEmpty()) &#123;            System.out.println(&quot;There is no element&quot;);            return ret;        &#125;        if (index &lt; 0 || index &gt;= count)&#123;            System.out.println(&quot;index Error&quot;);            return ret;        &#125;        ret = intArr[index];        for (int i = index; i&lt;count-1; i++)&#123;            intArr[i] = intArr[i+1];        &#125;        count--;        return ret;    &#125;    private boolean isEmpty() &#123;        if (count == 0) &#123;            return true;        &#125;        else return false;    &#125;    public int getSize()&#123;        return count;    &#125;    public int getElement(int index)&#123;        if (index &lt; 0 || index &gt; count-1)&#123;            System.out.println(&quot;검색 위치 오류입니다. 현재 리스트의 개수는 &quot; + count + &quot;입니다.&quot;);            return ERROR_NUM;        &#125;        return intArr[index];    &#125;    public void printAll()&#123;        if (count == 0) &#123;            System.out.println(&quot;출력할 값이 없습니다.&quot;);            return;        &#125;        for (int i = 0 ; i &lt; count; i++)&#123;            System.out.println(intArr[i]);        &#125;    &#125;    public void removeAll()&#123;        for (int i = 0; i &lt; count; i++)&#123;            intArr[i] = 0;        &#125;        count = 0;    &#125;&#125;\n\n\n","dateCreated":"2021-08-20T20:34:23+09:00","dateModified":"2021-09-09T23:06:10+09:00","datePublished":"2021-08-20T20:34:23+09:00","description":"","headline":"자바 배열 구현","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/20/JavaArray/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/08/20/JavaArray/","keywords":"Java, Array, 자바, 배열"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\nArray 구현\njdk 클래스 : ArrayList, Vector구현 함수\n배열은 크기를 미리 정해주어야 한다.\n\nARRAY_SIZE = 배열의 크기 \ncount = 배열 내 요소 개수\naddElement = 요소 추가 함수\ninsertElement = 요소 삽입 함수\nremoveElement = 요소 제거 함수\ngetSize = 배열의 크기\ngetElement = 검색 함수\nprintAll = 모든 요소 출력\nremoveAll = 모든 요소 삭제\n\n\n\n\n\n예제코드 확인하기\n\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108public class Test &#123;    int[] intArr;    int count;    public int ARRAY_SIZE;    public static final int ERROR_NUM = -999999999;    public Test() &#123;        count = 0;        ARRAY_SIZE = 10;        intArr = new int[ARRAY_SIZE];    &#125;    public Test(int size) &#123;        count = 0;        ARRAY_SIZE = size;        intArr = new int[ARRAY_SIZE];    &#125;    public void addElement(int num) &#123;        if (count &gt;= ARRAY_SIZE) &#123;            System.out.println(&quot;Not enough Memory&quot;);            return;        &#125;        intArr[count++] = num;    &#125;    public void insertElement(int index, int num) &#123;        int i = count - 1;        if (count &gt;= ARRAY_SIZE) &#123;            System.out.println(&quot;Not enough Memory&quot;);            return;        &#125;        if (index &lt; 0 || index &gt; count) &#123;            System.out.println(&quot;Insert Error&quot;);            return;        &#125;        while (i &gt; index) &#123;            intArr[i + 1] = intArr[i];            i--;        &#125;        intArr[index] = num;        count++;    &#125;    public int removeElement(int index) &#123;        int ret = ERROR_NUM;        if (isEmpty()) &#123;            System.out.println(&quot;There is no element&quot;);            return ret;        &#125;        if (index &lt; 0 || index &gt;= count)&#123;            System.out.println(&quot;index Error&quot;);            return ret;        &#125;        ret = intArr[index];        for (int i = index; i&lt;count-1; i++)&#123;            intArr[i] = intArr[i+1];        &#125;        count--;        return ret;    &#125;    private boolean isEmpty() &#123;        if (count == 0) &#123;            return true;        &#125;        else return false;    &#125;    public int getSize()&#123;        return count;    &#125;    public int getElement(int index)&#123;        if (index &lt; 0 || index &gt; count-1)&#123;            System.out.println(&quot;검색 위치 오류입니다. 현재 리스트의 개수는 &quot; + count + &quot;입니다.&quot;);            return ERROR_NUM;        &#125;        return intArr[index];    &#125;    public void printAll()&#123;        if (count == 0) &#123;            System.out.println(&quot;출력할 값이 없습니다.&quot;);            return;        &#125;        for (int i = 0 ; i &lt; count; i++)&#123;            System.out.println(intArr[i]);        &#125;    &#125;    public void removeAll()&#123;        for (int i = 0; i &lt; count; i++)&#123;            intArr[i] = 0;        &#125;        count = 0;    &#125;&#125;\n\n\n","dateCreated":"2021-08-20T20:34:23+09:00","dateModified":"2021-09-09T23:06:10+09:00","datePublished":"2021-08-20T20:34:23+09:00","description":"","headline":"자바 배열 구현","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/08/20/JavaArray/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/08/20/JavaArray/","keywords":"Java, 자바, Array, 배열"}</script>
     <meta property="og:type" content="blog">
 <meta property="og:title" content="자바 배열 구현">
 <meta property="og:url" content="http://bedongryeol.github.io/08/20/JavaArray/index.html">
@@ -25,8 +25,8 @@
 <meta property="article:modified_time" content="2021-09-09T14:06:10.183Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="Array">
 <meta property="article:tag" content="자바">
+<meta property="article:tag" content="Array">
 <meta property="article:tag" content="배열">
 <meta name="twitter:card" content="summary">
     
@@ -64,7 +64,7 @@
         
     
 
-<header id="header" data-behavior="5">
+<header id="header" data-behavior="2">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a
@@ -97,7 +97,7 @@
         
     
 
-<nav id="sidebar" data-behavior="5">
+<nav id="sidebar" data-behavior="2">
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
@@ -126,7 +126,7 @@
                             rel="noopener"
                             title="Home"
                         >
-                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Home</span>
                     </a>
             </li>
@@ -140,7 +140,7 @@
                             rel="noopener"
                             title="카테고리"
                         >
-                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">카테고리</span>
                     </a>
             </li>
@@ -154,7 +154,7 @@
                             rel="noopener"
                             title="아카이브"
                         >
-                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">아카이브</span>
                     </a>
             </li>
@@ -168,7 +168,7 @@
                             rel="noopener"
                             title="검색"
                         >
-                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">검색</span>
                     </a>
             </li>
@@ -182,7 +182,7 @@
                             rel="noopener"
                             title="About"
                         >
-                        <i class="sidebar-button-icon fa fa-circle" aria-hidden="true"></i>
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">About</span>
                     </a>
             </li>
@@ -213,7 +213,7 @@
 </nav>
 
             
-            <div id="main" data-behavior="5"
+            <div id="main" data-behavior="2"
                  class="
                         hasCoverMetaIn
                         ">
@@ -404,7 +404,7 @@
 
             </div>
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
                     <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
@@ -504,7 +504,7 @@
 
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+    <div id="share-options-bar" class="share-options-bar" data-behavior="2">
         <i id="btn-close-shareoptions" class="fa fa-times"></i>
         <ul class="share-options">
             
