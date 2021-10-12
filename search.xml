@@ -4,6 +4,64 @@
   
     
     <entry>
+      <title>IPC - 파이프 (Pipe)</title>
+      <link href="/10/12/realpipe/"/>
+      <url>/10/12/realpipe/</url>
+      
+        <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="Pipe-파이프-기법"><a href="#Pipe-파이프-기법" class="headerlink" title="Pipe(파이프) 기법"></a>Pipe(파이프) 기법</h2></blockquote><p><img src="https://miro.medium.com/max/4800/1*O9f0bRS5cPfLQBM1-SpbIQ.png" alt="image"></p><p>기본적인 파이프 기법은 <strong>단방향 통신</strong>으로 구성되어 있습니다. Half-Duplex 통신이라고 불리기도 합니다.</p><p>두 개의 프로세스를 연결하여 한 쪽에서는 데이터를 write하고, 다른 한 쪽에서는 read만 할 수 있습니다. 또는 <strong>한 프로세스의 출력 스트림을 다른 프로세스의 입력 스트림으로 사용할 때 사용됩니다.</strong></p><p>C언어에서 <code>fork()</code>로 자식 프로세스를 생성했을 때, <strong>부모와 자식간의 통신</strong>도 파이프를 통해 이루어지게 됩니다.</p><p>아래 예제를 통해 파이프 코드를 살펴보도록 하겠습니다.</p><blockquote><h2 id="Pipe-예제-코드"><a href="#Pipe-예제-코드" class="headerlink" title="Pipe 예제 코드"></a>Pipe 예제 코드</h2></blockquote><h3 id="1-출력-스트림을-입력-스트림으로-사용"><a href="#1-출력-스트림을-입력-스트림으로-사용" class="headerlink" title="1. 출력 스트림을 입력 스트림으로 사용"></a>1. 출력 스트림을 입력 스트림으로 사용</h3><p>Mac OS의 iterm에서 디렉토리 내 디렉토리, 파일을 보여주는 ls코드로 예제를 만들어 보겠습니다.</p><p><code>ls -al</code>를 입력하여 아래와 같은 화면이 출력되었습니다. </p><p><img src="/image/lsal.png" alt="img.png"></p><p>위 폴더 중 <strong>단어 code</strong>가 포함된 결과물만을 출력할 때 파이프 라인을 사용할 수 있습니다.</p><p><code>ls -al | grep code</code> </p><ul><li>파이프 라인을 통하여 위 1차 출력을 입력으로 받고, 그 중 code가 포함된 결과물을 가져 옵니다.</li><li>여기서 <code>|</code>가 파이프 라인을 의미합니다.</li></ul><p><img src="/image/grep.png" alt="img_1.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Basic </category>
+          
+          <category> System Programming </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IPC </tag>
+            
+            <tag> Pipe </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>IPC (Inter-Process Communication)</title>
+      <link href="/10/12/pipe/"/>
+      <url>/10/12/pipe/</url>
+      
+        <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="IPC란-무엇인가"><a href="#IPC란-무엇인가" class="headerlink" title="IPC란 무엇인가?"></a>IPC란 무엇인가?</h2></blockquote><p><img src="https://static.packt-cdn.com/products/9781785883057/graphics/0af92d22-6bef-42c8-84cf-528fa13becf0.jpg" alt="image"></p><p>IPC는 <span class="highlight-text success">Inter-Process Communication의 약어</span>로 프로세스간 통신의 약어이다.</p><p><strong>프로세스는 서로 독립되어 있어 다른 프로세스의 영향을 받지 않습니다.</strong> 이는 보는 관점에 따라 장점이 될 수도, 단점이 될 수도 있습니다. </p><p>서로 독립되어 있어 다른 프로세스의 영향을 받지 않을 수 있다는 장점이 있지만, 이는 서로 간의 통신이 어려운 것으로 해석할 수 있습니다.</p><p>이를 위해 OS의 커널 영역에서는 IPC를 제공하고, 이를 통해 프로세스간 통신이 가능해집니다.</p><h3 id="IPC-표준"><a href="#IPC-표준" class="headerlink" title="IPC 표준"></a>IPC 표준</h3><h4 id="1-System-V-IPC"><a href="#1-System-V-IPC" class="headerlink" title="1. System V IPC"></a>1. System V IPC</h4><ul><li>오랜 역사를 가지고 있다.</li><li>서로 다른 기종간의 코드 호환성을 안정적으로 보장해준다.</li><li>불명확한 함수명과 API의 버전이 오래되었다.</li></ul><h4 id="2-POSIX-IPC"><a href="#2-POSIX-IPC" class="headerlink" title="2. POSIX IPC"></a>2. POSIX IPC</h4><ul><li>유닉스 시스템 프로그래밍 인터페이스 표준이다.</li><li>IEEE (Institute of Electronic and Electronics Engineers)에서 표준화를 시도함</li><li>직관적인 API로 인해 비교적 사용하기 쉽다.</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Basic </category>
+          
+          <category> System Programming </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IPC </tag>
+            
+            <tag> POSIX </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Object Mapper</title>
       <link href="/10/07/obejctmapper/"/>
       <url>/10/07/obejctmapper/</url>

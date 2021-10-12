@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Fintech - Backend Developer">
+    <title>IPC - 파이프 (Pipe) - Fintech - Backend Developer</title>
+    <meta name="author" content="Dongryeol Jeong">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\n\nPipe(파이프) 기법\n\n기본적인 파이프 기법은 단방향 통신으로 구성되어 있습니다. Half-Duplex 통신이라고 불리기도 합니다.\n두 개의 프로세스를 연결하여 한 쪽에서는 데이터를 write하고, 다른 한 쪽에서는 read만 할 수 있습니다. 또는 한 프로세스의 출력 스트림을 다른 프로세스의 입력 스트림으로 사용할 때 사용됩니다.\nC언어에서 fork()로 자식 프로세스를 생성했을 때, 부모와 자식간의 통신도 파이프를 통해 이루어지게 됩니다.\n아래 예제를 통해 파이프 코드를 살펴보도록 하겠습니다.\n\nPipe 예제 코드\n1. 출력 스트림을 입력 스트림으로 사용Mac OS의 iterm에서 디렉토리 내 디렉토리, 파일을 보여주는 ls코드로 예제를 만들어 보겠습니다.\nls -al를 입력하여 아래와 같은 화면이 출력되었습니다. \n\n위 폴더 중 단어 code가 포함된 결과물만을 출력할 때 파이프 라인을 사용할 수 있습니다.\nls -al | grep code \n\n파이프 라인을 통하여 위 1차 출력을 입력으로 받고, 그 중 code가 포함된 결과물을 가져 옵니다.\n여기서 |가 파이프 라인을 의미합니다.\n\n\n","dateCreated":"2021-10-12T22:30:09+09:00","dateModified":"2021-10-12T22:49:50+09:00","datePublished":"2021-10-12T22:30:09+09:00","description":"","headline":"IPC - 파이프 (Pipe)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/10/12/realpipe/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/10/12/realpipe/","keywords":"IPC, Pipe"}</script>
+    <meta property="og:type" content="blog">
+<meta property="og:title" content="IPC - 파이프 (Pipe)">
+<meta property="og:url" content="http://bedongryeol.github.io/10/12/realpipe/index.html">
+<meta property="og:site_name" content="Fintech - Backend Developer">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://miro.medium.com/max/4800/1*O9f0bRS5cPfLQBM1-SpbIQ.png">
+<meta property="og:image" content="http://bedongryeol.github.io/image/lsal.png">
+<meta property="og:image" content="http://bedongryeol.github.io/image/grep.png">
+<meta property="article:published_time" content="2021-10-12T13:30:09.000Z">
+<meta property="article:modified_time" content="2021-10-12T13:49:50.621Z">
+<meta property="article:author" content="Dongryeol Jeong">
+<meta property="article:tag" content="IPC">
+<meta property="article:tag" content="Pipe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miro.medium.com/max/4800/1*O9f0bRS5cPfLQBM1-SpbIQ.png">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-sqim1sfvlrl9cczsjyssnk4uipcaudaclj78xhhuhwr57rvgzccjmhkhcg1e.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Fintech - Backend Developer
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="2">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            IPC - 파이프 (Pipe)
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2021-10-12T22:30:09+09:00">
+	
+		    2021/10/12
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/System-Programming/">System Programming</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+
+<blockquote>
+<h2 id="Pipe-파이프-기법"><a href="#Pipe-파이프-기법" class="headerlink" title="Pipe(파이프) 기법"></a>Pipe(파이프) 기법</h2></blockquote>
+<p><img src="https://miro.medium.com/max/4800/1*O9f0bRS5cPfLQBM1-SpbIQ.png" alt="image"></p>
+<p>기본적인 파이프 기법은 <strong>단방향 통신</strong>으로 구성되어 있습니다. Half-Duplex 통신이라고 불리기도 합니다.</p>
+<p>두 개의 프로세스를 연결하여 한 쪽에서는 데이터를 write하고, 다른 한 쪽에서는 read만 할 수 있습니다. 또는 <strong>한 프로세스의 출력 스트림을 다른 프로세스의 입력 스트림으로 사용할 때 사용됩니다.</strong></p>
+<p>C언어에서 <code>fork()</code>로 자식 프로세스를 생성했을 때, <strong>부모와 자식간의 통신</strong>도 파이프를 통해 이루어지게 됩니다.</p>
+<p>아래 예제를 통해 파이프 코드를 살펴보도록 하겠습니다.</p>
+<blockquote>
+<h2 id="Pipe-예제-코드"><a href="#Pipe-예제-코드" class="headerlink" title="Pipe 예제 코드"></a>Pipe 예제 코드</h2></blockquote>
+<h3 id="1-출력-스트림을-입력-스트림으로-사용"><a href="#1-출력-스트림을-입력-스트림으로-사용" class="headerlink" title="1. 출력 스트림을 입력 스트림으로 사용"></a>1. 출력 스트림을 입력 스트림으로 사용</h3><p>Mac OS의 iterm에서 디렉토리 내 디렉토리, 파일을 보여주는 ls코드로 예제를 만들어 보겠습니다.</p>
+<p><code>ls -al</code>를 입력하여 아래와 같은 화면이 출력되었습니다. </p>
+<p><img src="/image/lsal.png" alt="img.png"></p>
+<p>위 폴더 중 <strong>단어 code</strong>가 포함된 결과물만을 출력할 때 파이프 라인을 사용할 수 있습니다.</p>
+<p><code>ls -al | grep code</code> </p>
+<ul>
+<li>파이프 라인을 통하여 위 1차 출력을 입력으로 받고, 그 중 code가 포함된 결과물을 가져 옵니다.</li>
+<li>여기서 <code>|</code>가 파이프 라인을 의미합니다.</li>
+</ul>
+<p><img src="/image/grep.png" alt="img_1.png"></p>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">태그</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/IPC/" rel="tag">IPC</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/Pipe/" rel="tag">Pipe</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/10/12/pipe/"
+                    data-tooltip="IPC (Inter-Process Communication)"
+                    aria-label="다음: IPC (Inter-Process Communication)"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/12/realpipe/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/12/realpipe/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/12/realpipe/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2021 Dongryeol Jeong. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/10/12/pipe/"
+                    data-tooltip="IPC (Inter-Process Communication)"
+                    aria-label="다음: IPC (Inter-Process Communication)"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/12/realpipe/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/12/realpipe/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/12/realpipe/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/12/realpipe/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/12/realpipe/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/12/realpipe/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
+            <h4 id="about-card-name">Dongryeol Jeong</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/navy.jpeg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ykixqvf3qqvhboif10iqwrzvzbwvwkviecn1aeoflkjcszizeoypxail33s5.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
