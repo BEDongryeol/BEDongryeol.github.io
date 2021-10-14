@@ -44,7 +44,7 @@
           
           <category> Basic </category>
           
-          <category> System Programming </category>
+          <category> OS </category>
           
       </categories>
       
@@ -73,7 +73,7 @@
           
           <category> Basic </category>
           
-          <category> System Programming </category>
+          <category> OS </category>
           
       </categories>
       
@@ -102,7 +102,7 @@
           
           <category> Basic </category>
           
-          <category> System Programming </category>
+          <category> OS </category>
           
       </categories>
       
@@ -745,9 +745,9 @@
       
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> String </tag>
+            
+            <tag> Java </tag>
             
         </tags>
       

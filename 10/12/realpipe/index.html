@@ -15,7 +15,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\n\nPipe(파이프) 기법\n\n기본적인 파이프 기법은 단방향 통신으로 구성되어 있습니다. Half-Duplex 통신이라고 불리기도 합니다.\n두 개의 프로세스를 연결하여 한 쪽에서는 데이터를 write하고, 다른 한 쪽에서는 read만 할 수 있습니다. 또는 한 프로세스의 출력 스트림을 다른 프로세스의 입력 스트림으로 사용할 때 사용됩니다.\nC언어에서 fork()로 자식 프로세스를 생성했을 때, 부모와 자식간의 통신도 파이프를 통해 이루어지게 됩니다.\n아래 예제를 통해 파이프 코드를 살펴보도록 하겠습니다.\n\nPipe 예제 코드\n1. 출력 스트림을 입력 스트림으로 사용Mac OS의 iterm에서 디렉토리 내 디렉토리, 파일을 보여주는 ls코드로 예제를 만들어 보겠습니다.\nls -al를 입력하여 아래와 같은 화면이 출력되었습니다. \n\n위 폴더 중 단어 code가 포함된 결과물만을 출력할 때 파이프 라인을 사용할 수 있습니다.\nls -al | grep code \n\n파이프 라인을 통하여 위 1차 출력을 입력으로 받고, 그 중 code가 포함된 결과물을 가져 옵니다.\n여기서 |가 파이프 라인을 의미합니다.\n\n\n","dateCreated":"2021-10-12T22:30:09+09:00","dateModified":"2021-10-12T22:49:50+09:00","datePublished":"2021-10-12T22:30:09+09:00","description":"","headline":"IPC - 파이프 (Pipe)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/10/12/realpipe/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/10/12/realpipe/","keywords":"IPC, Pipe"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\n\nPipe(파이프) 기법\n\n기본적인 파이프 기법은 단방향 통신으로 구성되어 있습니다. Half-Duplex 통신이라고 불리기도 합니다.\n두 개의 프로세스를 연결하여 한 쪽에서는 데이터를 write하고, 다른 한 쪽에서는 read만 할 수 있습니다. 또는 한 프로세스의 출력 스트림을 다른 프로세스의 입력 스트림으로 사용할 때 사용됩니다.\nC언어에서 fork()로 자식 프로세스를 생성했을 때, 부모와 자식간의 통신도 파이프를 통해 이루어지게 됩니다.\n아래 예제를 통해 파이프 코드를 살펴보도록 하겠습니다.\n\nPipe 예제 코드\n1. 출력 스트림을 입력 스트림으로 사용Mac OS의 iterm에서 디렉토리 내 디렉토리, 파일을 보여주는 ls코드로 예제를 만들어 보겠습니다.\nls -al를 입력하여 아래와 같은 화면이 출력되었습니다. \n\n위 폴더 중 단어 code가 포함된 결과물만을 출력할 때 파이프 라인을 사용할 수 있습니다.\nls -al | grep code \n\n파이프 라인을 통하여 위 1차 출력을 입력으로 받고, 그 중 code가 포함된 결과물을 가져 옵니다.\n여기서 |가 파이프 라인을 의미합니다.\n\n\n","dateCreated":"2021-10-12T22:30:09+09:00","dateModified":"2021-10-14T21:55:02+09:00","datePublished":"2021-10-12T22:30:09+09:00","description":"","headline":"IPC - 파이프 (Pipe)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/10/12/realpipe/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/10/12/realpipe/","keywords":"IPC, Pipe"}</script>
     <meta property="og:type" content="blog">
 <meta property="og:title" content="IPC - 파이프 (Pipe)">
 <meta property="og:url" content="http://bedongryeol.github.io/10/12/realpipe/index.html">
@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://bedongryeol.github.io/image/lsal.png">
 <meta property="og:image" content="http://bedongryeol.github.io/image/grep.png">
 <meta property="article:published_time" content="2021-10-12T13:30:09.000Z">
-<meta property="article:modified_time" content="2021-10-12T13:49:50.621Z">
+<meta property="article:modified_time" content="2021-10-14T12:55:02.371Z">
 <meta property="article:author" content="Dongryeol Jeong">
 <meta property="article:tag" content="IPC">
 <meta property="article:tag" content="Pipe">
@@ -239,7 +239,7 @@
     
         <span>카테고리 </span>
         
-    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/System-Programming/">System Programming</a>
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/OS/">OS</a>
 
 
     
