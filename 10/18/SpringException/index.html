@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Fintech - Backend Developer">
+    <title>Spring Boot에서의 Exception 처리 - Fintech - Backend Developer</title>
+    <meta name="author" content="Dongryeol Jeong">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\nWeb Application의 입장에서, 에러가 발생했을 때 처리해줄 수 있는 방법은 많지 않다.크게 에러 페이지, 4 ~ 500번대 에러, 별도의 에러 메세지 전달 정도가 있다.\n아래 예제 코드를 통해 확인해보도록 하자.\nname(String), age(Integer) 속성을 가지고 있는 User 객체에, controller에서 Integer와 int의 합을 도출하도록 해서 억지로 에러를 발생시켜 보았다.\n\nUser 코드 확인하기\n\n1234567891011121314151617181920212223242526272829303132333435363738394041package com.example.exception.dto;import javax.validation.constraints.Min;import javax.validation.constraints.NotEmpty;import javax.validation.constraints.NotNull;import javax.validation.constraints.Size;public class User &#123;    @NotEmpty    @Size(min = 2, max = 10)    private String name;    @Min(1)    @NotNull    private Integer age;    public String getName() &#123;        return name;    &#125;    public void setName(String name) &#123;        this.name = name;    &#125;    public Integer getAge() &#123;        return age;    &#125;    public void setAge(Integer age) &#123;        this.age = age;    &#125;    @Override    public String toString() &#123;        return &quot;User&#123;&quot; +                &quot;name=&#x27;&quot; + name + &#x27;\\&#x27;&#x27; +                &quot;, age=&quot; + age +                &#x27;&#125;&#x27;;    &#125;&#125;\n\n\n\nController 코드 확인하기\n\n123456789101112131415161718192021222324252627package com.example.exception.controller;import com.example.exception.dto.User;import org.springframework.web.bind.annotation.*;@RestController@RequestMapping(&quot;/api&quot;)public class ApiController &#123;    @GetMapping(&quot;&quot;)    public User get(@RequestParam(required = false) String name, @RequestParam(required = false) Integer age)&#123;        User user = new User();        user.setName(name);        user.setAge(age);        // 에러 발생 시키기        int a = 10+age;        return user;    &#125;    @PostMapping(&quot;&quot;)    public User post(@RequestBody User user)&#123;       System.out.println(user);       return user;    &#125;&#125;\n\n\n\nClient에게 친절한 Exception 처리는 기본적으로 두 가지 방식이 있다. \n이를 Advice(조언) 이라고 한다. Server에서 Client에게 오류에 대한 조언을 해주는 것이다.\n\n관련 Annotation\n@RestControllerAdvice\n페이징 처리를 하는 view resolver 영역의 white label page, error page를 global하게 처리할 수 있는 집합 장소\n\n@ExceptionHandler\nGlobal하게 처리할 때는 RestControllerAdvice Annotation이 붙은 클래스 내에, 특정 Controller의 예외 처리를 할 때 특정 컨트롤러 내부에 사용한다.\n동일한 Handler가 Global, Controller에 모두 존재하면 특정 Controller 내부의 handler가 처리된다.\n\n\n전역으로 처리하는 handler 생성\n\n1234567891011121314151617181920package com.example.exception.advice;import org.springframework.http.HttpStatus;import org.springframework.http.ResponseEntity;import org.springframework.web.bind.annotation.ExceptionHandler;import org.springframework.web.bind.annotation.RestControllerAdvice;@RestControllerAdvicepublic class GlobalControlAdvice &#123;    @ExceptionHandler(value = Exception.class)    public ResponseEntity exception(Exception e)&#123;        System.out.println(e.getClass().getName());        System.out.println(&quot;------------&quot;);        System.out.println(e.getLocalizedMessage());        System.out.println(&quot;------------&quot;);        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());    &#125;&#125;\n\n\n\n특정 Exception 처리하는 handler생성\n\n12345@ExceptionHandler(value = NullPointerException.class)public ResponseEntity methodArg(NullPointerException e)&#123;    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(&quot;값이 유효하지 않습니다.&quot;);&#125;\n    \n\n혹은 RestControllerAdvice Annotation에 basePackageClasses인자를 추가하여 특정 컨트롤러에 한정 시킬 수 있다.\n\n@RestControllerAdvice(basePackageClasses = ApiController.class)\n\n\nClient 단에서 발생할 수 있는 에러\nClient가 발생시킬 수 있는 에러는 형식에 맞지 않게 값을 입력하는 것이다. 이름을 1글자만 입력하거나, 나이를 0살로 입력하는 등의 예가 있다.\nValidated Annotation을 클래스 단에 추가해준 뒤 GetMapping을 해주는 get 메서드의 RequestParam에 제한 사항을 추가해 주었다.\n이름을 최소 2글자 이상 작성하여야 하고, 나이는 최소 1살이며 비워두면 안된다.\n\nValidated 예제코드 확인하기\n\n1234567891011121314151617181920@RestController@RequestMapping(&quot;/api&quot;)@Validatedpublic class ApiController &#123;    @GetMapping(&quot;&quot;)    public User get(            @Size(min = 2)            @RequestParam String name,            @NotNull            @Min(1)            @RequestParam Integer age)&#123;        User user = new User();        user.setName(name);        user.setAge(age);        return user;    &#125;&#125;\n\n\n\n처음 접근은 Client단에서 값을 잘못입력했을 때어떠한 Exception이 발생하는지 확인하는 것으로 시작한다. 12345678910111213// ApiController 클래스에서 발생한 오류@RestControllerAdvice(basePackageClasses = ApiController.class)public class ApiControllerAdvice &#123;    // Exception 클래스 내부의 객체가 들어오면 실행 (모든 Exception을 받는다)    @ExceptionHandler(value = Exception.class)    public ResponseEntity exception(Exception e) &#123;        // Exception의 클래스 이름을 출력하여 확인한다.        System.out.println(e.getClass().getName());        // 테스트 코드이므로 Client 단에는 아무것도 출력되지 않도록 하였습니다.        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(&quot;&quot;);    &#125;    ...&#125;\n\n\nChrome의 확장 프로그램인 Talend API를 통해 서버 테스트를 해보았다.\nRequestParameter에 아무 값도 넣어주지 않아 아래와 같은 에러가 도출됐다.\n\n위와 같이 Spring에서 자체적으로 예외에 대한 기본적인 처리는 해준다.\n출력된 클래스는 org.springframework.web.bind.MissingServletRequestParameterException가 IDE에 출력되었다.\nMissingServletRequestParameterException이 잡혔으니 value값을 이로 설정해서 원하는 정보를 제공할 수 있도록 구현해보자.\n1234@ExceptionHandler(value = MissingServletRequestParameterException.class)public ResponseEntity missingServletRequestParameterException(MissingServletRequestParameterException e)&#123;    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(&quot;값이 입력되지 않았습니다.&quot;);&#125;\n\n위와 같이 body에 정보를 보내주고, HttpStatus는 400을 띄워주었다.\n\n보다 Client들이 발생시키는 오류를 줄일 수 있다.\n","dateCreated":"2021-10-18T22:22:10+09:00","dateModified":"2021-10-18T23:05:46+09:00","datePublished":"2021-10-18T22:22:10+09:00","description":"","headline":"Spring Boot에서의 Exception 처리","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/10/18/SpringException/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/10/18/SpringException/","keywords":"Exception, Spring"}</script>
+    <meta property="og:type" content="blog">
+<meta property="og:title" content="Spring Boot에서의 Exception 처리">
+<meta property="og:url" content="http://bedongryeol.github.io/10/18/SpringException/index.html">
+<meta property="og:site_name" content="Fintech - Backend Developer">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://bedongryeol.github.io/image/talendTest.png">
+<meta property="og:image" content="http://bedongryeol.github.io/image/talend.png">
+<meta property="og:image" content="http://bedongryeol.github.io/image/errorinfo.png">
+<meta property="article:published_time" content="2021-10-18T13:22:10.000Z">
+<meta property="article:modified_time" content="2021-10-18T14:05:46.136Z">
+<meta property="article:author" content="Dongryeol Jeong">
+<meta property="article:tag" content="Exception">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://bedongryeol.github.io/image/talendTest.png">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-sqim1sfvlrl9cczsjyssnk4uipcaudaclj78xhhuhwr57rvgzccjmhkhcg1e.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Fintech - Backend Developer
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="2">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Spring Boot에서의 Exception 처리
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2021-10-18T22:22:10+09:00">
+	
+		    2021/10/18
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Spring/">Spring</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+
+<p>Web Application의 입장에서, 에러가 발생했을 때 처리해줄 수 있는 방법은 많지 않다.<br>크게 <strong>에러 페이지</strong>, <strong>4 ~ 500번대 에러</strong>, <strong>별도의 에러 메세지 전달</strong> 정도가 있다.</p>
+<p><strong>아래 예제 코드를 통해 확인해보도록 하자.</strong></p>
+<p>name(String), age(Integer) 속성을 가지고 있는 User 객체에, controller에서 Integer와 int의 합을 도출하도록 해서 억지로 에러를 발생시켜 보았다.</p>
+<details>
+<summary>User 코드 확인하기</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.exception.dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.Min;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotEmpty;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotNull;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.Size;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotEmpty</span></span><br><span class="line">    <span class="meta">@Size(min = 2, max = 10)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Min(1)</span></span><br><span class="line">    <span class="meta">@NotNull</span></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;User&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<details>
+<summary>Controller 코드 확인하기</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.exception.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.exception.dto.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApiController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">get</span><span class="params">(<span class="meta">@RequestParam(required = false)</span> String name, <span class="meta">@RequestParam(required = false)</span> Integer age)</span></span>&#123;</span><br><span class="line">        User user = <span class="keyword">new</span> User();</span><br><span class="line">        user.setName(name);</span><br><span class="line">        user.setAge(age);</span><br><span class="line">        <span class="comment">// 에러 발생 시키기</span></span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">10</span>+age;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping(&quot;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">post</span><span class="params">(<span class="meta">@RequestBody</span> User user)</span></span>&#123;</span><br><span class="line">       System.out.println(user);</span><br><span class="line">       <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</details>
+
+
+<p>Client에게 친절한 Exception 처리는 기본적으로 두 가지 방식이 있다. </p>
+<p>이를 <strong>Advice(조언)</strong> 이라고 한다. Server에서 Client에게 오류에 대한 조언을 해주는 것이다.</p>
+<blockquote>
+<h2 id="관련-Annotation"><a href="#관련-Annotation" class="headerlink" title="관련 Annotation"></a>관련 Annotation</h2></blockquote>
+<h3 id="RestControllerAdvice"><a href="#RestControllerAdvice" class="headerlink" title="@RestControllerAdvice"></a>@RestControllerAdvice</h3><ul>
+<li>페이징 처리를 하는 view resolver 영역의 white label page, error page를 global하게 처리할 수 있는 집합 장소</li>
+</ul>
+<h3 id="ExceptionHandler"><a href="#ExceptionHandler" class="headerlink" title="@ExceptionHandler"></a>@ExceptionHandler</h3><ul>
+<li>Global하게 처리할 때는 <strong>RestControllerAdvice Annotation</strong>이 붙은 클래스 내에, 특정 Controller의 예외 처리를 할 때 특정 컨트롤러 내부에 사용한다.</li>
+<li><strong>동일한 Handler가 Global, Controller에 모두 존재하면 특정 Controller 내부의 handler가 처리된다.</strong></li>
+</ul>
+<details>
+<summary>전역으로 처리하는 handler 생성</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.exception.advice;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.http.HttpStatus;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.ResponseEntity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestControllerAdvice;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalControlAdvice</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler(value = Exception.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">exception</span><span class="params">(Exception e)</span></span>&#123;</span><br><span class="line">        System.out.println(e.getClass().getName());</span><br><span class="line">        System.out.println(<span class="string">&quot;------------&quot;</span>);</span><br><span class="line">        System.out.println(e.getLocalizedMessage());</span><br><span class="line">        System.out.println(<span class="string">&quot;------------&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<details>
+<summary>특정 Exception 처리하는 handler생성</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ExceptionHandler(value = NullPointerException.class)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">methodArg</span><span class="params">(NullPointerException e)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(<span class="string">&quot;값이 유효하지 않습니다.&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>    
+
+<p>혹은 RestControllerAdvice Annotation에 basePackageClasses인자를 추가하여 특정 컨트롤러에 한정 시킬 수 있다.</p>
+<ul>
+<li><code>@RestControllerAdvice(basePackageClasses = ApiController.class)</code></li>
+</ul>
+<blockquote>
+<h2 id="Client-단에서-발생할-수-있는-에러"><a href="#Client-단에서-발생할-수-있는-에러" class="headerlink" title="Client 단에서 발생할 수 있는 에러"></a>Client 단에서 발생할 수 있는 에러</h2></blockquote>
+<p><strong>Client가 발생시킬 수 있는 에러는 형식에 맞지 않게 값을 입력하는 것이다.</strong> 이름을 1글자만 입력하거나, 나이를 0살로 입력하는 등의 예가 있다.</p>
+<p>Validated Annotation을 클래스 단에 추가해준 뒤 GetMapping을 해주는 get 메서드의 RequestParam에 제한 사항을 추가해 주었다.</p>
+<p>이름을 최소 2글자 이상 작성하여야 하고, 나이는 최소 1살이며 비워두면 안된다.</p>
+<details>
+<summary>Validated 예제코드 확인하기</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api&quot;)</span></span><br><span class="line"><span class="meta">@Validated</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApiController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">get</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@Size(min = 2)</span></span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@RequestParam</span> String name,</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@NotNull</span></span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@Min(1)</span></span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@RequestParam</span> Integer age)</span></span>&#123;</span><br><span class="line">        User user = <span class="keyword">new</span> User();</span><br><span class="line">        user.setName(name);</span><br><span class="line">        user.setAge(age);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a><span class="highlight-text success">처음 접근은 Client단에서 값을 잘못입력했을 때</span></h3><h3 id="-2"><a href="#-2" class="headerlink" title=""></a><span class="highlight-text success">어떠한 Exception이 발생하는지 확인하는 것으로 시작한다. </span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ApiController 클래스에서 발생한 오류</span></span><br><span class="line"><span class="meta">@RestControllerAdvice(basePackageClasses = ApiController.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApiControllerAdvice</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Exception 클래스 내부의 객체가 들어오면 실행 (모든 Exception을 받는다)</span></span><br><span class="line">    <span class="meta">@ExceptionHandler(value = Exception.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">exception</span><span class="params">(Exception e)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Exception의 클래스 이름을 출력하여 확인한다.</span></span><br><span class="line">        System.out.println(e.getClass().getName());</span><br><span class="line">        <span class="comment">// 테스트 코드이므로 Client 단에는 아무것도 출력되지 않도록 하였습니다.</span></span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/talendTest.png" alt="img_1.png"></p>
+<p>Chrome의 확장 프로그램인 Talend API를 통해 서버 테스트를 해보았다.</p>
+<p>RequestParameter에 아무 값도 넣어주지 않아 아래와 같은 에러가 도출됐다.</p>
+<p><img src="/image/talend.png" alt="img.png"></p>
+<p>위와 같이 <strong>Spring에서 자체적으로 예외에 대한 기본적인 처리는 해준다.</strong></p>
+<p>출력된 클래스는 <strong>org.springframework.web.bind.MissingServletRequestParameterException</strong>가 IDE에 출력되었다.</p>
+<p>MissingServletRequestParameterException이 잡혔으니 value값을 이로 설정해서 원하는 정보를 제공할 수 있도록 구현해보자.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ExceptionHandler(value = MissingServletRequestParameterException.class)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">missingServletRequestParameterException</span><span class="params">(MissingServletRequestParameterException e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(<span class="string">&quot;값이 입력되지 않았습니다.&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위와 같이 body에 정보를 보내주고, HttpStatus는 400을 띄워주었다.</p>
+<p><img src="/image/errorinfo.png" alt="img.png"></p>
+<p>보다 Client들이 발생시키는 오류를 줄일 수 있다.</p>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">태그</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/Exception/" rel="tag">Exception</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/Spring/" rel="tag">Spring</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/10/14/adapter/"
+                    data-tooltip="어댑터 패턴 (Adapter Pattern)"
+                    aria-label="다음: 어댑터 패턴 (Adapter Pattern)"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/18/SpringException/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/18/SpringException/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/18/SpringException/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2021 Dongryeol Jeong. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/10/14/adapter/"
+                    data-tooltip="어댑터 패턴 (Adapter Pattern)"
+                    aria-label="다음: 어댑터 패턴 (Adapter Pattern)"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/18/SpringException/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/18/SpringException/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/18/SpringException/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/18/SpringException/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/18/SpringException/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/18/SpringException/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
+            <h4 id="about-card-name">Dongryeol Jeong</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/navy.jpeg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ykixqvf3qqvhboif10iqwrzvzbwvwkviecn1aeoflkjcszizeoypxail33s5.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
