@@ -1,0 +1,616 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Fintech - Backend Developer">
+    <title>Spring - filter - Fintech - Backend Developer</title>
+    <meta name="author" content="Dongryeol Jeong">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\n\n\nFilter 란 ?\n\nSpring은 Client로부터 request를 받고, response를 줄 때 Filter를 거쳐서 전달해준다.\nFilter는 웹 어플리케이션에서 관리되는 영역으로, Spring에 의해서 데이터가 변환 되기 전, Client가 보낸 순수한 요청, 응답 값을 확인할 수 있다.\n\n\nFilter의 사용\n절차\nFilter를 사용하기 위해 Filter를 implements한 클래스를 생성한다.\nWebFilter 어노테이션을 추가하고, 적용범위를 설정한다.\ndefault = 모든 url\n\n\ndoFilter() 메서드를 오버라이드한다.\nSpringBootApplication 어노테이션이 추가된 메인부에 @ServletComponentScan을 추가해준다\n\ndoFilter() 메서드메서드의 parameter로 FilterChain 타입의 chain을 받을 수 있다. chain.doFilter() 메서드를 기준으로 필터에 들어오기 전, 후를 구분할 수 있다.\n&lt; 전처리 &gt;다른 parameter 중 ServletRequest request, ServletResponse reponse가 들어온다.\n\n위 Servlet 타입은 response, request를 단 1번만 사용할 수 있다. 들어온 요청을 log로 서버에 남기면 이를 다른 용도로 활용할 수 없는 것이다.\n따라서 ContentCahchingRequestWrapper, ContentCachingResponseWrapper를 생성해준다.\n\n생성자의 인자로 ServletRequest과 ServletResponse를 사용할 수 있다.\n\n&lt; 후처리 &gt;서버에는 사용자가 보낸 내용과, 요청을 보낸 uri를 확인하기 위해 get메서드를 통해 로그로 남겨주었다.\n응답으로 보내주는 httpStatus와 content 또한 저장하며 log에 기록해주었다.\n1. TalentAPI를 통해 객체에 맞는 데이터를 post 해준다.\n2. Post한 값과, uri가 log로 찍힌다.\n3. Response 한 값과 HttpStatus가 알맞게 log에 찍히는 것을 확인할 수 있다.\n1234567891011121314151617181920212223242526@WebFilter(urlPatterns = &quot;/api/user/*&quot;)public class GlobalFilter implements Filter &#123;    @Override    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException &#123;        // 전처리        ContentCachingRequestWrapper contentCachingRequestWrapper = new ContentCachingRequestWrapper((HttpServletRequest) request);        ContentCachingResponseWrapper contentCachingResponseWrapper = new ContentCachingResponseWrapper((HttpServletResponse) response);        // 필터        chain.doFilter(contentCachingRequestWrapper, contentCachingResponseWrapper);        // 후처리        String reqContetnt = new String(contentCachingRequestWrapper.getContentAsByteArray());        String url = contentCachingRequestWrapper.getRequestURI();        log.info(&quot;url : &#123;&#125;, reqContent : &#123;&#125;&quot;, url, reqContetnt);        int httpStatus = contentCachingResponseWrapper.getStatus();        String content = new String(contentCachingResponseWrapper.getContentAsByteArray());        log.info(&quot;http status : &#123;&#125;, content : &#123;&#125;&quot;, httpStatus, content);        contentCachingResponseWrapper.copyBodyToResponse();    &#125;&#125;","dateCreated":"2021-10-26T21:14:17+09:00","dateModified":"2021-10-26T21:49:56+09:00","datePublished":"2021-10-26T21:14:17+09:00","description":"","headline":"Spring - filter","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/10/26/springfilter/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/10/26/springfilter/","keywords":"filter"}</script>
+    <meta property="og:type" content="blog">
+<meta property="og:title" content="Spring - filter">
+<meta property="og:url" content="http://bedongryeol.github.io/10/26/springfilter/index.html">
+<meta property="og:site_name" content="Fintech - Backend Developer">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://supawer0728.github.io/images/spring-filter-interceptor/spring-request-lifecycle.jpg">
+<meta property="og:image" content="http://bedongryeol.github.io/image/sfilter1.png">
+<meta property="og:image" content="http://bedongryeol.github.io/image/sfilter2.png">
+<meta property="og:image" content="http://bedongryeol.github.io/image/sfilter3.png">
+<meta property="og:image" content="http://bedongryeol.github.io/image/sfilter4.png">
+<meta property="article:published_time" content="2021-10-26T12:14:17.000Z">
+<meta property="article:modified_time" content="2021-10-26T12:49:56.707Z">
+<meta property="article:author" content="Dongryeol Jeong">
+<meta property="article:tag" content="filter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://supawer0728.github.io/images/spring-filter-interceptor/spring-request-lifecycle.jpg">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-sqim1sfvlrl9cczsjyssnk4uipcaudaclj78xhhuhwr57rvgzccjmhkhcg1e.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Fintech - Backend Developer
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="2">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="저자에 대해 더 알아보기"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+                </a>
+                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Spring - filter
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2021-10-26T21:14:17+09:00">
+	
+		    2021/10/26
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/Spring/">Spring</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!-- excerpt -->
+
+<hr>
+<blockquote>
+<h2 id="Filter-란"><a href="#Filter-란" class="headerlink" title="Filter 란 ?"></a>Filter 란 ?</h2></blockquote>
+<p><img src="https://supawer0728.github.io/images/spring-filter-interceptor/spring-request-lifecycle.jpg" alt="image"></p>
+<p>Spring은 Client로부터 request를 받고, response를 줄 때 <strong>Filter</strong>를 거쳐서 전달해준다.</p>
+<p>Filter는 웹 어플리케이션에서 관리되는 영역으로, Spring에 의해서 데이터가 변환 되기 전, Client가 보낸 순수한 요청, 응답 값을 확인할 수 있다.</p>
+<hr>
+<blockquote>
+<h2 id="Filter의-사용"><a href="#Filter의-사용" class="headerlink" title="Filter의 사용"></a>Filter의 사용</h2></blockquote>
+<h3 id="절차"><a href="#절차" class="headerlink" title="절차"></a>절차</h3><ol>
+<li>Filter를 사용하기 위해 <strong>Filter를 implements한 클래스를 생성</strong>한다.</li>
+<li><strong>WebFilter 어노테이션을 추가</strong>하고, 적용범위를 설정한다.<ul>
+<li>default = 모든 url</li>
+</ul>
+</li>
+<li><strong>doFilter()</strong> 메서드를 오버라이드한다.</li>
+<li>SpringBootApplication 어노테이션이 추가된 메인부에 <strong>@ServletComponentScan을 추가해준다</strong></li>
+</ol>
+<h3 id="doFilter-메서드"><a href="#doFilter-메서드" class="headerlink" title="doFilter() 메서드"></a>doFilter() 메서드</h3><p>메서드의 parameter로 FilterChain 타입의 chain을 받을 수 있다. <strong>chain.doFilter() 메서드를 기준으로 필터에 들어오기 전, 후를 구분할 수 있다.</strong></p>
+<h4 id="lt-전처리-gt"><a href="#lt-전처리-gt" class="headerlink" title="&lt; 전처리 &gt;"></a>&lt; 전처리 &gt;</h4><span class="highlight-text success">다른 parameter 중 ServletRequest request, ServletResponse reponse가 들어온다.</span>
+
+<p>위 Servlet 타입은 response, request를 단 1번만 사용할 수 있다. 들어온 요청을 log로 서버에 남기면 이를 다른 용도로 활용할 수 없는 것이다.</p>
+<p><strong>따라서 ContentCahchingRequestWrapper, ContentCachingResponseWrapper</strong>를 생성해준다.</p>
+<ul>
+<li>생성자의 인자로 ServletRequest과 ServletResponse를 사용할 수 있다.</li>
+</ul>
+<h4 id="lt-후처리-gt"><a href="#lt-후처리-gt" class="headerlink" title="&lt; 후처리 &gt;"></a>&lt; 후처리 &gt;</h4><p>서버에는 사용자가 보낸 내용과, 요청을 보낸 uri를 확인하기 위해 get메서드를 통해 로그로 남겨주었다.</p>
+<p>응답으로 보내주는 httpStatus와 content 또한 저장하며 log에 기록해주었다.</p>
+<h3 id="1-TalentAPI를-통해-객체에-맞는-데이터를-post-해준다"><a href="#1-TalentAPI를-통해-객체에-맞는-데이터를-post-해준다" class="headerlink" title="1. TalentAPI를 통해 객체에 맞는 데이터를 post 해준다."></a>1. TalentAPI를 통해 객체에 맞는 데이터를 post 해준다.</h3><p><img src="/image/sfilter1.png" alt="img_1.png"></p>
+<h3 id="2-Post한-값과-uri가-log로-찍힌다"><a href="#2-Post한-값과-uri가-log로-찍힌다" class="headerlink" title="2. Post한 값과, uri가 log로 찍힌다."></a>2. Post한 값과, uri가 log로 찍힌다.</h3><p><img src="/image/sfilter2.png" alt="img_2.png"></p>
+<h3 id="3-Response-한-값과-HttpStatus가-알맞게-log에-찍히는-것을-확인할-수-있다"><a href="#3-Response-한-값과-HttpStatus가-알맞게-log에-찍히는-것을-확인할-수-있다" class="headerlink" title="3. Response 한 값과 HttpStatus가 알맞게 log에 찍히는 것을 확인할 수 있다."></a>3. Response 한 값과 HttpStatus가 알맞게 log에 찍히는 것을 확인할 수 있다.</h3><p><img src="/image/sfilter3.png" alt="img_4.png"><br><img src="/image/sfilter4.png" alt="img_3.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebFilter(urlPatterns = &quot;/api/user/*&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        <span class="comment">// 전처리</span></span><br><span class="line">        ContentCachingRequestWrapper contentCachingRequestWrapper = <span class="keyword">new</span> ContentCachingRequestWrapper((HttpServletRequest) request);</span><br><span class="line">        ContentCachingResponseWrapper contentCachingResponseWrapper = <span class="keyword">new</span> ContentCachingResponseWrapper((HttpServletResponse) response);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 필터</span></span><br><span class="line">        chain.doFilter(contentCachingRequestWrapper, contentCachingResponseWrapper);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 후처리</span></span><br><span class="line">        String reqContetnt = <span class="keyword">new</span> String(contentCachingRequestWrapper.getContentAsByteArray());</span><br><span class="line">        String url = contentCachingRequestWrapper.getRequestURI();</span><br><span class="line">        log.info(<span class="string">&quot;url : &#123;&#125;, reqContent : &#123;&#125;&quot;</span>, url, reqContetnt);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> httpStatus = contentCachingResponseWrapper.getStatus();</span><br><span class="line">        String content = <span class="keyword">new</span> String(contentCachingResponseWrapper.getContentAsByteArray());</span><br><span class="line">        log.info(<span class="string">&quot;http status : &#123;&#125;, content : &#123;&#125;&quot;</span>, httpStatus, content);</span><br><span class="line"></span><br><span class="line">        contentCachingResponseWrapper.copyBodyToResponse();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">태그</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/filter/" rel="tag">filter</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/10/25/springvalidation/"
+                    data-tooltip="Spring Boot Validation check"
+                    aria-label="다음: Spring Boot Validation check"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/26/springfilter/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/26/springfilter/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/26/springfilter/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2021 Dongryeol Jeong. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/10/25/springvalidation/"
+                    data-tooltip="Spring Boot Validation check"
+                    aria-label="다음: Spring Boot Validation check"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/26/springfilter/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/26/springfilter/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/26/springfilter/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/26/springfilter/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/26/springfilter/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/26/springfilter/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
+        
+            <h4 id="about-card-name">Dongryeol Jeong</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/navy.jpeg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-ykixqvf3qqvhboif10iqwrzvzbwvwkviecn1aeoflkjcszizeoypxail33s5.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
