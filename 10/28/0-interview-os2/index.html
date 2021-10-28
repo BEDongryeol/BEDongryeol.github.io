@@ -1,256 +1,6 @@
-
-<!DOCTYPE html>
-<html lang="ko">
-    
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Fintech - Backend Developer">
-    <title>가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어 - Fintech - Backend Developer</title>
-    <meta name="author" content="Dongryeol Jeong">
-    
-    
-    
-        
-            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
-        
-    
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\n\n8. 가상 메모리란?\n메모리에 로드되어 실행 중인 프로세스가 사용하고 있지 않은 페이지를추상화된 가상 메모리 공간에 저장하고, 필요할 때 참조함으로써,메모리의 효율성을 높여주는 OS의 메모리 관리 기법\n8-1. 가상 메모리의 주요 기능주기억장치를 하드디스크에 대한 캐시로 설정하고, 필요한 페이지만 유지하여 효율적으로 관리하고,\n프로세스 별로 통일된 가상 메모리 주소 공간을 할당해줘서 메모리 관리가 단순해지고,\n거의 무한에 가까운 가상 메모리 공간을 배정하여 프로세스들끼리의 메모리 침범 발생률을 크게 줄인다.\n8-2. 가상 메모리와 관련된 하드웨어에 대해 말씀해주세요.MMU(Memory Management Unit)과 TLB(Translation Lookaside Buffer)\nMMU(메모리 관리 장치)\n\n가상 메모리 주소를 물리 메모리 주소로 변환해주는 하드웨어 (CPU가 메모리에 접근하는 것을 관리)TLB(변환 참조 버퍼)\n변환 작업의 속도를 높이기 위해 사용되는 Cache (보조 기억장치)\n\n\n\n9. 페이징과 세그멘테이션이란?\n페이징\n메모리 공간 일정한 크기의 블록인 페이지로 나누어 관리하는 기법\n페이징을 사용하기 위해 주소의 동적 재배치를 허용하고, 메모리 주소 변환을 위한 MMU가 필요하다\n외부 단편화를 줄일 수 있지만, 페이지가 커질 수록 내부 단편화가 발생한다.\n\n세그멘테이션\n사용자 관점에서의 메모리 관리 기법\n페이징은 일정한 크기의 블록으로 미리 공간을 나눠놓지만,세그멘테이션은 메모리를 사용하는 시점에 논리적 내용 단위인 세그먼트로 나눈다.\n동적으로 할당하는 방식이므로 외부 단편화가 발생할 수 있다.\n\n9-1. 페이지나 세그먼트가 메모리에 할당되는 방법페이지, 세그먼트 테이블에 접근하여 필요한 가상 메모리주소를 MMU가 가상 주소를 물리주소로 변환시켜줍니다.\n9-2. 단편화를 해결할 수 있는 방법세그먼트를 페이징하는 방법을 취하면 해결할 수 있지만, 두 가지 테이블을 모두 거쳐야 하므로 속도가 떨어진다는 단점이 있다.\n\n\n10. 뮤텍스와 세마포어란? 차이점은?\n뮤텍스 (상호배제)\nCritical Section에 단 하나의 스레드만 접근할 수 있고, 이 스레드가 빠져나올 때 까지 해당 section에 대한 다른 스레드의 접근을 막고 대기시키는 것\n\n세마포어\n사전에 허용치를 설정하여, 이 허용치만큼만 동시에 접근이 가능한 방식\n스레드가 접근할 때마다 count가 하나씩 줄어들게 되고, 0이 되면 접근을 대기 시킨다.\n\n차이점\n세마포어를 허용치를 1로 설정하면 뮤텍스가 될 수 있지만, 뮤텍스는 세마포어가 될 수 없다.\n세마포어는 소유가 불가능하지만, 뮤텍스는 소유가 가능하다.\n뮤텍스는 프로세스 범위, 세마포어는 파일시스템 상 파일로 존재\n뮤텍스는 소유하고 있는 쓰레드만 해제 가능, 세마포어는 다른 스레드가 해제 가능\n\n10-1. 뮤텍스의 소유권뮤텍스는 신호, 비신호 상태를 가지는데, 이 뮤텍스를 소유하게 되면 비신호 상태가 됩니다.뮤텍스를 생성할 때 어떤 스레드가 소유할 것인지 결정하고, 아무도 소유하지 않으면 신호상태로 기다리게 됩니다.\n","dateCreated":"2021-10-28T17:01:34+09:00","dateModified":"2021-10-28T17:07:14+09:00","datePublished":"2021-10-28T17:01:34+09:00","description":"","headline":"가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/10/28/0-interview-os2/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/10/28/0-interview-os2/","keywords":"가상메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어"}</script>
-    <meta property="og:type" content="blog">
-<meta property="og:title" content="가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어">
-<meta property="og:url" content="http://bedongryeol.github.io/10/28/0-interview-os2/index.html">
-<meta property="og:site_name" content="Fintech - Backend Developer">
-<meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2021-10-28T08:01:34.000Z">
-<meta property="article:modified_time" content="2021-10-28T08:07:14.663Z">
-<meta property="article:author" content="Dongryeol Jeong">
-<meta property="article:tag" content="가상메모리">
-<meta property="article:tag" content="페이징">
-<meta property="article:tag" content="세그멘테이션">
-<meta property="article:tag" content="뮤텍스">
-<meta property="article:tag" content="세마포어">
-<meta name="twitter:card" content="summary">
-    
-    
-        
-    
-    
-        <meta property="og:image" content="http://bedongryeol.github.io/assets/images/profile.jpg"/>
-    
-    
-    
-    
-    <!--STYLES-->
-    
-<link rel="stylesheet" href="/assets/css/style-sqim1sfvlrl9cczsjyssnk4uipcaudaclj78xhhuhwr57rvgzccjmhkhcg1e.min.css">
-
-    <!--STYLES END-->
-    
-
-    
-
-    
-        
-    
-</head>
-
-    <body>
-        <div id="blog">
-            <!-- Define author's picture -->
-
-
-    
-        
-            
-        
-    
-
-<header id="header" data-behavior="2">
-    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-    <div class="header-title">
-        <a
-            class="header-title-link"
-            href="/"
-            aria-label=""
-        >
-            Fintech - Backend Developer
-        </a>
-    </div>
-    
-        
-            <a
-                class="header-right-picture "
-                href="#about"
-                aria-label="링크 열기: /#about"
-            >
-        
-        
-            <img class="header-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
-        
-        </a>
-    
-</header>
-
-            <!-- Define author's picture -->
-
-
-
-        
-    
-
-<nav id="sidebar" data-behavior="2">
-    <div class="sidebar-container">
-        
-            <div class="sidebar-profile">
-                <a
-                    href="/#about"
-                    aria-label="저자에 대해 더 알아보기"
-                >
-                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
-                </a>
-                <h4 class="sidebar-profile-name">Dongryeol Jeong</h4>
-                
-                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
-</h5>
-                
-            </div>
-        
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/"
-                            
-                            rel="noopener"
-                            title="Home"
-                        >
-                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Home</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/all-categories"
-                            
-                            rel="noopener"
-                            title="카테고리"
-                        >
-                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">카테고리</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/all-archives"
-                            
-                            rel="noopener"
-                            title="아카이브"
-                        >
-                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">아카이브</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link open-algolia-search"
-                            href="#search"
-                            
-                            rel="noopener"
-                            title="검색"
-                        >
-                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">검색</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon far fa-circle" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://github.com/"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="GitHub"
-                        >
-                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-    </div>
-</nav>
-
-            
-            <div id="main" data-behavior="2"
-                 class="
-                        hasCoverMetaIn
-                        ">
-                
-<article class="post">
-    
-    
-        <div class="post-header main-content-wrap text-left">
-    
-        <h1 class="post-title">
-            가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어
-        </h1>
-    
-    
-        <div class="post-meta">
-    <time datetime="2021-10-28T17:01:34+09:00">
-	
-		    2021/10/28
-    	
-    </time>
-    
-        <span>카테고리 </span>
-        
-    <a class="category-link" href="/categories/Interview/">Interview</a>, <a class="category-link" href="/categories/Interview/OS/">OS</a>
-
-
-    
-</div>
-
-    
-</div>
-
-    
-    <div class="post-content markdown">
-        <div class="main-content-wrap">
-            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어 - Fintech - Backend Developer</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Inwoo Jeong"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Inwoo Jeong"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어"><meta property="og:url" content="http://inwoo.github.io/10/28/0-interview-os2/"><meta property="og:site_name" content="Fintech - Backend Developer"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="http://inwoo.github.io/img/og_image.png"><meta property="article:published_time" content="2021-10-28T08:01:34.000Z"><meta property="article:modified_time" content="2021-10-28T08:07:14.663Z"><meta property="article:author" content="Inwoo Jeong"><meta property="article:tag" content="가상메모리"><meta property="article:tag" content="페이징"><meta property="article:tag" content="세그멘테이션"><meta property="article:tag" content="뮤텍스"><meta property="article:tag" content="세마포어"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://inwoo.github.io/10/28/0-interview-os2/"},"headline":"가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어","image":["http://inwoo.github.io/img/og_image.png"],"datePublished":"2021-10-28T08:01:34.000Z","dateModified":"2021-10-28T08:07:14.663Z","author":{"@type":"Person","name":"Inwoo Jeong"},"publisher":{"@type":"Organization","name":"Fintech - Backend Developer","logo":{"@type":"ImageObject","url":"http://inwoo.github.io/img/logo.svg"}},"description":""}</script><link rel="canonical" href="http://inwoo.github.io/10/28/0-interview-os2/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Fintech - Backend Developer" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-28T08:01:34.000Z" title="2021. 10. 28. 오후 5:01:34">2021-10-28</time>&nbsp;게시 됨</span><span class="level-item"><time dateTime="2021-10-28T08:07:14.663Z" title="2021. 10. 28. 오후 5:07:14">2021-10-28</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/Interview/">Interview</a><span> / </span><a class="link-muted" href="/categories/Interview/OS/">OS</a></span></div></div><h1 class="title is-3 is-size-4-mobile">가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어</h1><div class="content"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span>
 <!-- excerpt -->
 
 <blockquote>
@@ -297,331 +47,57 @@
 <li>뮤텍스는 소유하고 있는 쓰레드만 해제 가능, 세마포어는 다른 스레드가 해제 가능</li>
 </ul>
 <h3 id="10-1-뮤텍스의-소유권"><a href="#10-1-뮤텍스의-소유권" class="headerlink" title="10-1. 뮤텍스의 소유권"></a>10-1. 뮤텍스의 소유권</h3><p>뮤텍스는 신호, 비신호 상태를 가지는데, 이 뮤텍스를 소유하게 되면 비신호 상태가 됩니다.<br>뮤텍스를 생성할 때 어떤 스레드가 소유할 것인지 결정하고, 아무도 소유하지 않으면 신호상태로 기다리게 됩니다.</p>
-
-            
-
-
-        </div>
-    </div>
-    <div id="post-footer" class="post-footer main-content-wrap">
-        
-            <div class="post-footer-tags">
-                <span class="text-color-light text-small">태그</span><br/>
-                
-    <a class="tag tag--primary tag--small t-none-link" href="/tags/%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC/" rel="tag">가상메모리</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/%EB%AE%A4%ED%85%8D%EC%8A%A4/" rel="tag">뮤텍스</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/%EC%84%B8%EA%B7%B8%EB%A9%98%ED%85%8C%EC%9D%B4%EC%85%98/" rel="tag">세그멘테이션</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/%EC%84%B8%EB%A7%88%ED%8F%AC%EC%96%B4/" rel="tag">세마포어</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/%ED%8E%98%EC%9D%B4%EC%A7%95/" rel="tag">페이징</a>
-
-            </div>
-        
-        
-            <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
-                        <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
-                    </a>
-            </li>
-            <li class="post-action">
-                
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/10/28/0-interview-os1/"
-                    data-tooltip="메모리 할당 알고리즘, 페이지 폴트, 단편화"
-                    aria-label="다음: 메모리 할당 알고리즘, 페이지 폴트, 단편화"
-                >
-                    
-                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a
-                class="post-action-btn btn btn--default btn-open-shareoptions"
-                href="#btn-open-shareoptions"
-                aria-label="이 포스트 공유하기"
-            >
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a
-                    class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/28/0-interview-os2/"
-                    title="Facebook에 공유하기"
-                    aria-label="Facebook에 공유하기"
-                >
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a
-                    class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/28/0-interview-os2/"
-                    title="Twitter에 공유하기"
-                    aria-label="Twitter에 공유하기"
-                >
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a
-                    class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/28/0-interview-os2/"
-                    title="Google+에 공유하기"
-                    aria-label="Google+에 공유하기"
-                >
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
-
-        
-        
-            
-        
-    </div>
-</article>
-
-
-
-                <footer id="footer" class="main-content-wrap">
-    <span class="copyrights">
-        Copyrights &copy; 2021 Dongryeol Jeong. All Rights Reserved.
-    </span>
-</footer>
-
-            </div>
-            
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
-                    <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
-                        <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
-                    </a>
-            </li>
-            <li class="post-action">
-                
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/10/28/0-interview-os1/"
-                    data-tooltip="메모리 할당 알고리즘, 페이지 폴트, 단편화"
-                    aria-label="다음: 메모리 할당 알고리즘, 페이지 폴트, 단편화"
-                >
-                    
-                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a
-                class="post-action-btn btn btn--default btn-open-shareoptions"
-                href="#btn-open-shareoptions"
-                aria-label="이 포스트 공유하기"
-            >
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a
-                    class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/28/0-interview-os2/"
-                    title="Facebook에 공유하기"
-                    aria-label="Facebook에 공유하기"
-                >
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a
-                    class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/28/0-interview-os2/"
-                    title="Twitter에 공유하기"
-                    aria-label="Twitter에 공유하기"
-                >
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a
-                    class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/28/0-interview-os2/"
-                    title="Google+에 공유하기"
-                    aria-label="Google+에 공유하기"
-                >
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
-
-                </div>
-                
-    <div id="share-options-bar" class="share-options-bar" data-behavior="2">
-        <i id="btn-close-shareoptions" class="fa fa-times"></i>
-        <ul class="share-options">
-            
-                
-                
-                <li class="share-option">
-                    <a
-                        class="share-option-btn"
-                        target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/28/0-interview-os2/"
-                        aria-label="Facebook에 공유하기"
-                    >
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
-                    </a>
-                </li>
-            
-                
-                
-                <li class="share-option">
-                    <a
-                        class="share-option-btn"
-                        target="new"
-                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/28/0-interview-os2/"
-                        aria-label="Twitter에 공유하기"
-                    >
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
-                    </a>
-                </li>
-            
-                
-                
-                <li class="share-option">
-                    <a
-                        class="share-option-btn"
-                        target="new"
-                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/28/0-interview-os2/"
-                        aria-label="Google+에 공유하기"
-                    >
-                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
-                    </a>
-                </li>
-            
-        </ul>
-    </div>
-
-
-            
-        </div>
-        
-
-
-    
-        
-    
-
-<div id="about">
-    <div id="about-card">
-        <div id="about-btn-close">
-            <i class="fa fa-times"></i>
-        </div>
-        
-            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="저자 이미지"/>
-        
-            <h4 id="about-card-name">Dongryeol Jeong</h4>
-        
-            <div id="about-card-bio"><p>author.bio</p>
-</div>
-        
-        
-            <div id="about-card-job">
-                <i class="fa fa-briefcase"></i>
-                <br/>
-                <p>author.job</p>
-
-            </div>
-        
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                Seoul, Korea
-            </div>
-        
-    </div>
-</div>
-
-        
-        
-<div id="cover" style="background-image:url('/assets/images/navy.jpeg');"></div>
-        <!--SCRIPTS-->
-
-<script src="/assets/js/script-ykixqvf3qqvhboif10iqwrzvzbwvwkviecn1aeoflkjcszizeoypxail33s5.min.js"></script>
-
-<!--SCRIPTS END-->
-
-
-    
-
-
-
-
-    </body>
-</html>
+</div><div class="article-licensing box"><div class="licensing-title"><p>가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어</p><p><a href="http://inwoo.github.io/10/28/0-interview-os2/">http://inwoo.github.io/10/28/0-interview-os2/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Inwoo Jeong</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2021-10-28</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-10-28</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC/">가상메모리</a><a class="link-muted mr-2" rel="tag" href="/tags/%ED%8E%98%EC%9D%B4%EC%A7%95/">페이징</a><a class="link-muted mr-2" rel="tag" href="/tags/%EC%84%B8%EA%B7%B8%EB%A9%98%ED%85%8C%EC%9D%B4%EC%85%98/">세그멘테이션</a><a class="link-muted mr-2" rel="tag" href="/tags/%EB%AE%A4%ED%85%8D%EC%8A%A4/">뮤텍스</a><a class="link-muted mr-2" rel="tag" href="/tags/%EC%84%B8%EB%A7%88%ED%8F%AC%EC%96%B4/">세마포어</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">이 글이 마음에 드시나요? 다음을 통해 후원하실 수 있습니다: </h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>커피 한 잔 사주기</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/10/28/0-interview-os1/"><span class="level-item">메모리 할당 알고리즘, 페이지 폴트, 단편화</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'http://inwoo.github.io/10/28/0-interview-os2/';
+            this.page.identifier = '10/28/0-interview-os2/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'inwoo-jeong' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/profile.jpg" alt="Inwoo Jeong"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Inwoo Jeong</p><p class="is-size-6 is-block">Fintech-Backend</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Seoul, South Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">54</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">11</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">95</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/BEDongryeol" target="_blank" rel="noopener">팔로우</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/BEDongryeol"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="/"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">링크</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/BEDongryeol" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">GitHub</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Basic/"><span class="level-start"><span class="level-item">Basic</span></span><span class="level-end"><span class="level-item tag">32</span></span></a><ul><li><a class="level is-mobile" href="/categories/Basic/Java/"><span class="level-start"><span class="level-item">Java</span></span><span class="level-end"><span class="level-item tag">20</span></span></a></li><li><a class="level is-mobile" href="/categories/Basic/LINUX/"><span class="level-start"><span class="level-item">LINUX</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Basic/OS/"><span class="level-start"><span class="level-item">OS</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Basic/Spring/"><span class="level-start"><span class="level-item">Spring</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/Basic/Web/"><span class="level-start"><span class="level-item">Web</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Design-Pattern/"><span class="level-start"><span class="level-item">Design Pattern</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Docs/"><span class="level-start"><span class="level-item">Docs</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Interview/"><span class="level-start"><span class="level-item">Interview</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul><li><a class="level is-mobile" href="/categories/Interview/OS/"><span class="level-start"><span class="level-item">OS</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"><span class="level-start"><span class="level-item">자료구조</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-28T08:01:34.000Z">2021-10-28</time></p><p class="title"><a href="/10/28/0-interview-os2/">가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어</a></p><p class="categories"><a href="/categories/Interview/">Interview</a> / <a href="/categories/Interview/OS/">OS</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-28T07:56:44.000Z">2021-10-28</time></p><p class="title"><a href="/10/28/0-interview-os1/">메모리 할당 알고리즘, 페이지 폴트, 단편화</a></p><p class="categories"><a href="/categories/Interview/">Interview</a> / <a href="/categories/Interview/OS/">OS</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-27T15:38:55.000Z">2021-10-28</time></p><p class="title"><a href="/10/28/springInterceptor/">Spring - Interceptor</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Spring/">Spring</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-26T12:14:17.000Z">2021-10-26</time></p><p class="title"><a href="/10/26/springfilter/">Spring - filter</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Spring/">Spring</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-25T13:21:16.000Z">2021-10-25</time></p><p class="title"><a href="/10/25/springvalidation/">Spring Boot Validation check</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Spring/">Spring</a></p></div></article></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a><p class="is-size-7"><span>&copy; 2021 Inwoo Jeong</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>

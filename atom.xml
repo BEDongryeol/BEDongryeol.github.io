@@ -2,15 +2,15 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Fintech - Backend Developer</title>
   
-  <subtitle>Dongryeol Jeong</subtitle>
-  <link href="http://bedongryeol.github.io/atom.xml" rel="self"/>
+  <subtitle>Inwoo Jeong</subtitle>
+  <link href="http://inwoo.github.io/atom.xml" rel="self"/>
   
-  <link href="http://bedongryeol.github.io/"/>
+  <link href="http://inwoo.github.io/"/>
   <updated>2021-10-28T08:07:14.663Z</updated>
-  <id>http://bedongryeol.github.io/</id>
+  <id>http://inwoo.github.io/</id>
   
   <author>
-    <name>Dongryeol Jeong</name>
+    <name>Inwoo Jeong</name>
     
   </author>
   
@@ -18,8 +18,8 @@
   
   <entry>
     <title>가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어</title>
-    <link href="http://bedongryeol.github.io/10/28/0-interview-os2/"/>
-    <id>http://bedongryeol.github.io/10/28/0-interview-os2/</id>
+    <link href="http://inwoo.github.io/10/28/0-interview-os2/"/>
+    <id>http://inwoo.github.io/10/28/0-interview-os2/</id>
     <published>2021-10-28T08:01:34.000Z</published>
     <updated>2021-10-28T08:07:14.663Z</updated>
     
@@ -30,27 +30,27 @@
     
     
     
-    <category term="Interview" scheme="http://bedongryeol.github.io/categories/Interview/"/>
+    <category term="Interview" scheme="http://inwoo.github.io/categories/Interview/"/>
     
-    <category term="OS" scheme="http://bedongryeol.github.io/categories/Interview/OS/"/>
+    <category term="OS" scheme="http://inwoo.github.io/categories/Interview/OS/"/>
     
     
-    <category term="가상메모리" scheme="http://bedongryeol.github.io/tags/%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC/"/>
+    <category term="가상메모리" scheme="http://inwoo.github.io/tags/%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC/"/>
     
-    <category term="페이징" scheme="http://bedongryeol.github.io/tags/%ED%8E%98%EC%9D%B4%EC%A7%95/"/>
+    <category term="페이징" scheme="http://inwoo.github.io/tags/%ED%8E%98%EC%9D%B4%EC%A7%95/"/>
     
-    <category term="세그멘테이션" scheme="http://bedongryeol.github.io/tags/%EC%84%B8%EA%B7%B8%EB%A9%98%ED%85%8C%EC%9D%B4%EC%85%98/"/>
+    <category term="세그멘테이션" scheme="http://inwoo.github.io/tags/%EC%84%B8%EA%B7%B8%EB%A9%98%ED%85%8C%EC%9D%B4%EC%85%98/"/>
     
-    <category term="뮤텍스" scheme="http://bedongryeol.github.io/tags/%EB%AE%A4%ED%85%8D%EC%8A%A4/"/>
+    <category term="뮤텍스" scheme="http://inwoo.github.io/tags/%EB%AE%A4%ED%85%8D%EC%8A%A4/"/>
     
-    <category term="세마포어" scheme="http://bedongryeol.github.io/tags/%EC%84%B8%EB%A7%88%ED%8F%AC%EC%96%B4/"/>
+    <category term="세마포어" scheme="http://inwoo.github.io/tags/%EC%84%B8%EB%A7%88%ED%8F%AC%EC%96%B4/"/>
     
   </entry>
   
   <entry>
     <title>메모리 할당 알고리즘, 페이지 폴트, 단편화</title>
-    <link href="http://bedongryeol.github.io/10/28/0-interview-os1/"/>
-    <id>http://bedongryeol.github.io/10/28/0-interview-os1/</id>
+    <link href="http://inwoo.github.io/10/28/0-interview-os1/"/>
+    <id>http://inwoo.github.io/10/28/0-interview-os1/</id>
     <published>2021-10-28T07:56:44.000Z</published>
     <updated>2021-10-28T08:01:13.573Z</updated>
     
@@ -61,23 +61,23 @@
     
     
     
-    <category term="Interview" scheme="http://bedongryeol.github.io/categories/Interview/"/>
+    <category term="Interview" scheme="http://inwoo.github.io/categories/Interview/"/>
     
-    <category term="OS" scheme="http://bedongryeol.github.io/categories/Interview/OS/"/>
+    <category term="OS" scheme="http://inwoo.github.io/categories/Interview/OS/"/>
     
     
-    <category term="메모리 할당 알고리즘" scheme="http://bedongryeol.github.io/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/"/>
+    <category term="메모리 할당 알고리즘" scheme="http://inwoo.github.io/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/"/>
     
-    <category term="페이지 폴트" scheme="http://bedongryeol.github.io/tags/%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%8F%B4%ED%8A%B8/"/>
+    <category term="페이지 폴트" scheme="http://inwoo.github.io/tags/%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%8F%B4%ED%8A%B8/"/>
     
-    <category term="단편화" scheme="http://bedongryeol.github.io/tags/%EB%8B%A8%ED%8E%B8%ED%99%94/"/>
+    <category term="단편화" scheme="http://inwoo.github.io/tags/%EB%8B%A8%ED%8E%B8%ED%99%94/"/>
     
   </entry>
   
   <entry>
     <title>Spring - Interceptor</title>
-    <link href="http://bedongryeol.github.io/10/28/springInterceptor/"/>
-    <id>http://bedongryeol.github.io/10/28/springInterceptor/</id>
+    <link href="http://inwoo.github.io/10/28/springInterceptor/"/>
+    <id>http://inwoo.github.io/10/28/springInterceptor/</id>
     <published>2021-10-27T15:38:55.000Z</published>
     <updated>2021-10-27T16:25:14.856Z</updated>
     
@@ -88,42 +88,42 @@
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="Spring" scheme="http://bedongryeol.github.io/categories/Basic/Spring/"/>
+    <category term="Spring" scheme="http://inwoo.github.io/categories/Basic/Spring/"/>
     
     
-    <category term="interceptor" scheme="http://bedongryeol.github.io/tags/interceptor/"/>
+    <category term="interceptor" scheme="http://inwoo.github.io/tags/interceptor/"/>
     
   </entry>
   
   <entry>
     <title>Spring - filter</title>
-    <link href="http://bedongryeol.github.io/10/26/springfilter/"/>
-    <id>http://bedongryeol.github.io/10/26/springfilter/</id>
+    <link href="http://inwoo.github.io/10/26/springfilter/"/>
+    <id>http://inwoo.github.io/10/26/springfilter/</id>
     <published>2021-10-26T12:14:17.000Z</published>
-    <updated>2021-10-26T12:49:56.707Z</updated>
+    <updated>2021-10-28T08:54:41.892Z</updated>
     
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><hr><blockquote><h2 id="Filter-란"><a href="#Filter-란" class="headerlink" title="Filter 란 ?"></a>Filter 란 ?</h2></blockquote><p><img src="https://supawer0728.github.io/images/spring-filter-interceptor/spring-request-lifecycle.jpg" alt="image"></p><p>Spring은 Client로부터 request를 받고, response를 줄 때 <strong>Filter</strong>를 거쳐서 전달해준다.</p><p>Filter는 웹 어플리케이션에서 관리되는 영역으로, Spring에 의해서 데이터가 변환 되기 전, Client가 보낸 순수한 요청, 응답 값을 확인할 수 있다.</p><hr><blockquote><h2 id="Filter의-사용"><a href="#Filter의-사용" class="headerlink" title="Filter의 사용"></a>Filter의 사용</h2></blockquote><h3 id="절차"><a href="#절차" class="headerlink" title="절차"></a>절차</h3><ol><li>Filter를 사용하기 위해 <strong>Filter를 implements한 클래스를 생성</strong>한다.</li><li><strong>WebFilter 어노테이션을 추가</strong>하고, 적용범위를 설정한다.<ul><li>default = 모든 url</li></ul></li><li><strong>doFilter()</strong> 메서드를 오버라이드한다.</li><li>SpringBootApplication 어노테이션이 추가된 메인부에 <strong>@ServletComponentScan을 추가해준다</strong></li></ol><h3 id="doFilter-메서드"><a href="#doFilter-메서드" class="headerlink" title="doFilter() 메서드"></a>doFilter() 메서드</h3><p>메서드의 parameter로 FilterChain 타입의 chain을 받을 수 있다. <strong>chain.doFilter() 메서드를 기준으로 필터에 들어오기 전, 후를 구분할 수 있다.</strong></p><h4 id="lt-전처리-gt"><a href="#lt-전처리-gt" class="headerlink" title="&lt; 전처리 &gt;"></a>&lt; 전처리 &gt;</h4><span class="highlight-text success">다른 parameter 중 ServletRequest request, ServletResponse reponse가 들어온다.</span><p>위 Servlet 타입은 response, request를 단 1번만 사용할 수 있다. 들어온 요청을 log로 서버에 남기면 이를 다른 용도로 활용할 수 없는 것이다.</p><p><strong>따라서 ContentCahchingRequestWrapper, ContentCachingResponseWrapper</strong>를 생성해준다.</p><ul><li>생성자의 인자로 ServletRequest과 ServletResponse를 사용할 수 있다.</li></ul><h4 id="lt-후처리-gt"><a href="#lt-후처리-gt" class="headerlink" title="&lt; 후처리 &gt;"></a>&lt; 후처리 &gt;</h4><p>서버에는 사용자가 보낸 내용과, 요청을 보낸 uri를 확인하기 위해 get메서드를 통해 로그로 남겨주었다.</p><p>응답으로 보내주는 httpStatus와 content 또한 저장하며 log에 기록해주었다.</p><h3 id="1-TalentAPI를-통해-객체에-맞는-데이터를-post-해준다"><a href="#1-TalentAPI를-통해-객체에-맞는-데이터를-post-해준다" class="headerlink" title="1. TalentAPI를 통해 객체에 맞는 데이터를 post 해준다."></a>1. TalentAPI를 통해 객체에 맞는 데이터를 post 해준다.</h3><p><img src="/image/sfilter1.png" alt="img_1.png"></p><h3 id="2-Post한-값과-uri가-log로-찍힌다"><a href="#2-Post한-값과-uri가-log로-찍힌다" class="headerlink" title="2. Post한 값과, uri가 log로 찍힌다."></a>2. Post한 값과, uri가 log로 찍힌다.</h3><p><img src="/image/sfilter2.png" alt="img_2.png"></p><h3 id="3-Response-한-값과-HttpStatus가-알맞게-log에-찍히는-것을-확인할-수-있다"><a href="#3-Response-한-값과-HttpStatus가-알맞게-log에-찍히는-것을-확인할-수-있다" class="headerlink" title="3. Response 한 값과 HttpStatus가 알맞게 log에 찍히는 것을 확인할 수 있다."></a>3. Response 한 값과 HttpStatus가 알맞게 log에 찍히는 것을 확인할 수 있다.</h3><p><img src="/image/sfilter3.png" alt="img_4.png"><br><img src="/image/sfilter4.png" alt="img_3.png"></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebFilter(urlPatterns = &quot;/api/user/*&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        <span class="comment">// 전처리</span></span><br><span class="line">        ContentCachingRequestWrapper contentCachingRequestWrapper = <span class="keyword">new</span> ContentCachingRequestWrapper((HttpServletRequest) request);</span><br><span class="line">        ContentCachingResponseWrapper contentCachingResponseWrapper = <span class="keyword">new</span> ContentCachingResponseWrapper((HttpServletResponse) response);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 필터</span></span><br><span class="line">        chain.doFilter(contentCachingRequestWrapper, contentCachingResponseWrapper);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 후처리</span></span><br><span class="line">        String reqContetnt = <span class="keyword">new</span> String(contentCachingRequestWrapper.getContentAsByteArray());</span><br><span class="line">        String url = contentCachingRequestWrapper.getRequestURI();</span><br><span class="line">        log.info(<span class="string">&quot;url : &#123;&#125;, reqContent : &#123;&#125;&quot;</span>, url, reqContetnt);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> httpStatus = contentCachingResponseWrapper.getStatus();</span><br><span class="line">        String content = <span class="keyword">new</span> String(contentCachingResponseWrapper.getContentAsByteArray());</span><br><span class="line">        log.info(<span class="string">&quot;http status : &#123;&#125;, content : &#123;&#125;&quot;</span>, httpStatus, content);</span><br><span class="line"></span><br><span class="line">        contentCachingResponseWrapper.copyBodyToResponse();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><hr><blockquote><h2 id="Filter-란"><a href="#Filter-란" class="headerlink" title="Filter 란 ?"></a>Filter 란 ?</h2></blockquote><p><img src="https://supawer0728.github.io/images/spring-filter-interceptor/spring-request-lifecycle.jpg" alt="image"></p><p>Spring은 Client로부터 request를 받고, response를 줄 때 <strong>Filter</strong>를 거쳐서 전달해준다.</p><p>Filter는 웹 어플리케이션에서 관리되는 영역으로, Spring에 의해서 데이터가 변환 되기 전, Client가 보낸 순수한 요청, 응답 값을 확인할 수 있다.</p><hr><blockquote><h2 id="Filter의-사용"><a href="#Filter의-사용" class="headerlink" title="Filter의 사용"></a>Filter의 사용</h2></blockquote><h3 id="절차"><a href="#절차" class="headerlink" title="절차"></a>절차</h3><ol><li>Filter를 사용하기 위해 <strong>Filter를 implements한 클래스를 생성</strong>한다.</li><li><strong>WebFilter 어노테이션을 추가</strong>하고, 적용범위를 설정한다.<ul><li>default = 모든 url</li></ul></li><li><strong>doFilter()</strong> 메서드를 오버라이드한다.</li><li>SpringBootApplication 어노테이션이 추가된 메인부에 <strong>@ServletComponentScan을 추가해준다</strong></li></ol><h3 id="doFilter-메서드"><a href="#doFilter-메서드" class="headerlink" title="doFilter() 메서드"></a>doFilter() 메서드</h3><p>메서드의 parameter로 FilterChain 타입의 chain을 받을 수 있다. <strong>chain.doFilter() 메서드를 기준으로 필터에 들어오기 전, 후를 구분할 수 있다.</strong></p><h4 id="lt-전처리-gt"><a href="#lt-전처리-gt" class="headerlink" title="&lt; 전처리 &gt;"></a>&lt; 전처리 &gt;</h4><p><strong>다른 parameter 중 ServletRequest request, ServletResponse reponse가 들어온다.</strong></p><p>위 Servlet 타입은 response, request를 단 1번만 사용할 수 있다. 들어온 요청을 log로 서버에 남기면 이를 다른 용도로 활용할 수 없는 것이다.</p><p><strong>따라서 ContentCahchingRequestWrapper, ContentCachingResponseWrapper</strong>를 생성해준다.</p><ul><li>생성자의 인자로 ServletRequest과 ServletResponse를 사용할 수 있다.</li></ul><h4 id="lt-후처리-gt"><a href="#lt-후처리-gt" class="headerlink" title="&lt; 후처리 &gt;"></a>&lt; 후처리 &gt;</h4><p>서버에는 사용자가 보낸 내용과, 요청을 보낸 uri를 확인하기 위해 get메서드를 통해 로그로 남겨주었다.</p><p>응답으로 보내주는 httpStatus와 content 또한 저장하며 log에 기록해주었다.</p><h3 id="1-TalentAPI를-통해-객체에-맞는-데이터를-post-해준다"><a href="#1-TalentAPI를-통해-객체에-맞는-데이터를-post-해준다" class="headerlink" title="1. TalentAPI를 통해 객체에 맞는 데이터를 post 해준다."></a>1. TalentAPI를 통해 객체에 맞는 데이터를 post 해준다.</h3><p><img src="/image/sfilter1.png" alt="img_1.png"></p><h3 id="2-Post한-값과-uri가-log로-찍힌다"><a href="#2-Post한-값과-uri가-log로-찍힌다" class="headerlink" title="2. Post한 값과, uri가 log로 찍힌다."></a>2. Post한 값과, uri가 log로 찍힌다.</h3><p><img src="/image/sfilter2.png" alt="img_2.png"></p><h3 id="3-Response-한-값과-HttpStatus가-알맞게-log에-찍히는-것을-확인할-수-있다"><a href="#3-Response-한-값과-HttpStatus가-알맞게-log에-찍히는-것을-확인할-수-있다" class="headerlink" title="3. Response 한 값과 HttpStatus가 알맞게 log에 찍히는 것을 확인할 수 있다."></a>3. Response 한 값과 HttpStatus가 알맞게 log에 찍히는 것을 확인할 수 있다.</h3><p><img src="/image/sfilter3.png" alt="img_4.png"><br><img src="/image/sfilter4.png" alt="img_3.png"></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebFilter(urlPatterns = &quot;/api/user/*&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        <span class="comment">// 전처리</span></span><br><span class="line">        ContentCachingRequestWrapper contentCachingRequestWrapper = <span class="keyword">new</span> ContentCachingRequestWrapper((HttpServletRequest) request);</span><br><span class="line">        ContentCachingResponseWrapper contentCachingResponseWrapper = <span class="keyword">new</span> ContentCachingResponseWrapper((HttpServletResponse) response);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 필터</span></span><br><span class="line">        chain.doFilter(contentCachingRequestWrapper, contentCachingResponseWrapper);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 후처리</span></span><br><span class="line">        String reqContetnt = <span class="keyword">new</span> String(contentCachingRequestWrapper.getContentAsByteArray());</span><br><span class="line">        String url = contentCachingRequestWrapper.getRequestURI();</span><br><span class="line">        log.info(<span class="string">&quot;url : &#123;&#125;, reqContent : &#123;&#125;&quot;</span>, url, reqContetnt);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> httpStatus = contentCachingResponseWrapper.getStatus();</span><br><span class="line">        String content = <span class="keyword">new</span> String(contentCachingResponseWrapper.getContentAsByteArray());</span><br><span class="line">        log.info(<span class="string">&quot;http status : &#123;&#125;, content : &#123;&#125;&quot;</span>, httpStatus, content);</span><br><span class="line"></span><br><span class="line">        contentCachingResponseWrapper.copyBodyToResponse();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     
     <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="Spring" scheme="http://bedongryeol.github.io/categories/Basic/Spring/"/>
+    <category term="Spring" scheme="http://inwoo.github.io/categories/Basic/Spring/"/>
     
     
-    <category term="filter" scheme="http://bedongryeol.github.io/tags/filter/"/>
+    <category term="filter" scheme="http://inwoo.github.io/tags/filter/"/>
     
   </entry>
   
   <entry>
     <title>Spring Boot Validation check</title>
-    <link href="http://bedongryeol.github.io/10/25/springvalidation/"/>
-    <id>http://bedongryeol.github.io/10/25/springvalidation/</id>
+    <link href="http://inwoo.github.io/10/25/springvalidation/"/>
+    <id>http://inwoo.github.io/10/25/springvalidation/</id>
     <published>2021-10-25T13:21:16.000Z</published>
     <updated>2021-10-26T12:51:10.436Z</updated>
     
@@ -134,65 +134,65 @@
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="Spring" scheme="http://bedongryeol.github.io/categories/Basic/Spring/"/>
+    <category term="Spring" scheme="http://inwoo.github.io/categories/Basic/Spring/"/>
     
     
-    <category term="validation" scheme="http://bedongryeol.github.io/tags/validation/"/>
+    <category term="validation" scheme="http://inwoo.github.io/tags/validation/"/>
     
   </entry>
   
   <entry>
     <title>Spring Boot에서의 Exception 처리</title>
-    <link href="http://bedongryeol.github.io/10/18/SpringException/"/>
-    <id>http://bedongryeol.github.io/10/18/SpringException/</id>
+    <link href="http://inwoo.github.io/10/18/SpringException/"/>
+    <id>http://inwoo.github.io/10/18/SpringException/</id>
     <published>2021-10-18T13:22:10.000Z</published>
-    <updated>2021-10-18T14:05:46.136Z</updated>
+    <updated>2021-10-28T08:54:21.837Z</updated>
     
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><p>Web Application의 입장에서, 에러가 발생했을 때 처리해줄 수 있는 방법은 많지 않다.<br>크게 <strong>에러 페이지</strong>, <strong>4 ~ 500번대 에러</strong>, <strong>별도의 에러 메세지 전달</strong> 정도가 있다.</p><p><strong>아래 예제 코드를 통해 확인해보도록 하자.</strong></p><p>name(String), age(Integer) 속성을 가지고 있는 User 객체에, controller에서 Integer와 int의 합을 도출하도록 해서 억지로 에러를 발생시켜 보았다.</p><details><summary>User 코드 확인하기</summary><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.exception.dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.Min;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotEmpty;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotNull;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.Size;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotEmpty</span></span><br><span class="line">    <span class="meta">@Size(min = 2, max = 10)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Min(1)</span></span><br><span class="line">    <span class="meta">@NotNull</span></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;User&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details><details><summary>Controller 코드 확인하기</summary><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.exception.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.exception.dto.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApiController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">get</span><span class="params">(<span class="meta">@RequestParam(required = false)</span> String name, <span class="meta">@RequestParam(required = false)</span> Integer age)</span></span>&#123;</span><br><span class="line">        User user = <span class="keyword">new</span> User();</span><br><span class="line">        user.setName(name);</span><br><span class="line">        user.setAge(age);</span><br><span class="line">        <span class="comment">// 에러 발생 시키기</span></span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">10</span>+age;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping(&quot;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">post</span><span class="params">(<span class="meta">@RequestBody</span> User user)</span></span>&#123;</span><br><span class="line">       System.out.println(user);</span><br><span class="line">       <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></details><p>Client에게 친절한 Exception 처리는 기본적으로 두 가지 방식이 있다. </p><p>이를 <strong>Advice(조언)</strong> 이라고 한다. Server에서 Client에게 오류에 대한 조언을 해주는 것이다.</p><blockquote><h2 id="관련-Annotation"><a href="#관련-Annotation" class="headerlink" title="관련 Annotation"></a>관련 Annotation</h2></blockquote><h3 id="RestControllerAdvice"><a href="#RestControllerAdvice" class="headerlink" title="@RestControllerAdvice"></a>@RestControllerAdvice</h3><ul><li>페이징 처리를 하는 view resolver 영역의 white label page, error page를 global하게 처리할 수 있는 집합 장소</li></ul><h3 id="ExceptionHandler"><a href="#ExceptionHandler" class="headerlink" title="@ExceptionHandler"></a>@ExceptionHandler</h3><ul><li>Global하게 처리할 때는 <strong>RestControllerAdvice Annotation</strong>이 붙은 클래스 내에, 특정 Controller의 예외 처리를 할 때 특정 컨트롤러 내부에 사용한다.</li><li><strong>동일한 Handler가 Global, Controller에 모두 존재하면 특정 Controller 내부의 handler가 처리된다.</strong></li></ul><details><summary>전역으로 처리하는 handler 생성</summary><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.exception.advice;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.http.HttpStatus;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.ResponseEntity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestControllerAdvice;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalControlAdvice</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler(value = Exception.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">exception</span><span class="params">(Exception e)</span></span>&#123;</span><br><span class="line">        System.out.println(e.getClass().getName());</span><br><span class="line">        System.out.println(<span class="string">&quot;------------&quot;</span>);</span><br><span class="line">        System.out.println(e.getLocalizedMessage());</span><br><span class="line">        System.out.println(<span class="string">&quot;------------&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details><details><summary>특정 Exception 처리하는 handler생성</summary><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ExceptionHandler(value = NullPointerException.class)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">methodArg</span><span class="params">(NullPointerException e)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(<span class="string">&quot;값이 유효하지 않습니다.&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details>    <p>혹은 RestControllerAdvice Annotation에 basePackageClasses인자를 추가하여 특정 컨트롤러에 한정 시킬 수 있다.</p><ul><li><code>@RestControllerAdvice(basePackageClasses = ApiController.class)</code></li></ul><blockquote><h2 id="Client-단에서-발생할-수-있는-에러"><a href="#Client-단에서-발생할-수-있는-에러" class="headerlink" title="Client 단에서 발생할 수 있는 에러"></a>Client 단에서 발생할 수 있는 에러</h2></blockquote><p><strong>Client가 발생시킬 수 있는 에러는 형식에 맞지 않게 값을 입력하는 것이다.</strong> 이름을 1글자만 입력하거나, 나이를 0살로 입력하는 등의 예가 있다.</p><p>Validated Annotation을 클래스 단에 추가해준 뒤 GetMapping을 해주는 get 메서드의 RequestParam에 제한 사항을 추가해 주었다.</p><p>이름을 최소 2글자 이상 작성하여야 하고, 나이는 최소 1살이며 비워두면 안된다.</p><details><summary>Validated 예제코드 확인하기</summary><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api&quot;)</span></span><br><span class="line"><span class="meta">@Validated</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApiController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">get</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@Size(min = 2)</span></span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@RequestParam</span> String name,</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@NotNull</span></span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@Min(1)</span></span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@RequestParam</span> Integer age)</span></span>&#123;</span><br><span class="line">        User user = <span class="keyword">new</span> User();</span><br><span class="line">        user.setName(name);</span><br><span class="line">        user.setAge(age);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details><h3 id="-1"><a href="#-1" class="headerlink" title=""></a><span class="highlight-text success">처음 접근은 Client단에서 값을 잘못입력했을 때</span></h3><h3 id="-2"><a href="#-2" class="headerlink" title=""></a><span class="highlight-text success">어떠한 Exception이 발생하는지 확인하는 것으로 시작한다. </span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ApiController 클래스에서 발생한 오류</span></span><br><span class="line"><span class="meta">@RestControllerAdvice(basePackageClasses = ApiController.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApiControllerAdvice</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Exception 클래스 내부의 객체가 들어오면 실행 (모든 Exception을 받는다)</span></span><br><span class="line">    <span class="meta">@ExceptionHandler(value = Exception.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">exception</span><span class="params">(Exception e)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Exception의 클래스 이름을 출력하여 확인한다.</span></span><br><span class="line">        System.out.println(e.getClass().getName());</span><br><span class="line">        <span class="comment">// 테스트 코드이므로 Client 단에는 아무것도 출력되지 않도록 하였습니다.</span></span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><img src="/image/talendTest.png" alt="img_1.png"></p><p>Chrome의 확장 프로그램인 Talend API를 통해 서버 테스트를 해보았다.</p><p>RequestParameter에 아무 값도 넣어주지 않아 아래와 같은 에러가 도출됐다.</p><p><img src="/image/talend.png" alt="img.png"></p><p>위와 같이 <strong>Spring에서 자체적으로 예외에 대한 기본적인 처리는 해준다.</strong></p><p>출력된 클래스는 <strong>org.springframework.web.bind.MissingServletRequestParameterException</strong>가 IDE에 출력되었다.</p><p>MissingServletRequestParameterException이 잡혔으니 value값을 이로 설정해서 원하는 정보를 제공할 수 있도록 구현해보자.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ExceptionHandler(value = MissingServletRequestParameterException.class)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">missingServletRequestParameterException</span><span class="params">(MissingServletRequestParameterException e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(<span class="string">&quot;값이 입력되지 않았습니다.&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>위와 같이 body에 정보를 보내주고, HttpStatus는 400을 띄워주었다.</p><p><img src="/image/errorinfo.png" alt="img.png"></p><p>보다 Client들이 발생시키는 오류를 줄일 수 있다.</p>]]></content>
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><p>Web Application의 입장에서, 에러가 발생했을 때 처리해줄 수 있는 방법은 많지 않다.<br>크게 <strong>에러 페이지</strong>, <strong>4 ~ 500번대 에러</strong>, <strong>별도의 에러 메세지 전달</strong> 정도가 있다.</p><p><strong>아래 예제 코드를 통해 확인해보도록 하자.</strong></p><p>name(String), age(Integer) 속성을 가지고 있는 User 객체에, controller에서 Integer와 int의 합을 도출하도록 해서 억지로 에러를 발생시켜 보았다.</p><details><summary>User 코드 확인하기</summary><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.exception.dto;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.Min;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotEmpty;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotNull;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.Size;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotEmpty</span></span><br><span class="line">    <span class="meta">@Size(min = 2, max = 10)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Min(1)</span></span><br><span class="line">    <span class="meta">@NotNull</span></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;User&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details><details><summary>Controller 코드 확인하기</summary><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.exception.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.exception.dto.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApiController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">get</span><span class="params">(<span class="meta">@RequestParam(required = false)</span> String name, <span class="meta">@RequestParam(required = false)</span> Integer age)</span></span>&#123;</span><br><span class="line">        User user = <span class="keyword">new</span> User();</span><br><span class="line">        user.setName(name);</span><br><span class="line">        user.setAge(age);</span><br><span class="line">        <span class="comment">// 에러 발생 시키기</span></span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">10</span>+age;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping(&quot;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">post</span><span class="params">(<span class="meta">@RequestBody</span> User user)</span></span>&#123;</span><br><span class="line">       System.out.println(user);</span><br><span class="line">       <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></details><p>Client에게 친절한 Exception 처리는 기본적으로 두 가지 방식이 있다. </p><p>이를 <strong>Advice(조언)</strong> 이라고 한다. Server에서 Client에게 오류에 대한 조언을 해주는 것이다.</p><blockquote><h2 id="관련-Annotation"><a href="#관련-Annotation" class="headerlink" title="관련 Annotation"></a>관련 Annotation</h2></blockquote><h3 id="RestControllerAdvice"><a href="#RestControllerAdvice" class="headerlink" title="@RestControllerAdvice"></a>@RestControllerAdvice</h3><ul><li>페이징 처리를 하는 view resolver 영역의 white label page, error page를 global하게 처리할 수 있는 집합 장소</li></ul><h3 id="ExceptionHandler"><a href="#ExceptionHandler" class="headerlink" title="@ExceptionHandler"></a>@ExceptionHandler</h3><ul><li>Global하게 처리할 때는 <strong>RestControllerAdvice Annotation</strong>이 붙은 클래스 내에, 특정 Controller의 예외 처리를 할 때 특정 컨트롤러 내부에 사용한다.</li><li><strong>동일한 Handler가 Global, Controller에 모두 존재하면 특정 Controller 내부의 handler가 처리된다.</strong></li></ul><details><summary>전역으로 처리하는 handler 생성</summary><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.exception.advice;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.http.HttpStatus;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.ResponseEntity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestControllerAdvice;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalControlAdvice</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler(value = Exception.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">exception</span><span class="params">(Exception e)</span></span>&#123;</span><br><span class="line">        System.out.println(e.getClass().getName());</span><br><span class="line">        System.out.println(<span class="string">&quot;------------&quot;</span>);</span><br><span class="line">        System.out.println(e.getLocalizedMessage());</span><br><span class="line">        System.out.println(<span class="string">&quot;------------&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details><details><summary>특정 Exception 처리하는 handler생성</summary><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ExceptionHandler(value = NullPointerException.class)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">methodArg</span><span class="params">(NullPointerException e)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(<span class="string">&quot;값이 유효하지 않습니다.&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details>    <p>혹은 RestControllerAdvice Annotation에 basePackageClasses인자를 추가하여 특정 컨트롤러에 한정 시킬 수 있다.</p><ul><li><code>@RestControllerAdvice(basePackageClasses = ApiController.class)</code></li></ul><blockquote><h2 id="Client-단에서-발생할-수-있는-에러"><a href="#Client-단에서-발생할-수-있는-에러" class="headerlink" title="Client 단에서 발생할 수 있는 에러"></a>Client 단에서 발생할 수 있는 에러</h2></blockquote><p><strong>Client가 발생시킬 수 있는 에러는 형식에 맞지 않게 값을 입력하는 것이다.</strong> 이름을 1글자만 입력하거나, 나이를 0살로 입력하는 등의 예가 있다.</p><p>Validated Annotation을 클래스 단에 추가해준 뒤 GetMapping을 해주는 get 메서드의 RequestParam에 제한 사항을 추가해 주었다.</p><p>이름을 최소 2글자 이상 작성하여야 하고, 나이는 최소 1살이며 비워두면 안된다.</p><details><summary>Validated 예제코드 확인하기</summary><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api&quot;)</span></span><br><span class="line"><span class="meta">@Validated</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApiController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">get</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@Size(min = 2)</span></span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@RequestParam</span> String name,</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@NotNull</span></span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@Min(1)</span></span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="meta">@RequestParam</span> Integer age)</span></span>&#123;</span><br><span class="line">        User user = <span class="keyword">new</span> User();</span><br><span class="line">        user.setName(name);</span><br><span class="line">        user.setAge(age);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></details><h3 id="처음-접근은-Client단에서-값을-잘못입력했을-때"><a href="#처음-접근은-Client단에서-값을-잘못입력했을-때" class="headerlink" title="처음 접근은 Client단에서 값을 잘못입력했을 때"></a>처음 접근은 Client단에서 값을 잘못입력했을 때</h3><h3 id="어떠한-Exception이-발생하는지-확인하는-것으로-시작한다"><a href="#어떠한-Exception이-발생하는지-확인하는-것으로-시작한다" class="headerlink" title="어떠한 Exception이 발생하는지 확인하는 것으로 시작한다."></a>어떠한 Exception이 발생하는지 확인하는 것으로 시작한다.</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ApiController 클래스에서 발생한 오류</span></span><br><span class="line"><span class="meta">@RestControllerAdvice(basePackageClasses = ApiController.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApiControllerAdvice</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Exception 클래스 내부의 객체가 들어오면 실행 (모든 Exception을 받는다)</span></span><br><span class="line">    <span class="meta">@ExceptionHandler(value = Exception.class)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">exception</span><span class="params">(Exception e)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Exception의 클래스 이름을 출력하여 확인한다.</span></span><br><span class="line">        System.out.println(e.getClass().getName());</span><br><span class="line">        <span class="comment">// 테스트 코드이므로 Client 단에는 아무것도 출력되지 않도록 하였습니다.</span></span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><img src="/image/talendTest.png" alt="img_1.png"></p><p>Chrome의 확장 프로그램인 Talend API를 통해 서버 테스트를 해보았다.</p><p>RequestParameter에 아무 값도 넣어주지 않아 아래와 같은 에러가 도출됐다.</p><p><img src="/image/talend.png" alt="img.png"></p><p>위와 같이 <strong>Spring에서 자체적으로 예외에 대한 기본적인 처리는 해준다.</strong></p><p>출력된 클래스는 <strong>org.springframework.web.bind.MissingServletRequestParameterException</strong>가 IDE에 출력되었다.</p><p>MissingServletRequestParameterException이 잡혔으니 value값을 이로 설정해서 원하는 정보를 제공할 수 있도록 구현해보자.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ExceptionHandler(value = MissingServletRequestParameterException.class)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">missingServletRequestParameterException</span><span class="params">(MissingServletRequestParameterException e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(<span class="string">&quot;값이 입력되지 않았습니다.&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>위와 같이 body에 정보를 보내주고, HttpStatus는 400을 띄워주었다.</p><p><img src="/image/errorinfo.png" alt="img.png"></p><p>보다 Client들이 발생시키는 오류를 줄일 수 있다.</p>]]></content>
     
     
     <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="Spring" scheme="http://bedongryeol.github.io/categories/Basic/Spring/"/>
+    <category term="Spring" scheme="http://inwoo.github.io/categories/Basic/Spring/"/>
     
     
-    <category term="Exception" scheme="http://bedongryeol.github.io/tags/Exception/"/>
+    <category term="Exception" scheme="http://inwoo.github.io/tags/Exception/"/>
     
-    <category term="Spring" scheme="http://bedongryeol.github.io/tags/Spring/"/>
+    <category term="Spring" scheme="http://inwoo.github.io/tags/Spring/"/>
     
   </entry>
   
   <entry>
     <title>어댑터 패턴 (Adapter Pattern)</title>
-    <link href="http://bedongryeol.github.io/10/14/adapter/"/>
-    <id>http://bedongryeol.github.io/10/14/adapter/</id>
+    <link href="http://inwoo.github.io/10/14/adapter/"/>
+    <id>http://inwoo.github.io/10/14/adapter/</id>
     <published>2021-10-14T12:56:02.000Z</published>
-    <updated>2021-10-14T13:54:28.926Z</updated>
+    <updated>2021-10-28T08:53:48.692Z</updated>
     
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="Adapter-Pattern-이란-무엇인가"><a href="#Adapter-Pattern-이란-무엇인가" class="headerlink" title="Adapter Pattern 이란 무엇인가?"></a>Adapter Pattern 이란 무엇인가?</h2></blockquote><p>어댑터 패턴은 클래스의 인터페이스를 사용자가 기대하는 다른 인터페이스를 변환해주는 패턴으로, <span class="highlight-text success">호환성이 없는 인터페이스로 인해 호환이 되지않는 클래스들을 함께 작동할 수 있도록 해준다.</span></p><p>대부분의 글에서 이 어댑터를 ‘돼지코’라 불리는 변환 어댑터를 예시로 듭니다.</p><p>또한 아래와 같은 사진을 자주 보실 수 있습니다.</p><p><img src="https://t1.daumcdn.net/cfile/tistory/99AAB74D5C305D4721" alt="image"></p><p><strong>여기서 Client는 사용자를 뜻합니다.</strong></p><p><strong>Target은 돼지코를 꽂을 수 있는 콘센트입니다.</strong> 일본에 여행을 가서 핸드폰을 충전하려고 보니 콘센트가 110V 충전기만 호환되도록 <strong>11자 모양</strong>으로 구멍이 뚫려있습니다. </p><p><strong>Adaptee는 제가 가지고 있는 220V 충전기</strong>인데 일본 콘센트(Target)에 꽂을 수가 없겠죠?</p><p>이 때 필요한게 <strong>Adapter, 돼지코</strong>입니다. <span class="highlight-text success">돼지코는 220V의 콘센트를 받아 110V로 변환시켜줍니다. 돼지코의 단자, 출력은 Target(110V 콘센트)과 같은 110V입니다.</span> 이 부분을 계속 떠올리셔야 헷갈리지 않게 구현할 수 있습니다.</p><blockquote><h4 id="여기서-포인트는-기존의-충전기-자체를-변경하지않고-그대로-사용할-수-있는-것입니다"><a href="#여기서-포인트는-기존의-충전기-자체를-변경하지않고-그대로-사용할-수-있는-것입니다" class="headerlink" title="여기서 포인트는 기존의 충전기 자체를 변경하지않고, 그대로 사용할 수 있는 것입니다."></a><strong>여기서 포인트는 기존의 충전기 자체를 변경하지않고, 그대로 사용할 수 있는 것입니다.</strong></h4></blockquote><blockquote><h2 id="Adapter-Pattern의-구현"><a href="#Adapter-Pattern의-구현" class="headerlink" title="Adapter Pattern의 구현"></a>Adapter Pattern의 구현</h2></blockquote><p>돼지코를 통해 전체적인 흐름을 보았으니, 실무적인 영역으로 넘어가 보겠습니다.</p><p><strong>1. Client는 항상 같은 Target을 통해 Web에 특정한 요청을 하고 있습니다.</strong></p><p><strong>2. Client에게 새로운 기능을 제공하기 위해 외부에 요청하여 바이트코드 파일을 전달받았습니다.</strong></p><ul><li>기존에 기능을 제공하는 Interface와 호환되지 않고, 직접적인 접근이 불가능합니다.</li></ul><p><strong>3. Adapter를 통해 기존 Interface와 외부 코드를 호환시켜줍니다.</strong></p><ul><li>이때 Adapter는 위의 돼지코 단자, 출력이 Target, 110V와 같은 것과 같이 기존 Interface와 같아야합니다.</li></ul><h4 id="1-Target-콘센트-WebRequester"><a href="#1-Target-콘센트-WebRequester" class="headerlink" title="1. Target (콘센트, WebRequester)"></a>1. Target (콘센트, WebRequester)</h4><ul><li>Target은 <strong>WebRequester</strong> 입니다.</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WebRequester</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">requestHandler</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="2-외부-코드"><a href="#2-외부-코드" class="headerlink" title="2. 외부 코드"></a>2. 외부 코드</h4><ul><li>기존 Target Interface와 호환이 되지 않는 형태입니다.</li><li>예시에서는 제가 임의로 작성하였기에 직접적인 접근도 가능하고 수정이 가능하지만, 바이트코드로 저장해서 불러오면 직접적인 접근이 어렵습니다.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">newService</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;New Service&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><h4 id="3-Adapter-생성"><a href="#3-Adapter-생성" class="headerlink" title="3. Adapter 생성"></a>3. Adapter 생성</h4><ul><li><strong>계속 강조했던 부분이 나옵니다.</strong> 아래 질문에 대해 생각을 잠시 해보고 넘어가시면 좋습니다.<ul><li><strong>Target(콘센트)은</strong> 몇 V였나요?</li><li>돼지코는 220V를 호환시켜주기 위해 <strong>220V를 받아주고</strong>, <strong>결국 몇 V 였을까요?</strong></li></ul></li></ul><p>여기서부터는 다시 정리를 하며 한 줄씩 작성해 나가보겠습니다.</p><p><strong>3-1. 어댑터 클래스를 만들어줍니다.</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">질문1. 돼지코 예제에서 Target은 몇 V였나요?</span><br><span class="line"></span><br><span class="line">질문2. 돼지코는 몇 V에 꽂으려한 거 였을까요?</span><br><span class="line"></span><br><span class="line">&lt; 정답 : 콘센트와 돼지코는 호환이되는 110V였습니다. &gt;</span><br></pre></td></tr></table></figure><p><strong>3-2. Adapter를 Target과 호환시키기 위해 형태를 맞춰줍니다.</strong></p><ul><li>Target, Adapter는 콘센트와 돼지코처럼 호환되기 위해 형태가 같아야겠죠?</li><li>Adapter class에 WebRequester를 implements해줍니다.<ul><li>Interface였으니까 Override를 해주어야겠죠?</li></ul></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">implements</span> <span class="title">WebRequester</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">requestHandler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="4-호환시켜주고-싶은-Adaptee를-Adapter에-꽂아줍니다"><a href="#4-호환시켜주고-싶은-Adaptee를-Adapter에-꽂아줍니다" class="headerlink" title="4. 호환시켜주고 싶은 Adaptee를 Adapter에 꽂아줍니다."></a>4. 호환시켜주고 싶은 Adaptee를 Adapter에 꽂아줍니다.</h4><ul><li>돼지코만 콘센트에 꽂아두면 안되겠죠 ?, 돼지코에 220V 충전기(Adaptee)를 연결해주어야 의미가 있는 거겠죠 !</li><li><strong>여기서 Adaptee는 2번에서 보았던 외부 코드, 새로운 기능입니다.</strong></li><li>NewService 클래스를 Adapter에 주입해주었습니다 (돼지코(Adapter)에 220V(NewService)를 꽂아준 것입니다.)<ul><li>다른 클래스의 객체를 내부에 주입시키는 것을 의존성 주입(Dependency Injection)이라고 합니다.</li></ul></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">implements</span> <span class="title">WebRequester</span></span>&#123;</span><br><span class="line">    NewService newService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Adapter</span><span class="params">(NewService newService)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.newService = newService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">requestHandler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        newService.newService();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="5-Adapter-Pattern-완성"><a href="#5-Adapter-Pattern-완성" class="headerlink" title="5. Adapter Pattern 완성"></a>5. Adapter Pattern 완성</h4><ul><li>4번과 같이 의존성 주입을 통해 호환이 되지 않던 기능과 인터페이스가 Adapter를 통해 호환이 되게 되었습니다!</li><li>테스트를 해보겠습니다.</li><li>궁극적인 형태는 WebRequester(Target)였죠?<ul><li><code>WebRequester webRequester =</code></li></ul></li><li>NewService를 Adapter에 꽂아 형태를 맞춰줍니다.<ul><li><code>new Adapter(new NewService())</code></li></ul></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        WebRequester webRequester = <span class="keyword">new</span> Adapter(<span class="keyword">new</span> NewService());</span><br><span class="line">        webRequester.requestHandler();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="Adapter-Pattern-이란-무엇인가"><a href="#Adapter-Pattern-이란-무엇인가" class="headerlink" title="Adapter Pattern 이란 무엇인가?"></a>Adapter Pattern 이란 무엇인가?</h2></blockquote><p>어댑터 패턴은 클래스의 인터페이스를 사용자가 기대하는 다른 인터페이스를 변환해주는 패턴으로, 호환성이 없는 인터페이스로 인해 <strong>호환이 되지않는 클래스들을 함께 작동할 수 있도록 해준다.</strong></p><p>대부분의 글에서 이 어댑터를 ‘돼지코’라 불리는 변환 어댑터를 예시로 듭니다.</p><p>또한 아래와 같은 사진을 자주 보실 수 있습니다.</p><p><img src="https://t1.daumcdn.net/cfile/tistory/99AAB74D5C305D4721" alt="image"></p><p><strong>여기서 Client는 사용자를 뜻합니다.</strong></p><p><strong>Target은 돼지코를 꽂을 수 있는 콘센트입니다.</strong> 일본에 여행을 가서 핸드폰을 충전하려고 보니 콘센트가 110V 충전기만 호환되도록 <strong>11자 모양</strong>으로 구멍이 뚫려있습니다. </p><p><strong>Adaptee는 제가 가지고 있는 220V 충전기</strong>인데 일본 콘센트(Target)에 꽂을 수가 없겠죠?</p><p>이 때 필요한게 <strong>Adapter, 돼지코</strong>입니다. 돼지코는 220V의 콘센트를 받아 110V로 변환시켜줍니다. 돼지코의 단자, 출력은 Target(110V 콘센트)과 같은 110V입니다. 이 부분을 계속 떠올리셔야 헷갈리지 않게 구현할 수 있습니다.</p><blockquote><h4 id="여기서-포인트는-기존의-충전기-자체를-변경하지않고-그대로-사용할-수-있는-것입니다"><a href="#여기서-포인트는-기존의-충전기-자체를-변경하지않고-그대로-사용할-수-있는-것입니다" class="headerlink" title="여기서 포인트는 기존의 충전기 자체를 변경하지않고, 그대로 사용할 수 있는 것입니다."></a><strong>여기서 포인트는 기존의 충전기 자체를 변경하지않고, 그대로 사용할 수 있는 것입니다.</strong></h4></blockquote><blockquote><h2 id="Adapter-Pattern의-구현"><a href="#Adapter-Pattern의-구현" class="headerlink" title="Adapter Pattern의 구현"></a>Adapter Pattern의 구현</h2></blockquote><p>돼지코를 통해 전체적인 흐름을 보았으니, 실무적인 영역으로 넘어가 보겠습니다.</p><p><strong>1. Client는 항상 같은 Target을 통해 Web에 특정한 요청을 하고 있습니다.</strong></p><p><strong>2. Client에게 새로운 기능을 제공하기 위해 외부에 요청하여 바이트코드 파일을 전달받았습니다.</strong></p><ul><li>기존에 기능을 제공하는 Interface와 호환되지 않고, 직접적인 접근이 불가능합니다.</li></ul><p><strong>3. Adapter를 통해 기존 Interface와 외부 코드를 호환시켜줍니다.</strong></p><ul><li>이때 Adapter는 위의 돼지코 단자, 출력이 Target, 110V와 같은 것과 같이 기존 Interface와 같아야합니다.</li></ul><h4 id="1-Target-콘센트-WebRequester"><a href="#1-Target-콘센트-WebRequester" class="headerlink" title="1. Target (콘센트, WebRequester)"></a>1. Target (콘센트, WebRequester)</h4><ul><li>Target은 <strong>WebRequester</strong> 입니다.</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WebRequester</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">requestHandler</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="2-외부-코드"><a href="#2-외부-코드" class="headerlink" title="2. 외부 코드"></a>2. 외부 코드</h4><ul><li>기존 Target Interface와 호환이 되지 않는 형태입니다.</li><li>예시에서는 제가 임의로 작성하였기에 직접적인 접근도 가능하고 수정이 가능하지만, 바이트코드로 저장해서 불러오면 직접적인 접근이 어렵습니다.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">newService</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;New Service&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><h4 id="3-Adapter-생성"><a href="#3-Adapter-생성" class="headerlink" title="3. Adapter 생성"></a>3. Adapter 생성</h4><ul><li><strong>계속 강조했던 부분이 나옵니다.</strong> 아래 질문에 대해 생각을 잠시 해보고 넘어가시면 좋습니다.<ul><li><strong>Target(콘센트)은</strong> 몇 V였나요?</li><li>돼지코는 220V를 호환시켜주기 위해 <strong>220V를 받아주고</strong>, <strong>결국 몇 V 였을까요?</strong></li></ul></li></ul><p>여기서부터는 다시 정리를 하며 한 줄씩 작성해 나가보겠습니다.</p><p><strong>3-1. 어댑터 클래스를 만들어줍니다.</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">질문1. 돼지코 예제에서 Target은 몇 V였나요?</span><br><span class="line"></span><br><span class="line">질문2. 돼지코는 몇 V에 꽂으려한 거 였을까요?</span><br><span class="line"></span><br><span class="line">&lt; 정답 : 콘센트와 돼지코는 호환이되는 110V였습니다. &gt;</span><br></pre></td></tr></table></figure><p><strong>3-2. Adapter를 Target과 호환시키기 위해 형태를 맞춰줍니다.</strong></p><ul><li>Target, Adapter는 콘센트와 돼지코처럼 호환되기 위해 형태가 같아야겠죠?</li><li>Adapter class에 WebRequester를 implements해줍니다.<ul><li>Interface였으니까 Override를 해주어야겠죠?</li></ul></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">implements</span> <span class="title">WebRequester</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">requestHandler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="4-호환시켜주고-싶은-Adaptee를-Adapter에-꽂아줍니다"><a href="#4-호환시켜주고-싶은-Adaptee를-Adapter에-꽂아줍니다" class="headerlink" title="4. 호환시켜주고 싶은 Adaptee를 Adapter에 꽂아줍니다."></a>4. 호환시켜주고 싶은 Adaptee를 Adapter에 꽂아줍니다.</h4><ul><li>돼지코만 콘센트에 꽂아두면 안되겠죠 ?, 돼지코에 220V 충전기(Adaptee)를 연결해주어야 의미가 있는 거겠죠 !</li><li><strong>여기서 Adaptee는 2번에서 보았던 외부 코드, 새로운 기능입니다.</strong></li><li>NewService 클래스를 Adapter에 주입해주었습니다 (돼지코(Adapter)에 220V(NewService)를 꽂아준 것입니다.)<ul><li>다른 클래스의 객체를 내부에 주입시키는 것을 의존성 주입(Dependency Injection)이라고 합니다.</li></ul></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">implements</span> <span class="title">WebRequester</span></span>&#123;</span><br><span class="line">    NewService newService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Adapter</span><span class="params">(NewService newService)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.newService = newService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">requestHandler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        newService.newService();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="5-Adapter-Pattern-완성"><a href="#5-Adapter-Pattern-완성" class="headerlink" title="5. Adapter Pattern 완성"></a>5. Adapter Pattern 완성</h4><ul><li>4번과 같이 의존성 주입을 통해 호환이 되지 않던 기능과 인터페이스가 Adapter를 통해 호환이 되게 되었습니다!</li><li>테스트를 해보겠습니다.</li><li>궁극적인 형태는 WebRequester(Target)였죠?<ul><li><code>WebRequester webRequester =</code></li></ul></li><li>NewService를 Adapter에 꽂아 형태를 맞춰줍니다.<ul><li><code>new Adapter(new NewService())</code></li></ul></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        WebRequester webRequester = <span class="keyword">new</span> Adapter(<span class="keyword">new</span> NewService());</span><br><span class="line">        webRequester.requestHandler();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     
     <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
     
     
     
-    <category term="Design Pattern" scheme="http://bedongryeol.github.io/categories/Design-Pattern/"/>
+    <category term="Design Pattern" scheme="http://inwoo.github.io/categories/Design-Pattern/"/>
     
     
-    <category term="어탭터 패턴" scheme="http://bedongryeol.github.io/tags/%EC%96%B4%ED%83%AD%ED%84%B0-%ED%8C%A8%ED%84%B4/"/>
+    <category term="어탭터 패턴" scheme="http://inwoo.github.io/tags/%EC%96%B4%ED%83%AD%ED%84%B0-%ED%8C%A8%ED%84%B4/"/>
     
   </entry>
   
   <entry>
     <title>프로세스, 스레드, 교착상태, 메모리 계층</title>
-    <link href="http://bedongryeol.github.io/10/14/0-interview-os/"/>
-    <id>http://bedongryeol.github.io/10/14/0-interview-os/</id>
+    <link href="http://inwoo.github.io/10/14/0-interview-os/"/>
+    <id>http://inwoo.github.io/10/14/0-interview-os/</id>
     <published>2021-10-14T10:24:28.000Z</published>
     <updated>2021-10-28T07:56:32.051Z</updated>
     
@@ -203,25 +203,25 @@
     
     
     
-    <category term="Interview" scheme="http://bedongryeol.github.io/categories/Interview/"/>
+    <category term="Interview" scheme="http://inwoo.github.io/categories/Interview/"/>
     
-    <category term="OS" scheme="http://bedongryeol.github.io/categories/Interview/OS/"/>
+    <category term="OS" scheme="http://inwoo.github.io/categories/Interview/OS/"/>
     
     
-    <category term="프로세스" scheme="http://bedongryeol.github.io/tags/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4/"/>
+    <category term="프로세스" scheme="http://inwoo.github.io/tags/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4/"/>
     
-    <category term="스레드" scheme="http://bedongryeol.github.io/tags/%EC%8A%A4%EB%A0%88%EB%93%9C/"/>
+    <category term="스레드" scheme="http://inwoo.github.io/tags/%EC%8A%A4%EB%A0%88%EB%93%9C/"/>
     
-    <category term="교착상태" scheme="http://bedongryeol.github.io/tags/%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C/"/>
+    <category term="교착상태" scheme="http://inwoo.github.io/tags/%EA%B5%90%EC%B0%A9%EC%83%81%ED%83%9C/"/>
     
-    <category term="메모리 계층" scheme="http://bedongryeol.github.io/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B3%84%EC%B8%B5/"/>
+    <category term="메모리 계층" scheme="http://inwoo.github.io/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B3%84%EC%B8%B5/"/>
     
   </entry>
   
   <entry>
     <title>Shell Script와 서버 작업 자동화</title>
-    <link href="http://bedongryeol.github.io/10/14/shell/"/>
-    <id>http://bedongryeol.github.io/10/14/shell/</id>
+    <link href="http://inwoo.github.io/10/14/shell/"/>
+    <id>http://inwoo.github.io/10/14/shell/</id>
     <published>2021-10-14T06:37:09.000Z</published>
     <updated>2021-10-14T12:55:02.376Z</updated>
     
@@ -232,21 +232,21 @@
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="OS" scheme="http://bedongryeol.github.io/categories/Basic/OS/"/>
+    <category term="OS" scheme="http://inwoo.github.io/categories/Basic/OS/"/>
     
     
-    <category term="서버 자동화" scheme="http://bedongryeol.github.io/tags/%EC%84%9C%EB%B2%84-%EC%9E%90%EB%8F%99%ED%99%94/"/>
+    <category term="서버 자동화" scheme="http://inwoo.github.io/tags/%EC%84%9C%EB%B2%84-%EC%9E%90%EB%8F%99%ED%99%94/"/>
     
-    <category term="shell" scheme="http://bedongryeol.github.io/tags/shell/"/>
+    <category term="shell" scheme="http://inwoo.github.io/tags/shell/"/>
     
   </entry>
   
   <entry>
     <title>IPC - 파이프 (Pipe)</title>
-    <link href="http://bedongryeol.github.io/10/12/realpipe/"/>
-    <id>http://bedongryeol.github.io/10/12/realpipe/</id>
+    <link href="http://inwoo.github.io/10/12/realpipe/"/>
+    <id>http://inwoo.github.io/10/12/realpipe/</id>
     <published>2021-10-12T13:30:09.000Z</published>
     <updated>2021-10-14T12:55:02.371Z</updated>
     
@@ -257,46 +257,46 @@
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="OS" scheme="http://bedongryeol.github.io/categories/Basic/OS/"/>
+    <category term="OS" scheme="http://inwoo.github.io/categories/Basic/OS/"/>
     
     
-    <category term="IPC" scheme="http://bedongryeol.github.io/tags/IPC/"/>
+    <category term="IPC" scheme="http://inwoo.github.io/tags/IPC/"/>
     
-    <category term="Pipe" scheme="http://bedongryeol.github.io/tags/Pipe/"/>
+    <category term="Pipe" scheme="http://inwoo.github.io/tags/Pipe/"/>
     
   </entry>
   
   <entry>
     <title>IPC (Inter-Process Communication)</title>
-    <link href="http://bedongryeol.github.io/10/12/pipe/"/>
-    <id>http://bedongryeol.github.io/10/12/pipe/</id>
+    <link href="http://inwoo.github.io/10/12/pipe/"/>
+    <id>http://inwoo.github.io/10/12/pipe/</id>
     <published>2021-10-12T13:16:06.000Z</published>
-    <updated>2021-10-14T12:55:02.380Z</updated>
+    <updated>2021-10-28T08:52:43.308Z</updated>
     
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="IPC란-무엇인가"><a href="#IPC란-무엇인가" class="headerlink" title="IPC란 무엇인가?"></a>IPC란 무엇인가?</h2></blockquote><p><img src="https://static.packt-cdn.com/products/9781785883057/graphics/0af92d22-6bef-42c8-84cf-528fa13becf0.jpg" alt="image"></p><p>IPC는 <span class="highlight-text success">Inter-Process Communication의 약어</span>로 프로세스간 통신의 약어이다.</p><p><strong>프로세스는 서로 독립되어 있어 다른 프로세스의 영향을 받지 않습니다.</strong> 이는 보는 관점에 따라 장점이 될 수도, 단점이 될 수도 있습니다. </p><p>서로 독립되어 있어 다른 프로세스의 영향을 받지 않을 수 있다는 장점이 있지만, 이는 서로 간의 통신이 어려운 것으로 해석할 수 있습니다.</p><p>이를 위해 OS의 커널 영역에서는 IPC를 제공하고, 이를 통해 프로세스간 통신이 가능해집니다.</p><h3 id="IPC-표준"><a href="#IPC-표준" class="headerlink" title="IPC 표준"></a>IPC 표준</h3><h4 id="1-System-V-IPC"><a href="#1-System-V-IPC" class="headerlink" title="1. System V IPC"></a>1. System V IPC</h4><ul><li>오랜 역사를 가지고 있다.</li><li>서로 다른 기종간의 코드 호환성을 안정적으로 보장해준다.</li><li>불명확한 함수명과 API의 버전이 오래되었다.</li></ul><h4 id="2-POSIX-IPC"><a href="#2-POSIX-IPC" class="headerlink" title="2. POSIX IPC"></a>2. POSIX IPC</h4><ul><li>유닉스 시스템 프로그래밍 인터페이스 표준이다.</li><li>IEEE (Institute of Electronic and Electronics Engineers)에서 표준화를 시도함</li><li>직관적인 API로 인해 비교적 사용하기 쉽다.</li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="IPC란-무엇인가"><a href="#IPC란-무엇인가" class="headerlink" title="IPC란 무엇인가?"></a>IPC란 무엇인가?</h2></blockquote><p><img src="https://static.packt-cdn.com/products/9781785883057/graphics/0af92d22-6bef-42c8-84cf-528fa13becf0.jpg" alt="image"></p><p><strong>IPC는 Inter-Process Communication의 약어로 프로세스간 통신의 약어이다.</strong></p><p><strong>프로세스는 서로 독립되어 있어 다른 프로세스의 영향을 받지 않습니다.</strong> 이는 보는 관점에 따라 장점이 될 수도, 단점이 될 수도 있습니다. </p><p>서로 독립되어 있어 다른 프로세스의 영향을 받지 않을 수 있다는 장점이 있지만, 이는 서로 간의 통신이 어려운 것으로 해석할 수 있습니다.</p><p>이를 위해 OS의 커널 영역에서는 IPC를 제공하고, 이를 통해 프로세스간 통신이 가능해집니다.</p><h3 id="IPC-표준"><a href="#IPC-표준" class="headerlink" title="IPC 표준"></a>IPC 표준</h3><h4 id="1-System-V-IPC"><a href="#1-System-V-IPC" class="headerlink" title="1. System V IPC"></a>1. System V IPC</h4><ul><li>오랜 역사를 가지고 있다.</li><li>서로 다른 기종간의 코드 호환성을 안정적으로 보장해준다.</li><li>불명확한 함수명과 API의 버전이 오래되었다.</li></ul><h4 id="2-POSIX-IPC"><a href="#2-POSIX-IPC" class="headerlink" title="2. POSIX IPC"></a>2. POSIX IPC</h4><ul><li>유닉스 시스템 프로그래밍 인터페이스 표준이다.</li><li>IEEE (Institute of Electronic and Electronics Engineers)에서 표준화를 시도함</li><li>직관적인 API로 인해 비교적 사용하기 쉽다.</li></ul>]]></content>
     
     
     <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="OS" scheme="http://bedongryeol.github.io/categories/Basic/OS/"/>
+    <category term="OS" scheme="http://inwoo.github.io/categories/Basic/OS/"/>
     
     
-    <category term="IPC" scheme="http://bedongryeol.github.io/tags/IPC/"/>
+    <category term="IPC" scheme="http://inwoo.github.io/tags/IPC/"/>
     
-    <category term="POSIX" scheme="http://bedongryeol.github.io/tags/POSIX/"/>
+    <category term="POSIX" scheme="http://inwoo.github.io/tags/POSIX/"/>
     
   </entry>
   
   <entry>
     <title>Object Mapper</title>
-    <link href="http://bedongryeol.github.io/10/07/obejctmapper/"/>
-    <id>http://bedongryeol.github.io/10/07/obejctmapper/</id>
+    <link href="http://inwoo.github.io/10/07/obejctmapper/"/>
+    <id>http://inwoo.github.io/10/07/obejctmapper/</id>
     <published>2021-10-07T11:23:28.000Z</published>
     <updated>2021-10-07T13:24:37.150Z</updated>
     
@@ -307,19 +307,19 @@
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="Spring" scheme="http://bedongryeol.github.io/categories/Basic/Spring/"/>
+    <category term="Spring" scheme="http://inwoo.github.io/categories/Basic/Spring/"/>
     
     
-    <category term="Object Mapper" scheme="http://bedongryeol.github.io/tags/Object-Mapper/"/>
+    <category term="Object Mapper" scheme="http://inwoo.github.io/tags/Object-Mapper/"/>
     
   </entry>
   
   <entry>
     <title>싱글톤 패턴 (Singleton Pattern)</title>
-    <link href="http://bedongryeol.github.io/10/04/singleton/"/>
-    <id>http://bedongryeol.github.io/10/04/singleton/</id>
+    <link href="http://inwoo.github.io/10/04/singleton/"/>
+    <id>http://inwoo.github.io/10/04/singleton/</id>
     <published>2021-10-04T14:59:07.000Z</published>
     <updated>2021-10-14T12:57:07.280Z</updated>
     
@@ -330,19 +330,19 @@
     
     
     
-    <category term="Design Pattern" scheme="http://bedongryeol.github.io/categories/Design-Pattern/"/>
+    <category term="Design Pattern" scheme="http://inwoo.github.io/categories/Design-Pattern/"/>
     
     
-    <category term="singleton" scheme="http://bedongryeol.github.io/tags/singleton/"/>
+    <category term="singleton" scheme="http://inwoo.github.io/tags/singleton/"/>
     
-    <category term="디자인 패턴" scheme="http://bedongryeol.github.io/tags/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/"/>
+    <category term="디자인 패턴" scheme="http://inwoo.github.io/tags/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/"/>
     
   </entry>
   
   <entry>
     <title>LINUX의 사용</title>
-    <link href="http://bedongryeol.github.io/09/29/Aboutlinux/"/>
-    <id>http://bedongryeol.github.io/09/29/Aboutlinux/</id>
+    <link href="http://inwoo.github.io/09/29/Aboutlinux/"/>
+    <id>http://inwoo.github.io/09/29/Aboutlinux/</id>
     <published>2021-09-29T12:51:03.000Z</published>
     <updated>2021-10-07T11:28:31.675Z</updated>
     
@@ -353,44 +353,44 @@
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="LINUX" scheme="http://bedongryeol.github.io/categories/Basic/LINUX/"/>
+    <category term="LINUX" scheme="http://inwoo.github.io/categories/Basic/LINUX/"/>
     
     
-    <category term="LINUX" scheme="http://bedongryeol.github.io/tags/LINUX/"/>
+    <category term="LINUX" scheme="http://inwoo.github.io/tags/LINUX/"/>
     
   </entry>
   
   <entry>
     <title>M1 환경에서 LINUX 설치</title>
-    <link href="http://bedongryeol.github.io/09/29/linux/"/>
-    <id>http://bedongryeol.github.io/09/29/linux/</id>
+    <link href="http://inwoo.github.io/09/29/linux/"/>
+    <id>http://inwoo.github.io/09/29/linux/</id>
     <published>2021-09-29T12:10:49.000Z</published>
     <updated>2021-10-07T11:28:31.673Z</updated>
     
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h1 id="Virtual-Machine"><a href="#Virtual-Machine" class="headerlink" title="Virtual Machine"></a>Virtual Machine</h1><h3 id="Parallels-Desktop-for-Mac-버전-17"><a href="#Parallels-Desktop-for-Mac-버전-17" class="headerlink" title="Parallels Desktop for Mac 버전 17"></a>Parallels Desktop for Mac 버전 17</h3></blockquote><p>Intel 등의 CPU는 가상화 기술을 지원하지만 M1은 아직 안정적으로 지원하지 않고 있었다.</p><p>하지만 지난 8월 가상화 소프트웨어 전문 기업인 <strong>Parallels</strong>에서 애플 M1칩 기반 맥에서 정식적으로 가상화를 지원하는 <strong>Parallels Desktop for Mac 버전 17</strong>을 공개하였다.</p><div class="figure fig-75 center" style="width:;"><img class="fig-img" src="https://it.donga.com/media/__sized__/images/2021/8/13/e0ac8508028840e7-thumbnail-1920x1080-70.jpg" alt=""></div><div style="clear:both;"></div><p>출처 : Parallels 공식 홈페이지</p><p>M1 칩 맥에서도 Linux의 Ubuntu, Fedora, Windows 11버전 등의 가상화를 지원한다.</p><blockquote><h1 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h1></blockquote><p><a href="https://www.parallels.com/products/desktop/">Parallels 다운로드 링크</a></p><p><a href="https://ubuntu.com/download/server/arm">Ubuntu Server 다운로드 링크</a></p><h4 id="위-링크를-통해-Parallels와-Ubuntu-Server-이미지를-다운로드하였다"><a href="#위-링크를-통해-Parallels와-Ubuntu-Server-이미지를-다운로드하였다" class="headerlink" title="위 링크를 통해 Parallels와 Ubuntu Server 이미지를 다운로드하였다."></a>위 링크를 통해 Parallels와 Ubuntu Server 이미지를 다운로드하였다.</h4><p><img src="/image/linux1.PNG" alt="img_1.png"></p><p><img src="/image/linux.PNG" alt="img_3.png"></p><h4 id="안정적으로-가상화가-되었다"><a href="#안정적으로-가상화가-되었다" class="headerlink" title="안정적으로 가상화가 되었다."></a>안정적으로 가상화가 되었다.</h4>]]></content>
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h1 id="Virtual-Machine"><a href="#Virtual-Machine" class="headerlink" title="Virtual Machine"></a>Virtual Machine</h1><h3 id="Parallels-Desktop-for-Mac-버전-17"><a href="#Parallels-Desktop-for-Mac-버전-17" class="headerlink" title="Parallels Desktop for Mac 버전 17"></a>Parallels Desktop for Mac 버전 17</h3></blockquote><p>Intel 등의 CPU는 가상화 기술을 지원하지만 M1은 아직 안정적으로 지원하지 않고 있었다.</p><p>하지만 지난 8월 가상화 소프트웨어 전문 기업인 <strong>Parallels</strong>에서 애플 M1칩 기반 맥에서 정식적으로 가상화를 지원하는 <strong>Parallels Desktop for Mac 버전 17</strong>을 공개하였다.</p><img src="https://it.donga.com/media/__sized__/images/2021/8/13/e0ac8508028840e7-thumbnail-1920x1080-70.jpg" class="fig-75 center clear"><p>출처 : Parallels 공식 홈페이지</p><p>M1 칩 맥에서도 Linux의 Ubuntu, Fedora, Windows 11버전 등의 가상화를 지원한다.</p><blockquote><h1 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h1></blockquote><p><a href="https://www.parallels.com/products/desktop/">Parallels 다운로드 링크</a></p><p><a href="https://ubuntu.com/download/server/arm">Ubuntu Server 다운로드 링크</a></p><h4 id="위-링크를-통해-Parallels와-Ubuntu-Server-이미지를-다운로드하였다"><a href="#위-링크를-통해-Parallels와-Ubuntu-Server-이미지를-다운로드하였다" class="headerlink" title="위 링크를 통해 Parallels와 Ubuntu Server 이미지를 다운로드하였다."></a>위 링크를 통해 Parallels와 Ubuntu Server 이미지를 다운로드하였다.</h4><p><img src="/image/linux1.PNG" alt="img_1.png"></p><p><img src="/image/linux.PNG" alt="img_3.png"></p><h4 id="안정적으로-가상화가-되었다"><a href="#안정적으로-가상화가-되었다" class="headerlink" title="안정적으로 가상화가 되었다."></a>안정적으로 가상화가 되었다.</h4>]]></content>
     
     
     <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="LINUX" scheme="http://bedongryeol.github.io/categories/Basic/LINUX/"/>
+    <category term="LINUX" scheme="http://inwoo.github.io/categories/Basic/LINUX/"/>
     
     
-    <category term="M1" scheme="http://bedongryeol.github.io/tags/M1/"/>
+    <category term="M1" scheme="http://inwoo.github.io/tags/M1/"/>
     
-    <category term="Linux" scheme="http://bedongryeol.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="http://inwoo.github.io/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>REST(Representational State Transfer)</title>
-    <link href="http://bedongryeol.github.io/09/29/rest/"/>
-    <id>http://bedongryeol.github.io/09/29/rest/</id>
+    <link href="http://inwoo.github.io/09/29/rest/"/>
+    <id>http://inwoo.github.io/09/29/rest/</id>
     <published>2021-09-29T05:54:36.000Z</published>
     <updated>2021-09-29T05:56:38.268Z</updated>
     
@@ -401,67 +401,67 @@
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="Web" scheme="http://bedongryeol.github.io/categories/Basic/Web/"/>
+    <category term="Web" scheme="http://inwoo.github.io/categories/Basic/Web/"/>
     
     
-    <category term="REST" scheme="http://bedongryeol.github.io/tags/REST/"/>
+    <category term="REST" scheme="http://inwoo.github.io/tags/REST/"/>
     
-    <category term="Web" scheme="http://bedongryeol.github.io/tags/Web/"/>
+    <category term="Web" scheme="http://inwoo.github.io/tags/Web/"/>
     
   </entry>
   
   <entry>
     <title>gRPC (Google Remote Procedure Call)</title>
-    <link href="http://bedongryeol.github.io/09/16/gRPC/"/>
-    <id>http://bedongryeol.github.io/09/16/gRPC/</id>
+    <link href="http://inwoo.github.io/09/16/gRPC/"/>
+    <id>http://inwoo.github.io/09/16/gRPC/</id>
     <published>2021-09-16T10:44:25.000Z</published>
-    <updated>2021-09-16T12:45:28.298Z</updated>
+    <updated>2021-10-28T08:51:29.345Z</updated>
     
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h1 id="gRPC는-무엇인가"><a href="#gRPC는-무엇인가" class="headerlink" title="gRPC는 무엇인가?"></a>gRPC는 무엇인가?</h1></blockquote><p>Google사에서 개발한 RPC(Remote Procedure Call) 시스템으로, HTTP 2.0, TCP/IP 프로토콜을 사용한다.</p><ul><li>RPC는 원격 프로시저 호출로 별도의 코딩없이 다른 주소의 메서드나 프로시저를 실행할 수 있게하는 프로세스 간의 통신 기술이다.</li></ul><p>프로토콜 버퍼(protocol buffer)를 인터페이스 정의어(IDL),  메세지 교환 형식으로 사용한다.</p><ul><li>프로토콜 버퍼를 사용하여 보다 빠르고, 편리하게 통신할 수 있다.</li><li><a href="https://jeong-pro.tistory.com/190">프로토콜 버퍼란?</a> (개인적으로 프로토콜 버퍼를 이해할 때 참고한 블로그입니다.)<ul><li>장점<ul><li>통신이 빠르다</li><li>파싱을 할 필요가 없다</li></ul></li><li>단점<ul><li>프로토콜 버퍼에서 독자적으로 쓰이는 proto 문법을 익혀야한다.</li><li>모든 클라이언트에서 proto파일이 있어야 하기 때문에 내부 서비스 데이터 교환에서 주로 쓰인다.</li></ul></li></ul></li></ul><p>gRPC를 사용하면 클라이언트 단에서 서버 단의 메소드를 로컬 객체처럼 바로 호출할 수 있다.</p><ul><li>Server side : 인터페이스를 구현하여 Client 요청을 handling할 수 있다.</li><li>Client side : 서버에 있는 메소드와 동일한 stub을 제공한다.<ul><li>stub을 client라 칭하는 언어도 있다.</li></ul></li></ul><div class="figure center" style="width:;"><img class="fig-img" src="https://grpc.io/img/landing-2.svg" alt=""></div><div style="clear:both;"></div><p>출처 : <a href="https://grpc.io/">https://grpc.io/</a></p><p>서버와 클라이언트 구글 내부 서버부터 데스크톱까지 다양한 환경에서 실행도 가능하다.</p><p>API에서도 지원하여 기능 구현에 용이하다.  </p><p>지원하는 언어로 서버와 클라이언트를 구현할 수 있다.</p><ul><li>서버는 java, 클라이언트는 python과 같이 다른 언어로 구현할 수 있다.</li></ul><span class="highlight-text success">빠른 데이터 처리, 편리하고 유연한 환경을 계속해서 강조하고 있다. </span> <blockquote><h1 id="RPC-Life-Cycle"><a href="#RPC-Life-Cycle" class="headerlink" title="RPC Life Cycle"></a>RPC Life Cycle</h1></blockquote><h2 id="Unary-RPC-단항-RPC"><a href="#Unary-RPC-단항-RPC" class="headerlink" title="Unary RPC (단항 RPC)"></a>Unary RPC (단항 RPC)</h2><p>클라이언트에서 <strong>단일 요청</strong>을 보내고 <strong>단일 응답</strong> 받는다.</p><ol><li>클라이언트가 stub 메서드를 호출하면 이에 대한 메타데이터(요청, 메소드명, 대기시간 등)를 서버에 알린다.<ul><li>서버는 response를 보내기 전에 초기 메타데이터를 클라이언트에 바로 되돌려주거나, 요청 메시지를 기다린다.    </li><li>어떤 것이 먼저 발생할 지는 application마다 다르다.</li></ul></li><li>클라이언트의 요청 메시지를 받으면 서버에서는 응답 생성에 필요한 모든 실행을 한다.<ul><li>성공적으로 생성 시 status code, message 등과 함께 response를 보낸다.</li></ul></li></ol><h2 id="Server-Streaming-RPC"><a href="#Server-Streaming-RPC" class="headerlink" title="Server Streaming RPC"></a>Server Streaming RPC</h2><ul><li>클라이언트가 <strong>단일 요청</strong> 시 서버는 응답에 대해 <strong>stream을 응답</strong>하는 것을 제외하면 단항 RPC와 동일하다.</li></ul><h2 id="Client-streaming-RPC"><a href="#Client-streaming-RPC" class="headerlink" title="Client streaming RPC"></a>Client streaming RPC</h2><ul><li>클라이언트가 단일 요청이 아닌 메시지의 <strong>stream으로 요청</strong>하는 것을 제외하면 단항 RPC와 동일하다.</li></ul><h2 id="Bidirectional-streaming-RPC"><a href="#Bidirectional-streaming-RPC" class="headerlink" title="Bidirectional streaming RPC"></a>Bidirectional streaming RPC</h2><p>클라이언트가 메서드를 호출하고, 서버가 client의 메타데이터를 받으면 시작된다.</p><ul><li>서버는 초기 메타데이터를 응답하거나, 클라이언트가 메시지를 streaming할 때 까지 대기한다.</li></ul><p>Client side와 Server side의 스트림 처리는 애플리케이션마다 다르다.<br>    - 두 스트림이 독립적이므로 순서에 상관없이 메시지를 읽고 쓸 수 있다.<br>        - 클라이언트의 모든 메시지를 수신할 때까지 서버는 대기하거나, 계속 해서 요청과 응답을 주고받을 수 있다.</p><blockquote><h1 id="Terminate-Cancel"><a href="#Terminate-Cancel" class="headerlink" title="Terminate | Cancel"></a>Terminate | Cancel</h1></blockquote><h2 id="Terminate-종료"><a href="#Terminate-종료" class="headerlink" title="Terminate (종료)"></a>Terminate (종료)</h2><p>클라이언트와 서버에서는 <strong>호출에 대한 성공 여부</strong>를 각각 독립적이고, local하게 결정을 내린다.</p><ul><li>서버에서는 성공, 클라이언트에서는 실패가 나올 수 있다.</li><li>서버에서 모든 response를 성공적으로 보내도, 클라이언트의 Deadline이 지나서 응답하면 클라이언트는 실패로 인식한다.<ul><li>클라이언트는 요청에 대한 응답까지의 시간을 지정할 수 있으며, 시간이 지나면 <code>DEADLINE_EXCEEDED</code> Error로 종료된다.  </li><li>서버에서는 DeadLine까지 남은 시간과 시간이 만료된 요청이 있는지 query를 통해 확인할 수 있다.</li></ul></li></ul><p>클라이언트의 요청이 끝나지않아도 서버에서 완료 처리를 할 수 있다.</p><h2 id="Cancel-취소"><a href="#Cancel-취소" class="headerlink" title="Cancel (취소)"></a>Cancel (취소)</h2><p>클라이언트와 서버단에서 언제든 RPC에 대해 취소할 수 있고, 취소할 시 RPC가 즉시 종료된다.</p><ul><li>취소 이전의 내용은 복구할 수 없음에 유의하여야 한다.</li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h1 id="gRPC는-무엇인가"><a href="#gRPC는-무엇인가" class="headerlink" title="gRPC는 무엇인가?"></a>gRPC는 무엇인가?</h1></blockquote><p>Google사에서 개발한 RPC(Remote Procedure Call) 시스템으로, HTTP 2.0, TCP/IP 프로토콜을 사용한다.</p><ul><li>RPC는 원격 프로시저 호출로 별도의 코딩없이 다른 주소의 메서드나 프로시저를 실행할 수 있게하는 프로세스 간의 통신 기술이다.</li></ul><p>프로토콜 버퍼(protocol buffer)를 인터페이스 정의어(IDL),  메세지 교환 형식으로 사용한다.</p><ul><li>프로토콜 버퍼를 사용하여 보다 빠르고, 편리하게 통신할 수 있다.</li><li><a href="https://jeong-pro.tistory.com/190">프로토콜 버퍼란?</a> (개인적으로 프로토콜 버퍼를 이해할 때 참고한 블로그입니다.)<ul><li>장점<ul><li>통신이 빠르다</li><li>파싱을 할 필요가 없다</li></ul></li><li>단점<ul><li>프로토콜 버퍼에서 독자적으로 쓰이는 proto 문법을 익혀야한다.</li><li>모든 클라이언트에서 proto파일이 있어야 하기 때문에 내부 서비스 데이터 교환에서 주로 쓰인다.</li></ul></li></ul></li></ul><p>gRPC를 사용하면 클라이언트 단에서 서버 단의 메소드를 로컬 객체처럼 바로 호출할 수 있다.</p><ul><li>Server side : 인터페이스를 구현하여 Client 요청을 handling할 수 있다.</li><li>Client side : 서버에 있는 메소드와 동일한 stub을 제공한다.<ul><li>stub을 client라 칭하는 언어도 있다.</li></ul></li></ul><img src="https://grpc.io/img/landing-2.svg" class="center clear"><p>출처 : <a href="https://grpc.io/">https://grpc.io/</a></p><p>서버와 클라이언트 구글 내부 서버부터 데스크톱까지 다양한 환경에서 실행도 가능하다.</p><p>API에서도 지원하여 기능 구현에 용이하다.  </p><p>지원하는 언어로 서버와 클라이언트를 구현할 수 있다.</p><ul><li>서버는 java, 클라이언트는 python과 같이 다른 언어로 구현할 수 있다.</li></ul><p><strong>빠른 데이터 처리, 편리하고 유연한 환경을 계속해서 강조하고 있다.</strong> </p><blockquote><h1 id="RPC-Life-Cycle"><a href="#RPC-Life-Cycle" class="headerlink" title="RPC Life Cycle"></a>RPC Life Cycle</h1></blockquote><h2 id="Unary-RPC-단항-RPC"><a href="#Unary-RPC-단항-RPC" class="headerlink" title="Unary RPC (단항 RPC)"></a>Unary RPC (단항 RPC)</h2><p>클라이언트에서 <strong>단일 요청</strong>을 보내고 <strong>단일 응답</strong> 받는다.</p><ol><li>클라이언트가 stub 메서드를 호출하면 이에 대한 메타데이터(요청, 메소드명, 대기시간 등)를 서버에 알린다.<ul><li>서버는 response를 보내기 전에 초기 메타데이터를 클라이언트에 바로 되돌려주거나, 요청 메시지를 기다린다.    </li><li>어떤 것이 먼저 발생할 지는 application마다 다르다.</li></ul></li><li>클라이언트의 요청 메시지를 받으면 서버에서는 응답 생성에 필요한 모든 실행을 한다.<ul><li>성공적으로 생성 시 status code, message 등과 함께 response를 보낸다.</li></ul></li></ol><h2 id="Server-Streaming-RPC"><a href="#Server-Streaming-RPC" class="headerlink" title="Server Streaming RPC"></a>Server Streaming RPC</h2><ul><li>클라이언트가 <strong>단일 요청</strong> 시 서버는 응답에 대해 <strong>stream을 응답</strong>하는 것을 제외하면 단항 RPC와 동일하다.</li></ul><h2 id="Client-streaming-RPC"><a href="#Client-streaming-RPC" class="headerlink" title="Client streaming RPC"></a>Client streaming RPC</h2><ul><li>클라이언트가 단일 요청이 아닌 메시지의 <strong>stream으로 요청</strong>하는 것을 제외하면 단항 RPC와 동일하다.</li></ul><h2 id="Bidirectional-streaming-RPC"><a href="#Bidirectional-streaming-RPC" class="headerlink" title="Bidirectional streaming RPC"></a>Bidirectional streaming RPC</h2><p>클라이언트가 메서드를 호출하고, 서버가 client의 메타데이터를 받으면 시작된다.</p><ul><li>서버는 초기 메타데이터를 응답하거나, 클라이언트가 메시지를 streaming할 때 까지 대기한다.</li></ul><p>Client side와 Server side의 스트림 처리는 애플리케이션마다 다르다.<br>    - 두 스트림이 독립적이므로 순서에 상관없이 메시지를 읽고 쓸 수 있다.<br>        - 클라이언트의 모든 메시지를 수신할 때까지 서버는 대기하거나, 계속 해서 요청과 응답을 주고받을 수 있다.</p><blockquote><h1 id="Terminate-Cancel"><a href="#Terminate-Cancel" class="headerlink" title="Terminate | Cancel"></a>Terminate | Cancel</h1></blockquote><h2 id="Terminate-종료"><a href="#Terminate-종료" class="headerlink" title="Terminate (종료)"></a>Terminate (종료)</h2><p>클라이언트와 서버에서는 <strong>호출에 대한 성공 여부</strong>를 각각 독립적이고, local하게 결정을 내린다.</p><ul><li>서버에서는 성공, 클라이언트에서는 실패가 나올 수 있다.</li><li>서버에서 모든 response를 성공적으로 보내도, 클라이언트의 Deadline이 지나서 응답하면 클라이언트는 실패로 인식한다.<ul><li>클라이언트는 요청에 대한 응답까지의 시간을 지정할 수 있으며, 시간이 지나면 <code>DEADLINE_EXCEEDED</code> Error로 종료된다.  </li><li>서버에서는 DeadLine까지 남은 시간과 시간이 만료된 요청이 있는지 query를 통해 확인할 수 있다.</li></ul></li></ul><p>클라이언트의 요청이 끝나지않아도 서버에서 완료 처리를 할 수 있다.</p><h2 id="Cancel-취소"><a href="#Cancel-취소" class="headerlink" title="Cancel (취소)"></a>Cancel (취소)</h2><p>클라이언트와 서버단에서 언제든 RPC에 대해 취소할 수 있고, 취소할 시 RPC가 즉시 종료된다.</p><ul><li>취소 이전의 내용은 복구할 수 없음에 유의하여야 한다.</li></ul>]]></content>
     
     
     <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
     
     
     
-    <category term="Docs" scheme="http://bedongryeol.github.io/categories/Docs/"/>
+    <category term="Docs" scheme="http://inwoo.github.io/categories/Docs/"/>
     
     
-    <category term="gRPC" scheme="http://bedongryeol.github.io/tags/gRPC/"/>
+    <category term="gRPC" scheme="http://inwoo.github.io/tags/gRPC/"/>
     
   </entry>
   
   <entry>
     <title>AOP (Aspect Oriented Programming)</title>
-    <link href="http://bedongryeol.github.io/09/13/AOP/"/>
-    <id>http://bedongryeol.github.io/09/13/AOP/</id>
+    <link href="http://inwoo.github.io/09/13/AOP/"/>
+    <id>http://inwoo.github.io/09/13/AOP/</id>
     <published>2021-09-13T12:49:28.000Z</published>
-    <updated>2021-10-07T11:28:31.670Z</updated>
+    <updated>2021-10-28T08:52:16.853Z</updated>
     
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h1 id="AOP-Aspect-Oriented-Programming"><a href="#AOP-Aspect-Oriented-Programming" class="headerlink" title="AOP (Aspect Oriented Programming)"></a>AOP (Aspect Oriented Programming)</h1></blockquote><p>관점 지향 프로그래밍이라고도 불리는 AOP는 로직을 <span class="highlight-text success">핵심, 부가적인 관점을 나누어 각각 모듈화하는 프로그래밍</span>이다.</p><ul><li>핵심적인 관점 : 핵심 비즈니스 로직</li><li>부가적인 관점 : DB 연결, 로깅, 파일 입출력 등</li></ul><p>AOP를 통해 스프링 IoC와 연동하여 중복 코드, 객체 간 복잡도 등에 대한 해결책을 지원한다.</p><ul><li>중복되는 코드를 Aspect로 모듈화하여 재사용성을 높일 수 있다.</li><li><p>중복되는 코드들을 <span class="highlight-text success">흩어진 관심사(Crosscutting Concerns)</span> 라고 칭한다.</p></li><li>실행 전 후 특정 기능 추가(method의 실행시간 체크 등), response 정보 저장 등    </li></ul><p>Spring Bean(스프링 빈)에만 적용 가능하며, 접근 제어와 부가 기능 추가를 위해 proxy패턴 기반의 구현체를 사용한다.</p><blockquote><h2 id="AOP-구성-요소"><a href="#AOP-구성-요소" class="headerlink" title="AOP 구성 요소"></a>AOP 구성 요소</h2></blockquote><div class="figure fig-50 center" style="width:;"><img class="fig-img" src="https://res.cloudinary.com/practicaldev/image/fetch/s--6mjjk9E6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/pe617dbmwowpyyo1ycgw.png" alt=""></div><div style="clear:both;"></div><p>출처 : cloudinary</p><ul><li><p><strong>Aspect</strong></p><ul><li>중복되는 코드(흩어진 관심사)를 모듈화한 것</li></ul></li><li><p><strong>Target Object</strong> </p><ul><li>Aspect가 적용되는 클래스, 메서드 등의 객체</li></ul></li><li><p><strong>Proxy</strong> </p><ul><li>Aspect와 Target을 연결해주는 클래스</li></ul></li><li><p><strong>Join Point</strong> </p><ul><li>Advice가 적용되는 지점 (실행 전 후 특정 기능 추가와 관련)</li></ul></li><li><p><strong>Point Cut</strong> </p><ul><li>JointPoint를 구체화한 Advice가 실행 될 지점 </li></ul></li><li><p><strong>Advice</strong> </p><ul><li>Joint Point, Point Cut에서 실행되는 코드, 실질적인 구현부</li></ul></li><li><p><strong>Weaving</strong> </p><ul><li>Joint Point에 Advice를 적용하는 방법</li></ul></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h1 id="AOP-Aspect-Oriented-Programming"><a href="#AOP-Aspect-Oriented-Programming" class="headerlink" title="AOP (Aspect Oriented Programming)"></a>AOP (Aspect Oriented Programming)</h1></blockquote><p>관점 지향 프로그래밍이라고도 불리는 AOP는 로직을 <strong>핵심, 부가적인 관점을 나누어 각각 모듈화하는 프로그래밍</strong>이다.</p><ul><li>핵심적인 관점 : 핵심 비즈니스 로직</li><li>부가적인 관점 : DB 연결, 로깅, 파일 입출력 등</li></ul><p>AOP를 통해 스프링 IoC와 연동하여 중복 코드, 객체 간 복잡도 등에 대한 해결책을 지원한다.</p><ul><li>중복되는 코드를 Aspect로 모듈화하여 재사용성을 높일 수 있다.</li><li>중복되는 코드들을 **흩어진 관심사(Crosscutting Concerns)**라고 칭한다.</li><li>실행 전 후 특정 기능 추가(method의 실행시간 체크 등), response 정보 저장 등    </li></ul><p>Spring Bean(스프링 빈)에만 적용 가능하며, 접근 제어와 부가 기능 추가를 위해 proxy패턴 기반의 구현체를 사용한다.</p><blockquote><h2 id="AOP-구성-요소"><a href="#AOP-구성-요소" class="headerlink" title="AOP 구성 요소"></a>AOP 구성 요소</h2></blockquote><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--6mjjk9E6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/pe617dbmwowpyyo1ycgw.png" class="fig-50 center clear"><p>출처 : cloudinary</p><ul><li><p><strong>Aspect</strong></p><ul><li>중복되는 코드(흩어진 관심사)를 모듈화한 것</li></ul></li><li><p><strong>Target Object</strong> </p><ul><li>Aspect가 적용되는 클래스, 메서드 등의 객체</li></ul></li><li><p><strong>Proxy</strong> </p><ul><li>Aspect와 Target을 연결해주는 클래스</li></ul></li><li><p><strong>Join Point</strong> </p><ul><li>Advice가 적용되는 지점 (실행 전 후 특정 기능 추가와 관련)</li></ul></li><li><p><strong>Point Cut</strong> </p><ul><li>JointPoint를 구체화한 Advice가 실행 될 지점 </li></ul></li><li><p><strong>Advice</strong> </p><ul><li>Joint Point, Point Cut에서 실행되는 코드, 실질적인 구현부</li></ul></li><li><p><strong>Weaving</strong> </p><ul><li>Joint Point에 Advice를 적용하는 방법</li></ul></li></ul>]]></content>
     
     
     <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="Spring" scheme="http://bedongryeol.github.io/categories/Basic/Spring/"/>
+    <category term="Spring" scheme="http://inwoo.github.io/categories/Basic/Spring/"/>
     
     
-    <category term="AOP" scheme="http://bedongryeol.github.io/tags/AOP/"/>
+    <category term="AOP" scheme="http://inwoo.github.io/tags/AOP/"/>
     
-    <category term="DesignPattern" scheme="http://bedongryeol.github.io/tags/DesignPattern/"/>
+    <category term="DesignPattern" scheme="http://inwoo.github.io/tags/DesignPattern/"/>
     
   </entry>
   
   <entry>
     <title>데코레이터 패턴 (Decorator Pattern)</title>
-    <link href="http://bedongryeol.github.io/09/06/DecoratorPattern/"/>
-    <id>http://bedongryeol.github.io/09/06/DecoratorPattern/</id>
+    <link href="http://inwoo.github.io/09/06/DecoratorPattern/"/>
+    <id>http://inwoo.github.io/09/06/DecoratorPattern/</id>
     <published>2021-09-06T12:36:13.000Z</published>
     <updated>2021-10-14T12:57:15.376Z</updated>
     
@@ -472,19 +472,19 @@
     
     
     
-    <category term="Design Pattern" scheme="http://bedongryeol.github.io/categories/Design-Pattern/"/>
+    <category term="Design Pattern" scheme="http://inwoo.github.io/categories/Design-Pattern/"/>
     
     
-    <category term="데코레이터 패턴" scheme="http://bedongryeol.github.io/tags/%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4/"/>
+    <category term="데코레이터 패턴" scheme="http://inwoo.github.io/tags/%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4/"/>
     
-    <category term="Decorator Pattern" scheme="http://bedongryeol.github.io/tags/Decorator-Pattern/"/>
+    <category term="Decorator Pattern" scheme="http://inwoo.github.io/tags/Decorator-Pattern/"/>
     
   </entry>
   
   <entry>
     <title>직렬화 (Serialization)</title>
-    <link href="http://bedongryeol.github.io/09/06/Serial/"/>
-    <id>http://bedongryeol.github.io/09/06/Serial/</id>
+    <link href="http://inwoo.github.io/09/06/Serial/"/>
+    <id>http://inwoo.github.io/09/06/Serial/</id>
     <published>2021-09-06T12:36:07.000Z</published>
     <updated>2021-09-09T14:05:51.956Z</updated>
     
@@ -495,14 +495,14 @@
     
     
     
-    <category term="Basic" scheme="http://bedongryeol.github.io/categories/Basic/"/>
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
     
-    <category term="Java" scheme="http://bedongryeol.github.io/categories/Basic/Java/"/>
+    <category term="Java" scheme="http://inwoo.github.io/categories/Basic/Java/"/>
     
     
-    <category term="Serialization" scheme="http://bedongryeol.github.io/tags/Serialization/"/>
+    <category term="Serialization" scheme="http://inwoo.github.io/tags/Serialization/"/>
     
-    <category term="직렬화" scheme="http://bedongryeol.github.io/tags/%EC%A7%81%EB%A0%AC%ED%99%94/"/>
+    <category term="직렬화" scheme="http://inwoo.github.io/tags/%EC%A7%81%EB%A0%AC%ED%99%94/"/>
     
   </entry>
   
