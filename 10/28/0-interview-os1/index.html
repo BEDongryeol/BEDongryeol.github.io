@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Fintech - Backend Developer">
-    <title>IPC - 파이프 (Pipe) - Fintech - Backend Developer</title>
+    <title>메모리 할당 알고리즘, 페이지 폴트, 단편화 - Fintech - Backend Developer</title>
     <meta name="author" content="Dongryeol Jeong">
     
     
@@ -15,22 +15,19 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\n\nPipe(파이프) 기법\n\n기본적인 파이프 기법은 단방향 통신으로 구성되어 있습니다. Half-Duplex 통신이라고 불리기도 합니다.\n두 개의 프로세스를 연결하여 한 쪽에서는 데이터를 write하고, 다른 한 쪽에서는 read만 할 수 있습니다. 또는 한 프로세스의 출력 스트림을 다른 프로세스의 입력 스트림으로 사용할 때 사용됩니다.\nC언어에서 fork()로 자식 프로세스를 생성했을 때, 부모와 자식간의 통신도 파이프를 통해 이루어지게 됩니다.\n아래 예제를 통해 파이프 코드를 살펴보도록 하겠습니다.\n\nPipe 예제 코드\n1. 출력 스트림을 입력 스트림으로 사용Mac OS의 iterm에서 디렉토리 내 디렉토리, 파일을 보여주는 ls코드로 예제를 만들어 보겠습니다.\nls -al를 입력하여 아래와 같은 화면이 출력되었습니다. \n\n위 폴더 중 단어 code가 포함된 결과물만을 출력할 때 파이프 라인을 사용할 수 있습니다.\nls -al | grep code \n\n파이프 라인을 통하여 위 1차 출력을 입력으로 받고, 그 중 code가 포함된 결과물을 가져 옵니다.\n여기서 |가 파이프 라인을 의미합니다.\n\n\n","dateCreated":"2021-10-12T22:30:09+09:00","dateModified":"2021-10-14T21:55:02+09:00","datePublished":"2021-10-12T22:30:09+09:00","description":"","headline":"IPC - 파이프 (Pipe)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/10/12/realpipe/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/10/12/realpipe/","keywords":"IPC, Pipe"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg"},"articleBody":"\n\n\n\n5. 메모리 할당 알고리즘 (First fit, Next fit, Best fit) 결과에 대해 설명해보세요\n메모리의 처음부터 탐색하기 시작해서, 크기가 충분한 첫 번째 메모리에 할당하는 First fit,마지막으로 참조한 메모리 공간부터 탐색을 시작해서 메모리를 할당하는 Next fit,모든 메모리 공간을 검사해서 내부 단편화를 최소화 하는 공간에 할당하는 Best fit이 있습니다.\n\n5-1. 메모리 할당 알고리즘의 필요성 (가변 배치 전략)OS가 제공하는 다중 프로그래밍 환경 내에서 / 다양한 프로그램들이 메모리 공간을 불규칙적으로 사용, 반환합니다.이러한 불규칙적인 공간 중 프로세스에게 할당해 줄 메모리 공간을 선택하기 위해 메모리 할당 알고리즘이 필요합니다.\n\n\n5-2. 각 알고리즘의 장단점이 있다면?First-fit : 가장 간단하고 빠르지만, 공간 활용률이 떨어질 수 있습니다.Next-fit : first-fit에 보다는 느리지만, 빠른 속도가 장점이다, 일반적으로 메모리 공간의 끝에 있는 가장 큰 크기의 메모리를 짧은 시간내에 작은 크기로 조각내서 메모리 집약작업이 추가적으로 필요하다.Best-fit : 공간 활용률이 높아진다는 장점이지만, 가용 메모리가 크기 순으로 정렬되어있지 않으면 메모리 검색 시간이 늘어난다.\n\n\n\n6. 페이지 폴트에 따른 페이지 교체 알고리즘에 대해 설명해주세요OPT(Optimization) : 가장 오랫동안 사용하지 않을 페이지를 예측하여 교체하는, 최적화 방식FIFO(First In First Out) : 메모리가 할당된 순서대로 페이지를 교체하는 방식LRU(Least Recently Used) : 최근에 가장 오랫동안 사용하지 않은 페이지를 교체LFU(Least Frequently Used) : 사용 빈도가 가장 적은 페이지를 교체NUR(Not Used Recently) : 최근에 가장 사용하지 않은 페이지를 교체\n\n\n6-1. 페이지 폴트란 무엇인가?운영체제의 스와퍼(Swapper)는 메모리에 동작하고 있는 프로세스 중에서 실제로 필요한 프로세스만 로드하고, 페이저(Pager)는 프로세스의 필요한 페이지만 로드합니다.따라서 필요한 페이지가 물리 메모리에 부재할 수 있는 시점이 있는 데, 이 때를 페이지 폴트라 합니다.\n\n\n6-2. 페이지 폴트의 해결과정필요한 페이지가 없는 것을 해결하기위해 요구를 합니다. 이를 Demand Paging이라하는데,페이지 폴트가 발생하면 CPU에서 trap을 발생시켜 OS에 알립니다.OS에서는 interrupt를 발생시키고 주소 값과 Valid bit가 있는 Page Table을 통해필요한 페이지가 있는 지 확인합니다. 없으면 프로세스를 종료하고, 있으면 물리 메모리에 비어있는 프레임을 찾습니다.\n\n이 때 비어있는 프레임이 없으면 페이지 교체 알고리즘을 통해 페이지를 교체하고,페이지가 있으면 그 공간에 로드합니다.\n\n\n7. 단편화란 무엇인가?\n\nRAM에서 메모리의 공간이 조각으로 나뉘어져, 사용 가능한 메모리가 충분히 존재하지만 할당할 수 없는 상태\n\n\n7-1. 내부 단편화\n\n프로세스가 필요한 양보다 더 큰 메모리가 할당되어, 할당된 메모리 내의 공간이 낭비되는 상황\n\n\n7-2. 외부 단편화\n\n총 사용 가능 메모리 공간은 충분하지만, 비연속적으로 존재하여 프로세스에 대한 할당이 불가능한 상황\n\n","dateCreated":"2021-10-28T16:56:44+09:00","dateModified":"2021-10-28T17:01:13+09:00","datePublished":"2021-10-28T16:56:44+09:00","description":"","headline":"메모리 할당 알고리즘, 페이지 폴트, 단편화","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://bedongryeol.github.io/10/28/0-interview-os1/"},"publisher":{"@type":"Organization","name":"Dongryeol Jeong","sameAs":["https://github.com/"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"http://bedongryeol.github.io/10/28/0-interview-os1/","keywords":"메모리 할당 알고리즘, 페이지 폴트, 단편화"}</script>
     <meta property="og:type" content="blog">
-<meta property="og:title" content="IPC - 파이프 (Pipe)">
-<meta property="og:url" content="http://bedongryeol.github.io/10/12/realpipe/index.html">
+<meta property="og:title" content="메모리 할당 알고리즘, 페이지 폴트, 단편화">
+<meta property="og:url" content="http://bedongryeol.github.io/10/28/0-interview-os1/index.html">
 <meta property="og:site_name" content="Fintech - Backend Developer">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="https://miro.medium.com/max/4800/1*O9f0bRS5cPfLQBM1-SpbIQ.png">
-<meta property="og:image" content="http://bedongryeol.github.io/image/lsal.png">
-<meta property="og:image" content="http://bedongryeol.github.io/image/grep.png">
-<meta property="article:published_time" content="2021-10-12T13:30:09.000Z">
-<meta property="article:modified_time" content="2021-10-14T12:55:02.371Z">
+<meta property="article:published_time" content="2021-10-28T07:56:44.000Z">
+<meta property="article:modified_time" content="2021-10-28T08:01:13.573Z">
 <meta property="article:author" content="Dongryeol Jeong">
-<meta property="article:tag" content="IPC">
-<meta property="article:tag" content="Pipe">
+<meta property="article:tag" content="메모리 할당 알고리즘">
+<meta property="article:tag" content="페이지 폴트">
+<meta property="article:tag" content="단편화">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://miro.medium.com/max/4800/1*O9f0bRS5cPfLQBM1-SpbIQ.png">
     
     
         
@@ -226,20 +223,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            IPC - 파이프 (Pipe)
+            메모리 할당 알고리즘, 페이지 폴트, 단편화
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2021-10-12T22:30:09+09:00">
+    <time datetime="2021-10-28T16:56:44+09:00">
 	
-		    2021/10/12
+		    2021/10/28
     	
     </time>
     
         <span>카테고리 </span>
         
-    <a class="category-link" href="/categories/Basic/">Basic</a>, <a class="category-link" href="/categories/Basic/OS/">OS</a>
+    <a class="category-link" href="/categories/Interview/">Interview</a>, <a class="category-link" href="/categories/Interview/OS/">OS</a>
 
 
     
@@ -255,24 +252,41 @@
 <!-- excerpt -->
 
 <blockquote>
-<h2 id="Pipe-파이프-기법"><a href="#Pipe-파이프-기법" class="headerlink" title="Pipe(파이프) 기법"></a>Pipe(파이프) 기법</h2></blockquote>
-<p><img src="https://miro.medium.com/max/4800/1*O9f0bRS5cPfLQBM1-SpbIQ.png" alt="image"></p>
-<p>기본적인 파이프 기법은 <strong>단방향 통신</strong>으로 구성되어 있습니다. Half-Duplex 통신이라고 불리기도 합니다.</p>
-<p>두 개의 프로세스를 연결하여 한 쪽에서는 데이터를 write하고, 다른 한 쪽에서는 read만 할 수 있습니다. 또는 <strong>한 프로세스의 출력 스트림을 다른 프로세스의 입력 스트림으로 사용할 때 사용됩니다.</strong></p>
-<p>C언어에서 <code>fork()</code>로 자식 프로세스를 생성했을 때, <strong>부모와 자식간의 통신</strong>도 파이프를 통해 이루어지게 됩니다.</p>
-<p>아래 예제를 통해 파이프 코드를 살펴보도록 하겠습니다.</p>
+<h2 id="5-메모리-할당-알고리즘-First-fit-Next-fit-Best-fit-결과에-대해-설명해보세요"><a href="#5-메모리-할당-알고리즘-First-fit-Next-fit-Best-fit-결과에-대해-설명해보세요" class="headerlink" title="5. 메모리 할당 알고리즘 (First fit, Next fit, Best fit) 결과에 대해 설명해보세요"></a>5. 메모리 할당 알고리즘 (First fit, Next fit, Best fit) 결과에 대해 설명해보세요</h2></blockquote>
+<p>메모리의 처음부터 탐색하기 시작해서, 크기가 충분한 첫 번째 메모리에 할당하는 First fit,<br>마지막으로 참조한 메모리 공간부터 탐색을 시작해서 메모리를 할당하는 Next fit,<br>모든 메모리 공간을 검사해서 내부 단편화를 최소화 하는 공간에 할당하는 Best fit이 있습니다.</p>
 <blockquote>
-<h2 id="Pipe-예제-코드"><a href="#Pipe-예제-코드" class="headerlink" title="Pipe 예제 코드"></a>Pipe 예제 코드</h2></blockquote>
-<h3 id="1-출력-스트림을-입력-스트림으로-사용"><a href="#1-출력-스트림을-입력-스트림으로-사용" class="headerlink" title="1. 출력 스트림을 입력 스트림으로 사용"></a>1. 출력 스트림을 입력 스트림으로 사용</h3><p>Mac OS의 iterm에서 디렉토리 내 디렉토리, 파일을 보여주는 ls코드로 예제를 만들어 보겠습니다.</p>
-<p><code>ls -al</code>를 입력하여 아래와 같은 화면이 출력되었습니다. </p>
-<p><img src="/image/lsal.png" alt="img.png"></p>
-<p>위 폴더 중 <strong>단어 code</strong>가 포함된 결과물만을 출력할 때 파이프 라인을 사용할 수 있습니다.</p>
-<p><code>ls -al | grep code</code> </p>
+<h3 id="5-1-메모리-할당-알고리즘의-필요성-가변-배치-전략"><a href="#5-1-메모리-할당-알고리즘의-필요성-가변-배치-전략" class="headerlink" title="5-1. 메모리 할당 알고리즘의 필요성 (가변 배치 전략)"></a>5-1. 메모리 할당 알고리즘의 필요성 (가변 배치 전략)</h3><p>OS가 제공하는 다중 프로그래밍 환경 내에서 / 다양한 프로그램들이 메모리 공간을 불규칙적으로 사용, 반환합니다.<br>이러한 불규칙적인 공간 중 프로세스에게 할당해 줄 메모리 공간을 선택하기 위해 메모리 할당 알고리즘이 필요합니다.</p>
+</blockquote>
+<blockquote>
+<h3 id="5-2-각-알고리즘의-장단점이-있다면"><a href="#5-2-각-알고리즘의-장단점이-있다면" class="headerlink" title="5-2. 각 알고리즘의 장단점이 있다면?"></a>5-2. 각 알고리즘의 장단점이 있다면?</h3><p>First-fit : 가장 간단하고 빠르지만, 공간 활용률이 떨어질 수 있습니다.<br>Next-fit : first-fit에 보다는 느리지만, 빠른 속도가 장점이다, 일반적으로 메모리 공간의 끝에 있는 가장 큰 크기의 메모리를 짧은 시간내에 작은 크기로 조각내서 메모리 집약작업이 추가적으로 필요하다.<br>Best-fit : 공간 활용률이 높아진다는 장점이지만, 가용 메모리가 크기 순으로 정렬되어있지 않으면 메모리 검색 시간이 늘어난다.</p>
+</blockquote>
+<hr>
+<blockquote>
+<h2 id="6-페이지-폴트에-따른-페이지-교체-알고리즘에-대해-설명해주세요"><a href="#6-페이지-폴트에-따른-페이지-교체-알고리즘에-대해-설명해주세요" class="headerlink" title="6. 페이지 폴트에 따른 페이지 교체 알고리즘에 대해 설명해주세요"></a>6. 페이지 폴트에 따른 페이지 교체 알고리즘에 대해 설명해주세요</h2><p>OPT(Optimization) : 가장 오랫동안 사용하지 않을 페이지를 예측하여 교체하는, 최적화 방식<br>FIFO(First In First Out) : 메모리가 할당된 순서대로 페이지를 교체하는 방식<br>LRU(Least Recently Used) : 최근에 가장 오랫동안 사용하지 않은 페이지를 교체<br>LFU(Least Frequently Used) : 사용 빈도가 가장 적은 페이지를 교체<br>NUR(Not Used Recently) : 최근에 가장 사용하지 않은 페이지를 교체</p>
+</blockquote>
+<blockquote>
+<h3 id="6-1-페이지-폴트란-무엇인가"><a href="#6-1-페이지-폴트란-무엇인가" class="headerlink" title="6-1. 페이지 폴트란 무엇인가?"></a>6-1. 페이지 폴트란 무엇인가?</h3><p>운영체제의 스와퍼(Swapper)는 메모리에 동작하고 있는 프로세스 중에서 실제로 필요한 프로세스만 로드하고, 페이저(Pager)는 프로세스의 필요한 페이지만 로드합니다.<br>따라서 필요한 페이지가 물리 메모리에 부재할 수 있는 시점이 있는 데, 이 때를 페이지 폴트라 합니다.</p>
+</blockquote>
+<blockquote>
+<h3 id="6-2-페이지-폴트의-해결과정"><a href="#6-2-페이지-폴트의-해결과정" class="headerlink" title="6-2. 페이지 폴트의 해결과정"></a>6-2. 페이지 폴트의 해결과정</h3><p>필요한 페이지가 없는 것을 해결하기위해 요구를 합니다. 이를 Demand Paging이라하는데,<br>페이지 폴트가 발생하면 CPU에서 trap을 발생시켜 OS에 알립니다.<br>OS에서는 interrupt를 발생시키고 주소 값과 Valid bit가 있는 Page Table을 통해<br>필요한 페이지가 있는 지 확인합니다. 없으면 프로세스를 종료하고, 있으면 물리 메모리에 비어있는 프레임을 찾습니다.</p>
+</blockquote>
+<p>이 때 비어있는 프레임이 없으면 페이지 교체 알고리즘을 통해 페이지를 교체하고,<br>페이지가 있으면 그 공간에 로드합니다.</p>
+<hr>
+<blockquote>
+<h2 id="7-단편화란-무엇인가"><a href="#7-단편화란-무엇인가" class="headerlink" title="7. 단편화란 무엇인가?"></a>7. 단편화란 무엇인가?</h2></blockquote>
 <ul>
-<li>파이프 라인을 통하여 위 1차 출력을 입력으로 받고, 그 중 code가 포함된 결과물을 가져 옵니다.</li>
-<li>여기서 <code>|</code>가 파이프 라인을 의미합니다.</li>
+<li>RAM에서 메모리의 공간이 조각으로 나뉘어져, 사용 가능한 메모리가 충분히 존재하지만 할당할 수 없는 상태</li>
 </ul>
-<p><img src="/image/grep.png" alt="img_1.png"></p>
+<blockquote>
+<h3 id="7-1-내부-단편화"><a href="#7-1-내부-단편화" class="headerlink" title="7-1. 내부 단편화"></a>7-1. 내부 단편화</h3></blockquote>
+<ul>
+<li>프로세스가 필요한 양보다 더 큰 메모리가 할당되어, 할당된 메모리 내의 공간이 낭비되는 상황</li>
+</ul>
+<blockquote>
+<h3 id="7-2-외부-단편화"><a href="#7-2-외부-단편화" class="headerlink" title="7-2. 외부 단편화"></a>7-2. 외부 단편화</h3></blockquote>
+<ul>
+<li>총 사용 가능 메모리 공간은 충분하지만, 비연속적으로 존재하여 프로세스에 대한 할당이 불가능한 상황</li>
+</ul>
 
             
 
@@ -284,7 +298,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">태그</span><br/>
                 
-    <a class="tag tag--primary tag--small t-none-link" href="/tags/IPC/" rel="tag">IPC</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/Pipe/" rel="tag">Pipe</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/%EB%8B%A8%ED%8E%B8%ED%99%94/" rel="tag">단편화</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="tag">메모리 할당 알고리즘</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%8F%B4%ED%8A%B8/" rel="tag">페이지 폴트</a>
 
             </div>
         
@@ -297,9 +311,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/10/14/shell/"
-                    data-tooltip="Shell Script와 서버 작업 자동화"
-                    aria-label="이전: Shell Script와 서버 작업 자동화"
+                    href="/10/28/0-interview-os2/"
+                    data-tooltip="가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어"
+                    aria-label="이전: 가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -311,9 +325,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/10/12/pipe/"
-                    data-tooltip="IPC (Inter-Process Communication)"
-                    aria-label="다음: IPC (Inter-Process Communication)"
+                    href="/10/28/springInterceptor/"
+                    data-tooltip="Spring - Interceptor"
+                    aria-label="다음: Spring - Interceptor"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">다음</span>
@@ -338,7 +352,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/12/realpipe/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/28/0-interview-os1/"
                     title="Facebook에 공유하기"
                     aria-label="Facebook에 공유하기"
                 >
@@ -351,7 +365,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/12/realpipe/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/28/0-interview-os1/"
                     title="Twitter에 공유하기"
                     aria-label="Twitter에 공유하기"
                 >
@@ -364,7 +378,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/12/realpipe/"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/28/0-interview-os1/"
                     title="Google+에 공유하기"
                     aria-label="Google+에 공유하기"
                 >
@@ -412,9 +426,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/10/14/shell/"
-                    data-tooltip="Shell Script와 서버 작업 자동화"
-                    aria-label="이전: Shell Script와 서버 작업 자동화"
+                    href="/10/28/0-interview-os2/"
+                    data-tooltip="가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어"
+                    aria-label="이전: 가상 메모리, 페이징, 세그멘테이션, 뮤텍스, 세마포어"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -426,9 +440,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/10/12/pipe/"
-                    data-tooltip="IPC (Inter-Process Communication)"
-                    aria-label="다음: IPC (Inter-Process Communication)"
+                    href="/10/28/springInterceptor/"
+                    data-tooltip="Spring - Interceptor"
+                    aria-label="다음: Spring - Interceptor"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">다음</span>
@@ -453,7 +467,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/12/realpipe/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/28/0-interview-os1/"
                     title="Facebook에 공유하기"
                     aria-label="Facebook에 공유하기"
                 >
@@ -466,7 +480,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/12/realpipe/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/28/0-interview-os1/"
                     title="Twitter에 공유하기"
                     aria-label="Twitter에 공유하기"
                 >
@@ -479,7 +493,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/12/realpipe/"
+                    target="new" href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/28/0-interview-os1/"
                     title="Google+에 공유하기"
                     aria-label="Google+에 공유하기"
                 >
@@ -513,7 +527,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/12/realpipe/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://bedongryeol.github.io/10/28/0-interview-os1/"
                         aria-label="Facebook에 공유하기"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
@@ -526,7 +540,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/12/realpipe/"
+                        href="https://twitter.com/intent/tweet?text=http://bedongryeol.github.io/10/28/0-interview-os1/"
                         aria-label="Twitter에 공유하기"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
@@ -539,7 +553,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/12/realpipe/"
+                        href="https://plus.google.com/share?url=http://bedongryeol.github.io/10/28/0-interview-os1/"
                         aria-label="Google+에 공유하기"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
