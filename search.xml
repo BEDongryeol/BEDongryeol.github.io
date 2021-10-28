@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Spring - Interceptor</title>
+      <link href="/10/28/springInterceptor/"/>
+      <url>/10/28/springInterceptor/</url>
+      
+        <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="Interceptor-란"><a href="#Interceptor-란" class="headerlink" title="Interceptor 란 ?"></a>Interceptor 란 ?</h2></blockquote><p><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http://cfile22.uf.tistory.com/image/9983FB455BB4E5D30C7E10" alt="image"><br><a href="https://goddaehee.tistory.com/154">출처 : 갓대희의 작은 공간</a></p><p>Interceptor는 Filter와 유사한 형태로 존재한다. AOP가 흩어진 관심사를 묶어 처리하는 것과 같이 공통처리를 위해 활용될 수 있다. </p><p>실행순서는 아래와 같다.</p><p><strong>요청 : Filter -&gt; Dispatcher Servlet -&gt; Interceptor -&gt; AOP</strong></p><p><strong>응답 : AOP -&gt; Interceptor -&gt; Dispatcher Servlet -&gt; Filter</strong></p><hr><table><thead><tr><th>비고</th><th>Filter</th><th>Interceptor</th></tr></thead><tbody><tr><td>등록</td><td>WebApplication(web.xml)</td><td>Spring Context</td></tr><tr><td>전,후처리</td><td>chain.doFilter()</td><td>preHandle, postHandle 등</td></tr><tr><td>예외처리</td><td>WebApplication</td><td>ExceptionHandler</td></tr><tr><td>기타</td><td>Servlet 응답, 요청에 대한 교체 가능</td><td>HandlerMethod를 통한 추가 작업, View 렌더링 전 추가 작업, AOP와 유사한 기능 제공(인증단계, 로깅 등), Service business logic과의 분리</td></tr><tr><td>사용</td><td>인코딩처리, XSS 방어 등</td><td>로그인, 권한 체크, 로그확인 등</td></tr></tbody></table><hr><blockquote><h2 id="Interceptor-구현"><a href="#Interceptor-구현" class="headerlink" title="Interceptor 구현"></a>Interceptor 구현</h2></blockquote><h3 id="절차"><a href="#절차" class="headerlink" title="절차"></a>절차</h3><h4 id="1-Interceptor를-생성할-때-HandlerInterceptor-인터페이스를-implements-해준다"><a href="#1-Interceptor를-생성할-때-HandlerInterceptor-인터페이스를-implements-해준다" class="headerlink" title="1. Interceptor를 생성할 때 HandlerInterceptor 인터페이스를 implements 해준다."></a>1. Interceptor를 생성할 때 <strong>HandlerInterceptor</strong> 인터페이스를 implements 해준다.</h4><h4 id="2-Spring이-Component-Scan을-할-때-인식되기-위해-Component-Annotation을-추가해준다"><a href="#2-Spring이-Component-Scan을-할-때-인식되기-위해-Component-Annotation을-추가해준다" class="headerlink" title="2. Spring이 Component Scan을 할 때 인식되기 위해 @Component Annotation을 추가해준다."></a>2. Spring이 Component Scan을 할 때 인식되기 위해 @Component Annotation을 추가해준다.</h4><h4 id="3-전-후처리에-맞추어-method를-override해준다"><a href="#3-전-후처리에-맞추어-method를-override해준다" class="headerlink" title="3. 전, 후처리에 맞추어 method를 override해준다."></a>3. 전, 후처리에 맞추어 method를 override해준다.</h4><ul><li>전처리 : preHandle()</li><li>후처리 : postHandle()</li><li>응답완료 후 : afterCompletion()</li></ul><p>아래 예제에서는 전처리를 하기위해 preHandle()메서드를 override 해주었다.</p><p>request한 uri와 Auth라는 Annotation을 유무 여부를 체크 및 로깅해주고, Annotation이 있다면 query를 log로 찍어주었다.</p><p>CheckAnnotation 메서드는 handler와 handlerMethod를 통해 annotation이 Bean 혹은 MethodAnnotation이 맞는지 체크해주었다.</p><ul><li><code>if (handlerMethod instanceof HttpRequestHandler) &#123; return true; &#125;</code> 코드는 Html 등 resource일 시 true를 반환해주도록했다.</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        String uri = request.getRequestURI();</span><br><span class="line">        log.info(<span class="string">&quot;uri : &#123;&#125;&quot;</span>, uri);</span><br><span class="line"></span><br><span class="line">        URI urii = UriComponentsBuilder.fromUriString(uri)</span><br><span class="line">                .query(request.getQueryString())</span><br><span class="line">                .build()</span><br><span class="line">                .toUri();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> hasAnnotation = checkAnnotation(handler, Auth.class);</span><br><span class="line">        log.info(<span class="string">&quot;has annotation : &#123;&#125;&quot;</span>, hasAnnotation);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (hasAnnotation) &#123;</span><br><span class="line">            String query = urii.getQuery();</span><br><span class="line">            log.info(<span class="string">&quot;query : &#123;&#125;&quot;</span>, query);</span><br><span class="line">            <span class="keyword">if</span> (query.equals(<span class="string">&quot;name=Inwoo&quot;</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> AuthException();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkAnnotation</span><span class="params">(Object handler, Class clazz)</span> </span>&#123;</span><br><span class="line">        HandlerMethod handlerMethod = (HandlerMethod) handler;</span><br><span class="line">        <span class="comment">// pass resource</span></span><br><span class="line">        <span class="keyword">if</span> (handlerMethod <span class="keyword">instanceof</span> HttpRequestHandler) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// pass annotation</span></span><br><span class="line">        <span class="keyword">if</span> (handlerMethod.getBeanType().getAnnotation(clazz) != <span class="keyword">null</span> || handlerMethod.getMethodAnnotation(clazz) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Basic </category>
+          
+          <category> Spring </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> interceptor </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Spring - filter</title>
       <link href="/10/26/springfilter/"/>
       <url>/10/26/springfilter/</url>
@@ -188,9 +215,9 @@
       
         <tags>
             
-            <tag> IPC </tag>
-            
             <tag> Pipe </tag>
+            
+            <tag> IPC </tag>
             
         </tags>
       
@@ -853,9 +880,9 @@
       
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Java </tag>
+            
+            <tag> String </tag>
             
         </tags>
       
