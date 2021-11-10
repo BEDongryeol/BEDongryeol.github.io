@@ -6,7 +6,7 @@
   <link href="http://inwoo.github.io/atom.xml" rel="self"/>
   
   <link href="http://inwoo.github.io/"/>
-  <updated>2021-11-09T12:08:43.869Z</updated>
+  <updated>2021-11-10T13:11:51.604Z</updated>
   <id>http://inwoo.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JPA Entity 관련 Annotation</title>
+    <link href="http://inwoo.github.io/11/10/jpaAnnotation/"/>
+    <id>http://inwoo.github.io/11/10/jpaAnnotation/</id>
+    <published>2021-11-10T12:58:39.000Z</published>
+    <updated>2021-11-10T13:11:51.604Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><h3 id="Enumerate"><a href="#Enumerate" class="headerlink" title="@Enumerate"></a>@Enumerate</h3><blockquote><p>Enumerate는 JPA에 사용 시 명확히 설정하지 않으면 예기치 못한 에러를 초래할 수 있다.</p></blockquote><p>예를 들어 아래와 같이 Gender enum을 만들었다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Gender</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    MALE,</span><br><span class="line"></span><br><span class="line">    FEMALE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Entity에 Gender field를 추가하고 테스트 코드를 통해 확인해보자.</p><p>UserRepository 인터페이스에 <code>@Query</code>를 통해 findRowRecord()라는 custom 쿼리를 작성하였으므로 참고하길 바란다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Query(value = &quot;select * from user limit 1&quot;, nativeQuery = true)</span></span><br><span class="line"><span class="function">Map&lt;String, Object&gt; <span class="title">findRowRecord</span><span class="params">(Long id)</span></span>;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">enumTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">    User user = userRepository.findById(<span class="number">1L</span>).orElseThrow(RuntimeException::<span class="keyword">new</span>);</span><br><span class="line">    user.setGender(Gender.MALE);</span><br><span class="line">    userRepository.save(user);</span><br><span class="line"></span><br><span class="line">    userRepository.findAll().forEach(System.out::println);</span><br><span class="line"></span><br><span class="line">    System.out.println(userRepository.findRowRecord(<span class="number">1L</span>).get(<span class="string">&quot;gender&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><img src="/image/enum1.png" alt="Enumerate ORDINAL"><br>그 결과 위와 같이 <code>findAll()</code>을 해서 조회할 때는 gender=MALE로 입력이 돼었지만, gender의 값을 조회하면 0이라는 값이 나온다.</p><p><img src="/image/enum2.png" alt="EnumType defaule값"><br>Enumerate의 <code>EnumType</code>의 default 값은 <code>ORDINAL</code>이다. zero-base로 값의 index를 설정한다.</p><p>위에서 MALE이 0번째로 설정되어 0이 출력된 것이다.</p><blockquote><h4 id="ORDINAL을-사용하면-추후에-Enum-내의-순서가-바뀌면-index값이-달라지게-되고-에러를-초래할-수-있다"><a href="#ORDINAL을-사용하면-추후에-Enum-내의-순서가-바뀌면-index값이-달라지게-되고-에러를-초래할-수-있다" class="headerlink" title="ORDINAL을 사용하면 추후에 Enum 내의 순서가 바뀌면 index값이 달라지게 되고 에러를 초래할 수 있다."></a>ORDINAL을 사용하면 추후에 Enum 내의 순서가 바뀌면 index값이 달라지게 되고 에러를 초래할 수 있다.</h4></blockquote><p><img src="/image/enum3.png" alt="Enumerate String"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### @Table</span><br><span class="line"></span><br><span class="line">`테이블과 관련된` Annotation으로 이름, Index, 제약조건 등을 설정할 수 있다.</span><br><span class="line"></span><br><span class="line">uniqueConstraints는 여러 column을 사용해 `unique한 복합 column`을 생성하도록 한다.</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">@Table(name = &quot;user&quot;, </span><br><span class="line">   indexes = &#123;@Index(columnList=&quot;name&quot;)&#125;, </span><br><span class="line">   uniqueConstraints = &#123;@UniqueConstraint(columnNames = &quot;email&quot;)&#125;)</span><br></pre></td></tr></table></figure><h3 id="Column"><a href="#Column" class="headerlink" title="@Column"></a>@Column</h3><p>Field의 각 속성을 지정하는 <code>Field-scope</code>의 Annotation이다.</p><p>과거에는 Column 이름을 모음을 제거하고 설정하는 경우가 많았다. Field name과 Column name을 분리하기 위해 사용된다.</p><p><code>nullable</code> 속성도 자주 사용된다. <code>DDL</code>을 호출할 때 <code>not null column</code>을 만들기 위해 설정한다.</p><ul><li><strong>일반적인 조회 쿼리에서 validation을 하지 않는다.</strong></li></ul><p>Column이 단독적으로 <code>unique</code>해야 한다면 @Column의 속성에 추가할 수 있다.</p><p><code>insertable</code>, <code>updateable</code> 속성은 DDL 외에 DML에도 영향을 받는다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Column(name = &quot;crtdat&quot;, nullable = false)</span></span><br><span class="line"><span class="keyword">private</span> LocalDate createdAt;</span><br></pre></td></tr></table></figure><hr><h3 id="Transient"><a href="#Transient" class="headerlink" title="@Transient"></a>@Transient</h3><p>Transient는 JPA의 Entity에서 DB의 column외의 <code>추가 field</code>를 갖고 싶을 때 추가해준다.</p><p>아래와 같이 설정하면 쿼리문을 실행할 때 DB에 반영되지 않고, JPA에서만 사용된다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transient</span></span><br><span class="line"><span class="keyword">private</span> String secret;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
+    
+    <category term="JPA" scheme="http://inwoo.github.io/categories/Basic/JPA/"/>
+    
+    
+    <category term="JPA Annotation" scheme="http://inwoo.github.io/tags/JPA-Annotation/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring - 비동기 처리 (async)</title>
@@ -470,31 +493,6 @@
     <category term="IPC" scheme="http://inwoo.github.io/tags/IPC/"/>
     
     <category term="Pipe" scheme="http://inwoo.github.io/tags/Pipe/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IPC (Inter-Process Communication)</title>
-    <link href="http://inwoo.github.io/10/12/pipe/"/>
-    <id>http://inwoo.github.io/10/12/pipe/</id>
-    <published>2021-10-12T13:16:06.000Z</published>
-    <updated>2021-10-28T08:52:43.308Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="IPC란-무엇인가"><a href="#IPC란-무엇인가" class="headerlink" title="IPC란 무엇인가?"></a>IPC란 무엇인가?</h2></blockquote><p><img src="https://static.packt-cdn.com/products/9781785883057/graphics/0af92d22-6bef-42c8-84cf-528fa13becf0.jpg" alt="image"></p><p><strong>IPC는 Inter-Process Communication의 약어로 프로세스간 통신의 약어이다.</strong></p><p><strong>프로세스는 서로 독립되어 있어 다른 프로세스의 영향을 받지 않습니다.</strong> 이는 보는 관점에 따라 장점이 될 수도, 단점이 될 수도 있습니다. </p><p>서로 독립되어 있어 다른 프로세스의 영향을 받지 않을 수 있다는 장점이 있지만, 이는 서로 간의 통신이 어려운 것으로 해석할 수 있습니다.</p><p>이를 위해 OS의 커널 영역에서는 IPC를 제공하고, 이를 통해 프로세스간 통신이 가능해집니다.</p><h3 id="IPC-표준"><a href="#IPC-표준" class="headerlink" title="IPC 표준"></a>IPC 표준</h3><h4 id="1-System-V-IPC"><a href="#1-System-V-IPC" class="headerlink" title="1. System V IPC"></a>1. System V IPC</h4><ul><li>오랜 역사를 가지고 있다.</li><li>서로 다른 기종간의 코드 호환성을 안정적으로 보장해준다.</li><li>불명확한 함수명과 API의 버전이 오래되었다.</li></ul><h4 id="2-POSIX-IPC"><a href="#2-POSIX-IPC" class="headerlink" title="2. POSIX IPC"></a>2. POSIX IPC</h4><ul><li>유닉스 시스템 프로그래밍 인터페이스 표준이다.</li><li>IEEE (Institute of Electronic and Electronics Engineers)에서 표준화를 시도함</li><li>직관적인 API로 인해 비교적 사용하기 쉽다.</li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
-    
-    <category term="OS" scheme="http://inwoo.github.io/categories/Basic/OS/"/>
-    
-    
-    <category term="IPC" scheme="http://inwoo.github.io/tags/IPC/"/>
-    
-    <category term="POSIX" scheme="http://inwoo.github.io/tags/POSIX/"/>
     
   </entry>
   
