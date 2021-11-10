@@ -6,7 +6,7 @@
   <link href="http://inwoo.github.io/atom.xml" rel="self"/>
   
   <link href="http://inwoo.github.io/"/>
-  <updated>2021-11-10T13:11:51.604Z</updated>
+  <updated>2021-11-10T13:27:01.171Z</updated>
   <id>http://inwoo.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Context Switching, 스레드 수준, fork()</title>
+    <link href="http://inwoo.github.io/11/10/0-interview-os4/"/>
+    <id>http://inwoo.github.io/11/10/0-interview-os4/</id>
+    <published>2021-11-10T13:24:19.000Z</published>
+    <updated>2021-11-10T13:27:01.171Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="11-Context-Switching-이란"><a href="#11-Context-Switching-이란" class="headerlink" title="11. Context Switching 이란?"></a>11. Context Switching 이란?</h2></blockquote><p>하나의 프로세스가 CPU를 사용 중인 상태에서, 다른 프로세스가 CPU를 점유하려고 할 때,</p><p>사용 중인 프로세스의 context를 PCB에 저장하고, 새로운 프로세스 의 상태를 CPU에 적재하는 작업</p><h3 id="11-1-PCB의-저장-위치"><a href="#11-1-PCB의-저장-위치" class="headerlink" title="11-1. PCB의 저장 위치"></a>11-1. PCB의 저장 위치</h3><p>PCB는 중요 정보를 담고있기 때문에, 일반 사용자가 접근할 수 없는 보호된 메모리에 저장한다.</p><p>일부 OS에서는 안전하고, 편리한 커널의 스택 첫 부분에 저장을 한다.</p><h3 id="11-2-PC-Program-Counter-이란"><a href="#11-2-PC-Program-Counter-이란" class="headerlink" title="11-2. PC(Program Counter) 이란?"></a>11-2. PC(Program Counter) 이란?</h3><p>CPU 내부의 레지스터 중 하나로, 다음에 실행될 명령어의 주소를 가지고 있다.</p><p>명령 주기에 따라 자동으로 증가하고, 반복문 등에서는 다음 코드가 아닌 새로운 코드의 위치 값이 들어간다.</p><hr><blockquote><h2 id="12-사용자-수준-스레드와-커널-수준-스레드의-차이"><a href="#12-사용자-수준-스레드와-커널-수준-스레드의-차이" class="headerlink" title="12. 사용자 수준 스레드와 커널 수준 스레드의 차이"></a>12. 사용자 수준 스레드와 커널 수준 스레드의 차이</h2></blockquote><p>커널 수준 스레드는 OS에서 생성하고, 관리하는 스레드이고, 사용자 수준 스레드는 라이브러리 등을 통해 사용자가 생성한 스레드다.</p><p>영역을 나눠줌으로써 코드 단에서 critical 한 systemcall(중요 파일에 대해 파일삭제 등)을 날리면 커널에서 막아준다.</p><p><strong>사용자 수준 스레드</strong></p><ul><li>장점</li><li>kernel에 접근하지 않기 때문에, context switching이 없다. 따라서 커널 스레드에 비해 오버헤드가 적다.</li><li>라이브러리를 통해 스케줄링을 제어하여 유연한 스케줄링 가능</li><li>단점</li><li>한 스레드가 block되면 모든 스레드가 실행 불가 상태가 된다.</li><li>커널 수준의 보호 방법을 사용할 수 없다.</li></ul><p><strong>커널 수준 스레드</strong></p><ul><li>장점</li><li>각 스레드들을 독립적으로 관리할 수 있고, 멀티 프로세서를 활용할 수 있다.</li><li>한 스레드가 block돼도 다른 스레드들은 실행시킬 수 있다.</li><li>단점</li><li>context switching으로 인한 오버헤드</li></ul><h3 id="12-1-멀티-프로세싱과-멀티-프로그래밍의-차이"><a href="#12-1-멀티-프로세싱과-멀티-프로그래밍의-차이" class="headerlink" title="12-1. 멀티 프로세싱과 멀티 프로그래밍의 차이"></a>12-1. 멀티 프로세싱과 멀티 프로그래밍의 차이</h3><p>멀티 프로세싱</p><ul><li>여러 개의 CPU가 협력적으로 일을 처리하는 것</li><li>fork를 통해 프로세스를 여러 개로 늘려, 여러 프로그램을 병렬로 처리</li></ul><p>멀티 프로그래밍</p><ul><li>한 프로그램이 대기 상태일 때, 다른 프로그램을 수행하는 것</li></ul><p>멀티 태스킹</p><ul><li>OS의 스케줄링을 통해 task를 번갈아가며 수행하는 것</li><li>task를 자주 번갈아가며 수행하여 동시에 수행하고 있다고 느낀다.</li></ul><p>멀티 스레딩</p><ul><li>하나의 프로세스를 여러 개의 스레드끼리 자원을 공유하여 처리하는 것</li><li>하나의 프로그램을 병렬로 처리</li></ul><hr><blockquote><h2 id="13-fork-와-vfork-의-차이점"><a href="#13-fork-와-vfork-의-차이점" class="headerlink" title="13. fork()와 vfork()의 차이점"></a>13. fork()와 vfork()의 차이점</h2></blockquote><p>자식 프로세스를 생성하는 시스템콜이다.</p><p>fork()는 부모 프로세스의 메모리를 복사해서 사용하지만, vfork()는 부모 프로세스의 메모리를 공유한다.</p><p>fork()를 실행하고 자식 프로세스에 변경사항이 생기면 독립적인 주소 공간을 생성시킨다.</p><p>vfork()는 fork()에 비해 생성 속도가 빠르지만, 자원을 공유하기 때문에 <code>race condition</code>이 발생하지 않도록 자식 프로세스가 부모 프로세스를 exit하거나 실행될 때까지 block 해야한다.</p><h3 id="13-1-스레드의-저장-위치"><a href="#13-1-스레드의-저장-위치" class="headerlink" title="13-1. 스레드의 저장 위치"></a>13-1. 스레드의 저장 위치</h3><p>PCB 내부에 Thread Control Block에 저장한다.</p><p>멀티 프로세스에서는 둘 다 교환해준다.</p><h3 id="13-2-오버헤드"><a href="#13-2-오버헤드" class="headerlink" title="13-2. 오버헤드"></a>13-2. 오버헤드</h3><p>어떤 처리를 하기 위해 소요되는 처리시간, 메모리 등을 말한다.</p><h3 id="13-3-혼합-스레드"><a href="#13-3-혼합-스레드" class="headerlink" title="13-3. 혼합 스레드"></a>13-3. 혼합 스레드</h3><p>N:M 매핑을 통해 사용자 수준의 스레드</p><p>오버헤드 측면에서 <code>thread pooling</code>으로 보완가능</p><h3 id="13-4-vfork-를-할-때-공유-자원에-대한-conflict-회피할-수-있는-방법"><a href="#13-4-vfork-를-할-때-공유-자원에-대한-conflict-회피할-수-있는-방법" class="headerlink" title="13-4. vfork()를 할 때 공유 자원에 대한 conflict 회피할 수 있는 방법"></a>13-4. vfork()를 할 때 공유 자원에 대한 conflict 회피할 수 있는 방법</h3><p>=&gt; copyOnWrite() &gt; COW</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="Interview" scheme="http://inwoo.github.io/categories/Interview/"/>
+    
+    <category term="OS" scheme="http://inwoo.github.io/categories/Interview/OS/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>JPA Entity 관련 Annotation</title>
@@ -468,31 +489,6 @@
     <category term="서버 자동화" scheme="http://inwoo.github.io/tags/%EC%84%9C%EB%B2%84-%EC%9E%90%EB%8F%99%ED%99%94/"/>
     
     <category term="shell" scheme="http://inwoo.github.io/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IPC - 파이프 (Pipe)</title>
-    <link href="http://inwoo.github.io/10/12/realpipe/"/>
-    <id>http://inwoo.github.io/10/12/realpipe/</id>
-    <published>2021-10-12T13:30:09.000Z</published>
-    <updated>2021-10-14T12:55:02.371Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="Pipe-파이프-기법"><a href="#Pipe-파이프-기법" class="headerlink" title="Pipe(파이프) 기법"></a>Pipe(파이프) 기법</h2></blockquote><p><img src="https://miro.medium.com/max/4800/1*O9f0bRS5cPfLQBM1-SpbIQ.png" alt="image"></p><p>기본적인 파이프 기법은 <strong>단방향 통신</strong>으로 구성되어 있습니다. Half-Duplex 통신이라고 불리기도 합니다.</p><p>두 개의 프로세스를 연결하여 한 쪽에서는 데이터를 write하고, 다른 한 쪽에서는 read만 할 수 있습니다. 또는 <strong>한 프로세스의 출력 스트림을 다른 프로세스의 입력 스트림으로 사용할 때 사용됩니다.</strong></p><p>C언어에서 <code>fork()</code>로 자식 프로세스를 생성했을 때, <strong>부모와 자식간의 통신</strong>도 파이프를 통해 이루어지게 됩니다.</p><p>아래 예제를 통해 파이프 코드를 살펴보도록 하겠습니다.</p><blockquote><h2 id="Pipe-예제-코드"><a href="#Pipe-예제-코드" class="headerlink" title="Pipe 예제 코드"></a>Pipe 예제 코드</h2></blockquote><h3 id="1-출력-스트림을-입력-스트림으로-사용"><a href="#1-출력-스트림을-입력-스트림으로-사용" class="headerlink" title="1. 출력 스트림을 입력 스트림으로 사용"></a>1. 출력 스트림을 입력 스트림으로 사용</h3><p>Mac OS의 iterm에서 디렉토리 내 디렉토리, 파일을 보여주는 ls코드로 예제를 만들어 보겠습니다.</p><p><code>ls -al</code>를 입력하여 아래와 같은 화면이 출력되었습니다. </p><p><img src="/image/lsal.png" alt="img.png"></p><p>위 폴더 중 <strong>단어 code</strong>가 포함된 결과물만을 출력할 때 파이프 라인을 사용할 수 있습니다.</p><p><code>ls -al | grep code</code> </p><ul><li>파이프 라인을 통하여 위 1차 출력을 입력으로 받고, 그 중 code가 포함된 결과물을 가져 옵니다.</li><li>여기서 <code>|</code>가 파이프 라인을 의미합니다.</li></ul><p><img src="/image/grep.png" alt="img_1.png"></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
-    
-    <category term="OS" scheme="http://inwoo.github.io/categories/Basic/OS/"/>
-    
-    
-    <category term="IPC" scheme="http://inwoo.github.io/tags/IPC/"/>
-    
-    <category term="Pipe" scheme="http://inwoo.github.io/tags/Pipe/"/>
     
   </entry>
   
