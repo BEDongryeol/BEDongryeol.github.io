@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>OSI 7 Layer</title>
+      <link href="/11/11/0-interview-newtork1/"/>
+      <url>/11/11/0-interview-newtork1/</url>
+      
+        <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="1-OSI-7-Layer"><a href="#1-OSI-7-Layer" class="headerlink" title="1. OSI 7 Layer"></a>1. OSI 7 Layer</h2></blockquote><p>통신 접속에서 완료까지의 과정을 7단계로 정의한 국제 통신 표준 규약</p><p><a href="https://bedongryeol.github.io/11/03/osi7layer/">OSI 7 Layer란?</a></p><p>물리 계층 : 디지털 신호를 전기 신호로 변환</p><p>데이터링크 계층 : Ethernet, Frame, 물리 계층과 데이터 계층의 연결을 담당, 헤더에 Source/Destination MAC Address</p><p>네트워크 계층 : IP, ARP 패킷, 방대한 네트워크 망에서 논리적인 연결을 할 수 있게 해줌, Source/Destination IP, 패킷 트레이서</p><p>전송 계층 : TCP, Segment, 데이터 전송을 담당, 어떤 응용프로그램에 전달해야하는지 port를 통해 식별</p><p>세션 계층 : 세션과 Dialogue 연결 및 관리, FTP를 통해 여러 파일을 받을 때, 각 다운로드는 Session으로 구분하고 연결 및 관리</p><p>표현 계층 : 응용 계층으로부터 전달받거나, 전달하는 데이터를 암호화</p><p>응용 계층 : HTTP, 네트워크 응용프로그램을 위한 인터페이스를 제공</p><blockquote><h3 id="1-1-전송-계층-프로토콜-중-TCP와-UDP의-차이점"><a href="#1-1-전송-계층-프로토콜-중-TCP와-UDP의-차이점" class="headerlink" title="1-1. 전송 계층 프로토콜 중 TCP와 UDP의 차이점"></a>1-1. 전송 계층 프로토콜 중 TCP와 UDP의 차이점</h3></blockquote><p><strong>TCP</strong></p><ul><li>연결형 프로토콜, 데이터의 전송순서 및 신뢰성 보장</li><li>Path를 만들어놓고, 송수신이 끝나면 끊는다.</li></ul><p><strong>UDP</strong></p><ul><li>비연결형 프로토콜, TCP보다 빠른 전송 속도</li><li>스트리밍, 브로드캐스팅 서비스에 사용된다.</li><li>데이터 단위 : 데이터 그램</li></ul><blockquote><h3 id="1-2-일반적으로-상대방의-MAC-주소를-알기-어려운데-어떻게-데이터를-보내는-지"><a href="#1-2-일반적으로-상대방의-MAC-주소를-알기-어려운데-어떻게-데이터를-보내는-지" class="headerlink" title="1-2. 일반적으로 상대방의 MAC 주소를 알기 어려운데 어떻게 데이터를 보내는 지"></a>1-2. 일반적으로 상대방의 MAC 주소를 알기 어려운데 어떻게 데이터를 보내는 지</h3><p>상대의 IP는 알아도 MAC은 모르는데 ARP를 통해 IP에서 MAC주소를 받아온다</p></blockquote><blockquote><h3 id="1-3-Layer를-구분한-이유"><a href="#1-3-Layer를-구분한-이유" class="headerlink" title="1-3. Layer를 구분한 이유?"></a>1-3. Layer를 구분한 이유?</h3><p>어느 부분이 잘못되었는지 파악 및 처리를 하기 위하여 계층을 구분했다.</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Interview </category>
+          
+          <category> Network </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Race Condition, System call, Sub-routine</title>
+      <link href="/11/11/0-interview-os5/"/>
+      <url>/11/11/0-interview-os5/</url>
+      
+        <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="14-Race-Condition이란"><a href="#14-Race-Condition이란" class="headerlink" title="14. Race Condition이란?"></a>14. Race Condition이란?</h2></blockquote><p><img src="https://i.stack.imgur.com/m7HYo.png" alt="Race Condition"></p><p>두 개 이상의 프로세스가 <code>공통 자원</code>을 병행적으로 읽거나 쓸 때, 자원에 대한 접근 순서에 따라 결과가 달라지는 상황입니다.</p><p>Race Condition이 발생하게 되면, 모든 프로세스에 원하는 결과가 발생하는 것을 보장할 수 없습니다. Mutax나 Critical section을 설정함으로 해결할 수 있다.</p><blockquote><h3 id="14-1-Dead-Lock-교착-상태-과-Race-Condition-경쟁-상태-의-차이"><a href="#14-1-Dead-Lock-교착-상태-과-Race-Condition-경쟁-상태-의-차이" class="headerlink" title="14-1. Dead Lock(교착 상태)과 Race Condition(경쟁 상태)의 차이"></a>14-1. Dead Lock(교착 상태)과 Race Condition(경쟁 상태)의 차이</h3></blockquote><p><code>Dead Lock</code>은 시스템적으로 한정된 자원을 여러 곳에서 사용하려 할 때, 프로세스가 <code>자원을 얻지 못하여</code> 작업을 수행하지 못하는 상태이고, <code>Race condition</code>은 공통 자원을 병행적으로 읽고 쓸 때, 접근 순서에 따라 결과가 달라지는 상황입니다.</p><blockquote><h3 id="14-2-Race-Condition에서-발생하는-직면하는-문제-상황"><a href="#14-2-Race-Condition에서-발생하는-직면하는-문제-상황" class="headerlink" title="14-2. Race Condition에서 발생하는 직면하는 문제 상황"></a>14-2. Race Condition에서 발생하는 직면하는 문제 상황</h3></blockquote><p>교착상태 : 시스템적으로 한정된 자원을 여러 곳에서 사용하려 할 때, 프로세스가 <code>자원을 얻지 못하여</code> 작업을 수행하지 못하는 상태</p><ul><li>Mutex, Semaphore 등을 통해 해결할 수 있다.<br>기아상태 : 스레드들에게 우선 순위를 부여하여 공유 자원에 접근할 때, 우선순위가 낮은 스레드가 소외되어 아무일도 하지 못하는 상태</li><li>Bounded waiting을 통해 해결</li></ul><hr><blockquote><h2 id="15-시스템-콜과-서브-루틴의-차이"><a href="#15-시스템-콜과-서브-루틴의-차이" class="headerlink" title="15. 시스템 콜과 서브 루틴의 차이"></a>15. 시스템 콜과 서브 루틴의 차이</h2></blockquote><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Priv_rings.svg/440px-Priv_rings.svg.png" alt="Protection Ring"></p><p>서브 루틴은 개발자가 사용하는 대부분의 API이고, 이를 통해 OS와 통신할 수 있는 API인 시스템 콜을 호출합니다.</p><p>시스템 콜 호출 시에 커널이 호출되고, 커널이 수행한 결과를 역순으로 보냅니다.</p><ul><li>커널 : 하드웨어를 제어하기 위한 일종의 API</li><li>서브루틴 : 프로그래밍 시 사용하는 대부분의 API</li></ul><blockquote><h3 id="15-1-시스템-콜의-유형에-대한-설명"><a href="#15-1-시스템-콜의-유형에-대한-설명" class="headerlink" title="15-1. 시스템 콜의 유형에 대한 설명"></a>15-1. 시스템 콜의 유형에 대한 설명</h3></blockquote><p><strong>프로세스 제어</strong></p><ul><li>프로세스를 생성하여 CPU에 프로세스를 적재하거나, 중지시키고, 메모리 할당 및 해제 등</li></ul><p><strong>파일 조작</strong></p><ul><li>open, close, read, write, create, delete 등</li></ul><p><strong>장치 관리</strong></p><ul><li>I/O 작업, 논리적 부착 및 분리 등</li></ul><p><strong>정보 유지</strong></p><ul><li>시간, 날짜, 시스템 데이터의 설정, 획득 등</li></ul><p><strong>통신</strong></p><ul><li>상태 정보 전달, 메세지의 송수신 등</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Interview </category>
+          
+          <category> OS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> race condition </tag>
+            
+            <tag> system call </tag>
+            
+            <tag> subroutine </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Context Switching, 스레드 수준, fork()</title>
       <link href="/11/10/0-interview-os4/"/>
       <url>/11/10/0-interview-os4/</url>
@@ -1140,9 +1192,9 @@
             
             <tag> Java </tag>
             
-            <tag> 자바 </tag>
-            
             <tag> Array </tag>
+            
+            <tag> 자바 </tag>
             
             <tag> 배열 </tag>
             
