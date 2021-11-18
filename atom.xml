@@ -6,7 +6,7 @@
   <link href="http://inwoo.github.io/atom.xml" rel="self"/>
   
   <link href="http://inwoo.github.io/"/>
-  <updated>2021-11-16T14:12:51.774Z</updated>
+  <updated>2021-11-18T05:27:19.665Z</updated>
   <id>http://inwoo.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TCP/IP, TCP, 3-way-handshaking</title>
+    <link href="http://inwoo.github.io/11/18/0-interview-network2/"/>
+    <id>http://inwoo.github.io/11/18/0-interview-network2/</id>
+    <published>2021-11-18T05:25:00.000Z</published>
+    <updated>2021-11-18T05:27:19.665Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><h2 id="2-TCP-IP-프로토콜을-4계층-설명하시오"><a href="#2-TCP-IP-프로토콜을-4계층-설명하시오" class="headerlink" title="2. TCP/IP 프로토콜을 4계층 설명하시오"></a>2. TCP/IP 프로토콜을 4계층 설명하시오</h2><p><img src="https://images.velog.io/images/jehjong/post/68e38b79-1117-4d48-b7c9-e04454205daa/image.png" alt="Layer"></p><p><strong>LINK 계층</strong><br>OSI 7 Layer의 물리적인 영역을 표준화 시킨 계층이다.</p><p>LAN, WAN과 같은 네트워크 표준과 관련된 <code>프로토콜을 정의</code>하며, 물리적인 주소로 MAC을 사용한다.</p><blockquote><p>프로토콜 :  Ethernet, PPP, Token Ring 등</p></blockquote><p><strong>IP 계층</strong><br>OSI 7 Layer의 네트워크 계층에 해당하며, <code>라우팅</code>을 해주는 계층이다.</p><p>IP 자체는 비-연결 지향적이며, 신뢰할 수 없는 프로토콜이다.</p><p>패킷을 전송할 때마다 불규칙적으로 라우팅해주고, 전송 중에 패킷이 손실되거나 오류가 발생할 수 있다.</p><blockquote><p>프로토콜 :  IP, ARP, RARP</p></blockquote><p><strong>TCP/UDP 계층</strong><br>OSI 7 Layer의 전송 계층에 해당하며, 포트를 통해 <code>데이터의 실제 송수신</code>을 담당하는 영역이다.</p><p>UDP는 비연결형 프로토콜이며, 연결형 프로톨인 TCP에 비해 전송 속도가 빠르다.</p><blockquote><p>프로토콜 : TCP, UDP, RTP, RTCP 등</p></blockquote><p><strong>Application 계층</strong><br>OSI 7 Layer의 응용 계층에 해당하며, <code>사용자</code>가 <code>application</code>과 <code>소통</code>할 수 있게 해준다.</p><p>Application들이 데이터를 교환하기 위해 사용되는 프로토콜을 사용한다.</p><blockquote><p>프로토콜 : FTP, HTTP, SSH, Telnet, DNS, SMTP 등</p></blockquote><h3 id="2-1-신뢰할-수-없는-IP-프로토콜을-사용할-때-패킷을-보호할-수-있는-기술"><a href="#2-1-신뢰할-수-없는-IP-프로토콜을-사용할-때-패킷을-보호할-수-있는-기술" class="headerlink" title="2-1. 신뢰할 수 없는 IP 프로토콜을 사용할 때 패킷을 보호할 수 있는 기술"></a>2-1. 신뢰할 수 없는 IP 프로토콜을 사용할 때 패킷을 보호할 수 있는 기술</h3><p>패킷을 <code>암호화</code>, <code>전자 서명</code> 등을 통해 패킷 스니핑을 당했을 때 정보가 유출되지 않게하거나,</p><p>SSH, SSL과 같은 <code>보안 프로토콜</code>을 통해 통신의 안정성을 강화할 수 있다.</p><hr><h2 id="3-TCP란"><a href="#3-TCP란" class="headerlink" title="3. TCP란 ?"></a>3. TCP란 ?</h2><p>TCP는 연결형 프로토콜로 데이터 전송 시 <code>전송 순서</code>와 <code>신뢰성</code>을 보장한다.</p><p>통신을 위한 Path를 만들어놓고, 송수신이 종료되면 연결을 끊는다.</p><p>신뢰성 보장을 위한 절차가 포함되어 UDP에 비해 속도가 느리다.</p><h3 id="3-1-서버와-클라이언트-통신-과정-함수-호출-순서"><a href="#3-1-서버와-클라이언트-통신-과정-함수-호출-순서" class="headerlink" title="3-1. 서버와 클라이언트 통신 과정 (함수 호출 순서)"></a>3-1. 서버와 클라이언트 통신 과정 (함수 호출 순서)</h3><p>서버가 연결해요청 <code>대기 큐를 생성</code>하고, <code>소켓 주소를 할당</code>하고 <code>대기</code>한다.</p><p>클라이언트가 적절한 포트를 통해 <code>연결 요청</code>을 하고,</p><p>서버에서 <code>accept</code> 하기 전까지 <code>block</code>되었다가 accpt를 하면 데이터를 송수신하게 됩니다.</p><h3 id="3-2-TCP의-Header"><a href="#3-2-TCP의-Header" class="headerlink" title="3-2. TCP의 Header"></a>3-2. TCP의 Header</h3><p>통신을 위한 <code>Source port</code>와 <code>Destination Port</code> 정보</p><p>데이터 순서 보장을 위한 <code>sequnece number</code></p><p>연결 설정 및 종료와 관련된 <code>code bits</code> 등이 있다.</p><ul><li>URG, ACK, PSH, RST, SYN, FIN</li></ul><h3 id="3-3-TCP에서-데이터-순서를-보장하는-방법"><a href="#3-3-TCP에서-데이터-순서를-보장하는-방법" class="headerlink" title="3-3. TCP에서 데이터 순서를 보장하는 방법"></a>3-3. TCP에서 데이터 순서를 보장하는 방법</h3><p>흐름제어 : 송신 측과 수신 측의 데이터 처리 속도 차이 조절</p><p>혼잡제어 : 네트워크 내 트래픽을 고려해서 패킷의 양을 설정하는 알고리즘</p><hr><h2 id="4-3-way-handshaking이란"><a href="#4-3-way-handshaking이란" class="headerlink" title="4. 3-way handshaking이란?"></a>4. 3-way handshaking이란?</h2><p>서버와 클라이언트가 TCP를 통해 연결할 때 연결 설정 과정 중 일어나는 3번의 통신</p><p>TCP 헤더에 담긴 <code>code bits</code> 중 <code>SYN</code>, <code>ACK</code>를 사용한다.</p><ul><li>SYN : 연결 요청 플래그</li><li>ACK : 응답</li></ul><ol><li><p>클라이언트에서 연결 요청을 위해 SYN(M) 패킷을 보낸다.</p></li><li><p>서버에서는 SYN(M)을 받고, 수락 시 ACK(M+1)과 SYN(N)을 보낸다.</p></li><li><p>클라이언트는 패킷을 받고, ACK(N+1)을 서버로 다시 보낸다.</p></li></ol><h3 id="4-1-4-way-handshaking이란"><a href="#4-1-4-way-handshaking이란" class="headerlink" title="4-1. 4-way handshaking이란?"></a>4-1. 4-way handshaking이란?</h3><ol><li><p>클라이언트가 연결을 종료하겠다는 FIN 플래그를 전송한다.</p></li><li><p>서버가 패킷을 받고, 확인 메시지로 ACK을 보낸다.</p><ul><li>데이터가 모두 보내질 때까지 TIME_OUT이 된다.</li></ul></li><li><p>데이터가 다 보내지고, 통신이 끝나면 서버에서 클라이언트로 FIN 플래그를 보낸다.</p></li><li><p>클라이언트는 FIN을 받고 ACK를 서버로 보낸다.</p></li><li><p>클라이언트는 서버로부터 아직 받지 못한 데이터가 있는 상황을 대비하여, 일정 시간동안 세션을 남겨놓고, 잉여 패킷을 기다리다가 완전 종료된다.</p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="Interview" scheme="http://inwoo.github.io/categories/Interview/"/>
+    
+    <category term="Network" scheme="http://inwoo.github.io/categories/Interview/Network/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Spring Security 개요</title>
@@ -452,33 +473,6 @@
     <category term="뮤텍스" scheme="http://inwoo.github.io/tags/%EB%AE%A4%ED%85%8D%EC%8A%A4/"/>
     
     <category term="세마포어" scheme="http://inwoo.github.io/tags/%EC%84%B8%EB%A7%88%ED%8F%AC%EC%96%B4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>메모리 할당 알고리즘, 페이지 폴트, 단편화</title>
-    <link href="http://inwoo.github.io/10/28/0-interview-os1/"/>
-    <id>http://inwoo.github.io/10/28/0-interview-os1/</id>
-    <published>2021-10-28T07:56:44.000Z</published>
-    <updated>2021-10-28T08:01:13.573Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="5-메모리-할당-알고리즘-First-fit-Next-fit-Best-fit-결과에-대해-설명해보세요"><a href="#5-메모리-할당-알고리즘-First-fit-Next-fit-Best-fit-결과에-대해-설명해보세요" class="headerlink" title="5. 메모리 할당 알고리즘 (First fit, Next fit, Best fit) 결과에 대해 설명해보세요"></a>5. 메모리 할당 알고리즘 (First fit, Next fit, Best fit) 결과에 대해 설명해보세요</h2></blockquote><p>메모리의 처음부터 탐색하기 시작해서, 크기가 충분한 첫 번째 메모리에 할당하는 First fit,<br>마지막으로 참조한 메모리 공간부터 탐색을 시작해서 메모리를 할당하는 Next fit,<br>모든 메모리 공간을 검사해서 내부 단편화를 최소화 하는 공간에 할당하는 Best fit이 있습니다.</p><blockquote><h3 id="5-1-메모리-할당-알고리즘의-필요성-가변-배치-전략"><a href="#5-1-메모리-할당-알고리즘의-필요성-가변-배치-전략" class="headerlink" title="5-1. 메모리 할당 알고리즘의 필요성 (가변 배치 전략)"></a>5-1. 메모리 할당 알고리즘의 필요성 (가변 배치 전략)</h3><p>OS가 제공하는 다중 프로그래밍 환경 내에서 / 다양한 프로그램들이 메모리 공간을 불규칙적으로 사용, 반환합니다.<br>이러한 불규칙적인 공간 중 프로세스에게 할당해 줄 메모리 공간을 선택하기 위해 메모리 할당 알고리즘이 필요합니다.</p></blockquote><blockquote><h3 id="5-2-각-알고리즘의-장단점이-있다면"><a href="#5-2-각-알고리즘의-장단점이-있다면" class="headerlink" title="5-2. 각 알고리즘의 장단점이 있다면?"></a>5-2. 각 알고리즘의 장단점이 있다면?</h3><p>First-fit : 가장 간단하고 빠르지만, 공간 활용률이 떨어질 수 있습니다.<br>Next-fit : first-fit에 보다는 느리지만, 빠른 속도가 장점이다, 일반적으로 메모리 공간의 끝에 있는 가장 큰 크기의 메모리를 짧은 시간내에 작은 크기로 조각내서 메모리 집약작업이 추가적으로 필요하다.<br>Best-fit : 공간 활용률이 높아진다는 장점이지만, 가용 메모리가 크기 순으로 정렬되어있지 않으면 메모리 검색 시간이 늘어난다.</p></blockquote><hr><blockquote><h2 id="6-페이지-폴트에-따른-페이지-교체-알고리즘에-대해-설명해주세요"><a href="#6-페이지-폴트에-따른-페이지-교체-알고리즘에-대해-설명해주세요" class="headerlink" title="6. 페이지 폴트에 따른 페이지 교체 알고리즘에 대해 설명해주세요"></a>6. 페이지 폴트에 따른 페이지 교체 알고리즘에 대해 설명해주세요</h2><p>OPT(Optimization) : 가장 오랫동안 사용하지 않을 페이지를 예측하여 교체하는, 최적화 방식<br>FIFO(First In First Out) : 메모리가 할당된 순서대로 페이지를 교체하는 방식<br>LRU(Least Recently Used) : 최근에 가장 오랫동안 사용하지 않은 페이지를 교체<br>LFU(Least Frequently Used) : 사용 빈도가 가장 적은 페이지를 교체<br>NUR(Not Used Recently) : 최근에 가장 사용하지 않은 페이지를 교체</p></blockquote><blockquote><h3 id="6-1-페이지-폴트란-무엇인가"><a href="#6-1-페이지-폴트란-무엇인가" class="headerlink" title="6-1. 페이지 폴트란 무엇인가?"></a>6-1. 페이지 폴트란 무엇인가?</h3><p>운영체제의 스와퍼(Swapper)는 메모리에 동작하고 있는 프로세스 중에서 실제로 필요한 프로세스만 로드하고, 페이저(Pager)는 프로세스의 필요한 페이지만 로드합니다.<br>따라서 필요한 페이지가 물리 메모리에 부재할 수 있는 시점이 있는 데, 이 때를 페이지 폴트라 합니다.</p></blockquote><blockquote><h3 id="6-2-페이지-폴트의-해결과정"><a href="#6-2-페이지-폴트의-해결과정" class="headerlink" title="6-2. 페이지 폴트의 해결과정"></a>6-2. 페이지 폴트의 해결과정</h3><p>필요한 페이지가 없는 것을 해결하기위해 요구를 합니다. 이를 Demand Paging이라하는데,<br>페이지 폴트가 발생하면 CPU에서 trap을 발생시켜 OS에 알립니다.<br>OS에서는 interrupt를 발생시키고 주소 값과 Valid bit가 있는 Page Table을 통해<br>필요한 페이지가 있는 지 확인합니다. 없으면 프로세스를 종료하고, 있으면 물리 메모리에 비어있는 프레임을 찾습니다.</p></blockquote><p>이 때 비어있는 프레임이 없으면 페이지 교체 알고리즘을 통해 페이지를 교체하고,<br>페이지가 있으면 그 공간에 로드합니다.</p><hr><blockquote><h2 id="7-단편화란-무엇인가"><a href="#7-단편화란-무엇인가" class="headerlink" title="7. 단편화란 무엇인가?"></a>7. 단편화란 무엇인가?</h2></blockquote><ul><li>RAM에서 메모리의 공간이 조각으로 나뉘어져, 사용 가능한 메모리가 충분히 존재하지만 할당할 수 없는 상태</li></ul><blockquote><h3 id="7-1-내부-단편화"><a href="#7-1-내부-단편화" class="headerlink" title="7-1. 내부 단편화"></a>7-1. 내부 단편화</h3></blockquote><ul><li>프로세스가 필요한 양보다 더 큰 메모리가 할당되어, 할당된 메모리 내의 공간이 낭비되는 상황</li></ul><blockquote><h3 id="7-2-외부-단편화"><a href="#7-2-외부-단편화" class="headerlink" title="7-2. 외부 단편화"></a>7-2. 외부 단편화</h3></blockquote><ul><li>총 사용 가능 메모리 공간은 충분하지만, 비연속적으로 존재하여 프로세스에 대한 할당이 불가능한 상황</li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="Interview" scheme="http://inwoo.github.io/categories/Interview/"/>
-    
-    <category term="OS" scheme="http://inwoo.github.io/categories/Interview/OS/"/>
-    
-    
-    <category term="메모리 할당 알고리즘" scheme="http://inwoo.github.io/tags/%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%95%A0%EB%8B%B9-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/"/>
-    
-    <category term="페이지 폴트" scheme="http://inwoo.github.io/tags/%ED%8E%98%EC%9D%B4%EC%A7%80-%ED%8F%B4%ED%8A%B8/"/>
-    
-    <category term="단편화" scheme="http://inwoo.github.io/tags/%EB%8B%A8%ED%8E%B8%ED%99%94/"/>
     
   </entry>
   
