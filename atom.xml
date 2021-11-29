@@ -6,7 +6,7 @@
   <link href="http://inwoo.github.io/atom.xml" rel="self"/>
   
   <link href="http://inwoo.github.io/"/>
-  <updated>2021-11-28T05:22:43.497Z</updated>
+  <updated>2021-11-29T07:19:10.890Z</updated>
   <id>http://inwoo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PRG(Post-Redirect-Get) 패턴</title>
+    <link href="http://inwoo.github.io/11/29/PRGPattern/"/>
+    <id>http://inwoo.github.io/11/29/PRGPattern/</id>
+    <published>2021-11-29T06:52:26.000Z</published>
+    <updated>2021-11-29T07:19:10.890Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><p>최근 프로젝트에 대한 회고를 진행하며 HTTP <code>POST</code> 메서드의 <code>Double-Submit</code> 이슈를 발견하였다.</p><p>POST request에 대한 response가 <code>요청 처리 결과를 반환</code>할 때, 서버는 동일한 결과를 중복으로 처리하여 보여준다.</p><p>Double-Submit을 해결할 수 있는 방법에는 <code>Spring MVC의 어노테이션 기반 해결</code>, <code>JSP의 taglib 기반 해결</code> 등이 있지만, </p><p>이를 회피할 수 있는 또 하나의 방법인 <code>PRG(POST-REDIRECT-GET) 패턴</code>에 대해서 정리해보았다.</p><blockquote><h2 id="PRG-패턴이란"><a href="#PRG-패턴이란" class="headerlink" title="PRG 패턴이란 ?"></a>PRG 패턴이란 ?</h2></blockquote><p>HTTP <code>POST 요청</code>에 대한 응답을 <code>다른 URL에 대한 GET</code>방식의 페이지로 <code>Redirect</code> 시키는 패턴이다.</p><p><code>POST 메서드</code>는 <code>NON-idempotent</code>, 즉 멱등하지 않기 때문에 재요청에 대한 대비가 되어 있어야합니다.</p><p>반대로 <code>GET 메서드</code>는 멱등하기 때문에 재요청이 와도 조회만 반복해서 될 뿐 <code>서버의 리소스</code>에는 영향을 미치진 않습니다.</p><blockquote><h2 id="Spring-MVC의-PRG-패턴"><a href="#Spring-MVC의-PRG-패턴" class="headerlink" title="Spring MVC의 PRG 패턴"></a>Spring MVC의 PRG 패턴</h2></blockquote><p><img src="https://i.stack.imgur.com/CRxzJ.png" alt="PRG Pattern 출처 : Wikipedia"></p><p><code>Post 기반</code>의 결제를 위한 uri로 접근하여 pay() 메서드에 매핑이 되면 비즈니스 로직을 처리하고, GetMapping을 하는 <code>/order</code> 로 redirect 됩니다.</p><p>이 때 POST 요청이 들어오면 브라우저는 <code>302 응답 코드</code>를 받게 되고, <code>/order</code>로 redirect 됩니다.</p><p>결제는 POST로 하였지만, 결제 후에는 GET 메서드에 매핑이 되기 때문에 새로고침을 하여도 로직은 발생하지 않고, GET 메서드만 발생하게 됩니다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/pay&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">pay</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 비즈니스 로직</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;redirect:/order&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@GetMapping(&quot;/order&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">order</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;order&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
+    
+    <category term="Web &amp; Network" scheme="http://inwoo.github.io/categories/Basic/Web-Network/"/>
+    
+    
+    <category term="POST" scheme="http://inwoo.github.io/tags/POST/"/>
+    
+    <category term="GET" scheme="http://inwoo.github.io/tags/GET/"/>
+    
+  </entry>
   
   <entry>
     <title>템플릿 메서드 패턴 (Template Method Pattern)</title>
@@ -442,27 +467,6 @@
     
     
     <category term="servlet" scheme="http://inwoo.github.io/tags/servlet/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>gRPC 탐구 생활 (1)</title>
-    <link href="http://inwoo.github.io/10/29/grpc/"/>
-    <id>http://inwoo.github.io/10/29/grpc/</id>
-    <published>2021-10-28T15:30:19.000Z</published>
-    <updated>2021-10-29T16:24:52.196Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h3 id="네트워크-통신"><a href="#네트워크-통신" class="headerlink" title="네트워크 통신"></a>네트워크 통신</h3><h4 id="로컬-컴퓨터의-프로세스-↔️-서버-컴퓨터의-프로세스의-IPC-통신이다"><a href="#로컬-컴퓨터의-프로세스-↔️-서버-컴퓨터의-프로세스의-IPC-통신이다" class="headerlink" title="로컬 컴퓨터의 프로세스 ↔️ 서버 컴퓨터의 프로세스의 IPC 통신이다."></a>로컬 컴퓨터의 프로세스 ↔️ 서버 컴퓨터의 프로세스의 IPC 통신이다.</h4></blockquote><blockquote><h2 id="시작-21-10-29"><a href="#시작-21-10-29" class="headerlink" title="시작 (21. 10. 29.)"></a>시작 (21. 10. 29.)</h2></blockquote><p>한 달 전에 gRPC에 관심이 생겨서 Docs를 찾아보고, 내용을 정리하여 글을 작성했었다.</p><p>오늘 프로토콜 관련 강의를 듣다가, HTTP는 Header에 많은 데이터가 들어가서 현업에서 무겁다는 평가를 받고 있다는 소식을 들었다.</p><p>이 때 gRPC가 계속해서 강조해오던 <strong>빠른 데이터 처리, 편리하고 유연한 환경</strong>이 떠올라 gRPC Quick Start를 통해 실행해 본 과정과 결과에 대해 작성하려 한다.</p><blockquote><h2 id="Quick-Start-21-10-29"><a href="#Quick-Start-21-10-29" class="headerlink" title="Quick Start (21. 10. 29)"></a>Quick Start (21. 10. 29)</h2></blockquote><h3 id="설치-전-환경-설정"><a href="#설치-전-환경-설정" class="headerlink" title="설치 전 환경 설정"></a>설치 전 환경 설정</h3><h4 id="issue-gradle과-자바-버전"><a href="#issue-gradle과-자바-버전" class="headerlink" title="issue : gradle과 자바 버전"></a>issue : gradle과 자바 버전</h4><p>gRPC는 JDK 버전이 7 버전 이상이어야 사용할 수 있다. 나는 16 버전을 사용하고 있어서, 당연히 사용할 수 있을 줄 알았다.</p><p>결과적으로 설치 이후에는 16 버전을 사용해도 상관없었다.</p><p><strong>gRPC가 안내한 방법에는 gradle을 통한 설치 방법이 나와있는데, gradle은 아직 자바 16 버전을 지원하지 않고 있다.</strong> 설치 시 <code>General error during semantic analysis: Unsupported class file major version 60</code> 오류가 발생하였다.</p><p>7 이상 15버전 이하를 사용하면 gradle을 통해 설치할 수 있고, 버전을 다운로드 받은 후 환경 변수를 설정해주면 된다.</p><details><summary>Mac OS 환경변수 설정법 확인</summary><ol><li><code>cd /Library/Java/JavaVirtualMachines</code> 로 이동</li><li><code>ls -al</code> 을 통해 설치되어있는 jdk 버전 확인</li></ol><p>Big sur 버전 이상 : <code>vi $HOME/.zshrc</code><br>Bir sur 버전 미만 : <code>vi ~/.bash_profile</code></p><p><code>export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk폴더이름/Contents/Home</code> 입력</p></details><h3 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h3><p>원하는 폴더로 이동하여 <code>git clone</code>을 통하여 설치하거나, zip 파일을 다운로드하여 압축 해제를 해주면된다.</p><ol><li>원하는 폴더로 이동한다.</li><li><code> $ git clone -b v1.41.0 https://github.com/grpc/grpc-java</code>를 입력하여 파일을 받는다.</li><li><code>cd grpc-java/examples</code> 를 통해 폴더를 이동해준다.</li><li><code>./gradlew installDist</code>로 설치를 해준다.</li></ol><h3 id="테스트"><a href="#테스트" class="headerlink" title="테스트"></a>테스트</h3><p>gRPC는 서버와 서버 간의 통신에서 자주 사용된다.</p><p>테스트도 위와 같은 상황에서 진행을 해보았다. 이를 위해 터미널 2개를 켜놓고 실행해주어야 한다.</p><p>1개는 Client, 1개는 Server의 역할을 해줄 것이다. 아래 예제 코드는 grpc-java의 하위 폴더 example에서 실행해주어야 한다.</p><h4 id="1-Server-역할-Terminal"><a href="#1-Server-역할-Terminal" class="headerlink" title="1. Server 역할 Terminal"></a>1. Server 역할 Terminal</h4><p><code>$ ./build/install/examples/bin/hello-world-server</code></p><p>위 명령어를 실행하면 </p><p><strong>INFO: Server started, listening on 50051</strong> 라는 메세지가 나타난다.</p><p>50051번 포트를 열어 놓고 서버 측에서 대기를 하고 있게 된다.</p><h4 id="2-Client-역할-Terminal"><a href="#2-Client-역할-Terminal" class="headerlink" title="2. Client 역할 Terminal"></a>2. Client 역할 Terminal</h4><p><code>$ ./build/install/examples/bin/hello-world-client</code></p><p>위 명령어를 실행하면 </p><p><strong>INFO: Will try to greet world …</strong></p><p><strong>INFO: Greeting: Hello world</strong> 메세지가 나타난다.</p><p>REST, HTTP와는 다르게 server 쪽의 메서드를 Client단에서 호출했다. 이렇게되면 gRPC를 통하여 Client-server 어플리케이션을 실행한 것이다.</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="gRPC" scheme="http://inwoo.github.io/categories/gRPC/"/>
-    
-    
-    <category term="gRPC" scheme="http://inwoo.github.io/tags/gRPC/"/>
     
   </entry>
   
