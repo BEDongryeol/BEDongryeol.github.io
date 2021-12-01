@@ -6,7 +6,7 @@
   <link href="http://inwoo.github.io/atom.xml" rel="self"/>
   
   <link href="http://inwoo.github.io/"/>
-  <updated>2021-11-29T07:19:10.890Z</updated>
+  <updated>2021-12-01T12:08:35.774Z</updated>
   <id>http://inwoo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JPA Listener 에서 Repository Injection</title>
+    <link href="http://inwoo.github.io/12/01/jpainjection/"/>
+    <id>http://inwoo.github.io/12/01/jpainjection/</id>
+    <published>2021-12-01T12:02:09.000Z</published>
+    <updated>2021-12-01T12:08:35.774Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><hr><p>JPA를 사용하면서 Listener를 생성할 때 당연하듯 <code>Listener 클래스</code>를 <code>@Component</code>를 통해 등록하고 내부에 <code>repository</code>를 injection하여 사용하였다.</p><p><strong>테스트 결과 repository에 NPE가 발생하였고, 원인을 찾아보았다.</strong></p><p>이를 이해하기 위해서는 Bean이 생성되는 과정을 알아야한다.</p><hr><h2 id="Bean이-생성되는-과정"><a href="#Bean이-생성되는-과정" class="headerlink" title="Bean이 생성되는 과정"></a>Bean이 생성되는 과정</h2><blockquote><p>1.Application 실행<br>2.EntityManagerFactory 등록<br>3.EntityManger 생성<br>4.SimpleJpaRepository 생성<br>5.JpaRepository 생성<br>6.Listener 생성</p></blockquote><ol><li>JpaRepository를 Bean으로 등록해주는 <code>EntityManagerFactroy</code>(이하 EMF)는<br><code>Application 실행</code>시 Bean으로 등록된다.<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3></li><li>EMF는 <code>EntityManger</code>를 생성해주는 클래스이다.<ul><li>EntityManager는 SharedEntityManagerCreator의 <code>createSharedEntityManager</code> 메서드에 의해 생성이되는데 EMF가 필수이다.</li></ul></li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> EntityManager <span class="title">createSharedEntityManager</span><span class="params">(EntityManagerFactory emf)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> createSharedEntityManager(emf, <span class="keyword">null</span>, <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><ol start="3"><li>JpaRepository의 부모 클래스인 <code>SimpleJpaRepository</code>는 생성될 때 <code>EntityManager</code>가 필요하다.</li></ol><hr><h4 id="Listener를-Component로-명시하여-Scan을-하게-되면-Listener를-사용하기-위해-존재하여야-하는-객체들이-먼저-등록이-되기-전에-사용하려는-꼴이다"><a href="#Listener를-Component로-명시하여-Scan을-하게-되면-Listener를-사용하기-위해-존재하여야-하는-객체들이-먼저-등록이-되기-전에-사용하려는-꼴이다" class="headerlink" title="Listener를 Component로 명시하여 Scan을 하게 되면, Listener를 사용하기 위해 존재하여야 하는 객체들이 먼저 등록이 되기 전에 사용하려는 꼴이다."></a>Listener를 Component로 명시하여 Scan을 하게 되면, Listener를 사용하기 위해 존재하여야 하는 객체들이 먼저 등록이 되기 전에 사용하려는 꼴이다.</h4><blockquote><p>할아버지가 아버지를 낳지 않았는데, 내가 태어나려고 하는 상황과 유사하다.</p></blockquote><hr><h2 id="Listener에서-Repository-Injection-하는-방법"><a href="#Listener에서-Repository-Injection-하는-방법" class="headerlink" title="Listener에서 Repository Injection 하는 방법"></a>Listener에서 Repository Injection 하는 방법</h2><h3 id="1-ApplicationContext"><a href="#1-ApplicationContext" class="headerlink" title="1. ApplicationContext"></a>1. ApplicationContext</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BeanUtils</span> <span class="title">Implements</span> <span class="title">ApplicationContextAware</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> ApplicationContext applicationContext;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">BeanUtils.applicationContext = applicationContext;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">getBean</span><span class="params">(Class&lt;T&gt; clazz)</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> applicationContext.getBean(clazz);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleListener</span> </span>&#123;</span><br><span class="line"><span class="meta">@PreUpdate</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preUpdate</span><span class="params">(Object o)</span></span>&#123;</span><br><span class="line">ExampleRepository er = BeanUtils.getBean(ExampleRepository.class);</span><br><span class="line"><span class="comment">/* ... */</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="2-Lazy-어노테이션"><a href="#2-Lazy-어노테이션" class="headerlink" title="2. @Lazy 어노테이션"></a>2. @Lazy 어노테이션</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonEntityListener</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Lazy</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ExampleRepository exampleRepository;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@PreUpdate</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preUpdate</span><span class="params">(Example example)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/* ... */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
+    
+    <category term="JPA" scheme="http://inwoo.github.io/categories/Basic/JPA/"/>
+    
+    
+    <category term="JPA" scheme="http://inwoo.github.io/tags/JPA/"/>
+    
+    <category term="Repository" scheme="http://inwoo.github.io/tags/Repository/"/>
+    
+  </entry>
   
   <entry>
     <title>PRG(Post-Redirect-Get) 패턴</title>
@@ -444,29 +469,6 @@
     <category term="servlet" scheme="http://inwoo.github.io/tags/servlet/"/>
     
     <category term="annotation" scheme="http://inwoo.github.io/tags/annotation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Servlet 이란</title>
-    <link href="http://inwoo.github.io/10/30/servlet/"/>
-    <id>http://inwoo.github.io/10/30/servlet/</id>
-    <published>2021-10-29T15:58:05.000Z</published>
-    <updated>2021-11-03T14:34:44.773Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="Servlet의-특징"><a href="#Servlet의-특징" class="headerlink" title="Servlet의 특징"></a>Servlet의 특징</h2></blockquote><h3 id="servlet은-class이고-이식성이-뛰어나다"><a href="#servlet은-class이고-이식성이-뛰어나다" class="headerlink" title="servlet은 class이고, 이식성이 뛰어나다."></a>servlet은 class이고, 이식성이 뛰어나다.</h3><h3 id="Multi-Thread"><a href="#Multi-Thread" class="headerlink" title="Multi-Thread"></a>Multi-Thread</h3><ul><li>멀티 스레드로 동작하여 성능이 뛰어나다.<h3 id="플랫폼-독립성"><a href="#플랫폼-독립성" class="headerlink" title="플랫폼 독립성"></a>플랫폼 독립성</h3></li><li>java와 같이 플랫폼에 독립적인 기술이다.<h3 id="서버-독립성"><a href="#서버-독립성" class="headerlink" title="서버 독립성"></a>서버 독립성</h3></li><li>servlet은 웹 서버와 무관하게 실행된다.<h3 id="확장성"><a href="#확장성" class="headerlink" title="확장성"></a>확장성</h3></li><li>다양한 vendor에서 제공하는 클래스 라이브러리를 jar형태로 받아 사용할 수 있다.<br>동적인 요청이 들어오면 engine이 처리, 정적인 요청은 web server가 처리한다.<br>servlet을 생성하지 않다가, 동적인 요청이 들어오면 servlet을 생성한다.<ul><li>엔진이 servlet객쳉을 생성해서, method를 호출해준다.</li></ul></li></ul><hr><blockquote><h2 id="Servlet의-문법"><a href="#Servlet의-문법" class="headerlink" title="Servlet의 문법"></a>Servlet의 문법</h2></blockquote><ol><li><p><strong>서블릿 엔진이 접근을 해야하기 때문에</strong> Servlet은 반드시 public으로 작성해야하고, 반드시 Default 생성자만 있어야한다.</p><ul><li>멤버 변수를 default 초기화한다고해서, default 생성자이다.</li></ul></li><li><p>HTTP 프로토콜 상에서 동작하는 sevlet이라면 반드시 HttpServlet 클래스를 상속해야한다.</p><ul><li>상속 관계 : 내가 만든 Servlet -&gt; HttpServlet -&gt; GenericServlet -&gt; Servlet<ul><li>상속을 해주어야만 Servlet타입을 가질 수 있게 된다.</li><li>다른 servlet을 상속해도 되지만, web에서 사용할 수 없다.</li><li>Http 프로토콜에서 최적화된 HTTPServelt을 상속해주어야한다.</li></ul></li></ul></li><li><p>라이프 사이클과 관련된 HttpServlet 클래스의 callback method를 적절하게 override 해주어야한다.</p><ul><li><code>callback method</code> : 서블릿 엔진이 적절한 시점에 호출해주는 메서드<ul><li>우리가 직접 호출하지 않는다.</li></ul></li></ul></li></ol><hr><blockquote><h2 id="흐름"><a href="#흐름" class="headerlink" title="흐름"></a>흐름</h2></blockquote><h3 id="Servlet-객체는-메모리에-1개만-존재할-수-있다"><a href="#Servlet-객체는-메모리에-1개만-존재할-수-있다" class="headerlink" title="Servlet 객체는 메모리에 1개만 존재할 수 있다."></a>Servlet 객체는 메모리에 1개만 존재할 수 있다.</h3><ol start="0"><li>Servlet Engine이 생성되는 순간 Thread Pool을 생성한다.<ul><li>서버마다 Thread 개수다 다르다.</li></ul></li><li>브라우저에서 html, image 파일이 아닌 요청을 보내면 Servlet 엔진으로 전달된다.</li><li>요청하는 Servlet이 메모리에 있는지 확인한다.<ul><li>메모리에 있을 시 바로 4번으로 이동한다.</li></ul></li><li>Servlet class파일을 찾아서 로딩하고, 생성자를 호출하고, 객체가 생성된 직후에 init() 메서드를 호출한다.<ul><li>default 생성자로 생성된 객체를 init() 메서드가 멤버 변수를 초기화 시켜준다.</li></ul></li><li>Thread를 할당받고, run() 메서드가 실행된다.<ul><li>Thread Pool에 있는 Thread 중에서 랜덤으로 할당받는다.</li><li>run() 메서드가 service()를 호출한다.</li></ul></li><li>service() 메서드를 overriding하지 않으면 부모로부터 상속받는다.<ul><li>요청 방식이 get방식의 메서드인지, post방식의 메서드인지 분기시킨다.</li></ul></li><li>Servlet을 수정하고 저장 하면 Reloading을 해준다.<ul><li>destroy() 메서드가 호출되고 수정된 Servlet으로 교체된다.</li><li>혹은 server를 종료시키면, 엔진은 생성한 객체를 destory하고 종료된다.</li></ul></li></ol><blockquote><h4 id="Servlet은-최초-호출-시에만-느리고-그-후에는-바로-Thread를-할당받으므로-빠르게-작동한다"><a href="#Servlet은-최초-호출-시에만-느리고-그-후에는-바로-Thread를-할당받으므로-빠르게-작동한다" class="headerlink" title="Servlet은 최초 호출 시에만 느리고, 그 후에는 바로 Thread를 할당받으므로 빠르게 작동한다."></a>Servlet은 최초 호출 시에만 느리고, 그 후에는 바로 Thread를 할당받으므로 빠르게 작동한다.</h4></blockquote>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
-    
-    <category term="Web &amp; Network" scheme="http://inwoo.github.io/categories/Basic/Web-Network/"/>
-    
-    
-    <category term="servlet" scheme="http://inwoo.github.io/tags/servlet/"/>
     
   </entry>
   
