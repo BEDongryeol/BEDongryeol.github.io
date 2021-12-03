@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>영속성 컨텍스트 (Persistence Context)</title>
+      <link href="/12/03/persistenceContext/"/>
+      <url>/12/03/persistenceContext/</url>
+      
+        <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><p>일종의 JPA 컨테이너 안에서 동작하는 Entity의 Context를 관리하는 것.</p><p>Context내에서 CRUD가 일어나는데, 실제로 영속성 컨텍스트의 주체적인 역할을 하는 것은 <code>Entity Manager</code> Bean이다.</p><p>EntityManager를 <code>@Autowired</code>해서 사용할 수도 있다.</p><blockquote><p>Spring Data JPA는 EM을 사용하지 않고 쿼리를 실행할 수 있도록 도와준다.</p><p>Spring DATA JPA에서 제공하지 않는 custom query는 EntityManager를 직접받아서 처리하면 된다.</p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> EntityMangager entityMangaer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">System.out.println(entityMangaer.createQuery(<span class="string">&quot;select u from User u&quot;</span>).getResultList());</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>위와 같이 실행하면 <code>userRepository.finaAll()</code>을 실행한 것과 같은 결과가 나온다.</p><hr><h1 id="1차-캐시-Id-값"><a href="#1차-캐시-Id-값" class="headerlink" title="1차 캐시 (Id 값)"></a>1차 캐시 (Id 값)</h1><p>영속성 컨텍스트 내에서 Entity를 관리하는 Entity Manager는 <code>캐시</code>를 가지고 있다.</p><blockquote><p>Entity의 Id를 작업을 수행할 때 별도로 Cache 처리를 하지 않아도, 영속성 컨텍스트에서 자동으로 Entity에 대한 Cache처리를 해주는 것이다.</p></blockquote><p>메서드에 <code>@Transactional</code>을 설정하고, 조회를 여러 번 하는 코드를 작성하면 조회는 한 번만 하지만 데이터를 계속해서 가져올 수 있다. 이는 영속성 컨텍스트에 존재하는 Entity Cache에서 가져온 것이다.</p><p><strong>메서드에 <code>@Transactional</code>을 설정을 하지 않으면 JPA 메서드는 내부적으로 <code>@Transactional</code>이 설정되어 있기 때문에, 실행할 때마다 캐시를 사용하지 않고 DB와 연동을 하게 된다.</strong></p><p>예시</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> &lt;S extends T&gt; <span class="function">S <span class="title">saveAndFlush</span><span class="params">(S entity)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    S result = save(entity);</span><br><span class="line">    flush();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><h2 id="캐시-자료구조"><a href="#캐시-자료구조" class="headerlink" title="캐시 자료구조"></a>캐시 자료구조</h2><p><strong>1차 캐시는 Map 형태로 생성된다.</strong></p><ul><li>Key는 id</li><li>Value는 해당 Entity 가 들어있다.</li></ul><blockquote><p>Id 값으로 조회할 때 영속성 Context에 존재하는 1차 캐시에 존재하는지 체크하고, 있으면 캐시에서 가져오고, 없으면 DB 조회를 한다.</p></blockquote><hr><h2 id="DB-반영-시점"><a href="#DB-반영-시점" class="headerlink" title="DB 반영 시점"></a>DB 반영 시점</h2><ol><li><code>flush()</code> 메서드를 명시적으로 호출하는 시점</li><li><code>Transaction</code>이 끝나서 쿼리가 commit 되는 시점</li><li><code>JPQL</code> 쿼리가 실행되는 시점</li></ol><h3 id="Transactional"><a href="#Transactional" class="headerlink" title="@Transactional"></a>@Transactional</h3><p>영속성 Context가 존재하여 JPA는 <code>지연 쓰기</code>가 발생한다. 즉 save 하는 시점에 바로 DB에 반영되지 않는다.</p><p><code>@Transactional</code>이 존재하는 상태에서 <code>delete</code>, <code>update</code>를 실행하여도 조회만 일어나고, 이에 대한 쿼리는 발생하지 않는다.</p><p>EntityManager가 Entity의 상태를 merge하고, 최종적으로 반영해야 되는 내용에 대해서만 쿼리가 실행된다</p><p><strong>Transaction이 묶여 있지 않으면, 메서드가 실행되는 도중에 실패하게 되면 앞에 있는 쿼리는 실행되고, 실행되지 못한 쿼리는 반영되지 않는 현상이 발생한다.</strong></p><blockquote><p><code>flush()</code> 메서드를 통해 DB에 반영하는 시점을 정할 수 있다.</p></blockquote><blockquote><p><code>saveAndFlush()</code> 메서드를 사용하면 저장과 동시에 반영할 수 있다.</p></blockquote><hr><h2 id="설정"><a href="#설정" class="headerlink" title="설정"></a>설정</h2><h3 id="persistence-xml을-통한-설정"><a href="#persistence-xml을-통한-설정" class="headerlink" title="persistence.xml을 통한 설정"></a>persistence.xml을 통한 설정</h3><p><code>LocalContainerEntityManagerFactoryBean</code> 클래스의 <code>setPersistenceXmlLocation()</code>에 의해 <code>resources - META-INF - persistence.xml</code>로 저장 위치와 파일 이름이 고정되어 있다.</p><h3 id="application-yml을-통한-설정"><a href="#application-yml을-통한-설정" class="headerlink" title="application.yml을 통한 설정"></a>application.yml을 통한 설정</h3><p>dependency에 <code>spring-boot-starter-data-jpa</code>를 추가하면 <code>Spring Boot</code>가 Context에 대한 설정을 처리해준다.</p><p>이후에 application.yml 파일에서 설정을 할 수 있다.</p><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> Basic </category>
+          
+          <category> JPA </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 영속성 컨텍스트 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JPA Listener 에서 Repository Injection</title>
       <link href="/12/01/jpainjection/"/>
       <url>/12/01/jpainjection/</url>
