@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>팩토리 메서드 패턴 (Factory Method Pattern)</title>
+      <link href="/12/11/FactoryMethod/"/>
+      <url>/12/11/FactoryMethod/</url>
+      
+        <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><hr><h2 id="1-정의"><a href="#1-정의" class="headerlink" title="1. 정의"></a>1. 정의</h2><p>생성 패턴 중 하나로, <code>인스턴스의 생성</code>을 하위 클래스에서 위임한다.</p><p><code>new</code>를 통해 객체를 생성할 수도 있지만, <code>factory method</code>를 통해 <code>동적으로</code> 생성할 수 있다.</p><ul><li>예시) Map 등의 구조를 통해 keyword에 해당하는 객체를 생성해준다.</li></ul><p>Template method에서 생성되는 부분만 <code>abstract</code>로 설정하여 패턴을 적용할 수도 있다.</p><h2 id="2-장점"><a href="#2-장점" class="headerlink" title="2. 장점"></a>2. 장점</h2><ul><li><p><code>클라이언트</code>와 객체 <code>생성 모듈</code> 간의 결합도를 낮출 수 있다.</p></li><li><p>결합도가 낮고, 자료형이 하위 클래스에 의해 결정되기 때문에 <code>확장이 용이</code>하다.</p></li><li><p>여러 객체를 <code>동일한 형태</code>로 프로그래밍 할 수 있다.</p></li></ul><h2 id="3-단점"><a href="#3-단점" class="headerlink" title="3. 단점"></a>3. 단점</h2><ul><li><p>객체가 늘어날수록 클래스 수가 많아져 복잡도가 증가한다.</p></li><li><p>객체가 추가되면 하위 클래스를 재정의 해주어야한다.</p></li></ul><h2 id="4-구현"><a href="#4-구현" class="headerlink" title="4. 구현"></a>4. 구현</h2><p><img src="https://reactiveprogramming.io/books/patterns/img/patterns-articles/factory-method-diagram.png" alt="UML Diagram"></p><ol><li><p>IProduct: 원하는 객체를 추상화하여 생성한다 (Inteface)</p></li><li><p>Concrete Product: 객체를 생성한다.</p></li><li><p>Abstract Factory: 객체를 생성할 <code>Factory</code> 객체를 추상화하여 생성한다.</p><ul><li>Concrete Factory의 <code>default</code> 동작을 추가하기 위한 권고 사항이다.</li><li><code>Template Method Pattern</code>의 변하는 부분을 생성을 담당하는 factory에 위임하는 것이다.</li></ul></li><li><p>Concrete Factory: 분기 등을 통해 객체를 생성할 로직을 작성한다.</p></li></ol><h2 id="5-패턴의-흐름"><a href="#5-패턴의-흐름" class="headerlink" title="5. 패턴의 흐름"></a>5. 패턴의 흐름</h2><p><img src="https://reactiveprogramming.io/books/patterns/img/patterns-articles/factory-method-sequence.png" alt="Sequence Diagram"></p><ol><li><p>Client가 객체 생성 메서드를 호출한다.</p></li><li><p>Concrete Factory가 분기를 통해 알맞은 객체를 생성하여 전달한다.</p></li></ol><h2 id="6-활용"><a href="#6-활용" class="headerlink" title="6. 활용"></a>6. 활용</h2><ul><li><p>생성해야 하는 객체를 예측할 수 없을 때</p></li><li><p>동적으로 객체를 생성하고 싶을 때</p></li></ul><p>Application에 1개 이상의 DB를 연결할 때, 동적으로 필요한 DB Connection을 생성하여 전달할 수 있다.</p><ul><li>이 때 Connection을 매번하는 것은 많은 비용이 요구되므로, 상황을 고려하여 static 등으로 할당해 놓는 것이 좋을 거 같다.</li></ul><p><img src="https://reactiveprogramming.io/books/patterns/img/patterns/factory-method.png" alt="DB에 적용"></p><p>참고 : <a href="https://reactiveprogramming.io/blog/en/design-patterns/factory-method">Reactive Programming</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Design Pattern </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Factory Method Pattern </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JPA의 트랜잭션</title>
       <link href="/12/03/transaction/"/>
       <url>/12/03/transaction/</url>
@@ -1572,9 +1597,9 @@
       
         <tags>
             
-            <tag> String </tag>
-            
             <tag> Java </tag>
+            
+            <tag> String </tag>
             
         </tags>
       
