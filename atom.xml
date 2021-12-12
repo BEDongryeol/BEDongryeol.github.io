@@ -6,7 +6,7 @@
   <link href="http://inwoo.github.io/atom.xml" rel="self"/>
   
   <link href="http://inwoo.github.io/"/>
-  <updated>2021-12-11T09:41:28.843Z</updated>
+  <updated>2021-12-12T13:34:34.737Z</updated>
   <id>http://inwoo.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>일급 컬렉션 (First Class Collcetion)</title>
+    <link href="http://inwoo.github.io/12/12/firstclassCollection/"/>
+    <id>http://inwoo.github.io/12/12/firstclassCollection/</id>
+    <published>2021-12-12T12:53:01.000Z</published>
+    <updated>2021-12-12T13:34:34.737Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><hr><p><code>객체 지향적</code>으로, <code>리팩토링</code>하기 쉬운 코드를 위해 일급 컬렉션이 필요하다고 한다.</p><h3 id="일급-컬렉션"><a href="#일급-컬렉션" class="headerlink" title="일급 컬렉션"></a>일급 컬렉션</h3><blockquote><p>Collection을 포함한 클래스는 반드시 다른 멤버 변수가 없어야한다.</p><p>Collection은 그 자체로 wrap 되기 때문에 이와 관련된 동작은 근거지가 마련된 것이다.</p><p>Filter가 이 새로운 클래스의 일부가 되고, 스스로 함수 객체가 될 수 있다.</p><p>두 그룹을 같이 묶고, 각 원소에 규칙을 적용하는 등의 동작을 처리할 수 있다.</p></blockquote><p>코드로 확인하자면 아래 코드와 같이 <code>Collection</code>을 <code>Class</code>로 <code>Wrapping</code>하고, 유일한 멤버 변수로 설정해놓은 상태를 <strong>일급 컬렉션</strong>이라고 한다. </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GameRanking</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, String&gt; ranks;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GameRanking</span><span class="params">(Map&lt;String, String&gt; ranks)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.ranks = ranks;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="일급-컬렉션의-특징"><a href="#일급-컬렉션의-특징" class="headerlink" title="일급 컬렉션의 특징"></a>일급 컬렉션의 특징</h2><h3 id="1-비즈니스에-종속적인-자료구조"><a href="#1-비즈니스에-종속적인-자료구조" class="headerlink" title="1. 비즈니스에 종속적인 자료구조"></a>1. 비즈니스에 종속적인 자료구조</h3><p>Service Layer에서 로또 복권 게임을 만든다고 가정해보자.</p><p>로또 복권은 <code>중복되지 않는 6개의 번호</code>로 이루어져야 한다는 조건이 있다.<br>    - 이를 Service Layer에서 여러 메서드를 통해 구현을 해줄 수도 있다.</p><p>하지만 이는 협업에 있어서 <strong>가독성을 떨어트릴 수 있고</strong>, 문제가 발생할 여지가 있다.</p><p>어떻게 이를 가독성이 뛰어나고, 누구나 알아볼 수 있게 만들 수 있을까요?<br>    - 중복되지 않는 6개의 번호를 가진 자료구조</p><p>이러한 자료는 존재하지 않으므로, 이 때 <strong>일급 컬렉션</strong>을 사용하여 만들 수 있습니다.</p><h3 id="2-Collection의-불변성-보장"><a href="#2-Collection의-불변성-보장" class="headerlink" title="2. Collection의 불변성 보장"></a>2. Collection의 불변성 보장</h3><p>일급 컬렉션은 <strong>Collection의 불변을 보장</strong>한다는 특징이 있습니다.</p><p>불변임을 보장해주어야 <strong>사이드 이펙트를 최소화</strong> 시킬 수 있습니다.<br>    - Java에서 <code>final</code> 키워드를 떠올리시는 분들이 계실 거 같습니다.<br>    - final은 재할당을 막아주는 것이지 객체의 불변을 보장하지는 않습니다.</p><p>불변성은 <strong>Wrapper Class</strong>를 통한 <strong>일급 컬렉션</strong>으로 해결해주어야합니다.</p><p>내부의 객체를 <code>private final</code>로 설정하고, <code>생성자</code>와 <code>getter</code>만 public으로 설정합니다.</p><p>별도로 <code>setter</code>를 설정하지 않으면 객체에 대한 접근만 가능하고, 설정은 불가능해지며 불변을 보장할 수 있습니다.</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
+    
+    <category term="Java" scheme="http://inwoo.github.io/categories/Basic/Java/"/>
+    
+    
+    <category term="일급 컬렉션" scheme="http://inwoo.github.io/tags/%EC%9D%BC%EA%B8%89-%EC%BB%AC%EB%A0%89%EC%85%98/"/>
+    
+  </entry>
   
   <entry>
     <title>프록시 패턴 (Proxy Pattern)</title>
@@ -430,27 +453,6 @@
     <updated>2021-11-03T14:37:15.350Z</updated>
     
     <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><blockquote><h2 id="TCP-Header"><a href="#TCP-Header" class="headerlink" title="TCP Header"></a>TCP Header</h2></blockquote><h3 id="Port-정보"><a href="#Port-정보" class="headerlink" title="Port 정보"></a>Port 정보</h3><ul><li><p>TCP는 포트를 통해 통신하므로 Source, Destination Port를 가지고 있다.</p></li><li><p><strong>16bit</strong></p></li><li><p>데이터를 전송할 때 데이터를 순서에 맞게 나눠서 전송하는데 이를 위한 Sequence Number도 있다.</p></li></ul><h3 id="Ack-Number"><a href="#Ack-Number" class="headerlink" title="Ack Number"></a>Ack Number</h3><ul><li>잘 받았는지 확인하기 위한 정보</li></ul><h3 id="Code-Bits"><a href="#Code-Bits" class="headerlink" title="Code Bits"></a>Code Bits</h3><ul><li>URG, ACK, PSH, RST, SYN, FIN</li></ul><hr><blockquote><h2 id="TCP-3-way-handshake-연결"><a href="#TCP-3-way-handshake-연결" class="headerlink" title="TCP 3-way-handshake (연결)"></a>TCP 3-way-handshake (연결)</h2></blockquote><p>Server에 Connect하면 sync를 1로해서 보낸다.</p><p>seq에 1을 더해서 ack을 설정한 뒤 접속한다.</p><blockquote><h2 id="TCP-4-way-handshake-연결-해제"><a href="#TCP-4-way-handshake-연결-해제" class="headerlink" title="TCP 4-way-handshake (연결 해제)"></a>TCP 4-way-handshake (연결 해제)</h2></blockquote><p>Client에서 FIN을 1로 해서 보내고, Server에서 ACK를 1을 주고, 잠시 후에 FIN을 1로 보내고<br>마지막으로 Cli에서 FIN 1을 보낸다.</p><p>port가 사용중이라하면 4th 과정에서 응답을 안해줘서 그럴 수도 있다.</p><hr><blockquote><h2 id="전송"><a href="#전송" class="headerlink" title="전송"></a>전송</h2></blockquote><p>header에 Len 인자에 데이터 길이를 넣어서 보낸다.</p><p>2GB 파일을 패킷의 최대 크기인 1500KB???로 나눠서 보내는데,, ,</p><p>len : 전체 데이터의 길이</p><p>ACK = seq + len(데이터 길이)</p><blockquote><h2 id="제어"><a href="#제어" class="headerlink" title="제어"></a>제어</h2></blockquote><p>수도관처럼 시간 당 보낼 수 있는 양에 한계가 있다.</p><p>적절하게 전송해줘야 유실되지않고, 정확이 도착할 것이다.</p><p>네트워크 트래픽에 따른 효율적/신뢰적 송신을 위한 제어 알고리즘 적용</p><hr><blockquote><h2 id="흐름-제어-Flow-Control"><a href="#흐름-제어-Flow-Control" class="headerlink" title="흐름 제어(Flow Control)"></a>흐름 제어(Flow Control)</h2></blockquote><p>End to End 컴퓨터의 성능을 자동으로 detect해서 전송한다.<br><strong>Sliding Window</strong> 알고리즘을 통해 알맞게 흐름량을 제어해준다.</p><h3 id="Sliding-window"><a href="#Sliding-window" class="headerlink" title="Sliding window"></a>Sliding window</h3><p>송신자와 수신자가 한 번에 주고 받을 수 있는 양의 minimum을 선택하여 window size로 정한다.</p><p><strong>SYN와 SYN/ACK 사이의 시간인 RTT를 기반으로 window size를 재설정해줘서 mininum보다 더 큰 값으로 설정된다.</strong></p><p>ACK를 받지 못해도 window size만큼 데이터를 보낸다.</p><p>ACK를 받으면 한 칸씩 sliding하며 window를 옮겨준다. =&gt; ACK을 받은 만큼 데이터를 또 전송할 수 있다.</p><ul><li>과거에는 Stop and Wait 방식을 사용해서 각 패킷마다 번호를 할당하고, 한 패킷이 보내질 때 이에 대한 ACK가 돌아와야 다른 패킷을 전송했다.</li></ul><hr><blockquote><h2 id="혼잡-제어-Congestion-Control"><a href="#혼잡-제어-Congestion-Control" class="headerlink" title="혼잡 제어(Congestion Control)"></a>혼잡 제어(Congestion Control)</h2></blockquote><p>다양한 망을 타고 데이터가 전송 될 때, 망의 traffic을 고려해서 알맞게 데이터 양을 설정하는 알고리즘</p><h3 id="Congestion-window-초기값"><a href="#Congestion-window-초기값" class="headerlink" title="Congestion window 초기값"></a>Congestion window 초기값</h3><ul><li>1 MSS (기본 단위)</li><li>한 번에 데이터를 보낼 수 있는 크기</li><li>MSS = MTU - (IP 헤더 길이) - (TCP 헤더 길이)<ul><li>보통 1500 - 20 - 20 =. 460</li></ul></li></ul><h3 id="AIMD-Additive-Increase-Multicative-Decrease"><a href="#AIMD-Additive-Increase-Multicative-Decrease" class="headerlink" title="AIMD(Additive Increase/Multicative Decrease)"></a>AIMD(Additive Increase/Multicative Decrease)</h3><ul><li>지속적으로 증가시키다가 트래픽이 안오면 절반으로 감소시키고, 들어오면 다시 증가시키는 알고리즘</li><li>처음 CWND = 1</li><li>패킷 전송이 성공하여 <strong>ACK가 도착하면 CWND += 1</strong></li><li><strong>도착하지않으면 CWND /= 2</strong></li></ul><h3 id="Slow-Start"><a href="#Slow-Start" class="headerlink" title="Slow Start"></a>Slow Start</h3><ul><li>처음 CWND = 1</li><li>패킷 전송이 성공하여 *<em>ACK가 도착하면 CWND <em>= 2</em></em></li><li><strong>도착하지않으면 CWND = 1</strong></li></ul><h3 id="Congestion-Avoidance"><a href="#Congestion-Avoidance" class="headerlink" title="Congestion Avoidance"></a>Congestion Avoidance</h3><ul><li>CWND가 일정 크기에 도달하고, ACK가 도착하면 CWND += 1</li></ul><hr><h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><blockquote><h2 id="UDP-란"><a href="#UDP-란" class="headerlink" title="UDP 란?"></a>UDP 란?</h2></blockquote><p>UDP는 User Datagram protocol로 사용자 데이터그램 프로토콜이다.</p><p>TCP와 달리 <strong>브로드캐스팅 지원</strong>을 해주고, <strong>신뢰성이 없기 때문에</strong> 데이터의 유실이 일부있어도 문제 없고, 속도가 필요한 동영상 스트리밍 등의 서비스에서 많이 사용된다.</p><p>헤더도 TCP에 비해 단순하여 비교적 가볍다.</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="Basic" scheme="http://inwoo.github.io/categories/Basic/"/>
-    
-    <category term="Web &amp; Network" scheme="http://inwoo.github.io/categories/Basic/Web-Network/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>OSI 7 Layer</title>
-    <link href="http://inwoo.github.io/11/03/osi7layer/"/>
-    <id>http://inwoo.github.io/11/03/osi7layer/</id>
-    <published>2021-11-03T14:32:47.000Z</published>
-    <updated>2021-11-03T14:35:47.221Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><p><img src="https://media.vlpt.us/images/realiron/post/e39bf9c2-b652-4ac9-a3d9-6d651e77ec32/The_7_Layers_of_OSI.png" alt="img"></p><p>여러 프로토콜이 Data에 계속해서 각각의 header를 붙여서 헤더와 정보를 구성한다.</p><ul><li>Application-&gt;Presentation-&gt;Session-&gt;Transport-&gt;Network-&gt;DataLink-&gt;Physical</li><li>이전 계층의 header도 하나의 데이터로 취급한다.</li></ul><p>LAN 카드를 통해 헤더와 데이터를 보내고, 전송받은 곳에서는 역순으로 헤더를 check하고 떼어낸다.</p><ul><li>배열에서 인덱스 0번의 데이터를 제외하고 slicing하는 모습과 유사하다.</li></ul><h3 id="캡슐화와-역캡슐화"><a href="#캡슐화와-역캡슐화" class="headerlink" title="+ 캡슐화와 역캡슐화"></a>+ 캡슐화와 역캡슐화</h3><h4 id="송신측에서-데이터에-header를-붙이고-캡슐화를-한다"><a href="#송신측에서-데이터에-header를-붙이고-캡슐화를-한다" class="headerlink" title="송신측에서 데이터에 header를 붙이고, 캡슐화를 한다."></a>송신측에서 데이터에 header를 붙이고, 캡슐화를 한다.</h4><h4 id="수신측에서는-역캡슐화하여-각-계층의-header에-해당하는-데이터를-제외시킨다"><a href="#수신측에서는-역캡슐화하여-각-계층의-header에-해당하는-데이터를-제외시킨다" class="headerlink" title="수신측에서는 역캡슐화하여 각 계층의 header에 해당하는 데이터를 제외시킨다."></a>수신측에서는 역캡슐화하여 각 계층의 header에 해당하는 데이터를 제외시킨다.</h4><hr><h3 id="Application-Layer-응용-계층"><a href="#Application-Layer-응용-계층" class="headerlink" title="Application Layer (응용 계층)"></a>Application Layer (응용 계층)</h3><p><strong>대표적인 프로토콜 : HTTP</strong><br>네트워크 응용프로그램을 위한 인터페이스를 제공한다.</p><h3 id="Presentation-Layer-표현-계층"><a href="#Presentation-Layer-표현-계층" class="headerlink" title="Presentation Layer (표현 계층)"></a>Presentation Layer (표현 계층)</h3><p>응용 계층으로부터 전달받거나, 전달해야하는 데이터의 암호화를 담당한다.</p><ul><li>Http와 https의 차이는 암호화에 있다.</li></ul><h3 id="Session-Layer-세션-계층"><a href="#Session-Layer-세션-계층" class="headerlink" title="Session Layer (세션 계층)"></a>Session Layer (세션 계층)</h3><p>세션 및 Dialogue 연결 및 관리를 담당한다.</p><p>FTP를 통해 여러 파일을 다운로드 받을 때, 각 다운로드를 Session으로 구분하여 연결하고 관리한다.</p><h3 id="Transport-Layer-전송-계층"><a href="#Transport-Layer-전송-계층" class="headerlink" title="Transport Layer (전송 계층)"></a>Transport Layer (전송 계층)</h3><p><strong>대표적인 프로토콜 : TCP</strong><br><strong>데이터 단위 : segment</strong></p><p>목적지에 신뢰할 수 있는 데이터 전달을 담당한다.</p><p>목적지의 어떤 응용 프로그램에 데이터를 전달해야하는지 <strong>포트를 통해 식별</strong>할 수 있다.</p><h4 id="TCP-vs-UDP"><a href="#TCP-vs-UDP" class="headerlink" title="TCP vs UDP"></a>TCP vs UDP</h4><p><strong>TCP</strong></p><ul><li>연결형 프로토콜, 데이터의 전송순서 및 신뢰성 보장</li><li>Path를 만들어놓고, 송수신이 끝나면 끊는다.</li></ul><p><strong>UDP</strong></p><ul><li>비연결형 프로토콜, TCP보다 빠른 전송 속도</li><li>스트리밍, 브로드캐스팅 서비스에 사용된다.</li><li>데이터 단위 : 데이터 그램</li></ul><h3 id="Network-Layer-네트워크-계층"><a href="#Network-Layer-네트워크-계층" class="headerlink" title="Network Layer (네트워크 계층)"></a>Network Layer (네트워크 계층)</h3><p><strong>대표적인 프로토콜 : IP</strong><br><strong>데이터 단위 : packet</strong></p><p>다양하고, 방대한 네트워크 상에서, 컴퓨터의 논리적인 연결을 할 수 있게 해준다.</p><p>Source, Destination IP Address를 가지고 있다.</p><h3 id="Data-Link-Layer-데이터-링크-계층"><a href="#Data-Link-Layer-데이터-링크-계층" class="headerlink" title="Data Link Layer (데이터 링크 계층)"></a>Data Link Layer (데이터 링크 계층)</h3><p><strong>대표적인 프로토콜 : Ethernet</strong><br><strong>데이터 단위 : Frame</strong></p><p>물리적 네트워크 사이의 데이터 송, 수신을 담당한다.</p><p>Ethernet 헤더는 Source, Destination MAC address 정보를 담고있다.</p><ul><li>각 하드웨어는 유일한 MAC Address를 가지고있다.</li></ul><h3 id="Physical-Layer-물리-계층"><a href="#Physical-Layer-물리-계층" class="headerlink" title="Physical Layer (물리 계층)"></a>Physical Layer (물리 계층)</h3><p>디지털은 0, 1로 데이터를 주고 받지만, 아날로그 신호는 주파수에 데이터를 실어서 송수신한다.<br>물리 계층에서는 디지털 신호를 전기 신호로 변환하여 송수신한다.</p><hr><blockquote><h2 id="TCP-IP-모델"><a href="#TCP-IP-모델" class="headerlink" title="TCP/IP 모델"></a>TCP/IP 모델</h2></blockquote><p><img src="https://user-images.githubusercontent.com/24274424/86514723-94b77900-be4e-11ea-8456-ad39b27d9ba9.png" alt="img"></p><p>인터넷 통신을 위한 모델이다.</p><p>전송계층과, 인터넷(네트워크) 계층은 그래도 존재한다.</p><p>물리, 데이터링크 계층은 네트워크 접속 계층으로, 세션, 표현, 응용 계층은 응용 계층으로 처리한다.</p>]]></content>
     
     
     <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>

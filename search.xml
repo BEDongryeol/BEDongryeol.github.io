@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>일급 컬렉션 (First Class Collcetion)</title>
+      <link href="/12/12/firstclassCollection/"/>
+      <url>/12/12/firstclassCollection/</url>
+      
+        <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><span id="more"></span><!-- excerpt --><hr><p><code>객체 지향적</code>으로, <code>리팩토링</code>하기 쉬운 코드를 위해 일급 컬렉션이 필요하다고 한다.</p><h3 id="일급-컬렉션"><a href="#일급-컬렉션" class="headerlink" title="일급 컬렉션"></a>일급 컬렉션</h3><blockquote><p>Collection을 포함한 클래스는 반드시 다른 멤버 변수가 없어야한다.</p><p>Collection은 그 자체로 wrap 되기 때문에 이와 관련된 동작은 근거지가 마련된 것이다.</p><p>Filter가 이 새로운 클래스의 일부가 되고, 스스로 함수 객체가 될 수 있다.</p><p>두 그룹을 같이 묶고, 각 원소에 규칙을 적용하는 등의 동작을 처리할 수 있다.</p></blockquote><p>코드로 확인하자면 아래 코드와 같이 <code>Collection</code>을 <code>Class</code>로 <code>Wrapping</code>하고, 유일한 멤버 변수로 설정해놓은 상태를 <strong>일급 컬렉션</strong>이라고 한다. </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GameRanking</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, String&gt; ranks;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GameRanking</span><span class="params">(Map&lt;String, String&gt; ranks)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.ranks = ranks;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="일급-컬렉션의-특징"><a href="#일급-컬렉션의-특징" class="headerlink" title="일급 컬렉션의 특징"></a>일급 컬렉션의 특징</h2><h3 id="1-비즈니스에-종속적인-자료구조"><a href="#1-비즈니스에-종속적인-자료구조" class="headerlink" title="1. 비즈니스에 종속적인 자료구조"></a>1. 비즈니스에 종속적인 자료구조</h3><p>Service Layer에서 로또 복권 게임을 만든다고 가정해보자.</p><p>로또 복권은 <code>중복되지 않는 6개의 번호</code>로 이루어져야 한다는 조건이 있다.<br>    - 이를 Service Layer에서 여러 메서드를 통해 구현을 해줄 수도 있다.</p><p>하지만 이는 협업에 있어서 <strong>가독성을 떨어트릴 수 있고</strong>, 문제가 발생할 여지가 있다.</p><p>어떻게 이를 가독성이 뛰어나고, 누구나 알아볼 수 있게 만들 수 있을까요?<br>    - 중복되지 않는 6개의 번호를 가진 자료구조</p><p>이러한 자료는 존재하지 않으므로, 이 때 <strong>일급 컬렉션</strong>을 사용하여 만들 수 있습니다.</p><h3 id="2-Collection의-불변성-보장"><a href="#2-Collection의-불변성-보장" class="headerlink" title="2. Collection의 불변성 보장"></a>2. Collection의 불변성 보장</h3><p>일급 컬렉션은 <strong>Collection의 불변을 보장</strong>한다는 특징이 있습니다.</p><p>불변임을 보장해주어야 <strong>사이드 이펙트를 최소화</strong> 시킬 수 있습니다.<br>    - Java에서 <code>final</code> 키워드를 떠올리시는 분들이 계실 거 같습니다.<br>    - final은 재할당을 막아주는 것이지 객체의 불변을 보장하지는 않습니다.</p><p>불변성은 <strong>Wrapper Class</strong>를 통한 <strong>일급 컬렉션</strong>으로 해결해주어야합니다.</p><p>내부의 객체를 <code>private final</code>로 설정하고, <code>생성자</code>와 <code>getter</code>만 public으로 설정합니다.</p><p>별도로 <code>setter</code>를 설정하지 않으면 객체에 대한 접근만 가능하고, 설정은 불가능해지며 불변을 보장할 수 있습니다.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Basic </category>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 일급 컬렉션 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>프록시 패턴 (Proxy Pattern)</title>
       <link href="/12/11/proxyPattern/"/>
       <url>/12/11/proxyPattern/</url>
