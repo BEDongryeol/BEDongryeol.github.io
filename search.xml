@@ -984,9 +984,9 @@
       
         <tags>
             
-            <tag> IPC </tag>
-            
             <tag> Pipe </tag>
+            
+            <tag> IPC </tag>
             
         </tags>
       
