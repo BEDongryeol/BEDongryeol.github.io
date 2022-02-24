@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>MySQL 스토리지 엔진과 트랜잭션 - Fintech - Backend Developer</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Inwoo Jeong"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Inwoo Jeong"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="MySQL 스토리지 엔진과 트랜잭션"><meta property="og:url" content="http://inwoo.github.io/02/23/mysqlEngine/"><meta property="og:site_name" content="Fintech - Backend Developer"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="http://inwoo.github.io/image/tablestatus.png"><meta property="article:published_time" content="2022-02-23T08:41:41.000Z"><meta property="article:modified_time" content="2022-02-24T07:35:13.945Z"><meta property="article:author" content="Inwoo Jeong"><meta property="article:tag" content="MySQL"><meta property="article:tag" content="Engine"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/image/tablestatus.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://inwoo.github.io/02/23/mysqlEngine/"},"headline":"MySQL 스토리지 엔진과 트랜잭션","image":["http://inwoo.github.io/image/tablestatus.png"],"datePublished":"2022-02-23T08:41:41.000Z","dateModified":"2022-02-24T07:35:13.945Z","author":{"@type":"Person","name":"Inwoo Jeong"},"publisher":{"@type":"Organization","name":"Fintech - Backend Developer","logo":{"@type":"ImageObject","url":"http://inwoo.github.io/img/logo.svg"}},"description":""}</script><link rel="canonical" href="http://inwoo.github.io/02/23/mysqlEngine/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Fintech - Backend Developer" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-02-23T08:41:41.000Z" title="2022. 2. 23. 오후 5:41:41">2022-02-23</time>&nbsp;게시 됨</span><span class="level-item"><time dateTime="2022-02-24T07:35:13.945Z" title="2022. 2. 24. 오후 4:35:13">2022-02-24</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/Basic/">Basic</a><span> / </span><a class="link-muted" href="/categories/Basic/Database/">Database</a></span></div></div><h1 class="title is-3 is-size-4-mobile">MySQL 스토리지 엔진과 트랜잭션</h1><div class="content"><h2 id=""><a href="#" class="headerlink" title=""></a></h2><span id="more"></span>
+<!-- excerpt -->
+
+<h2 id="데이터베이스-엔진이란"><a href="#데이터베이스-엔진이란" class="headerlink" title="데이터베이스 엔진이란?"></a>데이터베이스 엔진이란?</h2><p><strong>데이터베이스 엔진</strong> 혹은 <strong>스토리지 엔진</strong>은 DBMS가 데이터베이스에 CRUD 작업을 할 때 사용되는 기본 <code>소프트웨어 컴포넌트</code>입니다.</p>
+<blockquote>
+<p>DB에서 데이터에 <strong>어떠한 방식으로 접근, 저장</strong>할 것인지에 대한 기능을 제공</p>
+<p><strong>스토리지 엔진의 특성에 따라서 접근 속도, 안정성, 트랙잭션 등의 기능의 차이점이 발생한다</strong></p>
+</blockquote>
+<p><code>데이터베이스 서버</code>, <code>데이터베이스 관리 시스템(DBMS)</code>라고도 불리기도 하는 데이터 베이스 엔진을 조작하는 방법은 2가지가 있습니다.</p>
+<ol>
+<li>DBMS 고유의 사용자 인터페이스 이용</li>
+<li>포트 번호를 통한 조작</li>
+</ol>
+<p>대부분의 DBMS는 1번 방법(사용자 인터페이스 이용) 외에 사용자가 <strong>내장된 엔진과 상호작용</strong>을 할 수 있는 API를 가지고 있습니다.<br>또한 동일한 DB 내에 다중 저장엔진을 지원하기도 합니다.</p>
+<details>
+<summary>저장 엔진의 종류</summary>
+
+<table>
+<thead>
+<tr>
+<th>저장엔진</th>
+<th>트랜잭션 지원 여부</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Aria</td>
+<td>X</td>
+</tr>
+<tr>
+<td>BlitzDB</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Falcon</td>
+<td>O</td>
+</tr>
+<tr>
+<td>InnoDB</td>
+<td>O</td>
+</tr>
+<tr>
+<td>MyISAM</td>
+<td>X</td>
+</tr>
+<tr>
+<td>InfiniDB</td>
+<td>X</td>
+</tr>
+<tr>
+<td>TokuDB</td>
+<td>O</td>
+</tr>
+<tr>
+<td>XtraDB</td>
+<td>O</td>
+</tr>
+</tbody></table>
+</details>
+
+<hr>
+<h2 id="MySQL-구조"><a href="#MySQL-구조" class="headerlink" title="MySQL 구조"></a>MySQL 구조</h2><h3 id="MySQL-서버-MySQL-엔진-스토리지-엔진"><a href="#MySQL-서버-MySQL-엔진-스토리지-엔진" class="headerlink" title="MySQL 서버 = MySQL 엔진 + 스토리지 엔진"></a>MySQL 서버 = MySQL 엔진 + 스토리지 엔진</h3><p><code>MySQL 엔진</code>은 클라이언트의 요청을 처리하고</p>
+<ul>
+<li>SQL 문장 분석</li>
+<li>최적화 등</li>
+</ul>
+<p><code>스토리지 엔진</code>은 실제 데이터를 스토리지에 저장, 조회하는 부분을 담당한다.</p>
+<h4 id="MySQL-엔진"><a href="#MySQL-엔진" class="headerlink" title="MySQL 엔진"></a>MySQL 엔진</h4><ul>
+<li>Connection Handler : 커넥션, 쿼리 요청 처리</li>
+<li>SQL Interface : DML, DDL, View, Procedure 등 인터페이스 제공</li>
+<li>SQL parser : syntax 검사, 쿼리 문장을 토큰 단위로 구분하여 트리 형태로 파싱</li>
+<li>SQL Optimizer : 쿼리의 최적화 실행 담당</li>
+<li>캐시와 버퍼 : 성능 향상을 위한 보조 저장소</li>
+</ul>
+<h4 id="스토리지-엔진"><a href="#스토리지-엔진" class="headerlink" title="스토리지 엔진"></a>스토리지 엔진</h4><ul>
+<li>MySQL 엔진과 <code>plugin</code> 형태도 연동이 가능하다</li>
+<li>Handler API를 통해 스토리지 엔진에 CRUD 요청이 가능하다.</li>
+</ul>
+<hr>
+<h2 id="MySQL-스토리지-엔진의-종류-및-특징"><a href="#MySQL-스토리지-엔진의-종류-및-특징" class="headerlink" title="MySQL 스토리지 엔진의 종류 및 특징"></a>MySQL 스토리지 엔진의 종류 및 특징</h2><h3 id="Schema"><a href="#Schema" class="headerlink" title="Schema"></a>Schema</h3><p>MySQL은 데이터베이스(schema)를 <code>파일 시스템</code> 안의 <code>데이터 디렉토리</code>의 <code>하위 디렉토리</code>로 설정합니다.</p>
+<p>테이블을 생성하게 되면 <code>테이블명.frm</code> 파일을 생성하고, 파일 내부에 테이블 정보를 저장합니다.</p>
+<blockquote>
+<p>Database 이름과 테이블 정의를 저장할 때 파일 시스템을 사용하므로, OS에 따라 대/소문자 구분 여부가 달라집니다.</p>
+<p>윈도우 : 대/소문자 구분 없음</p>
+<p>UNIX 계열 : 대/소문자를 구분한다</p>
+</blockquote>
+<h3 id="스토리지-엔진-1"><a href="#스토리지-엔진-1" class="headerlink" title="스토리지 엔진"></a>스토리지 엔진</h3><p><code>테이블의 정의</code>는 <code>서버</code>에서 담당하고,</p>
+<p>테이블의 <code>데이터와 인덱스</code> 저장방식은 <code>스토리지 엔진</code>에 따라 달라집니다.</p>
+<p><code>SHOW TABLE STATUS</code> 명령어를 통해 특정 테이블이 어떠한 스토리지 엔진을 사용하는지 확인할 수 있습니다.</p>
+<img src="/image/tablestatus.png" class="fancybox center clear" title="Table Status">
+
+<details>
+<summary>주요 컬럼 확인하기</summary>
+
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name</td>
+<td>테이블 이름</td>
+</tr>
+<tr>
+<td>Engine</td>
+<td>테이블에 적용된 스토리지 엔진</td>
+</tr>
+<tr>
+<td>Row_format</td>
+<td>레코드 포멧. MyISAM 테이블은 Dynamic(동적), Fixed(고정), Compressed(압축)의 형식을 취할 수 있다. Dynamic(동적) 레코드 : VARCHAR, BLOB 등 길이가 다양하다. Fixed 레코드는 CHAR 이나 INTEGER처럼 길이가 변하지 않고 고정된 칼럼으로 구성된다.</td>
+</tr>
+<tr>
+<td>Rows</td>
+<td>테이블 내 행의 개수. 비-트랜잭션 테이블에서는 정확한 값이지만, 트랜잭션 테이블에서는 주로 추정 값으로 나온다</td>
+</tr>
+<tr>
+<td>Avg_row_length</td>
+<td>행의 평균 바이트 수</td>
+</tr>
+<tr>
+<td>Data_length</td>
+<td>전체 테이블의 데이터량 (Byte)</td>
+</tr>
+<tr>
+<td>Max_data_length</td>
+<td>테이블이 가질 수 있는 최대 데이터량</td>
+</tr>
+<tr>
+<td>Index_length</td>
+<td>인덱스 데이터의 디스크 공간 소비량</td>
+</tr>
+<tr>
+<td>Data_free</td>
+<td>MyISAM 테이블에 할당되었으나 아직 사용하지 않은 공간. 이전에 삭제된 행이 남아있으며 나중에 INSERT 구문이 실행될 때 재사용될 수 있다.</td>
+</tr>
+<tr>
+<td>Auto_increment</td>
+<td>Id를 위한 다음 AUTO INCREMENT 값</td>
+</tr>
+<tr>
+<td>Create_time</td>
+<td>테이블이 처음 생성된 시간</td>
+</tr>
+<tr>
+<td>Update_time</td>
+<td>데이터가 마지막으로 갱신된 시간</td>
+</tr>
+<tr>
+<td>Check_time</td>
+<td>테이블이 <code>CHECK TABLE</code>이나 <code>myisamchk</code>를 사용하여 마지막으로 검사된 시기</td>
+</tr>
+<tr>
+<td>Collation</td>
+<td>테이블 내 캐릭터 레코드의 기본 Character Set 과 Collations</td>
+</tr>
+<tr>
+<td>Checksum</td>
+<td>테이블 전체 콘텐츠의 유효한 체크섬 값</td>
+</tr>
+<tr>
+<td>Create_options</td>
+<td>테이블 생성 시에 지정된 별도 옵션</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>이 필드는 다양한 부수 정보를 갖는다. MyISAM : 테이블이 생성되었을 때 설정된 주석을 갖는다. InnoDB 스토리지 엔진 : InnoDB 테이블 스페이스에 있는 빈 공간에 대한 정보가 여기에 나온다. 테이블이 뷰라면 이 필드에는 ‘VIEW’라는 문자가 있을 것이다.</td>
+</tr>
+</tbody></table>
+</details>
+
+<hr>
+<blockquote>
+<h3 id="InnoDB-엔진"><a href="#InnoDB-엔진" class="headerlink" title="InnoDB 엔진"></a>InnoDB 엔진</h3></blockquote>
+<p>InnoDB 엔진은 <code>트랜잭션을 처리</code>하기 위해 고안되었다. 대부분의 케이스는 정상 종료되는 짧은 트랜잭션이 많은 상황을 처리하기 좋다.</p>
+<ul>
+<li>가장 많이 사용되는 스토리지 엔진 중 하나</li>
+<li>ACID 트랜잭션 지원</li>
+<li>성능, 장애 복구 기능</li>
+<li>클러스터 인덱스 위에 구성되어 있다<ul>
+<li>다른 MySQL 스토리지 엔지의 인덱스 구조와는 상이함</li>
+<li>신속한 PK 조회 가능</li>
+</ul>
+</li>
+<li>PK가 커지면 인덱스 또한 커지므로, 테이블이 여러 인덱스를 가진다면 기본키가 작은 값을 갖게 해야한다.</li>
+</ul>
+<details>
+<summary>InnoDB의 특징 자세히 살펴보기</summary>
+
+<blockquote>
+<h4 id="PK에-의한-클러스터링"><a href="#PK에-의한-클러스터링" class="headerlink" title="PK에 의한 클러스터링"></a>PK에 의한 클러스터링</h4><p>모든 테이블은 기본적으로 <code>PK를 기준으로 클러스터링</code> 되어 저장된다.</p>
+</blockquote>
+<p>키 값 순서대로 Disk에 저장이 되고, PK에 의한 range 스캔은 빨리 처리도리 수 있다.</p>
+<blockquote>
+<h4 id="Lock이-필요-없는-읽기-작업"><a href="#Lock이-필요-없는-읽기-작업" class="headerlink" title="Lock이 필요 없는 읽기 작업"></a>Lock이 필요 없는 읽기 작업</h4><p>MVCC(Multi Version Concurrency Control) 기술을 통해 다른 트랜잭션이 가지고 있는 Lock 기다리지 않고 읽기 작업을 수행한다.</p>
+</blockquote>
+<blockquote>
+<h4 id="ForeignKey-지원"><a href="#ForeignKey-지원" class="headerlink" title="ForeignKey 지원"></a>ForeignKey 지원</h4><p>InnoDB 스토리지 엔진 레벨에서 지원하고, <code>MyISAM</code>, <code>MEMORY</code> 테이블에서는 사용할 수 없다.</p>
+</blockquote>
+<blockquote>
+<h4 id="자동-데드락-감지"><a href="#자동-데드락-감지" class="headerlink" title="자동 데드락 감지"></a>자동 데드락 감지</h4><p>그래프 기반의 데드락 체크 방식을 사용하여 <code>발생과 동시에 감지</code>된다.</p>
+</blockquote>
+<p>감지된 데드락은 관련 transaction 중 <code>ROLLBACK</code>이 가장 용이한 트랜잭션을 자동으로 강제 종료한다.</p>
+<blockquote>
+<h4 id="자동화된-장애-복구"><a href="#자동화된-장애-복구" class="headerlink" title="자동화된 장애 복구"></a>자동화된 장애 복구</h4><p>손실, 장애로부터 데이터를 보호하기 위한 매커니즘이 탑재되어 있고,<br>MySQL <code>서버가 시작될 때</code> 완료되지 못한 트랜잭션이나, 디스크에 일부만 기록된 트랜잭션 등에 대한 <code>일련의 복구작업이 자동으로 진행</code>된다.</p>
+</blockquote>
+<blockquote>
+<h4 id="오라클의-아키텍처-적용"><a href="#오라클의-아키텍처-적용" class="headerlink" title="오라클의 아키텍처 적용"></a>오라클의 아키텍처 적용</h4></blockquote>
+<ul>
+<li>Lock을 기다리지 않고 조회를 하는 MVCC 기능</li>
+<li>테이블 스페이스 개념 등<ul>
+<li>Undo 데이터가 시스템 테이블 스페이스에 관리</li>
+</ul>
+</li>
+</ul>
+</details>
+
+<hr>
+<blockquote>
+<h3 id="MyISAM-엔진"><a href="#MyISAM-엔진" class="headerlink" title="MyISAM 엔진"></a>MyISAM 엔진</h3><p>색인 순차 접근 방식(Indexed Sequential Access Method, ISAM)은 빠른 데이터 검색을 위한 파일 시스템 구조이다.</p>
+</blockquote>
+<h4 id="아래와-같은-유용한-기능을-제공하지만-트랜잭션이나-Row-수준의-잠금을-지원하지-않는다"><a href="#아래와-같은-유용한-기능을-제공하지만-트랜잭션이나-Row-수준의-잠금을-지원하지-않는다" class="headerlink" title="아래와 같은 유용한 기능을 제공하지만 트랜잭션이나 Row 수준의 잠금을 지원하지 않는다."></a>아래와 같은 유용한 기능을 제공하지만 트랜잭션이나 Row 수준의 잠금을 지원하지 않는다.</h4><ul>
+<li>전문(full-text) 인덱싱 </li>
+<li>압축</li>
+<li>지리 관련 공간 함수 등 제공</li>
+</ul>
+<h4 id="Transaction을-지원하지-않기-때문에-InnoDB에-비해-심플하고-빠르지만-동시성-제어가-어렵다"><a href="#Transaction을-지원하지-않기-때문에-InnoDB에-비해-심플하고-빠르지만-동시성-제어가-어렵다" class="headerlink" title="Transaction을 지원하지 않기 때문에 InnoDB에 비해 심플하고 빠르지만, 동시성 제어가 어렵다."></a>Transaction을 지원하지 않기 때문에 InnoDB에 비해 심플하고 빠르지만, 동시성 제어가 어렵다.</h4><ul>
+<li>Read 쿼리가 많은 DW(Data Warehousing) 환경에서 많이 사용된다.</li>
+</ul>
+<p>각 테이블을 데이터 파일(.MYD), 인덱스 파일(.MYI) 두 곳에 주로 저장한다. MyISAM 테이블은 정적, 동적인 행을 모두 가질 수 있으며, 테이블 정의를 토대로 하여 사용할 포맷을 결정한다.</p>
+<details>
+<summary>MyISAM의 특징 자세히 살펴보기</summary>
+
+<blockquote>
+<h4 id="Key-Cache"><a href="#Key-Cache" class="headerlink" title="Key Cache"></a>Key Cache</h4><p>InnoDB의 버퍼풀과 비슷한 역할을 하지만, <code>인덱스를 대상으로만 작동</code>하며,<br><code>인덱스의 디스크 쓰기 작업</code>에 대해서만 부분적으로 버퍼링 역할을 해준다.</p>
+</blockquote>
+<blockquote>
+<h4 id="Lock과-동시성"><a href="#Lock과-동시성" class="headerlink" title="Lock과 동시성"></a>Lock과 동시성</h4><p>MyISAM은 행단위가 아닌 <code>테이블 전체</code>에 Lock을 건다.</p>
+</blockquote>
+<ul>
+<li>읽기 동작 : 읽는 모든 테이블에 대한 공유된 읽기 권한</li>
+<li>쓰기 동작 : 배타적 쓰기 잠금 권한</li>
+</ul>
+<p>SELECT 쿼리 실행 중에도 테이블에 새 행을 삽입(동시 삽입)할 수 있다.</p>
+<blockquote>
+<h4 id="수동-복구"><a href="#수동-복구" class="headerlink" title="수동 복구"></a>수동 복구</h4><p><code>CHECK TABLE 테이블명</code>, <code>REPAIR TABLE 테이블명</code> 명령어를 통해서 오류를 조사하고, 복구할 수 있다.</p>
+</blockquote>
+<p><code>myisamchk</code>(MyISAM Check) 명령어를 사용하면 서버가 오프라인일 때도 테이블을 조사하고 복구할 수 있다.</p>
+<blockquote>
+<h4 id="지연된-Key-쓰기"><a href="#지연된-Key-쓰기" class="headerlink" title="지연된 Key 쓰기"></a>지연된 Key 쓰기</h4><p>테이블을 생성할 때 <code>DELAY_KEY_WRITE</code>(지연된 Key 쓰기) 옵션을 ON으로 설정하면<br>해당 테이블은 <code>마지막에 변경된 데이터</code>를 Disk에 쓰지 않고, <code>메모리상의 버퍼</code>에 버퍼링한다.</p>
+</blockquote>
+<p>버퍼를 정리하거나, 테이블을 닫을 때 flush 해준다. 이용 빈도가 높고, 변경이 잦은 테이블의 성능 향상에 도움이 된다.</p>
+<p>하지만 버퍼링을 하기 때문에 conflict가 발생했을 때 손상되므로 복구 작업이 필요하다.<br>    - 해결 방법<br>        - <code>myisamchk</code>를 실행하는 자동 script<br>        - 자동 복구옵션 사용 </p>
+</details>
+
+<hr>
+<blockquote>
+<h3 id="Memory-엔진"><a href="#Memory-엔진" class="headerlink" title="Memory 엔진"></a>Memory 엔진</h3><p>메모리에 데이터를 저장하는 엔진으로, Transaction을 지원하지 않고 table-level의 잠금을 사용한다.</p>
+</blockquote>
+<p>HEAP 테이블이라 불리던 메모리 테이블은 <code>변하지 않는 데이터</code>나<br><code>재시작 이후 지속되지 않는 데이터</code>에 빠르게 접근하는데 유용하다</p>
+<ul>
+<li>메모리를 사용하여 속도가 빠르다 (I/O 작업을 기다릴 필요가 없다)</li>
+<li>데이터를 잃어버릴 위험이 있다</li>
+<li>임시 테이블로 많이 사용된다</li>
+<li>서버 재 시작 시 <ul>
+<li>테이블 구조는 지속</li>
+<li>데이터는 삭제</li>
+</ul>
+</li>
+</ul>
+<h4 id="사용-예시"><a href="#사용-예시" class="headerlink" title="사용 예시"></a>사용 예시</h4><p>쿼리를 처리할 때 중간 결과를 저장할 임시테이블로 주로 사용이 된다.</p>
+<ul>
+<li>조회용, 매핑용 테이블</li>
+<li>주기적으로 집계되는 데이터의 결과를 캐시하는 테이블</li>
+<li>데이터 분석 시 중간 결과 저장용 테이블</li>
+</ul>
+<p>MySQL은 내부적으로 <code>메모리 엔진</code>을 사용하지만,<br>중간 결과가 저장하기에 너무 커지거나, <code>text</code>, <code>blob</code>을 포함하면 <code>MyISAM 테이블로 대체</code>한다.</p>
+<h4 id="MEMORY-TABLE-vs-TEMPORARY-TABLE"><a href="#MEMORY-TABLE-vs-TEMPORARY-TABLE" class="headerlink" title="MEMORY TABLE vs. TEMPORARY TABLE"></a>MEMORY TABLE vs. TEMPORARY TABLE</h4><ul>
+<li>MEMORY TABLE<ul>
+<li>메모리에 저장되는 임시 테이블</li>
+</ul>
+</li>
+<li>TEMPORARY TABLE<ul>
+<li>모든 스토리지 엔진을 사용 가능</li>
+<li>단일 연결에만 보이고, 연결이 끝나면 사라진다.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<h3 id="Archive-엔진"><a href="#Archive-엔진" class="headerlink" title="Archive 엔진"></a>Archive 엔진</h3><p>저장소(archive)라는 네이밍에서 알 수 있 듯, INSERT 쿼리를 빠르게 처리할 수 있는 엔진이다.</p>
+</blockquote>
+<p>데이터 <code>쓰기 작업을 버퍼링</code>하고, 각 행이 삽입될 때마다 <code>zlib으로 압축</code>하여<br>MyISAM보다 디스크 입출력을 적게 일으킨다.</p>
+<ul>
+<li>Index를 지원하지 않는다</li>
+<li>INSERT/REPLACE/SELECT 쿼리 지원</li>
+<li>DELETE/UPDATE 미지원</li>
+<li>transaction을 지원하지 않는다.</li>
+<li>row-level locking을 사용하여, 많은 양의 로그성 데이터를 저장하고 읽는데 사용된다.</li>
+</ul>
+<blockquote>
+<h3 id="CSV-엔진"><a href="#CSV-엔진" class="headerlink" title="CSV 엔진"></a>CSV 엔진</h3><p>CSV(Comma Separated Values)로 구성된 파일을 테이블로 처리하지만, 인덱스를 지원해주지 않는다.</p>
+</blockquote>
+<p>서버가 실행되는 동안 DB 내외로 파일을 복사하게 해준다.</p>
+<ol>
+<li>스프레드시트에서 csv 파일을 내보낸다.</li>
+<li>MySQL 서버의 directory에 저장한다.</li>
+<li>서버에서 즉시 파일을 읽을 수 있다.</li>
+</ol>
+<blockquote>
+<h3 id="Federated-엔진"><a href="#Federated-엔진" class="headerlink" title="Federated 엔진"></a>Federated 엔진</h3><p>데이터를 자체 스토리지에 저장하지 않고, 각 Federated 테이블은 원격 MySQL 서버의 테이블을 참조한다.</p>
+</blockquote>
+<p>모든 작업을 원격 서버에 연결하여 진행한다.</p>
+<p><strong>장점</strong></p>
+<ul>
+<li>기본키를 이용한 단일 행 조회</li>
+<li>원격 서버에 실행 될 INSERT 쿼리</li>
+</ul>
+<p><strong>단점</strong></p>
+<ul>
+<li>집계 쿼리, 조인 등 다른 기본 작업의 성능이 낮다.</li>
+</ul>
+<blockquote>
+<h3 id="BlackHole-엔진"><a href="#BlackHole-엔진" class="headerlink" title="BlackHole 엔진"></a>BlackHole 엔진</h3><p>저장 메커니즘을 가지고 있지 않고, INSERT 구문은 모두 버린다.</p>
+</blockquote>
+<p>서버는 Blackhole 테이블에 대한 쿼리를 로그에 기록하고, slave에 복제하는 등 로그에 남긴다.</p>
+<p>복잡한 복제 구성, 감사용 로깅에 유용하게 사용된다.</p>
+<hr>
+<h2 id="MySQL-엔진-선택-시-고려사항"><a href="#MySQL-엔진-선택-시-고려사항" class="headerlink" title="MySQL 엔진 선택 시 고려사항"></a>MySQL 엔진 선택 시 고려사항</h2><p>설계 단에서 테이블 별로 어떠한 스토리지 엔진을 사용할 것인지 고려해야한다.<br>테이블이 어떻게 사용되고, 데이터가 어떻게 저장되는지 이해하고, 확장성 또한 고려해야한다.</p>
+<blockquote>
+<h3 id="트랜잭션이-필요할-때"><a href="#트랜잭션이-필요할-때" class="headerlink" title="트랜잭션이 필요할 때"></a>트랜잭션이 필요할 때</h3><p>InnoDB 엔진이 가장 안정적이다. MyISAM은 트랜잭션이 필요없는 사이트, SELECT가 메인인 업무에 적합하다.</p>
+</blockquote>
+<hr>
+<h3 id="참고-링크"><a href="#참고-링크" class="headerlink" title="참고 링크"></a>참고 링크</h3><p><a target="_blank" rel="noopener" href="https://nomadlee.com/mysql-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EC%97%94%EC%A7%84-%EC%A2%85%EB%A5%98-%EB%B0%8F-%ED%8A%B9%EC%A7%95/">Useful Guide</a><br><a target="_blank" rel="noopener" href="https://thefif19wlsvy.tistory.com/26">FIF’s 코딩팩토리</a></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>MySQL 스토리지 엔진과 트랜잭션</p><p><a href="http://inwoo.github.io/02/23/mysqlEngine/">http://inwoo.github.io/02/23/mysqlEngine/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Inwoo Jeong</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2022-02-23</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-02-24</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/MySQL/">MySQL</a><a class="link-muted mr-2" rel="tag" href="/tags/Engine/">Engine</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/01/14/containernetwork/"><span class="level-item">Docker - 컨테이너 통신</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'http://inwoo.github.io/02/23/mysqlEngine/';
+            this.page.identifier = '02/23/mysqlEngine/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'inwoo-jeong' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/profile.jpg" alt="Inwoo Jeong"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Inwoo Jeong</p><p class="is-size-6 is-block">Fintech-Backend</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Seoul, South Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">90</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">19</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">122</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/BEDongryeol" target="_blank" rel="noopener">팔로우</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/BEDongryeol"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="/"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">링크</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/BEDongryeol" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">GitHub</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Basic/"><span class="level-start"><span class="level-item">Basic</span></span><span class="level-end"><span class="level-item tag">49</span></span></a><ul><li><a class="level is-mobile" href="/categories/Basic/Database/"><span class="level-start"><span class="level-item">Database</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Basic/JPA/"><span class="level-start"><span class="level-item">JPA</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/Basic/Java/"><span class="level-start"><span class="level-item">Java</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/categories/Basic/LINUX/"><span class="level-start"><span class="level-item">LINUX</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Basic/OS/"><span class="level-start"><span class="level-item">OS</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/Basic/Spring/"><span class="level-start"><span class="level-item">Spring</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/Basic/Spring-Security/"><span class="level-start"><span class="level-item">Spring Security</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Basic/Web-Network/"><span class="level-start"><span class="level-item">Web &amp; Network</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Design-Pattern/"><span class="level-start"><span class="level-item">Design Pattern</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/Docker/"><span class="level-start"><span class="level-item">Docker</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/Interview/"><span class="level-start"><span class="level-item">Interview</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/Interview/Network/"><span class="level-start"><span class="level-item">Network</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Interview/OS/"><span class="level-start"><span class="level-item">OS</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Project/"><span class="level-start"><span class="level-item">Project</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Project/Fun-Saving/"><span class="level-start"><span class="level-item">Fun-Saving</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Trouble-Shooting/"><span class="level-start"><span class="level-item">Trouble Shooting</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/gRPC/"><span class="level-start"><span class="level-item">gRPC</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"><span class="level-start"><span class="level-item">자료구조</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-02-23T08:41:41.000Z">2022-02-23</time></p><p class="title"><a href="/02/23/mysqlEngine/">MySQL 스토리지 엔진과 트랜잭션</a></p><p class="categories"><a href="/categories/Basic/">Basic</a> / <a href="/categories/Basic/Database/">Database</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-01-14T10:07:16.518Z">2022-01-14</time></p><p class="title"><a href="/01/14/containernetwork/">Docker - 컨테이너 통신</a></p><p class="categories"><a href="/categories/Docker/">Docker</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-01-14T07:10:34.000Z">2022-01-14</time></p><p class="title"><a href="/01/14/datapersistence/">Docker - Host DB와 Container DB 연동</a></p><p class="categories"><a href="/categories/Docker/">Docker</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-01-13T16:30:01.000Z">2022-01-14</time></p><p class="title"><a href="/01/14/stressTest/">Docker - Stress Test</a></p><p class="categories"><a href="/categories/Docker/">Docker</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-01-13T10:51:16.000Z">2022-01-13</time></p><p class="title"><a href="/01/13/containerResource/">Docker - Resource 제어</a></p><p class="categories"><a href="/categories/Docker/">Docker</a></p></div></article></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Fintech - Backend Developer" height="28"></a><p class="is-size-7"><span>&copy; 2022 Inwoo Jeong</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>
